@@ -16,7 +16,7 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <p className='text-sm'>{t('agentify_description')}</p>
+        <p className='text-sm'>{t('MyStoriesAi_description')}</p>
       </div>
     </footer>
   );
