@@ -438,6 +438,7 @@ return [
   'explore_our_stories'=>"Explore Our Stories",
   "your_child"=>"Your Child",
   "is_the_hero"=>"is the Hero",
+
   // Features Section
   'features_title' => 'Powerful Features',
   'features_subtitle' => 'Everything you need',
