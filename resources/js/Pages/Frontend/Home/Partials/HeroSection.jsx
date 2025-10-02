@@ -19,7 +19,7 @@ export default function HeroSection() {
       }}
     >
       {/* Dark Orange Gradient Overlay - Low Opacity to Show Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-900/30 via-orange-800/40 to-orange-700/35 dark:from-orange-950/50 dark:via-orange-900/60 dark:to-orange-800/50 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-900/30 via-orange-800/40 to-orange-700/35 z-0"></div>
 
       {/* Secondary Gradient for Depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-orange-800/80 via-orange to-orange-600/75 z-5"></div>
@@ -146,7 +146,7 @@ export default function HeroSection() {
                 size='large'
                 as={Link}
                 // href={route('stories.create')}
-                className="px-12 py-4 text-lg font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-full border-2 border-orange-300/30 backdrop-blur-sm"
+                className="px-12 py-4 text-lg font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
               >
                 {t('explore_our_stories')}
               </Link>

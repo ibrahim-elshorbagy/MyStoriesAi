@@ -47,7 +47,7 @@ const HeroVideo = () => {
     <div className="relative group w-full h-full">
       {/* Loading Skeleton */}
       {!isLoaded && (
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/80 to-orange-200/60 dark:from-orange-900/50 dark:to-orange-800/40 animate-pulse flex items-center justify-center z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/80 to-orange-200/60 animate-pulse flex items-center justify-center z-10">
           <div className="w-16 h-16 border-4 border-orange-500/40 border-t-orange-500 rounded-full animate-spin"></div>
         </div>
       )}
@@ -57,8 +57,8 @@ const HeroVideo = () => {
       <div className="absolute -inset-4 lg:inset-0 bg-gradient-to-r from-orange-500/40 to-orange-400/40 rounded-2xl lg:rounded-none blur-lg opacity-50 transition-opacity duration-500 lg:hidden" />
 
       {/* Video Container - Full width on desktop, styled on mobile */}
-      <div className="relative bg-white/20 lg:bg-transparent dark:bg-neutral-900/20 lg:dark:bg-transparent backdrop-blur-xl lg:backdrop-blur-none rounded-3xl lg:rounded-none p-6 lg:p-0 border border-white/30 lg:border-0 dark:border-orange-400/20 lg:dark:border-0 shadow-2xl shadow-orange-500/20 lg:shadow-none h-full">
-        <div className="relative overflow-hidden rounded-2xl lg:rounded-none bg-gradient-to-br from-orange-50/50 to-orange-100/30 dark:from-orange-900/30 dark:to-orange-800/20 lg:bg-transparent lg:dark:bg-transparent h-full">
+      <div className="relative bg-white/20 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none rounded-3xl lg:rounded-none p-6 lg:p-0 border border-white/30 lg:border-0 shadow-2xl shadow-orange-500/20 lg:shadow-none h-full">
+        <div className="relative overflow-hidden rounded-2xl lg:rounded-none bg-gradient-to-br from-orange-50/50 to-orange-100/30 lg:bg-transparent h-full">
           {!hasError ? (
             <video
               ref={videoRef}
@@ -93,10 +93,10 @@ const HeroVideo = () => {
             <div className="w-full h-full rounded-2xl lg:rounded-none bg-gradient-to-br from-orange-500/20 to-orange-600/30 flex items-center justify-center">
               <div className="text-center">
                 <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-orange-500/30 flex items-center justify-center backdrop-blur-sm">
-                  <i className="fa-solid fa-play text-5xl text-orange-600 dark:text-orange-400"></i>
+                  <i className="fa-solid fa-play text-5xl text-orange-600"></i>
                 </div>
-                <p className="text-orange-800 dark:text-orange-300 font-bold text-xl">Hero Content</p>
-                <p className="text-orange-600 dark:text-orange-400 text-sm mt-2">Video placeholder</p>
+                <p className="text-orange-800 font-bold text-xl">Hero Content</p>
+                <p className="text-orange-600 text-sm mt-2">Video placeholder</p>
               </div>
             </div>
           )}

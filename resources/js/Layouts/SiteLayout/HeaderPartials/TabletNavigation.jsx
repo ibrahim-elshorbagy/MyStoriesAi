@@ -42,7 +42,7 @@ export default function TabletNavigation() {
   return (
     <>
       {/* Mobile Menu Trigger */}
-      <div className="flex justify-between items-center p-4 border-b border-b-neutral-300 dark:border-b-neutral-700 bg-orange-50 dark:bg-orange-800 md:hidden">
+      <div className="flex justify-between items-center p-4 border-b border-b-neutral-300 bg-orange-50 md:hidden">
         <div className='w-16'>
           <Link href={route("home")} >
             <ApplicationLogo />
@@ -51,7 +51,7 @@ export default function TabletNavigation() {
 
         {/* Header toggles and menu button */}
         <div className="flex items-center gap-3">
-          <NavigationToggles
+                    <NavigationToggles
             variant="compact"
             showLabels={false}
             className="hidden sm:flex"
@@ -68,12 +68,12 @@ export default function TabletNavigation() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`md:hidden fixed inset-0 z-[60] bg-orange-50  dark:bg-neutral-900 text-neutral-800 dark:text-white transition-all duration-300 ease-in-out
+        className={`md:hidden fixed inset-0 z-[60] bg-orange-50 text-neutral-800 transition-all duration-300 ease-in-out
         ${isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
       >
         <nav className="flex flex-col h-full ">
           {/* Header with Logo + Close */}
-          <div className="flex justify-between items-center px-5 py-4 border-b border-neutral-400 dark:border-neutral-700 bg-orange-50 dark:bg-orange-800">
+          <div className="flex justify-between items-center px-5 py-4 border-b border-neutral-400 bg-orange-50">
             <div className="w-16">
               <Link href={route("home")} >
                 <ApplicationLogo />
@@ -81,15 +81,15 @@ export default function TabletNavigation() {
             </div>
             <button
               onClick={toggleMobileMenu}
-              className="p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-800"
+              className="p-2 rounded-full hover:bg-neutral-200"
               aria-label="Close menu"
             >
-              <i className="fa-solid fa-xmark text-2xl text-neutral-700 dark:text-neutral-300"></i>
+              <i className="fa-solid fa-xmark text-2xl text-neutral-700"></i>
             </button>
           </div>
 
           {/* Menu Links */}
-          <ul className="flex flex-col divide-y divide-neutral-200 dark:divide-neutral-700 bg-orange-50">
+          <ul className="flex flex-col divide-y divide-neutral-200 bg-orange-50">
             <li>
               <MenuNavLink
                 href="#home"
@@ -167,7 +167,7 @@ export default function TabletNavigation() {
           </ul>
 
           {/* Settings Section */}
-          <div className="border-t border-neutral-400 dark:border-neutral-700 bg-orange-50 dark:bg-orange-800">
+          <div className="border-t border-neutral-400 bg-orange-50">
 
             <NavigationToggles
               variant="mobile"

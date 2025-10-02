@@ -67,46 +67,46 @@ export default function ContactSection() {
   const getColorClasses = (color) => {
     const colors = {
       blue: {
-        bg: 'bg-blue-50 dark:bg-blue-900/30',
-        border: 'border-blue-200 dark:border-blue-700',
-        icon: 'text-blue-600 dark:text-blue-400',
+        bg: 'bg-blue-50',
+        border: 'border-blue-200',
+        icon: 'text-blue-600',
         iconBg: 'bg-blue-500',
-        hover: 'hover:border-blue-300 dark:hover:border-blue-600'
+        hover: 'hover:border-blue-300'
       },
       orange: {
-        bg: 'bg-orange-50 dark:bg-orange-900/30',
-        border: 'border-orange-200 dark:border-orange-700',
-        icon: 'text-orange-600 dark:text-orange-400',
+        bg: 'bg-orange-50',
+        border: 'border-orange-200',
+        icon: 'text-orange-600',
         iconBg: 'bg-orange-500',
-        hover: 'hover:border-orange-300 dark:hover:border-orange-600'
+        hover: 'hover:border-orange-300'
       },
       purple: {
-        bg: 'bg-purple-50 dark:bg-purple-900/30',
-        border: 'border-purple-200 dark:border-purple-700',
-        icon: 'text-purple-600 dark:text-purple-400',
+        bg: 'bg-purple-50',
+        border: 'border-purple-200',
+        icon: 'text-purple-600',
         iconBg: 'bg-purple-500',
-        hover: 'hover:border-purple-300 dark:hover:border-purple-600'
+        hover: 'hover:border-purple-300'
       },
       orange: {
-        bg: 'bg-orange-50 dark:bg-orange-900/30',
-        border: 'border-orange-200 dark:border-orange-700',
-        icon: 'text-orange-600 dark:text-orange-400',
+        bg: 'bg-orange-50',
+        border: 'border-orange-200',
+        icon: 'text-orange-600',
         iconBg: 'bg-orange-500',
-        hover: 'hover:border-orange-300 dark:hover:border-orange-600'
+        hover: 'hover:border-orange-300'
       }
     };
     return colors[color];
   };
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-neutral-900">
+    <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-3 md:px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 mb-6">
             {t('get_in_touch')}
           </h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
+          <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
             {t('have_questions_or_need_help_our_team_is_here_to_assist_you_every_step_of_the_way')}
           </p>
         </div>
@@ -114,7 +114,7 @@ export default function ContactSection() {
         <div className="grid lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
           {/* Contact Methods */}
           <div>
-            <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-8">
+            <h3 className="text-2xl font-bold text-neutral-900 mb-8">
               {t('multiple_ways_to_reach_us')}
             </h3>
 
@@ -125,7 +125,7 @@ export default function ContactSection() {
                   <a
                     key={index}
                     href={method.action}
-                    className={`group block p-3 md:p-6 bg-neutral-50 dark:bg-neutral-800 rounded-2xl border-2 ${colorClasses.border} ${colorClasses.hover} transition-all duration-300 hover:shadow-lg`}
+                    className={`group block p-3 md:p-6 bg-neutral-50 rounded-2xl border-2 ${colorClasses.border} ${colorClasses.hover} transition-all duration-300 hover:shadow-lg`}
                   >
                     <div className="flex items-start gap-4">
                       <div className={`w-12 h-12 ${colorClasses.iconBg} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
@@ -133,10 +133,10 @@ export default function ContactSection() {
                       </div>
 
                       <div className="flex-1">
-                        <h4 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                        <h4 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-orange-600 transition-colors">
                           {method.title}
                         </h4>
-                        <p className="text-neutral-600 dark:text-neutral-300 text-sm mb-2">
+                        <p className="text-neutral-600 text-sm mb-2">
                           {method.description}
                         </p>
                         <p className={`font-medium ${colorClasses.icon}`}>
@@ -185,14 +185,14 @@ export default function ContactSection() {
           {/* Contact Form */}
           <div>
             {isSubmitted ? (
-              <div className="bg-orange-50 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-700 rounded-2xl p-8 text-center">
+              <div className="bg-orange-50 border border-orange-200 rounded-2xl p-8 text-center">
                 <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <i className="fa-solid fa-check text-white text-2xl"></i>
                 </div>
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
+                <h3 className="text-2xl font-bold text-neutral-900 mb-4">
                   {t('message_sent_successfully')}
                 </h3>
-                <p className="text-neutral-600 dark:text-neutral-300 mb-6">
+                <p className="text-neutral-600 mb-6">
                   {t('thank_you_for_contacting_us_we_will_get_back_to_you_soon')}
                 </p>
                 <PrimaryButton
@@ -205,8 +205,8 @@ export default function ContactSection() {
                 </PrimaryButton>
               </div>
             ) : (
-              <div className="bg-neutral-50 dark:bg-neutral-800 rounded-2xl p-4 md:p-8 border border-neutral-200 dark:border-neutral-700">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-6">
+              <div className="bg-neutral-50 rounded-2xl p-4 md:p-8 border border-neutral-200">
+                <h3 className="text-2xl font-bold text-neutral-900 mb-6">
                   {t('send_us_a_message')}
                 </h3>
 
@@ -279,8 +279,8 @@ export default function ContactSection() {
                 </form>
 
                 {/* Privacy Notice */}
-                <div className="mt-6 p-4 bg-neutral-100 dark:bg-neutral-700 rounded-xl">
-                  <p className="text-xs text-neutral-600 dark:text-neutral-300 flex items-start gap-2">
+                <div className="mt-6 p-4 bg-neutral-100 rounded-xl">
+                  <p className="text-xs text-neutral-600 flex items-start gap-2">
                     <i className="fa-solid fa-shield-alt text-orange-500 mt-0.5"></i>
                     {t('your_information_is_secure_and_will_never_be_shared_with_third_parties')}
                   </p>

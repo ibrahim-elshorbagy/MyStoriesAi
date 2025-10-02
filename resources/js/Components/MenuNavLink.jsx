@@ -13,8 +13,8 @@ export default function MenuNavLink({
   flex items-center gap-3 px-5 py-3  text-base font-medium transition-colors duration-200
   w-full
   ${active
-      ? 'bg-orange-100 text-orange-700 dark:bg-orange-700 dark:text-white'
-      : 'text-neutral-700 dark:bg-orange-800 hover:bg-neutral-100 hover:text-orange-600 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-orange-400'
+      ? 'bg-orange-100 text-orange-700 '
+      : 'text-neutral-700  hover:bg-neutral-100 hover:text-orange-600 '
     }
   ${className}
 `;

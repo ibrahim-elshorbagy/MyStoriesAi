@@ -7,7 +7,7 @@ export default function Footer() {
   const { t } = useTrans();
 
   return (
-    <footer className="py-6 border-t border-t-neutral-300 dark:border-t-neutral-700 text-center text-sm text-neutral-600 dark:text-neutral-400 bg-orange-50 dark:bg-neutral-800">
+    <footer className="py-6 border-t border-t-neutral-300 text-center text-sm text-neutral-600 bg-orange-50">
       <div className='mx-4'>
         <div className="flex justify-center mb-3">
           <div className='w-24'>
@@ -16,7 +16,7 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <p className='text-sm dark:text-white'>{t('agentify_description')}</p>
+        <p className='text-sm'>{t('agentify_description')}</p>
       </div>
     </footer>
   );

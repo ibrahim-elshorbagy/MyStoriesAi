@@ -16,66 +16,62 @@ export default function VerifyEmail({ status }) {
         <GuestLayout>
             <Head title={t('auth_verify_email')} />
 
-            <div className="mb-6 text-center">
-                <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">{t('auth_verify_email')}</h1>
-                <p className="mt-2 text-neutral-600 dark:text-neutral-400">
+            <div className="mb-8 text-center">
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-neutral-800 to-orange-600 bg-clip-text text-transparent">{t('auth_verify_email')}</h1>
+                <p className="mt-3 text-neutral-600 text-lg">
                     {t('auth_one_last_step')}
                 </p>
             </div>
 
-            <div className="rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 overflow-hidden">
-                <div className="p-6">
-                    <div className="flex justify-center mb-6">
-                        <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center">
-                            <i className="fa-solid fa-envelope text-2xl text-orange-500 dark:text-orange-400"></i>
-                        </div>
+            <div className="space-y-6">
+                <div className="text-center">
+                    <div className="w-20 h-20 bg-gradient-to-r from-orange-100 to-orange-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i className="fa-solid fa-envelope text-3xl text-orange-600"></i>
                     </div>
 
-                    <div className="text-center mb-6 text-neutral-700 dark:text-neutral-300">
-                        <p className="mb-2">
+                    <div className="text-neutral-700 text-lg leading-relaxed mb-6">
+                        <p className="mb-3 font-medium">
                             {t('auth_verification_email_sent')}
                         </p>
                         <p>
                             {t('auth_click_link_complete')}
                         </p>
                     </div>
-
-                    {status === 'verification-link-sent' && (
-                        <div className="mb-4 rounded-lg bg-orange-50 p-3 text-sm font-medium text-orange-600 dark:bg-orange-900/20 dark:text-orange-400">
-                            <div className="flex items-center">
-                                <i className="fa-solid fa-check-circle mr-2"></i>
-                                <span>A new verification link has been sent to your email address.</span>
-                            </div>
-                        </div>
-                    )}
-
-                    <form onSubmit={submit} className="mt-6">
-                        <div className="flex flex-col space-y-3">
-                            <button
-                                type="submit"
-                                disabled={processing}
-                                className="w-full flex justify-center items-center gap-1 px-4 py-2 font-semibold text-white bg-orange-500 hover:bg-orange-600 rounded-lg transition-all disabled:opacity-70"
-                            >
-                                {processing ? (
-                                    <i className="fa-solid fa-circle-notch animate-spin"></i>
-                                ) : (
-                                    <i className="fa-solid fa-paper-plane"></i>
-                                )}
-                                {t('auth_resend_verification_email')}
-                            </button>
-
-                            <Link
-                                href={route('logout')}
-                                method="post"
-                                as="button"
-                                className="w-full flex justify-center items-center gap-1 px-4 py-2 font-semibold text-neutral-700 bg-neutral-200 hover:bg-neutral-300 dark:text-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 rounded-lg transition-all"
-                            >
-                                <i className="fa-solid fa-arrow-right-from-bracket"></i>
-                                {t('auth_logout')}
-                            </Link>
-                        </div>
-                    </form>
                 </div>
+
+                {status === 'verification-link-sent' && (
+                    <div className="bg-gradient-to-r from-orange-50 to-neutral-50 rounded-xl p-6 border border-orange-200/30">
+                        <div className="flex items-center p-4 rounded-lg bg-orange-50 text-sm text-orange-800 border border-orange-200">
+                            <i className="fa-solid fa-check-circle mr-3 text-orange-600"></i>
+                            <span className="font-medium">A new verification link has been sent to your email address.</span>
+                        </div>
+                    </div>
+                )}
+
+                <form onSubmit={submit} className="space-y-4">
+                    <button
+                        type="submit"
+                        disabled={processing}
+                        className="w-full flex justify-center items-center gap-2 px-6 py-3 font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 rounded-xl transition-all duration-300 disabled:opacity-70 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                    >
+                        {processing ? (
+                            <i className="fa-solid fa-circle-notch animate-spin"></i>
+                        ) : (
+                            <i className="fa-solid fa-paper-plane"></i>
+                        )}
+                        {t('auth_resend_verification_email')}
+                    </button>
+
+                    <Link
+                        href={route('logout')}
+                        method="post"
+                        as="button"
+                        className="w-full flex justify-center items-center gap-2 px-6 py-3 font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:scale-[1.02] border border-neutral-300"
+                    >
+                        <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                        {t('auth_logout')}
+                    </Link>
+                </form>
             </div>
         </GuestLayout>
     );

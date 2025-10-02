@@ -37,11 +37,11 @@ const StoriesSection = ({ stories = [] }) => {
 
   return (
     <section
-      className="relative overflow-hidden py-16 min-h-[calc(100dvh-4rem)] bg-white dark:bg-neutral-900"
+      className="relative overflow-hidden py-16 min-h-[calc(100dvh-4rem)] bg-white"
       id="stories"
     >
       <div className="container mx-auto flex flex-col gap-10">
-        <h2 className="text-4xl xl:text-6xl leading-normal font-bold bg-gradient-to-r from-neutral-700 to-orange-600 dark:from-neutral-300 dark:to-orange-400 bg-clip-text text-transparent w-fit mx-auto">
+        <h2 className="text-4xl xl:text-6xl leading-normal font-bold bg-gradient-to-r from-neutral-700 to-orange-600 bg-clip-text text-transparent w-fit mx-auto">
           {t('stories_title')}
         </h2>
         <div className="flex flex-col gap-6">
@@ -53,7 +53,7 @@ const StoriesSection = ({ stories = [] }) => {
           <PrimaryButton
             as={Link}
             // href={route('stories.index')}
-            className="w-fit mx-auto bg-orange-100 text-orange-700 hover:bg-orange-200 dark:bg-orange-900 dark:text-orange-300 dark:hover:bg-orange-800"
+            className="w-fit mx-auto bg-orange-100 text-orange-700 hover:bg-orange-200"
           >
             {t('stories_more_stories')}
           </PrimaryButton>

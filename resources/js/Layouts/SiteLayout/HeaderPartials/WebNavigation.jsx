@@ -27,7 +27,7 @@ export default function WebNavigation() {
   };
 
   return (
-    <div className='py-2 border-b border-b-neutral-300 dark:border-b-neutral-700 bg-orange-50 dark:bg-orange-800 max-md:hidden'>
+    <div className='py-2 border-b border-b-neutral-300 bg-orange-50 max-md:hidden'>
       <div className='container mx-auto'>
         <div className='flex justify-between items-center mx-4'>
           {/* Logo */}
@@ -98,7 +98,7 @@ export default function WebNavigation() {
         </div>
 
         {/* Secondary row for toggles on smaller screens */}
-        <div className="lg:hidden border-t border-neutral-200 dark:border-neutral-600 mt-2 pt-2 mx-4">
+        <div className="lg:hidden border-t border-neutral-200 mt-2 pt-2 mx-4">
           <NavigationToggles
             variant="compact"
             showLabels={true}
