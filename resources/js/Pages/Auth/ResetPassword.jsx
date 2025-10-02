@@ -26,7 +26,7 @@ export default function ResetPassword({ token, email }) {
         <GuestLayout>
             <Head title={t('auth_reset_password')} />
 
-            <div className="mb-8 text-center">
+            <div className="text-center mb-8">
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-neutral-800 to-orange-600 bg-clip-text text-transparent">{t('auth_reset_your_password')}</h1>
                 <p className="mt-3 text-neutral-600 text-lg">
                     {t('auth_enter_new_password')}

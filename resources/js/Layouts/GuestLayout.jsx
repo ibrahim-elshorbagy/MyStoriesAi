@@ -59,9 +59,55 @@ export default function GuestLayout({ children, title = 'Authentication' }) {
 
       {/* Main Content */}
       <main className="flex min-h-screen items-center justify-center pt-20 relative z-10 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-lg">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-neutral-200/50 shadow-2xl shadow-orange-100/20 p-8 transform hover:scale-[1.01] transition-all duration-300">
-            {children}
+        <div className="w-full max-w-6xl">
+          <div className="bg-white/90 backdrop-blur-md rounded-3xl border border-neutral-200/50 shadow-2xl shadow-orange-100/30 overflow-hidden transform hover:scale-[1.01] transition-all duration-300">
+            <div className="flex flex-col lg:flex-row min-h-[600px]">
+              {/* Left Side - Logo/Image */}
+              <div className="flex-1 bg-gradient-to-br from-orange-50 to-neutral-100 p-8 lg:p-12 flex items-center justify-center relative overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-10 left-10 w-32 h-32 bg-orange-200 rounded-full blur-3xl"></div>
+                  <div className="absolute bottom-10 right-10 w-40 h-40 bg-orange-300 rounded-full blur-3xl"></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-orange-100 rounded-full blur-3xl"></div>
+                </div>
+
+                {/* Logo Container */}
+                <div className="relative z-10 text-center">
+                  <div className="mb-8">
+                    <img
+                      src="assets/auth/logo.png"
+                      alt="MyStories AI Logo"
+                      className="w-32 h-32 lg:w-48 lg:h-48 mx-auto object-contain drop-shadow-2xl"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        const fallback = e.target.nextElementSibling;
+                        if (fallback) {
+                          fallback.classList.remove('hidden');
+                          fallback.classList.add('flex');
+                        }
+                      }}
+                    />
+                    {/* Fallback if image fails to load */}
+                    <div className="hidden w-32 h-32 lg:w-48 lg:h-48 mx-auto bg-gradient-to-r from-orange-500 to-orange-600 rounded-full items-center justify-center shadow-2xl">
+                      <i className="fa-solid fa-book-open text-white text-4xl lg:text-6xl"></i>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h2 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
+                      {t('welcome')}
+                    </h2>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side - Form */}
+              <div className="flex-1 p-8 lg:p-12 flex items-center justify-center bg-white/50">
+                <div className="w-full max-w-md space-y-8">
+                  {children}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>
