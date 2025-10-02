@@ -61,7 +61,7 @@ const HeroVideo = () => {
         {!hasError ? (
           <video
             ref={videoRef}
-            src="https://res.cloudinary.com/deharbts9/video/upload/v1758893481/ixgptcjpl66usrvdd5ty.mp4"
+            src="assets/home/intro.mp4"
             autoPlay
             loop
             muted

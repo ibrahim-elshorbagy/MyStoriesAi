@@ -43,7 +43,7 @@ export default function TabletNavigation() {
     <>
       {/* Mobile Menu Trigger */}
       <div className="flex justify-between items-center p-4 border-b border-b-neutral-300 dark:border-b-neutral-700 bg-orange-50 dark:bg-orange-800 md:hidden">
-        <div className='w-24'>
+        <div className='w-16'>
           <Link href={route("home")} >
             <ApplicationLogo />
           </Link>
@@ -74,7 +74,7 @@ export default function TabletNavigation() {
         <nav className="flex flex-col h-full ">
           {/* Header with Logo + Close */}
           <div className="flex justify-between items-center px-5 py-4 border-b border-neutral-400 dark:border-neutral-700 bg-orange-50 dark:bg-orange-800">
-            <div className="w-32">
+            <div className="w-16">
               <Link href={route("home")} >
                 <ApplicationLogo />
               </Link>

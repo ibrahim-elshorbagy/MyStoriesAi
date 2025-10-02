@@ -7,7 +7,6 @@ import { useTrans } from '@/Hooks/useTrans';
 
 export default function SiteLayout({ children, title }) {
   const { locale } = usePage().props;
-
   const { t } = useTrans();
   const { auth } = usePage().props;
 
@@ -16,8 +15,8 @@ export default function SiteLayout({ children, title }) {
       {/* Header */}
       <Header />
 
-      {/* Main content */}
-      <main className="">{children}</main>
+      {/* Main content - ADD PADDING TOP HERE */}
+      <main className="pt-20 md:pt-20">{children}</main>
 
       {/* Footer */}
       <Footer />
