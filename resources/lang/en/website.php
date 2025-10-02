@@ -432,10 +432,12 @@ return [
   // Hero Section
   'hero_subtitle' => 'Create Amazing',
   'hero_title' => 'Stories',
-  'hero_description' => 'Transform your ideas into captivating stories with our AI-powered platform.',
+  'hero_description' => 'Make every adventure about your little hero.',
   'hero_cta_primary' => 'Start Creating',
   'hero_cta_secondary' => 'Learn More',
-
+  'explore_our_stories'=>"Explore Our Stories",
+  "your_child"=>"Your Child",
+  "is_the_hero"=>"is the Hero",
   // Features Section
   'features_title' => 'Powerful Features',
   'features_subtitle' => 'Everything you need',

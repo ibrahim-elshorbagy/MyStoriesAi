@@ -293,9 +293,12 @@ return [
   // Hero Section
   'hero_subtitle' => 'أنشئ قصصاً',
   'hero_title' => 'مذهلة',
-  'hero_description' => 'حوّل أفكارك إلى قصص آسرة باستخدام منصتنا المدعومة بالذكاء الاصطناعي.',
+  'hero_description' => 'اجعل كل مغامرة تدور حول بطلك الصغير.',
   'hero_cta_primary' => 'ابدأ الإنشاء',
   'hero_cta_secondary' => 'تعرف أكثر',
+  "explore_our_stories"=>"تصفح قصصنا",
+  "your_child"=>"طفلك",
+  "is_the_hero"=>"بطل القصة",
 
   // Features Section
   'features_title' => 'مميزات قوية',

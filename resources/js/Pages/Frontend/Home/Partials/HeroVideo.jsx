@@ -44,64 +44,69 @@ const HeroVideo = () => {
   };
 
   return (
-    <div className="relative group">
+    <div className="relative group w-full h-full">
       {/* Loading Skeleton */}
       {!isLoaded && (
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral-100/50 to-neutral-200/30 dark:from-neutral-800/50 dark:to-neutral-700/30 rounded-xl lg:rounded-none animate-pulse flex items-center justify-center z-10">
-          <div className="w-12 h-12 border-4 border-orange-500/30 border-t-orange-500 rounded-full animate-spin"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/80 to-orange-200/60 dark:from-orange-900/50 dark:to-orange-800/40 animate-pulse flex items-center justify-center z-10">
+          <div className="w-16 h-16 border-4 border-orange-500/40 border-t-orange-500 rounded-full animate-spin"></div>
         </div>
       )}
 
-      {/* Decorative Elements */}
-      <div className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 via-orange-400/20 to-orange-500/20 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-      <div className="absolute -inset-2 bg-gradient-to-r from-orange-500/30 to-orange-400/30 rounded-xl blur-md opacity-40 transition-opacity duration-300" />
+      {/* Floating Glow Effects - Only on mobile */}
+      <div className="absolute -inset-8 lg:inset-0 bg-gradient-to-r from-orange-400/30 via-orange-500/40 to-orange-600/30 rounded-3xl lg:rounded-none blur-2xl opacity-70 group-hover:opacity-90 transition-all duration-700 animate-pulse lg:hidden" />
+      <div className="absolute -inset-4 lg:inset-0 bg-gradient-to-r from-orange-500/40 to-orange-400/40 rounded-2xl lg:rounded-none blur-lg opacity-50 transition-opacity duration-500 lg:hidden" />
 
-      {/* Main Video Container */}
-      <div className="relative bg-white/95 lg:bg-transparent dark:bg-neutral-800/95 lg:dark:bg-transparent backdrop-blur-sm lg:backdrop-blur-none rounded-xl lg:rounded-none p-3 lg:p-0 border border-neutral-200/50 lg:border-0 dark:border-neutral-700/50 shadow-2xl">
-        {!hasError ? (
-          <video
-            ref={videoRef}
-            src="assets/home/intro.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            disablePictureInPicture
-            controlsList="nodownload nofullscreen noremoteplayback"
-            preload="auto"
-            className={`max-w-[500px] lg:max-w-full w-full h-auto lg:w-auto lg:!min-h-full rounded-lg lg:rounded-none object-cover shadow-lg
-                       transition-all duration-500 ease-out
-                       ${isLoaded
-                         ? "opacity-100 hover:scale-[1.02]"
-                         : "opacity-0"
-                       }`}
-            style={{
-              pointerEvents: "none",
-              userSelect: "none",
-              WebkitUserSelect: "none",
-              msUserSelect: "none",
-            }}
-            onLoadedData={handleVideoLoad}
-            onCanPlay={handleCanPlay}
-            onCanPlayThrough={handleVideoLoad}
-            onError={handleVideoError}
-            onContextMenu={(e) => e.preventDefault()}
-            onDoubleClick={(e) => e.preventDefault()}
-          />
-        ) : (
-          <div className="max-w-[400px] w-full h-[300px] rounded-lg lg:rounded-none bg-gradient-to-br from-orange-500/10 to-orange-400/10 flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-orange-500/20 flex items-center justify-center">
-                <i className="fa-solid fa-play text-4xl text-orange-500"></i>
+      {/* Video Container - Full width on desktop, styled on mobile */}
+      <div className="relative bg-white/20 lg:bg-transparent dark:bg-neutral-900/20 lg:dark:bg-transparent backdrop-blur-xl lg:backdrop-blur-none rounded-3xl lg:rounded-none p-6 lg:p-0 border border-white/30 lg:border-0 dark:border-orange-400/20 lg:dark:border-0 shadow-2xl shadow-orange-500/20 lg:shadow-none h-full">
+        <div className="relative overflow-hidden rounded-2xl lg:rounded-none bg-gradient-to-br from-orange-50/50 to-orange-100/30 dark:from-orange-900/30 dark:to-orange-800/20 lg:bg-transparent lg:dark:bg-transparent h-full">
+          {!hasError ? (
+            <video
+              ref={videoRef}
+              src="assets/home/intro.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              disablePictureInPicture
+              controlsList="nodownload nofullscreen noremoteplayback"
+              preload="auto"
+              className={`w-full h-full object-cover rounded-2xl lg:rounded-none shadow-lg lg:shadow-none
+                         transition-all duration-700 ease-out
+                         ${isLoaded
+                           ? "opacity-100 scale-100 group-hover:scale-105 lg:group-hover:scale-[1.02]"
+                           : "opacity-0 scale-95"
+                         }`}
+              style={{
+                pointerEvents: "none",
+                userSelect: "none",
+                WebkitUserSelect: "none",
+                msUserSelect: "none",
+              }}
+              onLoadedData={handleVideoLoad}
+              onCanPlay={handleCanPlay}
+              onCanPlayThrough={handleVideoLoad}
+              onError={handleVideoError}
+              onContextMenu={(e) => e.preventDefault()}
+              onDoubleClick={(e) => e.preventDefault()}
+            />
+          ) : (
+            <div className="w-full h-full rounded-2xl lg:rounded-none bg-gradient-to-br from-orange-500/20 to-orange-600/30 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-orange-500/30 flex items-center justify-center backdrop-blur-sm">
+                  <i className="fa-solid fa-play text-5xl text-orange-600 dark:text-orange-400"></i>
+                </div>
+                <p className="text-orange-800 dark:text-orange-300 font-bold text-xl">Hero Content</p>
+                <p className="text-orange-600 dark:text-orange-400 text-sm mt-2">Video placeholder</p>
               </div>
-              <p className="text-neutral-700 dark:text-neutral-300 font-semibold">Hero Content</p>
-              <p className="text-sm text-neutral-500 dark:text-neutral-400">Video placeholder</p>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
-        {/* Overlay to prevent interactions */}
-        <div className="absolute inset-3 rounded-lg pointer-events-none select-none" />
+        {/* Decorative Corner Elements - Only on mobile */}
+        <div className="absolute -top-2 -left-2 w-4 h-4 bg-orange-400 rounded-full opacity-80 lg:hidden"></div>
+        <div className="absolute -top-1 -right-3 w-3 h-3 bg-orange-500 rounded-full opacity-60 lg:hidden"></div>
+        <div className="absolute -bottom-2 -left-3 w-3 h-3 bg-orange-600 rounded-full opacity-70 lg:hidden"></div>
+        <div className="absolute -bottom-1 -right-2 w-4 h-4 bg-orange-400 rounded-full opacity-80 lg:hidden"></div>
       </div>
     </div>
   );
