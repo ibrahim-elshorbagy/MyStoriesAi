@@ -1,8 +1,7 @@
 import React from 'react';
-import { Head, Link, usePage } from '@inertiajs/react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import NavigationToggles from '@/Components/NavigationToggles';
+import { Head, usePage } from '@inertiajs/react';
 import { useTrans } from '@/Hooks/useTrans';
+import Header from '@/Layouts/SiteLayout/Header';
 
 export default function GuestLayout({ children, title = 'Authentication' }) {
   const { locale } = usePage().props;
@@ -25,37 +24,7 @@ export default function GuestLayout({ children, title = 'Authentication' }) {
         <div className="absolute bottom-20 right-20 w-24 h-24 bg-orange-400/8 rounded-full blur-lg"></div>
       </div>
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-orange-200/30 shadow-lg shadow-orange-100/20">
-        <div className='py-3 border-b border-b-orange-200/50 bg-gradient-to-r from-orange-50/80 to-neutral-50/80'>
-          <div className='container mx-auto'>
-            <div className='flex justify-between items-center mx-4'>
-              {/* Logo */}
-              <Link
-                href={route('home')}
-                className="w-16 transform hover:scale-105 transition-transform duration-200"
-              >
-                <ApplicationLogo />
-              </Link>
-
-              <div className="hidden md:block">
-                <h2 className="text-lg font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
-                  {t('welcome')}
-                </h2>
-              </div>
-
-              {/* Right Side - Navigation Toggles */}
-              <div className="flex items-center gap-4">
-                <NavigationToggles
-                  variant="compact"
-                  showLabels={false}
-                  className=""
-                />
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Content */}
       <main className="flex min-h-screen items-center justify-center pt-20 relative z-10 px-4 sm:px-6 lg:px-8">
