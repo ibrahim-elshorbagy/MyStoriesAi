@@ -435,9 +435,9 @@ return [
   'hero_description' => 'Make every adventure about your little hero.',
   'hero_cta_primary' => 'Start Creating',
   'hero_cta_secondary' => 'Learn More',
-  'explore_our_stories'=>"Explore Our Stories",
-  "your_child"=>"Your Child",
-  "is_the_hero"=>"is the Hero",
+  'explore_our_stories' => "Explore Our Stories",
+  "your_child" => "Your Child",
+  "is_the_hero" => "is the Hero",
 
   // Features Section
   'features_title' => 'Powerful Features',
@@ -474,5 +474,38 @@ return [
   'contact_message' => 'Message',
   'contact_send' => 'Send Message',
 
+  // Start Pricing
+  "choose_your_storybook_plan" => "Choose Your Storybook Plan",
+  "make_your_child_the_hero" => "Make Your Child the Hero!",
+
+  'pricing_section_title' => 'Choose Your Storybook Plan – Make Your Child the Hero!',
+
+  'pricing_pdf_title' => 'PDF Storybook Only',
+  'pricing_pdf_price' => '199 EGP',
+  'pricing_pdf_desc' => 'Digital copy to read anytime, anywhere.',
+  'pricing_pdf_btn' => 'Get PDF Now',
+  'plan_1_feature_1' => 'Personalized storybook (your child as the hero)',
+  'plan_1_feature_2' => 'Instant PDF download (ready to read on any device)',
+  'plan_1_feature_3' => 'Perfect for quick gifts & bedtime stories',
+
+  'pricing_soft_title' => 'Softcover Book + PDF',
+  'pricing_soft_price' => '339 EGP',
+  'pricing_soft_desc' => 'Digital + printed soft cover book.',
+  'pricing_soft_btn' => 'Order Softcover',
+  'pricing_most_popular' => 'Most Popular',
+  'plan_2_feature_1' => 'Beautiful printed softcover book',
+  'plan_2_feature_2' => 'Includes FREE instant PDF copy',
+  'plan_2_feature_3' => "Child’s name & photo inside every page",
+  'plan_2_feature_4' => 'Easy to carry, perfect for everyday reading',
+
+  'pricing_hard_title' => 'Hardcover Gift Edition + PDF',
+  'pricing_hard_price' => '439 EGP',
+  'pricing_hard_desc' => 'Digital + premium hardcover keepsake.',
+  'pricing_hard_btn' => 'Get Hardcover Edition',
+  'plan_3_feature_1' => 'Premium hardcover storybook',
+  'plan_3_feature_2' => 'Includes FREE instant PDF copy',
+  'plan_3_feature_3' => 'Extra durable, keepsake quality',
+  'plan_3_feature_4' => 'Perfect for birthdays, gifts & lasting memories',
+  // End Pricing
 
 ];

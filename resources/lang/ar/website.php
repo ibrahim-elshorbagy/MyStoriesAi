@@ -296,9 +296,9 @@ return [
   'hero_description' => 'اجعل كل مغامرة تدور حول بطلك الصغير.',
   'hero_cta_primary' => 'ابدأ الإنشاء',
   'hero_cta_secondary' => 'تعرف أكثر',
-  "explore_our_stories"=>"تصفح قصصنا",
-  "your_child"=>"طفلك",
-  "is_the_hero"=>"بطل القصة",
+  "explore_our_stories" => "تصفح قصصنا",
+  "your_child" => "طفلك",
+  "is_the_hero" => "بطل القصة",
 
   // Features Section
   'features_title' => 'مميزات قوية',
@@ -335,6 +335,38 @@ return [
   'contact_message' => 'الرسالة',
   'contact_send' => 'إرسال الرسالة',
 
+  // Start Pricing
+  "choose_your_storybook_plan" => "اختر قصتك",
+  "make_your_child_the_hero" => "اجعل طفلك البطل",
 
+  'pricing_section_title' => 'اختر باقتك – اجعل طفلك البطل!',
+
+  'pricing_pdf_title' => 'كتاب PDF فقط',
+  'pricing_pdf_price' => '199 جنيه',
+  'pricing_pdf_desc' => 'قصة شخصية لطفلك بصيغة PDF للتحميل الفوري والقراءة على أي جهاز. مثالي للهدايا السريعة وقصص ما قبل النوم.',
+  'pricing_pdf_btn' => 'احصل على PDF الآن',
+  'plan_1_feature_1' => 'كتاب قصة مخصص (طفلك هو البطل)',
+  'plan_1_feature_2' => 'تحميل فوري بصيغة PDF (جاهز للقراءة على أي جهاز)',
+  'plan_1_feature_3' => 'مثالي للهدايا السريعة وقصص ما قبل النوم',
+
+  'pricing_soft_title' => 'غلاف ورقي + PDF',
+  'pricing_soft_price' => '339 جنيه',
+  'pricing_soft_desc' => 'كتاب مطبوع بغلاف ورقي جميل يشمل نسخة PDF مجانية فوراً. اسم وصورة الطفل في كل صفحة. سهل للحمل ومثالي للقراءة اليومية.',
+  'pricing_soft_btn' => 'اطلب الغلاف الورقي',
+  'pricing_most_popular' => 'الأكثر شعبية',
+  'plan_2_feature_1' => 'كتاب مطبوع بغلاف ورقي جميل',
+  'plan_2_feature_2' => 'يشمل نسخة PDF مجانية فوراً',
+  'plan_2_feature_3' => 'اسم وصورة الطفل في كل صفحة',
+  'plan_2_feature_4' => 'سهل الحمل، مثالي للقراءة اليومية',
+
+  'pricing_hard_title' => 'نسخة هدايا غلاف فاخر + PDF',
+  'pricing_hard_price' => '439 جنيه',
+  'pricing_hard_desc' => 'غلاف فاخر متين مع نسخة PDF مجانية. مثالي للهدايا، الأعياد، وذكريات تدوم.',
+  'pricing_hard_btn' => 'احصل على النسخة الفاخرة',
+  'plan_3_feature_1' => 'كتاب قصة بغلاف فاخر',
+  'plan_3_feature_2' => 'يشمل نسخة PDF مجانية فوراً',
+  'plan_3_feature_3' => 'متين جداً، جودة تذكارية',
+  'plan_3_feature_4' => 'مثالي لأعياد الميلاد والهدايا والذكريات الدائمة',
+  // End Pricing
 
 ];

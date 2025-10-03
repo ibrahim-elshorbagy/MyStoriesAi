@@ -6,6 +6,7 @@ import FeaturesSection from './Partials/FeaturesSection';
 import ContactSection from './Partials/ContactSection';
 import AboutSection from './Partials/AboutSection';
 import StoriesSection from './Partials/StoriesSection.jsx';
+import PricingSection from './Partials/PricingSection';
 
 export default function Home({ stories }) {
   return (
@@ -13,8 +14,9 @@ export default function Home({ stories }) {
       <Head title={'Welcome'} />
 
       <HeroSection />
-      <FeaturesSection />
-      <StoriesSection stories={stories} />
+      {/* <FeaturesSection /> */}
+      {/* <StoriesSection stories={stories} /> */}
+      <PricingSection/>
     </SiteLayout>
   );
 }
