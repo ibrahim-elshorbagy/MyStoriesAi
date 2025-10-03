@@ -60,6 +60,15 @@ export default function WebNavigation() {
             </li>
             <li>
               <NavLink
+                href="#pricing"
+                onClick={(e) => handleNavClick(e, 'pricing')}
+                active={isHomePage && activeSection === 'pricing'}
+              >
+                {t('pricing')}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 href="#about"
                 onClick={(e) => handleNavClick(e, 'about')}
                 active={isHomePage && activeSection === 'about'}

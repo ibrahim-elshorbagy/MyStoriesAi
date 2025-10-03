@@ -25,7 +25,7 @@ export function useSmoothScroll() {
   // Handle scroll events to update active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "features", "about", "contact"];
+      const sections = ["home", "features", "pricing", "about", "contact"];
       const headerHeight = 80;
       const scrollPosition = window.scrollY + headerHeight + 100; // Add some offset for better UX
 
@@ -77,7 +77,7 @@ export function useSmoothScroll() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace("#", "");
-      if (hash && ["home", "features", "contact"].includes(hash)) {
+      if (hash && ["home", "pricing", "features", "contact"].includes(hash)) {
         scrollToSection(hash);
       } else if (!hash) {
         // If no hash, scroll to top
@@ -89,7 +89,7 @@ export function useSmoothScroll() {
     const initialHash = window.location.hash.replace("#", "");
     if (
       initialHash &&
-      ["home", "features", "about", "contact"].includes(initialHash)
+      ["home", "pricing", "features", "about", "contact"].includes(initialHash)
     ) {
       // Small delay to ensure page is fully loaded
       setTimeout(() => scrollToSection(initialHash), 100);

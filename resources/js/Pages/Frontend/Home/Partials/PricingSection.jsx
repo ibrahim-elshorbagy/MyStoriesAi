@@ -55,11 +55,31 @@ export default function PricingSection() {
 
   return (
     <>
-      <section className="flex flex-col md:flex-row flex-wrap items-center justify-between px-8 py-20 bg-gradient-to-r from-emerald-100 to-amber-50">
-        <div className="max-w-lg flex flex-col space-y-8 flex-1">
-          <h2 className="text-4xl font-extrabold text-gray-900 leading-snug">
-            {t('choose_your_storybook_plan')} <br /> <span className="text-emerald-600">{t("make_your_child_the_hero")}</span>
+      <section id="pricing" className="flex flex-col md:flex-row flex-wrap items-center justify-between px-8 py-20 bg-gradient-to-r from-emerald-100 to-amber-50">
+        <div className="max-w-lg flex flex-col space-y-8 flex-1 relative">
+          {/* Floating particles with direction-based positions */}
+          <div className="absolute top-0 ltr:left-0 rtl:right-0 animate-float opacity-80">
+            <i className="fa-solid fa-star text-yellow-300 text-3xl drop-shadow-lg"></i>
+          </div>
+
+          <div className="absolute -top-6 ltr:right-8 rtl:left-8 animate-float-delay-1 opacity-85">
+            <i className="fa-solid fa-crown ltr:text-white rtl:text-green-500 text-2xl drop-shadow-lg"></i>
+          </div>
+
+          <div className="absolute top-16 ltr:left-10 rtl:right-10 animate-float-delay-2 opacity-90">
+            <i className="fa-solid fa-gem text-blue-200 text-3xl drop-shadow-lg"></i>
+          </div>
+
+          <div className="absolute bottom-0 ltr:right-16 rtl:left-16 animate-float opacity-80">
+            <i className="fa-solid fa-lightbulb text-yellow-200 text-2xl drop-shadow-lg"></i>
+          </div>
+
+          {/* Heading */}
+          <h2 className="text-4xl font-extrabold text-gray-900 leading-snug relative z-10 text-center rtl:text-right ltr:text-left">
+            {t('choose_your_storybook_plan')} <br />
+            <span className="text-emerald-600">{t("make_your_child_the_hero")}</span>
           </h2>
+
           <Link
             size="large"
             as={Link}
@@ -78,7 +98,8 @@ export default function PricingSection() {
         </div>
       </section>
 
-      <section id="pricing" className="py-20 px-4 bg-white">
+
+      <section className="py-20 px-4 bg-white">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
           {t("pricing_section_title")}
         </h2>
