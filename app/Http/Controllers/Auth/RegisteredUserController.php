@@ -34,6 +34,7 @@ class RegisteredUserController extends Controller
             'name'=>'required|string|max:255',
             'username' => 'required|string|max:255|unique:'.User::class,
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'phone' => 'nullable|string|regex:/^\+?[\d\s\-\(\)]+$/|max:20',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ], [
             'name.required' => __('website_response.name_required'),
@@ -42,6 +43,7 @@ class RegisteredUserController extends Controller
             'email.required' => __('website_response.email_required'),
             'email.email' => __('website_response.email_invalid'),
             'email.unique' => __('website_response.email_unique'),
+            'phone.max' => __('website_response.phone_invalid'),
             'password.required' => __('website_response.password_required'),
             'password.confirmed' => __('website_response.password_confirmation'),
         ]);
@@ -50,6 +52,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
 

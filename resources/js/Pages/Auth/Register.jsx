@@ -11,6 +11,7 @@ export default function Register() {
         name: '',
         username: '',
         email: '',
+        phone: '',
         password: '',
         password_confirmation: '',
     });
@@ -80,6 +81,22 @@ export default function Register() {
                         icon="fa-envelope"
                     />
                     <InputError message={errors.email} className="mt-2" />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="phone" value={t('auth_phone_number')} className="text-neutral-700 font-semibold" />
+                    <TextInput
+                        id="phone"
+                        type="tel"
+                        name="phone"
+                        value={data.phone}
+                        className="mt-2 block w-full"
+                        autoComplete="tel"
+                        onChange={(e) => setData('phone', e.target.value)}
+                        icon="fa-phone"
+                    />
+                    <p className="mt-1 text-sm text-neutral-500">{t('auth_phone_whatsapp_note')}</p>
+                    <InputError message={errors.phone} className="mt-2" />
                 </div>
 
                 <div>

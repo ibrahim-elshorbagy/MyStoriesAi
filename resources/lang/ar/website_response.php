@@ -38,6 +38,7 @@ return [
   'email_invalid' => 'يرجى إدخال عنوان بريد إلكتروني صحيح.',
   'email_unique' => 'هذا البريد الإلكتروني مُسجل بالفعل.',
   'password_confirmation' => 'تأكيد كلمة المرور غير متطابق.',
+  'phone_invalid' => 'يرجى إدخال رقم هاتف صحيح (مثال: +1234567890).',
   /* End Auth Validation Messages */
 
   /* End Auth Controller Responses */

@@ -34,6 +34,8 @@ return [
   'auth_join_us_today' => 'انضم إلينا اليوم',
   'auth_full_name' => 'الاسم الكامل',
   'auth_email_address' => 'عنوان البريد الإلكتروني',
+  'auth_phone_number' => 'رقم الهاتف',
+  'auth_phone_whatsapp_note' => 'يرجى تقديم رقم هاتف يحتوي على واتساب للتواصل (مثال: +1234567890).',
   'auth_confirm_password' => 'تأكيد كلمة المرور',
   'auth_already_have_account' => 'لديك حساب بالفعل؟',
   'auth_dont_have_account' => 'ليس لديك حساب؟',

@@ -19,6 +19,7 @@ export default function UpdateProfileInformation({
       name: user.name,
       email: user.email,
       username: user.username,
+      phone: user.phone || '',
     });
 
   const submit = (e) => {
@@ -62,7 +63,7 @@ export default function UpdateProfileInformation({
               autoComplete="username"
               icon="fa-user"
             />
-            <InputError className="mt-2" message={errors.name} />
+            <InputError className="mt-2" message={errors.username} />
           </div>
           <div className='space-y-2'>
             <InputLabel htmlFor="email" value={t('email_address')} />
@@ -77,6 +78,20 @@ export default function UpdateProfileInformation({
               icon="fa-envelope"
             />
             <InputError className="mt-2" message={errors.email} />
+          </div>
+          <div className='space-y-2'>
+            <InputLabel htmlFor="phone" value={t('auth_phone_number')} />
+            <TextInput
+              id="phone"
+              type="tel"
+              className="mt-1 block w-full"
+              value={data.phone}
+              onChange={(e) => setData('phone', e.target.value)}
+              autoComplete="tel"
+              icon="fa-phone"
+            />
+            <p className="mt-1 text-sm text-neutral-500">{t('auth_phone_whatsapp_note')}</p>
+            <InputError className="mt-2" message={errors.phone} />
           </div>
         </div>
 

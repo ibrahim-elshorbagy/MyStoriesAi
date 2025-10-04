@@ -33,6 +33,8 @@ return [
   'auth_join_us_today' => 'Join us today',
   'auth_full_name' => 'Full Name',
   'auth_email_address' => 'Email Address',
+  'auth_phone_number' => 'Phone Number',
+  'auth_phone_whatsapp_note' => 'Please provide a phone number with WhatsApp for communication (e.g., +1234567890).',
   'auth_confirm_password' => 'Confirm Password',
   'auth_already_have_account' => 'Already have an account?',
   'auth_dont_have_account' => 'Don\'t have an account?',
