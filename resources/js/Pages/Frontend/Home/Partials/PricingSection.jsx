@@ -61,7 +61,7 @@ export default function PricingSection() {
       >
         {/* Separator line horizontally rotated at the top of pricing */}
         <div
-          className="absolute top-0 left-0 w-full h-16 pointer-events-none z-40"
+          className="absolute -top-8 left-0 w-full h-16 pointer-events-none z-40"
         >
           <div
             className="w-full h-full"
