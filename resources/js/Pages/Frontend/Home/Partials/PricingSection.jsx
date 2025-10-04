@@ -55,9 +55,27 @@ export default function PricingSection() {
 
   return (
     <>
-      <section id="pricing" className="flex flex-col md:flex-row flex-wrap items-center justify-between px-8 py-20 bg-gradient-to-r from-emerald-100 to-amber-50">
+      <section
+        id="pricing"
+        className="relative flex flex-col md:flex-row flex-wrap items-center justify-between px-8 pt-40 pb-20 bg-gradient-to-r from-emerald-100 to-amber-50"
+      >
+        {/* Separator line horizontally rotated at the top of pricing */}
+        <div
+          className="absolute top-0 left-0 w-full h-16 pointer-events-none z-40"
+        >
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: "url('assets/h-green-diamond.svg')",
+              backgroundRepeat: "repeat",
+              backgroundPosition: "center",
+              backgroundSize: "contain",
+              transformOrigin: "center",
+            }}
+          />
+        </div>
         <div className="max-w-lg flex flex-col space-y-8 flex-1 relative">
-          {/* Floating particles with direction-based positions */}
+          {/* Floating particles */}
           <div className="absolute top-0 ltr:left-0 rtl:right-0 animate-float opacity-80">
             <i className="fa-solid fa-star text-yellow-300 text-3xl drop-shadow-lg"></i>
           </div>
@@ -76,7 +94,7 @@ export default function PricingSection() {
 
           {/* Heading */}
           <h2 className="text-4xl font-extrabold text-gray-900 leading-snug relative z-10 text-center rtl:text-right ltr:text-left">
-            {t('choose_your_storybook_plan')} <br />
+            {t("choose_your_storybook_plan")} <br />
             <span className="text-emerald-600">{t("make_your_child_the_hero")}</span>
           </h2>
 
@@ -85,7 +103,7 @@ export default function PricingSection() {
             as={Link}
             className="px-6 w-fit py-4 mt-4 text-lg font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
           >
-            {t('explore_our_stories')}
+            {t("explore_our_stories")}
           </Link>
         </div>
 
@@ -97,7 +115,6 @@ export default function PricingSection() {
           />
         </div>
       </section>
-
 
       <section className="py-20 px-4 bg-white">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
@@ -116,7 +133,7 @@ export default function PricingSection() {
                 </span>
               )}
               <div className="flex flex-col flex-1 items-center p-8 text-center space-y-4">
-                <div className="flex-1 flex flex-col justify-start w-full min-h-[280px] pt-8"> {/* Adjusted min height */}
+                <div className="flex-1 flex flex-col justify-start w-full min-h-[280px] pt-8">
                   <h4 className="text-xl font-bold text-emerald-600">{t(pkg.title)}</h4>
                   <p className="text-3xl font-extrabold text-gray-900">{t(pkg.price)}</p>
                   <p className="text-gray-600">{t(pkg.desc)}</p>
@@ -127,7 +144,6 @@ export default function PricingSection() {
                   </ul>
                 </div>
                 <Link
-                  // href={route("stories.create")}
                   className={`rounded-full px-6 py-2 font-semibold transition ${pkg.btnClass} w-full mt-auto`}
                 >
                   {t(pkg.btn)}
@@ -140,3 +156,4 @@ export default function PricingSection() {
     </>
   );
 }
+

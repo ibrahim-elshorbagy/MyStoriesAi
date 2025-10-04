@@ -105,7 +105,7 @@ export default function HeroSection() {
           <div
             className="hidden lg:block absolute top-0 h-full w-32 z-40 pointer-events-none ltr:right-0 rtl:left-0 transform ltr:translate-x-1/2 rtl:-translate-x-1/2"
             style={{
-              backgroundImage: "url('assets/home/orange-gradient.svg')",
+              backgroundImage: "url('assets/orange-gradient.svg')",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "contain"

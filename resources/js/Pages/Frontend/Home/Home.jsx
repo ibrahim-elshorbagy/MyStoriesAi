@@ -14,7 +14,7 @@ export default function Home({ stories }) {
       <Head title={'Welcome'} />
 
       <HeroSection />
-      {/* <FeaturesSection /> */}
+      <FeaturesSection />
       {/* <StoriesSection stories={stories} /> */}
       <PricingSection/>
     </SiteLayout>
