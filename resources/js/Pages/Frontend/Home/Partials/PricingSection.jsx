@@ -57,7 +57,7 @@ export default function PricingSection() {
     <>
       <section
         id="pricing"
-        className="relative flex flex-col md:flex-row flex-wrap items-center justify-between px-8 pt-40 pb-20 bg-gradient-to-r from-emerald-100 to-amber-50"
+        className="relative flex flex-col md:flex-row flex-wrap items-center justify-between px-8 pt-20 pb-20 bg-gradient-to-r from-emerald-100 to-amber-50"
       >
         {/* Separator line horizontally rotated at the top of pricing */}
         <div className="absolute -top-8 left-0 w-full h-16 pointer-events-none z-40">
@@ -75,6 +75,7 @@ export default function PricingSection() {
             }}
           />
         </div>
+
         <div className="max-w-lg flex flex-col space-y-8 flex-1 relative">
           {/* Floating particles */}
           <div className="absolute top-0 ltr:left-0 rtl:right-0 animate-float opacity-80">
@@ -94,34 +95,38 @@ export default function PricingSection() {
           </div>
 
           {/* Heading */}
-          <h2 className="text-4xl font-extrabold text-gray-900 leading-snug relative z-10 text-center rtl:text-right ltr:text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug relative z-10 text-center rtl:text-right ltr:text-left">
             {t("choose_your_storybook_plan")} <br />
-            <span className="text-emerald-600">{t("make_your_child_the_hero")}</span>
+            <span className="text-emerald-600 text-base sm:text-lg md:text-xl">
+              {t("make_your_child_the_hero")}
+            </span>
           </h2>
 
-          <Link
-            size="large"
-            as={Link}
-            className="px-6 w-fit py-4 mt-4 text-lg font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
-          >
-            {t("explore_our_stories")}
-          </Link>
+          <div className="flex max-md:items-center max-md:justify-center">
+            <Link
+              size="large"
+              as={Link}
+              className="px-6 w-fit py-4 mt-4 text-lg sm:text-xl font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
+            >
+              {t("explore_our_stories")}
+            </Link>
+          </div>
         </div>
 
         <div className="mt-10 md:mt-0">
           <img
             src="assets/auth/logo.png"
             alt="Storybook Preview"
-            className="w-[400px] drop-shadow-2xl rounded-xl"
+            className="w-48 sm:w-64 lg:w-[400px] drop-shadow-2xl rounded-xl"
           />
         </div>
       </section>
 
       <section className="py-20 px-4 bg-white">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
           {t("pricing_section_title")}
         </h2>
-        <div className="grid md:grid-cols-3 gap-16 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-3 sm:p-16 gap-16 max-w-7xl mx-auto">
           {PRICING.map((pkg) => (
             <div
               key={pkg.key}
@@ -135,17 +140,17 @@ export default function PricingSection() {
               )}
               <div className="flex flex-col flex-1 items-center p-8 text-center space-y-4">
                 <div className="flex-1 flex flex-col justify-start w-full min-h-[280px] pt-8">
-                  <h4 className="text-xl font-bold text-emerald-600">{t(pkg.title)}</h4>
-                  <p className="text-3xl font-extrabold text-gray-900">{t(pkg.price)}</p>
-                  <p className="text-gray-600">{t(pkg.desc)}</p>
-                  <ul className="mt-4 text-gray-700 list-disc list-inside space-y-1 text-left">
+                  <h4 className="text-lg sm:text-xl font-bold text-emerald-600">{t(pkg.title)}</h4>
+                  <p className="text-2xl sm:text-3xl font-extrabold text-gray-900">{t(pkg.price)}</p>
+                  <p className="text-sm sm:text-base text-gray-600">{t(pkg.desc)}</p>
+                  <ul className="mt-4 text-gray-700 list-disc list-inside space-y-1 text-left text-xs sm:text-sm">
                     {pkg.features.map((featKey) => (
                       <li key={featKey}>{t(featKey)}</li>
                     ))}
                   </ul>
                 </div>
                 <Link
-                  className={`rounded-full px-6 py-2 font-semibold transition ${pkg.btnClass} w-full mt-auto`}
+                  className={`rounded-full px-6 py-2 font-semibold transition ${pkg.btnClass} w-full mt-auto text-sm sm:text-base`}
                 >
                   {t(pkg.btn)}
                 </Link>
@@ -157,4 +162,3 @@ export default function PricingSection() {
     </>
   );
 }
-
