@@ -301,21 +301,27 @@ return [
   "is_the_hero" => "بطل القصة",
 
   // Features Section
-  'features_title' => 'مميزات قوية',
-  'features_subtitle' => 'كل ما تحتاجه',
-  'features_description' => 'اكتشف جميع الأدوات التي تحتاجها لإنشاء وإدارة ومشاركة قصصك.',
-  'features_feature1_title' => 'الكتابة بالذكاء الاصطناعي',
-  'features_feature1_description' => 'دع الذكاء الاصطناعي يساعدك في صياغة قصص مقنعة.',
-  'features_feature2_title' => 'دعم متعدد اللغات',
-  'features_feature2_description' => 'أنشئ قصصاً بلغات متعددة.',
-  'features_feature3_title' => 'الوسائط الغنية',
-  'features_feature3_description' => 'أضف الصور ومقاطع الفيديو والصوت إلى قصصك.',
-  'features_feature4_title' => 'التعاون',
-  'features_feature4_description' => 'اعمل مع فريقك بسلاسة.',
-  'features_feature5_title' => 'أدوات النشر',
-  'features_feature5_description' => 'شارك قصصك مع العالم بسهولة.',
-  'features_feature6_title' => 'التحليلات',
-  'features_feature6_description' => 'تتبع التفاعل وحسّن محتواك.',
+  'features_title' => 'مميزات ساحرة',
+  'features_subtitle' => 'لقصص لا تُنسى',
+  'features_description' => 'اكتشف كيف يمكن للذكاء الاصطناعي أن يحول أفكارك إلى قصص مذهلة تأسر قلوب الصغار',
+
+  'features_feature1_title' => 'قصص مخصصة',
+  'features_feature1_description' => 'قصص فريدة تجعل طفلك هو البطل الحقيقي للمغامرة.',
+
+  'features_feature2_title' => 'ذكاء اصطناعي متقدم',
+  'features_feature2_description' => 'تقنية حديثة تضمن محتوى آمن ومناسب للأطفال.',
+
+  'features_feature3_title' => 'رسوم توضيحية جميلة',
+  'features_feature3_description' => 'صور ملونة تجعل القصة تنبض بالحياة وتزيد من إثارتها.',
+
+  'features_feature4_title' => 'سهل الاستخدام',
+  'features_feature4_description' => 'واجهة بسيطة تجعل إنشاء القصص تجربة ممتعة.',
+
+  'features_feature5_title' => 'محتوى تعليمي',
+  'features_feature5_description' => 'قصص تحمل قيم تعليمية ودروس مفيدة.',
+
+  'features_feature6_title' => 'مشاركة سهلة',
+  'features_feature6_description' => 'شارك قصص طفلك مع الأصدقاء والعائلة بسهولة.',
 
   // Stories Section
   'stories_title' => 'القصص المميزة',

@@ -440,21 +440,27 @@ return [
   "is_the_hero" => "is the Hero",
 
   // Features Section
-  'features_title' => 'Powerful Features',
-  'features_subtitle' => 'Everything you need',
-  'features_description' => 'Discover all the tools you need to create, manage, and share your stories.',
-  'features_feature1_title' => 'AI-Powered Writing',
-  'features_feature1_description' => 'Let AI help you craft compelling narratives.',
-  'features_feature2_title' => 'Multi-Language Support',
-  'features_feature2_description' => 'Create stories in multiple languages.',
-  'features_feature3_title' => 'Rich Media',
-  'features_feature3_description' => 'Add images, videos, and audio to your stories.',
-  'features_feature4_title' => 'Collaboration',
-  'features_feature4_description' => 'Work together with your team seamlessly.',
-  'features_feature5_title' => 'Publishing Tools',
-  'features_feature5_description' => 'Share your stories with the world easily.',
-  'features_feature6_title' => 'Analytics',
-  'features_feature6_description' => 'Track engagement and optimize your content.',
+  'features_title' => 'Magical Features',
+  'features_subtitle' => 'For Unforgettable Stories',
+  'features_description' => 'Discover how AI can transform your ideas into amazing stories that capture children\'s hearts',
+
+  'features_feature1_title' => 'Personalized Stories',
+  'features_feature1_description' => 'Unique stories that make your child the real hero of the adventure.',
+
+  'features_feature2_title' => 'Advanced AI',
+  'features_feature2_description' => 'Modern technology ensures safe and child-appropriate content.',
+
+  'features_feature3_title' => 'Beautiful Illustrations',
+  'features_feature3_description' => 'Colorful images that bring the story to life and make it more exciting.',
+
+  'features_feature4_title' => 'Easy to Use',
+  'features_feature4_description' => 'Simple interface makes creating stories a fun experience.',
+
+  'features_feature5_title' => 'Educational Content',
+  'features_feature5_description' => 'Stories that carry educational values and useful lessons.',
+
+  'features_feature6_title' => 'Easy Sharing',
+  'features_feature6_description' => 'Share your child\'s stories with friends and family easily.',
 
   // Stories Section
   'stories_title' => 'Featured Stories',
