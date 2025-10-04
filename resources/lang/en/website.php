@@ -63,7 +63,7 @@ return [
   'auth_secure_area_message' => 'This is a secure area of the application. Please verify your identity by confirming your password.',
   // end Auth Pages
 
-  'welcome' => "Welcome 👋",
+  'welcome' => "Welcome",
 
 
   'language' => 'Language',
