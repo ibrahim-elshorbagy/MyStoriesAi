@@ -60,17 +60,18 @@ export default function PricingSection() {
         className="relative flex flex-col md:flex-row flex-wrap items-center justify-between px-8 pt-40 pb-20 bg-gradient-to-r from-emerald-100 to-amber-50"
       >
         {/* Separator line horizontally rotated at the top of pricing */}
-        <div
-          className="absolute -top-8 left-0 w-full h-16 pointer-events-none z-40"
-        >
+        <div className="absolute -top-8 left-0 w-full h-16 pointer-events-none z-40">
           <div
-            className="w-full h-full"
+            className="w-full h-full bg-gradient-to-r from-emerald-100 to-amber-50"
             style={{
-              backgroundImage: "url('assets/h-green-diamond.svg')",
-              backgroundRepeat: "repeat",
-              backgroundPosition: "center",
-              backgroundSize: "contain",
-              transformOrigin: "center",
+              WebkitMaskImage: "url('assets/h-light-green-diamond.svg')",
+              maskImage: "url('assets/h-light-green-diamond.svg')",
+              WebkitMaskRepeat: "repeat",
+              maskRepeat: "repeat",
+              WebkitMaskPosition: "center",
+              maskPosition: "center",
+              WebkitMaskSize: "contain",
+              maskSize: "contain",
             }}
           />
         </div>
