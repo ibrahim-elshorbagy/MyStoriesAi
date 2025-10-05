@@ -25,26 +25,19 @@ class DatabaseSeeder extends Seeder
       'username' => 'a',
       'email' => 'ibrahim.elshorbagy47@gmail.com',
       'password' => Hash::make('a'),
+      "email_verified_at" => now(),
     ]);
     $admin->assignRole($SystemAdminRole);
 
-    $admin = User::create([
-      'id' => 3,
-      'name' => 'ihab',
-      'username' => 'i',
-      'email' => 'ihab@gmail.com',
-      'password' => Hash::make('i'),
-    ]);
-
-
-    $admin->assignRole($SystemAdminRole);
 
     $user = User::create([
       'id' => 2,
-      'name' => 'saad',
-      'username' => 's',
-      'email' => 'saad@gmail.com',
-      'password' => Hash::make('s'),
+      'name' => 'ibrahim',
+      'username' => 'u',
+      'email' => 'ibrahim@gmail.com',
+      'password' => Hash::make('u'),
+      "email_verified_at" => now(),
+
     ]);
 
     $user->assignRole($userRole);

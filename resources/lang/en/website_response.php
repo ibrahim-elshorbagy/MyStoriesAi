@@ -78,4 +78,18 @@ return [
   'impersonation_return_message' => 'Successfully returned to the admin account.',
   'impersonation_failed_title' => 'Return failed',
   'impersonation_failed_message' => 'Could not return to the admin account.',
+
+  // Static Pages
+  'page_created_title' => 'Created',
+  'page_created_message' => 'Page created successfully',
+  'page_updated_title' => 'Updated',
+  'page_updated_message' => 'Page updated successfully',
+  'page_deleted_title' => 'Deleted',
+  'page_deleted_message' => 'Page deleted successfully',
+  'pages_published_title' => 'Published',
+  'pages_published_message' => 'Selected pages published successfully',
+  'pages_archived_title' => 'Archived',
+  'pages_archived_message' => 'Selected pages archived successfully',
+  'pages_deleted_title' => 'Deleted',
+  'pages_deleted_message' => 'Selected pages deleted successfully',
 ];

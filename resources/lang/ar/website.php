@@ -183,6 +183,7 @@ return [
   /* User Management */
   'user' => 'مستخدم',
   'created_at' => 'تاريخ الإنشاء',
+  'updated_at' => 'تاريخ التحديث',
   'actions' => 'الإجراءات',
   'confirm_password' => 'تأكيد كلمة المرور',
   'username' => 'اسم المستخدم',
@@ -192,6 +193,13 @@ return [
   'block_users' => 'حظر المستخدمين',
   'unblock_users' => 'إلغاء حظر المستخدمين',
   'delete_users' => 'حذف المستخدمين',
+  "per_page" => 'عدد العناصر في الصفحة',
+  "sort" => 'ترتيب',
+  'by' => "بواسطة",
+  "descending" => "تنازلي",
+  "ascending" => "تصاعدي",
+  "no_items_found" => "لا يوجد عناصر",
+  "title"=>"العنوان",
 
   // User Management Bulk Actions
   'confirm_block_users' => 'هل أنت متأكد أنك تريد حظر :count مستخدمين؟',
@@ -377,4 +385,29 @@ return [
   'plan_3_feature_4' => 'مثالي لأعياد الميلاد والهدايا والذكريات الدائمة',
   // End Pricing
 
+  // Static Pages
+  'static_pages' => 'الصفحات الثابتة',
+  'static_pages_management' => 'إدارة الصفحات الثابتة',
+  'create_page' => 'إنشاء صفحة',
+  'edit_page' => 'تعديل صفحة',
+  'search_pages' => 'البحث في الصفحات...',
+  'title_ar' => 'العنوان بالعربية',
+  'title_en' => 'العنوان بالإنجليزية',
+  'content_ar' => 'المحتوى بالعربية',
+  'content_en' => 'المحتوى بالإنجليزية',
+  'slug' => 'الرابط المختصر',
+  'slug_help_text' => 'استخدم أحرف صغيرة وأرقام وشرطات فقط (مثال: about-us)',
+  'status' => 'الحالة',
+  'draft' => 'مسودة',
+  'published' => 'منشور',
+  'archived' => 'مؤرشف',
+  'publish' => 'نشر',
+  'archive' => 'أرشفة',
+  'creating' => 'جاري الإنشاء...',
+  'updating' => 'جاري التحديث...',
+  'save_changes' => 'حفظ التغييرات',
+  'confirm_delete_page' => 'هل أنت متأكد من حذف هذه الصفحة؟',
+  'confirm_delete_pages' => 'هل أنت متأكد من حذف الصفحات المحددة؟',
+  'confirm_publish_pages' => 'هل أنت متأكد من نشر الصفحات المحددة؟',
+  'confirm_archive_pages' => 'هل أنت متأكد من أرشفة الصفحات المحددة؟',
 ];

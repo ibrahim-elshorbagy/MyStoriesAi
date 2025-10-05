@@ -105,6 +105,7 @@ return [
   /* User Management */
   'user' => 'User',
   'created_at' => 'Created At',
+  'updated_at' => 'Updated At',
   'actions' => 'Actions',
   'confirm_password' => 'Confirm Password',
   'username' => 'Username',
@@ -114,6 +115,12 @@ return [
   'block_users' => 'Block Users',
   'unblock_users' => 'Unblock Users',
   'delete_users' => 'Delete Users',
+  "per_page"=>'Per Page',
+  "sort"=>'Sort',
+  "by"=>"by",
+  "descending"=>"Descending",
+  "ascending"=>"Ascending",
+  "title"=>"Title",
 
   // User Management Bulk Actions
   'confirm_block_users' => 'Are you sure you want to block :count users?',
@@ -515,5 +522,30 @@ return [
   'plan_3_feature_3' => 'Extra durable, keepsake quality',
   'plan_3_feature_4' => 'Perfect for birthdays, gifts & lasting memories',
   // End Pricing
+
+  'static_pages' => 'Static Pages',
+  'static_pages_management' => 'Static Pages Management',
+  'create_page' => 'Create Page',
+  'edit_page' => 'Edit Page',
+  'search_pages' => 'Search pages...',
+  'title_ar' => 'Title (Arabic)',
+  'title_en' => 'Title (English)',
+  'content_ar' => 'Content (Arabic)',
+  'content_en' => 'Content (English)',
+  'slug' => 'Slug',
+  'slug_help_text' => 'Use only lowercase letters, numbers, and hyphens (e.g., about-us)',
+  'status' => 'Status',
+  'draft' => 'Draft',
+  'published' => 'Published',
+  'archived' => 'Archived',
+  'publish' => 'Publish',
+  'archive' => 'Archive',
+  'creating' => 'Creating...',
+  'updating' => 'Updating...',
+  'save_changes' => 'Save Changes',
+  'confirm_delete_page' => 'Are you sure you want to delete this page?',
+  'confirm_delete_pages' => 'Are you sure you want to delete the selected pages?',
+  'confirm_publish_pages' => 'Are you sure you want to publish the selected pages?',
+  'confirm_archive_pages' => 'Are you sure you want to archive the selected pages?',
 
 ];

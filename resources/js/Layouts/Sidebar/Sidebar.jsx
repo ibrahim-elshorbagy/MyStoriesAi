@@ -29,6 +29,9 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
       ],
     },
 
+    { name: t('static_pages'), icon: 'fa-file', href: route('admin.static-pages.index'), route: 'admin.static-pages.index', role: '' },
+
+
     // User
 
     // { name: t('settings'), icon: 'fa-gear', href: route('profile.edit'), route: 'profile', role: 'admin' },

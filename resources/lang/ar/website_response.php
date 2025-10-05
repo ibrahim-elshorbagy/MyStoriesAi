@@ -77,5 +77,18 @@ return [
   'impersonation_failed_title' => 'فشل العودة',
   'impersonation_failed_message' => 'تعذر العودة إلى حساب المدير.',
 
+  // Static Pages
+  'page_created_title' => 'تم الإنشاء',
+  'page_created_message' => 'تم إنشاء الصفحة بنجاح',
+  'page_updated_title' => 'تم التحديث',
+  'page_updated_message' => 'تم تحديث الصفحة بنجاح',
+  'page_deleted_title' => 'تم الحذف',
+  'page_deleted_message' => 'تم حذف الصفحة بنجاح',
+  'pages_published_title' => 'تم النشر',
+  'pages_published_message' => 'تم نشر الصفحات المحددة بنجاح',
+  'pages_archived_title' => 'تم الأرشفة',
+  'pages_archived_message' => 'تم أرشفة الصفحات المحددة بنجاح',
+  'pages_deleted_title' => 'تم الحذف',
+  'pages_deleted_message' => 'تم حذف الصفحات المحددة بنجاح',
 
 ];

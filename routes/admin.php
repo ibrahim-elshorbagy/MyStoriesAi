@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Management\UserManagementController;
+use App\Http\Controllers\Admin\SiteSetting\StaticPagesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -10,7 +11,7 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/admin/return-to-admin', [AdminController::class, 'returnToAdmin'])->name('admin.return_to_admin');
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('/dashboard')->group(function () {
   // Admin impersonation routes
   Route::post('/admin/login-as/{user}', [AdminController::class, 'loginAs'])->name('admin.login_as');
 
@@ -24,5 +25,18 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::patch('/admin/users/bulk/block', [UserManagementController::class, 'bulkBlock'])->name('admin.users.bulk.block');
   Route::patch('/admin/users/bulk/unblock', [UserManagementController::class, 'bulkUnblock'])->name('admin.users.bulk.unblock');
   Route::delete('/admin/users/bulk/delete', [UserManagementController::class, 'bulkDelete'])->name('admin.users.bulk.delete');
+
+  // Static Pages Management
+  Route::get('/admin/static-pages', [StaticPagesController::class, 'index'])->name('admin.static-pages.index');
+  Route::get('/admin/static-pages/create', [StaticPagesController::class, 'create'])->name('admin.static-pages.create');
+  Route::post('/admin/static-pages', [StaticPagesController::class, 'store'])->name('admin.static-pages.store');
+  Route::get('/admin/static-pages/{staticPage}/edit', [StaticPagesController::class, 'edit'])->name('admin.static-pages.edit');
+  Route::put('/admin/static-pages/{staticPage}', [StaticPagesController::class, 'update'])->name('admin.static-pages.update');
+  Route::delete('/admin/static-pages/{staticPage}', [StaticPagesController::class, 'destroy'])->name('admin.static-pages.destroy');
+
+  // Static Pages bulk actions
+  Route::patch('/admin/static-pages/bulk/publish', [StaticPagesController::class, 'bulkPublish'])->name('admin.static-pages.bulk.publish');
+  Route::patch('/admin/static-pages/bulk/archive', [StaticPagesController::class, 'bulkArchive'])->name('admin.static-pages.bulk.archive');
+  Route::delete('/admin/static-pages/bulk/delete', [StaticPagesController::class, 'bulkDelete'])->name('admin.static-pages.bulk.delete');
 
 });
