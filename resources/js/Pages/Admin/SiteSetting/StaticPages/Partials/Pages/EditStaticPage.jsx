@@ -23,64 +23,84 @@ export default function EditStaticPage({ page }) {
   const editorEnRef = useRef(null);
 
   useEffect(() => {
-    // Load CKEditor
+    // Load TinyMCE
     const script = document.createElement('script');
-    script.src = 'https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js';
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js';
     script.async = true;
-    script.onload = () => initializeCKEditor();
+    script.onload = () => initializeTinyMCE();
     document.body.appendChild(script);
 
     return () => {
-      if (editorArRef.current) {
-        editorArRef.current.destroy();
-      }
-      if (editorEnRef.current) {
-        editorEnRef.current.destroy();
+      if (window.tinymce) {
+        window.tinymce.remove();
       }
     };
   }, []);
 
-  const initializeCKEditor = () => {
-    if (!window.ClassicEditor) return;
+  const initializeTinyMCE = () => {
+    if (!window.tinymce) return;
 
     const commonConfig = {
       height: 600,
-      toolbar: [
-        'undo', 'redo', '|',
-        'heading', '|',
-        'bold', 'italic', '|',
-        'link', 'bulletedList', 'numberedList', '|',
-        'alignment:left', 'alignment:center', 'alignment:right', 'alignment:justify', '|',
-        'indent', 'outdent', '|',
-        'blockQuote', 'insertTable', 'mediaEmbed', 'imageUpload', '|',
-        'removeFormat', 'horizontalLine', 'pageBreak', 'specialCharacters'
+      menubar: true,
+      plugins: [
+        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+        'insertdatetime', 'media', 'table', 'help', 'wordcount', 'directionality'
       ],
-      language: 'en',
+      toolbar: 'undo redo | blocks | bold italic forecolor | alignleft aligncenter alignright alignjustify | ltr rtl | bullist numlist outdent indent | image media table | removeformat | help',
+      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+      // Image handling - convert to base64 blobs
+      automatic_uploads: false,
+      images_dataimg_filter: function(img) {
+        return img.hasAttribute('internal-blob');
+      },
+      images_upload_handler: function(blobInfo, success, failure) {
+        // Convert blob to base64
+        const reader = new FileReader();
+        reader.onload = function() {
+          success(reader.result);
+        };
+        reader.onerror = function() {
+          failure('Failed to convert image to base64');
+        };
+        reader.readAsDataURL(blobInfo.blob());
+      },
+      // Allow paste of images
+      paste_data_images: true,
     };
 
     // Arabic editor
-    const arConfig = { ...commonConfig, language: 'ar' };
-    ClassicEditor.create(document.querySelector('#content_ar'), arConfig)
-      .then(editor => {
+    window.tinymce.init({
+      ...commonConfig,
+      selector: '#content_ar',
+      directionality: 'rtl',
+      setup: (editor) => {
         editorArRef.current = editor;
-        editor.setData(data.content_ar);
-        editor.model.document.on('change:data', () => {
-          setData('content_ar', editor.getData());
+        editor.on('init', () => {
+          editor.setContent(data.content_ar);
         });
-      })
-      .catch(error => console.error(error));
+        editor.on('change', () => {
+          setData('content_ar', editor.getContent());
+        });
+      }
+    });
 
     // English editor
-    const enConfig = { ...commonConfig, language: 'en' };
-    ClassicEditor.create(document.querySelector('#content_en'), enConfig)
-      .then(editor => {
+    window.tinymce.init({
+      ...commonConfig,
+      selector: '#content_en',
+      directionality: 'ltr',
+      setup: (editor) => {
         editorEnRef.current = editor;
-        editor.setData(data.content_en);
-        editor.model.document.on('change:data', () => {
-          setData('content_en', editor.getData());
+        editor.on('init', () => {
+          editor.setContent(data.content_en);
         });
-      })
-      .catch(error => console.error(error));
+        editor.on('change', () => {
+          setData('content_en', editor.getContent());
+        });
+      }
+    });
   };
 
   const handleSubmit = (e) => {
@@ -88,10 +108,10 @@ export default function EditStaticPage({ page }) {
 
     // Update content from editors before submit
     if (editorArRef.current) {
-      setData('content_ar', editorArRef.current.getData());
+      setData('content_ar', editorArRef.current.getContent());
     }
     if (editorEnRef.current) {
-      setData('content_en', editorEnRef.current.getData());
+      setData('content_en', editorEnRef.current.getContent());
     }
 
     put(route('admin.static-pages.update', page.id), { preserveScroll: true });
