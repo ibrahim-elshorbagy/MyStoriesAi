@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Management\UserManagementController;
 use App\Http\Controllers\Admin\SiteSetting\StaticPagesController;
+use App\Http\Controllers\Admin\SiteSetting\StaticPagesCategoryController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -38,5 +39,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('/dashboard')->group(function 
   Route::patch('/admin/static-pages/bulk/publish', [StaticPagesController::class, 'bulkPublish'])->name('admin.static-pages.bulk.publish');
   Route::patch('/admin/static-pages/bulk/archive', [StaticPagesController::class, 'bulkArchive'])->name('admin.static-pages.bulk.archive');
   Route::delete('/admin/static-pages/bulk/delete', [StaticPagesController::class, 'bulkDelete'])->name('admin.static-pages.bulk.delete');
+
+  // Static Pages Categories Management
+  Route::get('/admin/static-pages-categories', [StaticPagesCategoryController::class, 'index'])->name('admin.static-pages-categories.index');
+  Route::post('/admin/static-pages-categories', [StaticPagesCategoryController::class, 'store'])->name('admin.static-pages-categories.store');
+  Route::put('/admin/static-pages-categories/{staticPageCategory}', [StaticPagesCategoryController::class, 'update'])->name('admin.static-pages-categories.update');
+  Route::delete('/admin/static-pages-categories/{staticPageCategory}', [StaticPagesCategoryController::class, 'destroy'])->name('admin.static-pages-categories.destroy');
+
+  // Static Pages Categories bulk actions
+  Route::delete('/admin/static-pages-categories/bulk/delete', [StaticPagesCategoryController::class, 'bulkDelete'])->name('admin.static-pages-categories.bulk.delete');
 
 });

@@ -15,6 +15,7 @@ return new class extends Migration {
       $table->json('title'); // {ar: '', en: ''}
       $table->json('content'); // {ar: '', en: ''}
       $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
+      $table->foreignId('category_id')->nullable()->constrained('static_page_categories')->onDelete('set null');
       $table->timestamps();
     });
   }

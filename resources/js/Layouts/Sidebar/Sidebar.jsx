@@ -16,7 +16,13 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
   const userRoles = auth.roles || [];
 
   const navItems = [
-    { name: t('dashboard'), icon: 'fa-chart-line', href: route('dashboard'), route: 'dashboard', role: '' },
+    {
+      name: t('dashboard'),
+      icon: 'fa-chart-line',
+      href: route('dashboard'),
+      route: 'dashboard',
+      role: ''
+    },
 
     // Admin
     {
@@ -29,10 +35,27 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
       ],
     },
 
-    { name: t('static_pages'), icon: 'fa-file', href: route('admin.static-pages.index'), route: 'admin.static-pages.index', role: '' },
-
-
-    // User
+    // Static Pages group
+    {
+      name: t('static_pages_management'),
+      icon: 'fa-file-alt',
+      route: 'admin.static-pages.*',
+      role: '',
+      submenu: [
+        {
+          name: t('static_page_categories'),
+          href: route('admin.static-pages-categories.index'),
+          route: 'admin.static-pages-categories.*',
+          icon: 'fa-folder'
+        },
+        {
+          name: t('static_pages'),
+          href: route('admin.static-pages.index'),
+          route: 'admin.static-pages.*',
+          icon: 'fa-file'
+        },
+      ],
+    },
 
     // { name: t('settings'), icon: 'fa-gear', href: route('profile.edit'), route: 'profile', role: 'admin' },
   ];

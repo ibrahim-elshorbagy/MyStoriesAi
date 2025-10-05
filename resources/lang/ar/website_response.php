@@ -91,4 +91,18 @@ return [
   'pages_deleted_title' => 'تم الحذف',
   'pages_deleted_message' => 'تم حذف الصفحات المحددة بنجاح',
 
+  // Static Page Categories
+  'static_page_category_created_title' => 'تم الإنشاء',
+  'static_page_category_created_message' => 'تم إنشاء الفئة بنجاح',
+  'static_page_category_updated_title' => 'تم التحديث',
+  'static_page_category_updated_message' => 'تم تحديث الفئة بنجاح',
+  'static_page_category_deleted_title' => 'تم الحذف',
+  'static_page_category_deleted_message' => 'تم حذف الفئة بنجاح',
+  'static_page_category_delete_failed_title' => 'فشل الحذف',
+  'static_page_category_delete_failed_message' => 'لا يمكن حذف الفئة التي تحتوي على صفحات',
+  'static_page_categories_deleted_title' => 'تم الحذف',
+  'static_page_categories_deleted_message' => 'تم حذف :count فئات بنجاح',
+  'static_page_categories_bulk_delete_failed_title' => 'فشل الحذف',
+  'static_page_categories_bulk_delete_failed_message' => 'لا يمكن حذف الفئات التي تحتوي على صفحات',
+
 ];

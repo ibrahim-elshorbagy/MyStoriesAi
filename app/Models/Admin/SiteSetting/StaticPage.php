@@ -31,4 +31,9 @@ class StaticPage extends Model
     return $this->getTranslatedValue($this->content ?? []);
   }
 
+  public function category()
+  {
+    return $this->belongsTo(StaticPageCategory::class, 'category_id');
+  }
+
 }

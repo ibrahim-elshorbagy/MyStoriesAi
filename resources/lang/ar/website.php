@@ -200,6 +200,15 @@ return [
   "ascending" => "تصاعدي",
   "no_items_found" => "لا يوجد عناصر",
   "title"=>"العنوان",
+  "items"=>"عناصر",
+  "item"=>"عنصر",
+  "save"=>"حفظ",
+  "saving"=>"جاري الحفظ",
+  "edit"=>"تعديل",
+  "delete"=>"حذف",
+  "serial"=>"ترقيم",
+  "bulk_actions"=>"اوامر",
+
 
   // User Management Bulk Actions
   'confirm_block_users' => 'هل أنت متأكد أنك تريد حظر :count مستخدمين؟',
@@ -395,6 +404,8 @@ return [
   'title_en' => 'العنوان بالإنجليزية',
   'content_ar' => 'المحتوى بالعربية',
   'content_en' => 'المحتوى بالإنجليزية',
+  'category' => 'الفئة',
+  'select_category' => 'اختر الفئة',
   'slug' => 'الرابط المختصر',
   'slug_help_text' => 'استخدم أحرف صغيرة وأرقام وشرطات فقط (مثال: about-us)',
   'status' => 'الحالة',
@@ -411,4 +422,18 @@ return [
   'confirm_publish_pages' => 'هل أنت متأكد من نشر الصفحات المحددة؟',
   'confirm_archive_pages' => 'هل أنت متأكد من أرشفة الصفحات المحددة؟',
   "create_static_page" => "إنشاء صفحة ثابتة",
+
+  // Static Page Categories
+  'static_page_categories' => 'فئات الصفحات الثابتة',
+  'static_page_categories_management' => 'إدارة فئات الصفحات الثابتة',
+  'create_category' => 'إنشاء فئة',
+  'edit_category' => 'تعديل فئة',
+  'delete_category' => 'حذف فئة',
+  'search_categories' => 'البحث في الفئات...',
+  'category_name' => 'اسم الفئة',
+  'confirm_delete_category' => 'هل أنت متأكد من حذف هذه الفئة؟',
+  'confirm_delete_categories' => 'هل أنت متأكد من حذف الفئات المحددة؟',
+  'category_has_pages' => 'هذه الفئة تحتوي على صفحات ولا يمكن حذفها.',
+  'categories_have_pages' => 'بعض الفئات المحددة تحتوي على صفحات ولا يمكن حذفها.',
+
 ];

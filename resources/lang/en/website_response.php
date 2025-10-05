@@ -92,4 +92,18 @@ return [
   'pages_archived_message' => 'Selected pages archived successfully',
   'pages_deleted_title' => 'Deleted',
   'pages_deleted_message' => 'Selected pages deleted successfully',
+
+  // Static Page Categories
+  'static_page_category_created_title' => 'Created',
+  'static_page_category_created_message' => 'Category created successfully',
+  'static_page_category_updated_title' => 'Updated',
+  'static_page_category_updated_message' => 'Category updated successfully',
+  'static_page_category_deleted_title' => 'Deleted',
+  'static_page_category_deleted_message' => 'Category deleted successfully',
+  'static_page_category_delete_failed_title' => 'Delete Failed',
+  'static_page_category_delete_failed_message' => 'Cannot delete category that contains pages',
+  'static_page_categories_deleted_title' => 'Deleted',
+  'static_page_categories_deleted_message' => ':count categories deleted successfully',
+  'static_page_categories_bulk_delete_failed_title' => 'Delete Failed',
+  'static_page_categories_bulk_delete_failed_message' => 'Cannot delete categories that contain pages',
 ];

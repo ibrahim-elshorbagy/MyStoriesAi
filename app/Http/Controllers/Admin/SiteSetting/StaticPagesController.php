@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\SiteSetting;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\SiteSetting\StaticPage;
+use App\Models\Admin\SiteSetting\StaticPageCategory;
 use Illuminate\Http\Request;
 
 class StaticPagesController extends Controller
@@ -51,7 +52,11 @@ class StaticPagesController extends Controller
 
   public function create()
   {
-    return inertia('Admin/SiteSetting/StaticPages/Partials/Pages/CreateStaticPage');
+    $categories = StaticPageCategory::all();
+
+    return inertia('Admin/SiteSetting/StaticPages/Partials/Pages/CreateStaticPage', [
+      'categories' => $categories,
+    ]);
   }
 
   public function store(Request $request)
@@ -61,6 +66,7 @@ class StaticPagesController extends Controller
       'title_en' => ['required', 'string', 'max:255'],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
+      'category_id' => ['nullable', 'exists:static_page_categories,id'],
       'status' => ['required', 'in:draft,published,archived'],
     ]);
 
@@ -73,6 +79,7 @@ class StaticPagesController extends Controller
         'ar' => $validated['content_ar'],
         'en' => $validated['content_en'],
       ],
+      'category_id' => $validated['category_id'],
       'status' => $validated['status'],
     ]);
 
@@ -84,8 +91,11 @@ class StaticPagesController extends Controller
 
   public function edit(StaticPage $staticPage)
   {
+    $categories = StaticPageCategory::all();
+
     return inertia('Admin/SiteSetting/StaticPages/Partials/Pages/EditStaticPage', [
       'page' => $staticPage,
+      'categories' => $categories,
     ]);
   }
 
@@ -96,6 +106,7 @@ class StaticPagesController extends Controller
       'title_en' => ['required', 'string', 'max:255'],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
+      'category_id' => ['nullable', 'exists:static_page_categories,id'],
       'status' => ['required', 'in:draft,published,archived'],
     ]);
 
@@ -108,6 +119,7 @@ class StaticPagesController extends Controller
         'ar' => $validated['content_ar'],
         'en' => $validated['content_en'],
       ],
+      'category_id' => $validated['category_id'],
       'status' => $validated['status'],
     ]);
 

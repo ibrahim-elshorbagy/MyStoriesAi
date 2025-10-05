@@ -9,13 +9,14 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 
-export default function EditStaticPage({ page }) {
+export default function EditStaticPage({ page, categories = [] }) {
   const { t } = useTrans();
   const { data, setData, put, errors, processing } = useForm({
     title_ar: page.title?.ar || '',
     title_en: page.title?.en || '',
     content_ar: page.content?.ar || '',
     content_en: page.content?.en || '',
+    category_id: page.category_id || '',
     status: page.status || 'draft',
   });
 
@@ -179,6 +180,25 @@ export default function EditStaticPage({ page }) {
                     required
                   />
                   <InputError message={errors.title_en} className="mt-2" />
+                </div>
+
+                {/* Category */}
+                <div>
+                  <SelectInput
+                    name="category_id"
+                    label={t('category')}
+                    value={data.category_id}
+                    onChange={(e) => setData('category_id', e.target.value)}
+                    options={[
+                      { value: '', label: t('select_category') },
+                      ...categories.map(category => ({
+                        value: category.id,
+                        label: category.name,
+                      })),
+                    ]}
+                    icon="fa-folder"
+                  />
+                  <InputError message={errors.category_id} className="mt-2" />
                 </div>
 
                 {/* Status */}

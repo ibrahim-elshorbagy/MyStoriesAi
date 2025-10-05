@@ -8,7 +8,7 @@ export default function StaticPagesTable({ pages }) {
   const { t } = useTrans();
 
   const columns = [
-    { field: 'id', label: t('id'), icon: 'fa-hashtag' },
+    { field: 'row_number', label: t('serial'), icon: 'fa-hashtag' },
     { field: 'title', label: t('title'), icon: 'fa-heading' },
     { field: 'slug', label: t('slug'), icon: 'fa-link' },
     { field: 'status', label: t('status'), icon: 'fa-circle-check' },
@@ -17,7 +17,6 @@ export default function StaticPagesTable({ pages }) {
   ];
 
   const sortOptions = [
-    { field: 'id', label: t('id') },
     { field: 'status', label: t('status') },
     { field: 'updated_at', label: t('updated_at') }
   ];

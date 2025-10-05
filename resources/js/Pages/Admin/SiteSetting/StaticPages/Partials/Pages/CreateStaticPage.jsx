@@ -9,13 +9,14 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 
-export default function CreateStaticPage() {
+export default function CreateStaticPage({ categories = [] }) {
   const { t } = useTrans();
   const { data, setData, post, errors, processing } = useForm({
     title_ar: '',
     title_en: '',
     content_ar: '',
     content_en: '',
+    category_id: '',
     status: 'draft',
   });
 
@@ -173,6 +174,25 @@ export default function CreateStaticPage() {
                     required
                   />
                   <InputError message={errors.title_en} className="mt-2" />
+                </div>
+
+                {/* Category */}
+                <div>
+                  <SelectInput
+                    name="category_id"
+                    label={t('category')}
+                    value={data.category_id}
+                    onChange={(e) => setData('category_id', e.target.value)}
+                    options={[
+                      { value: '', label: t('select_category') },
+                      ...categories.map(category => ({
+                        value: category.id,
+                        label: category.name,
+                      })),
+                    ]}
+                    icon="fa-folder"
+                  />
+                  <InputError message={errors.category_id} className="mt-2" />
                 </div>
 
                 {/* Status */}
