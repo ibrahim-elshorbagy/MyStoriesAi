@@ -410,4 +410,5 @@ return [
   'confirm_delete_pages' => 'هل أنت متأكد من حذف الصفحات المحددة؟',
   'confirm_publish_pages' => 'هل أنت متأكد من نشر الصفحات المحددة؟',
   'confirm_archive_pages' => 'هل أنت متأكد من أرشفة الصفحات المحددة؟',
+  "create_static_page" => "إنشاء صفحة ثابتة",
 ];

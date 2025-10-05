@@ -547,5 +547,6 @@ return [
   'confirm_delete_pages' => 'Are you sure you want to delete the selected pages?',
   'confirm_publish_pages' => 'Are you sure you want to publish the selected pages?',
   'confirm_archive_pages' => 'Are you sure you want to archive the selected pages?',
+  "create_static_page" => "Create Static Page",
 
 ];

@@ -276,6 +276,9 @@
 html {
   scroll-behavior: smooth;
 }
+.tox-promotion ,.tox-statusbar__branding{
+  display: none !important;
+}
 
 /* Additional smooth scrolling behavior for better performance */
 @media (prefers-reduced-motion: no-preference) {
