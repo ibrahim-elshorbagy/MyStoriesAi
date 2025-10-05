@@ -10,7 +10,8 @@ import { useTrans } from '@/Hooks/useTrans';
 export default function CreateModal({ isOpen, onClose }) {
   const { t } = useTrans();
   const { data, setData, post, errors, reset, processing } = useForm({
-    name: '',
+    name_ar: '',
+    name_en: '',
   });
 
   const handleSubmit = (e) => {
@@ -33,20 +34,38 @@ export default function CreateModal({ isOpen, onClose }) {
       size="md"
     >
       <form onSubmit={handleSubmit}>
-        {/* Category Name */}
+        {/* Category Name Arabic */}
         <div className="mb-4">
-          <InputLabel htmlFor="name" value={t('category_name')} required />
+          <InputLabel htmlFor="name_ar" value={t('category_name_ar')} required />
           <TextInput
-            id="name"
+            id="name_ar"
             type="text"
-            name="name"
-            value={data.name}
+            name="name_ar"
+            value={data.name_ar}
             className="mt-1 block w-full"
-            onChange={(e) => setData('name', e.target.value)}
+            onChange={(e) => setData('name_ar', e.target.value)}
             icon="fa-folder"
+            placeholder={t('enter_arabic_name')}
             required
           />
-          <InputError message={errors.name} className="mt-2" />
+          <InputError message={errors.name_ar} className="mt-2" />
+        </div>
+
+        {/* Category Name English */}
+        <div className="mb-4">
+          <InputLabel htmlFor="name_en" value={t('category_name_en')} required />
+          <TextInput
+            id="name_en"
+            type="text"
+            name="name_en"
+            value={data.name_en}
+            className="mt-1 block w-full"
+            onChange={(e) => setData('name_en', e.target.value)}
+            icon="fa-folder"
+            placeholder={t('enter_english_name')}
+            required
+          />
+          <InputError message={errors.name_en} className="mt-2" />
         </div>
 
         {/* Buttons */}

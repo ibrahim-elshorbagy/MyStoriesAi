@@ -61,7 +61,7 @@ export default function StaticPagesCategoriesTable({ categories, onEdit }) {
         <div className="flex items-center gap-2">
           <i className="fa-solid fa-folder text-blue-500"></i>
           <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
-            {category.name}
+            {category.name_value || category.name}
           </span>
         </div>
       </td>

@@ -187,7 +187,7 @@ export default function CreateStaticPage({ categories = [] }) {
                       { value: '', label: t('select_category') },
                       ...categories.map(category => ({
                         value: category.id,
-                        label: category.name,
+                        label: category.name_value || category.name,
                       })),
                     ]}
                     icon="fa-folder"

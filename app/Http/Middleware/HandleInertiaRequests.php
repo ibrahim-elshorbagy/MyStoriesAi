@@ -89,7 +89,7 @@ class HandleInertiaRequests extends Middleware
         ->map(function ($category) {
           return [
             'id' => $category->id,
-            'name' => $category->name,
+            'name' => $category->name_value,
             'pages' => $category->staticPages->map(function ($page) {
               return [
                 'id' => $page->id,

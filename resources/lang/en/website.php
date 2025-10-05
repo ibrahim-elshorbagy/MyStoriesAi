@@ -128,6 +128,7 @@ return [
   "edit"=>"Edit",
   "delete"=>"Delete",
   "serial"=>"Serial",
+  "no_items_found"=>"No Items Found",
 
 
   // User Management Bulk Actions
@@ -385,6 +386,10 @@ return [
   'delete_category' => 'Delete Category',
   'search_categories' => 'Search categories...',
   'category_name' => 'Category Name',
+  'category_name_ar' => 'Category Name (Arabic)',
+  'category_name_en' => 'Category Name (English)',
+  'enter_arabic_name' => 'Enter Arabic name',
+  'enter_english_name' => 'Enter English name',
   'confirm_delete_category' => 'Are you sure you want to delete this category?',
   'confirm_delete_categories' => 'Are you sure you want to delete the selected categories?',
   'category_has_pages' => 'This category contains pages and cannot be deleted.',
