@@ -191,67 +191,70 @@ export default function Footer() {
           </div>
 
           {/* Contact section */}
-          <div className="flex flex-col gap-4 md:flex-[2]">
-            <h4 className="font-semibold text-lg text-neutral-900 flex items-center gap-2">
-              <i className="fa-solid fa-phone text-orange-500"></i>
-              {t('footer_contact_title')}
-            </h4>
-            <ul className="space-y-5">
-              {settings.support_email && (
-                <li className="group flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-white text-neutral-600 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
-                    <i className="fa-solid fa-envelope p-2"></i>
-                  </div>
-                  <div className="flex-1 space-y-1">
-                    <div className="font-medium text-neutral-900">{t('footer_contact_email_title')}</div>
-                    <a
-                      href={`mailto:${settings.support_email}`}
-                      className="block text-neutral-600 underline decoration-orange-600 underline-offset-4 hover:text-orange-600 transition-colors duration-300 hover:underline"
-                      dir="ltr"
-                    >
-                      {settings.support_email}
-                    </a>
-                  </div>
-                </li>
-              )}
-              {settings.support_mobile && (
-                <li className="group flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-white text-neutral-600 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
-                    <i className="fa-solid fa-phone p-2"></i>
-                  </div>
-                  <div className="flex-1 space-y-1">
-                    <div className="font-medium text-neutral-900">{t('footer_contact_phone_title')}</div>
-                    <a
-                      href={`tel:${settings.support_mobile}`}
-                      className="block text-neutral-600 underline decoration-orange-600 underline-offset-4 hover:text-orange-600 transition-colors duration-300 hover:underline"
-                      dir="ltr"
-                    >
-                      {settings.support_mobile}
-                    </a>
-                  </div>
-                </li>
-              )}
-              {settings.support_whatsapp && (
-                <li className="group flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-green-100 underline decoration-green-600 underline-offset-4 text-green-600 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
-                    <i className="fab fa-whatsapp p-2"></i>
-                  </div>
-                  <div className="flex-1 space-y-1">
-                    <div className="font-medium text-neutral-900">WhatsApp</div>
-                    <a
-                      href={`https://wa.me/${settings.support_whatsapp.replace(/\D/g, '')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-neutral-600 hover:text-green-600 transition-colors duration-300 hover:underline"
-                      dir="ltr"
-                    >
-                      {settings.support_whatsapp}
-                    </a>
-                  </div>
-                </li>
-              )}
-            </ul>
-          </div>
+          {(settings.support_email || settings.support_mobile || settings.support_whatsapp) && (
+            <div className="flex flex-col gap-4 md:flex-[2]">
+              <h4 className="font-semibold text-lg text-neutral-900 flex items-center gap-2">
+                <i className="fa-solid fa-phone text-orange-500"></i>
+                {t('footer_contact_title')}
+              </h4>
+              <ul className="space-y-5">
+                {settings.support_email && (
+                  <li className="group flex items-start gap-4">
+                    <div className="p-2 rounded-lg bg-white text-neutral-600 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                      <i className="fa-solid fa-envelope p-2"></i>
+                    </div>
+                    <div className="flex-1 space-y-1">
+                      <div className="font-medium text-neutral-900">{t('footer_contact_email_title')}</div>
+                      <a
+                        href={`mailto:${settings.support_email}`}
+                        className="block text-neutral-600 underline decoration-orange-600 underline-offset-4 hover:text-orange-600 transition-colors duration-300 hover:underline"
+                        dir="ltr"
+                      >
+                        {settings.support_email}
+                      </a>
+                    </div>
+                  </li>
+                )}
+                {settings.support_mobile && (
+                  <li className="group flex items-start gap-4">
+                    <div className="p-2 rounded-lg bg-white text-neutral-600 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                      <i className="fa-solid fa-phone p-2"></i>
+                    </div>
+                    <div className="flex-1 space-y-1">
+                      <div className="font-medium text-neutral-900">{t('footer_contact_phone_title')}</div>
+                      <a
+                        href={`tel:${settings.support_mobile}`}
+                        className="block text-neutral-600 underline decoration-orange-600 underline-offset-4 hover:text-orange-600 transition-colors duration-300 hover:underline"
+                        dir="ltr"
+                      >
+                        {settings.support_mobile}
+                      </a>
+                    </div>
+                  </li>
+                )}
+                {settings.support_whatsapp && (
+                  <li className="group flex items-start gap-4">
+                    <div className="p-2 rounded-lg bg-green-100 underline decoration-green-600 underline-offset-4 text-green-600 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+                      <i className="fab fa-whatsapp p-2"></i>
+                    </div>
+                    <div className="flex-1 space-y-1">
+                      <div className="font-medium text-neutral-900">WhatsApp</div>
+                      <a
+                        href={`https://wa.me/${settings.support_whatsapp.replace(/\D/g, '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-neutral-600 hover:text-green-600 transition-colors duration-300 hover:underline"
+                        dir="ltr"
+                      >
+                        {settings.support_whatsapp}
+                      </a>
+                    </div>
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
+
         </div>
       </div>
 
