@@ -6,11 +6,15 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PreferencesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\Settings\UserSettingsController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
+
+// Static Pages
+Route::get('/page/{id}', [UserController::class, 'staticPage'])->name('static-page');
 
 Route::get('/dashboard', function () {
   return Inertia::render('Dashboard');

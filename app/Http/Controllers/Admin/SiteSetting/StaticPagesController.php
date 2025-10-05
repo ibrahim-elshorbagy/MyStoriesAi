@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\SiteSetting\StaticPage;
 use App\Models\Admin\SiteSetting\StaticPageCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class StaticPagesController extends Controller
 {
@@ -82,6 +83,8 @@ class StaticPagesController extends Controller
       'category_id' => $validated['category_id'],
       'status' => $validated['status'],
     ]);
+    Cache::forget('footer_data'); // Clear footer cache
+
 
     return redirect()->route('admin.static-pages.index')
       ->with('title', __('website_response.page_created_title'))
@@ -122,6 +125,8 @@ class StaticPagesController extends Controller
       'category_id' => $validated['category_id'],
       'status' => $validated['status'],
     ]);
+
+    Cache::forget('footer_data'); // Clear footer cache
 
     return back()
       ->with('title', __('website_response.page_updated_title'))

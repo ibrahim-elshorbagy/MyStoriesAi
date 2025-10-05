@@ -391,6 +391,7 @@ return [
   'categories_have_pages' => 'Some selected categories contain pages and cannot be deleted.',
 
   /* Site Settings Contact */
+  "site_settings"=>"Site Settings",
   'contact_info' => 'Contact Information',
   'contact_info_description' => 'Manage your contact details and social media links',
   'support_whatsapp' => 'WhatsApp Number',
@@ -407,5 +408,20 @@ return [
   'snapchat_link' => 'Snapchat Link',
   'pinterest_link' => 'Pinterest Link',
   'social_media_links' => 'Social Media Links',
+
+  /* Footer */
+  'MyStoriesAi_description' => 'Towards transforming your ideas into unforgettable stories. Quickly, with a human voice, and in a wonderful style.',
+  'footer_logo_alt' => 'MyStoriesAi Logo',
+  'footer_tagline_line1' => 'Towards transforming your ideas into',
+  'footer_tagline_line2' => 'unforgettable stories.',
+  'footer_sections_title' => 'Sections',
+  'footer_nav_features' => 'Features',
+  'footer_nav_stories' => 'Stories',
+  'footer_nav_faqs' => 'FAQs',
+  'footer_contact_title' => 'Contact Us',
+  'footer_contact_email_title' => 'Email Support',
+  'footer_contact_phone_title' => 'Phone Support',
+  'footer_rights_reserved' => 'All rights reserved',
+  'footer_copyright_text' => 'MyStoriesAi {year}',
 
 ];

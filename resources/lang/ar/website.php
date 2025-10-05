@@ -437,6 +437,7 @@ return [
   'categories_have_pages' => 'بعض الفئات المحددة تحتوي على صفحات ولا يمكن حذفها.',
 
   /* Site Settings Contact */
+  "site_settings" => "إعدادات الموقع",
   'contact_info' => 'معلومات التواصل',
   'contact_info_description' => 'إدارة تفاصيل التواصل وروابط وسائل التواصل الاجتماعي',
   'support_whatsapp' => 'رقم الواتساب',
@@ -453,5 +454,20 @@ return [
   'snapchat_link' => 'رابط سناب شات',
   'pinterest_link' => 'رابط بينترست',
   'social_media_links' => 'روابط وسائل التواصل الاجتماعي',
+
+  /* Footer */
+  'MyStoriesAi_description' => 'نحو تحويل أفكارك إلى قصص لا تُنسى. بسرعة، بصوت بشري، وبأسلوب رائع.',
+  'footer_logo_alt' => 'شعار ماي ستوريز آي آي',
+  'footer_tagline_line1' => 'نحو تحويل أفكارك إلى',
+  'footer_tagline_line2' => 'قصص لا تُنسى.',
+  'footer_sections_title' => 'الأقسام',
+  'footer_nav_features' => 'المميزات',
+  'footer_nav_stories' => 'القصص',
+  'footer_nav_faqs' => 'الأسئلة الشائعة',
+  'footer_contact_title' => 'تواصل معنا',
+  'footer_contact_email_title' => 'دعم البريد الإلكتروني',
+  'footer_contact_phone_title' => 'دعم الهاتف',
+  'footer_rights_reserved' => 'جميع الحقوق محفوظة',
+  'footer_copyright_text' => 'ماي ستوريز آي آي :year',
 
 ];

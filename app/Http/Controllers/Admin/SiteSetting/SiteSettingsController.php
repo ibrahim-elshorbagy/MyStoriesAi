@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
 
 class SiteSettingsController extends Controller
 {
@@ -89,6 +90,7 @@ class SiteSettingsController extends Controller
     // Clear cache
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
+    Cache::forget('footer_data'); // Clear footer cache
 
     return back()->with([
       'title' => __('website_response.settings_updated_title'),

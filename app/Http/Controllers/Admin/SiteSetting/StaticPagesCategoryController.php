@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\SiteSetting\StaticPageCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Cache;
 
 class StaticPagesCategoryController extends Controller
 {
@@ -50,6 +51,8 @@ class StaticPagesCategoryController extends Controller
 
     StaticPageCategory::create($data);
 
+    Cache::forget('footer_data'); // Clear footer cache
+
     return back()
       ->with('title', __('website_response.static_page_category_created_title'))
       ->with('message', __('website_response.static_page_category_created_message'))
@@ -63,6 +66,8 @@ class StaticPagesCategoryController extends Controller
     ]);
 
     $staticPageCategory->update($data);
+
+    Cache::forget('footer_data'); // Clear footer cache
 
     return back()
       ->with('title', __('website_response.static_page_category_updated_title'))

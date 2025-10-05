@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -48,7 +49,62 @@ class HandleInertiaRequests extends Middleware
       // 'translations' => fn () => __('website'),
       'available_locales' => ['en', 'ar'],
       'locale' => fn () => app()->getLocale(),
+      'footer' => $this->getFooterData(),
 
     ];
+  }
+
+  /**
+   * Get footer data with caching
+   */
+  private function getFooterData(): array
+  {
+    return Cache::remember('footer_data', 3600, function () { // Cache for 1 hour
+      $settings = \App\Models\Admin\SiteSetting\SiteSetting::whereIn('key', [
+        'support_email',
+        'support_mobile',
+        'support_whatsapp',
+        'facebook_link',
+        'twitter_link',
+        'instagram_link',
+        'linkedin_link',
+        'youtube_link',
+        'tiktok_link',
+        'snapchat_link',
+        'pinterest_link',
+      ])->whereNotNull('value')
+        ->where('value', '!=', '')
+        ->pluck('value', 'key')
+        ->toArray();
+
+      $staticPages = []; // No longer needed as pages are included in categories
+
+      $categories = \App\Models\Admin\SiteSetting\StaticPageCategory::with(['staticPages' => function ($query) {
+        $query->where('status', 'published')->orderBy('created_at', 'desc');
+      }])
+        ->whereHas('staticPages', function ($query) {
+          $query->where('status', 'published');
+        })
+        ->get(['id', 'name'])
+        ->map(function ($category) {
+          return [
+            'id' => $category->id,
+            'name' => $category->name,
+            'pages' => $category->staticPages->map(function ($page) {
+              return [
+                'id' => $page->id,
+                'title' => $page->title_value,
+                'url' => route('static-page', $page->id),
+              ];
+            }),
+          ];
+        });
+
+      return [
+        'settings' => $settings,
+        'static_pages' => $staticPages,
+        'categories' => $categories,
+      ];
+    });
   }
 }
