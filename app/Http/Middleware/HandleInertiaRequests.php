@@ -59,7 +59,7 @@ class HandleInertiaRequests extends Middleware
    */
   private function getFooterData(): array
   {
-    return Cache::remember('footer_data', 3600, function () { // Cache for 1 hour
+    // return Cache::remember('footer_data', 3600, function () { // Cache for 1 hour
       $settings = \App\Models\Admin\SiteSetting\SiteSetting::whereIn('key', [
         'support_email',
         'support_mobile',
@@ -105,6 +105,6 @@ class HandleInertiaRequests extends Middleware
         'static_pages' => $staticPages,
         'categories' => $categories,
       ];
-    });
+    // });
   }
 }
