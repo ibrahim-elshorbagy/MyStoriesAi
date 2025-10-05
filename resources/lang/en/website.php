@@ -390,4 +390,22 @@ return [
   'category_has_pages' => 'This category contains pages and cannot be deleted.',
   'categories_have_pages' => 'Some selected categories contain pages and cannot be deleted.',
 
+  /* Site Settings Contact */
+  'contact_info' => 'Contact Information',
+  'contact_info_description' => 'Manage your contact details and social media links',
+  'support_whatsapp' => 'WhatsApp Number',
+  'whatsapp_help' => 'Enter your WhatsApp number with country code',
+  'support_phone' => 'Phone Number',
+  'support_mobile' => 'Mobile Number',
+  'support_email' => 'Support Email',
+  'facebook_link' => 'Facebook Link',
+  'twitter_link' => 'Twitter Link',
+  'instagram_link' => 'Instagram Link',
+  'linkedin_link' => 'LinkedIn Link',
+  'youtube_link' => 'YouTube Link',
+  'tiktok_link' => 'TikTok Link',
+  'snapchat_link' => 'Snapchat Link',
+  'pinterest_link' => 'Pinterest Link',
+  'social_media_links' => 'Social Media Links',
+
 ];

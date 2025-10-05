@@ -105,4 +105,9 @@ return [
   'static_page_categories_bulk_delete_failed_title' => 'فشل الحذف',
   'static_page_categories_bulk_delete_failed_message' => 'لا يمكن حذف الفئات التي تحتوي على صفحات',
 
+
+  // Site Settings Responses
+  'settings_updated_title' => 'تم التحديث',
+  'settings_updated_message' => 'تم حفظ إعدادات الموقع بنجاح',
+
 ];

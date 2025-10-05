@@ -106,4 +106,9 @@ return [
   'static_page_categories_deleted_message' => ':count categories deleted successfully',
   'static_page_categories_bulk_delete_failed_title' => 'Delete Failed',
   'static_page_categories_bulk_delete_failed_message' => 'Cannot delete categories that contain pages',
+
+  // Site Settings Responses
+  'settings_updated_title' => 'Updated',
+  'settings_updated_message' => 'Site settings have been saved successfully',
+
 ];

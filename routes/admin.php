@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Management\UserManagementController;
+use App\Http\Controllers\Admin\SiteSetting\SiteSettingsController;
 use App\Http\Controllers\Admin\SiteSetting\StaticPagesController;
 use App\Http\Controllers\Admin\SiteSetting\StaticPagesCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,10 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'role:admin'])->prefix('/dashboard')->group(function () {
   // Admin impersonation routes
   Route::post('/admin/login-as/{user}', [AdminController::class, 'loginAs'])->name('admin.login_as');
+
+  // Site Settings routes
+  Route::get('/admin/site-settings', [SiteSettingsController::class, 'index'])->name('admin.site-settings.index');
+  Route::post('/admin/site-settings', [SiteSettingsController::class, 'update'])->name('admin.site-settings.update');
 
   // User Management routes
   Route::get('/admin/users', [UserManagementController::class, 'index'])->name('admin.users.index');

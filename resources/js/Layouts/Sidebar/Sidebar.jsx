@@ -57,6 +57,13 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
       ],
     },
 
+    {
+      name: t('site_settings'),
+      icon: 'fa-cogs',
+      href: route('admin.site-settings.index'),
+      route: 'admin.site-settings.*',
+      role: 'admin'
+    },
     // { name: t('settings'), icon: 'fa-gear', href: route('profile.edit'), route: 'profile', role: 'admin' },
   ];
 

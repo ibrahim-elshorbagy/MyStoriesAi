@@ -436,4 +436,22 @@ return [
   'category_has_pages' => 'هذه الفئة تحتوي على صفحات ولا يمكن حذفها.',
   'categories_have_pages' => 'بعض الفئات المحددة تحتوي على صفحات ولا يمكن حذفها.',
 
+  /* Site Settings Contact */
+  'contact_info' => 'معلومات التواصل',
+  'contact_info_description' => 'إدارة تفاصيل التواصل وروابط وسائل التواصل الاجتماعي',
+  'support_whatsapp' => 'رقم الواتساب',
+  'whatsapp_help' => 'أدخل رقم الواتساب مع رمز البلد',
+  'support_phone' => 'رقم الهاتف',
+  'support_mobile' => 'رقم الجوال',
+  'support_email' => 'بريد الدعم',
+  'facebook_link' => 'رابط فيسبوك',
+  'twitter_link' => 'رابط تويتر',
+  'instagram_link' => 'رابط إنستغرام',
+  'linkedin_link' => 'رابط لينكد إن',
+  'youtube_link' => 'رابط يوتيوب',
+  'tiktok_link' => 'رابط تيك توك',
+  'snapchat_link' => 'رابط سناب شات',
+  'pinterest_link' => 'رابط بينترست',
+  'social_media_links' => 'روابط وسائل التواصل الاجتماعي',
+
 ];
