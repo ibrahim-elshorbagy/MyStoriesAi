@@ -84,6 +84,7 @@ class UserManagementController extends Controller
       'email' => $data['email'],
       'username' => $data['username'],
       'password' => Hash::make($data['password']),
+      "email_verified_at" => now(),
     ]);
 
     $user->assignRole($data['role']);

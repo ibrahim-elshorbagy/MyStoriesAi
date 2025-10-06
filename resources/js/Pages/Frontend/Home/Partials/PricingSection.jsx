@@ -95,9 +95,9 @@ export default function PricingSection() {
           </div>
 
           {/* Heading */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug relative z-10 text-center rtl:text-right ltr:text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-6xl font-extrabold text-gray-900 leading-snug relative z-10 text-center rtl:text-right ltr:text-left">
             {t("choose_your_storybook_plan")} <br />
-            <span className="text-emerald-600 text-base sm:text-lg md:text-xl">
+            <span className="text-emerald-600 text-base sm:text-lg md:text-3xl">
               {t("make_your_child_the_hero")}
             </span>
           </h2>
@@ -126,7 +126,7 @@ export default function PricingSection() {
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
           {t("pricing_section_title")}
         </h2>
-        <div className="grid lg:grid-cols-3 sm:p-16 gap-16 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-3 sm:p-8 gap-8 max-w-7xl mx-auto">
           {PRICING.map((pkg) => (
             <div
               key={pkg.key}
@@ -143,7 +143,7 @@ export default function PricingSection() {
                   <h4 className="text-lg sm:text-xl font-bold text-emerald-600">{t(pkg.title)}</h4>
                   <p className="text-2xl sm:text-3xl font-extrabold text-gray-900">{t(pkg.price)}</p>
                   <p className="text-sm sm:text-base text-gray-600">{t(pkg.desc)}</p>
-                  <ul className="mt-4 text-gray-700 list-disc list-inside space-y-1 text-left text-xs sm:text-sm">
+                  <ul className="mt-4 text-gray-700 list-disc list-inside space-y-1 ltr:text-left rtl:text-right text-xs sm:text-sm">
                     {pkg.features.map((featKey) => (
                       <li key={featKey}>{t(featKey)}</li>
                     ))}

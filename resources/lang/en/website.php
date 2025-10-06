@@ -242,7 +242,7 @@ return [
   // Admin Impersonation
   'login_as' => 'Login as',
   'are_you_sure_login_as' => 'Are you sure you want to log in as',
-  'return_to_admin' => 'Return to admin account',
+  'return_to_admin' => 'Return to admin',
 
 
   'select_role_required' => '-- Select Role --',
