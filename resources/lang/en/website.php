@@ -450,4 +450,9 @@ return [
   'confirm_delete_faq' => 'Are you sure you want to delete this FAQ?',
   'confirm_delete_faqs' => 'Are you sure you want to delete the selected FAQs?',
 
+  // FAQs Section
+  'faqs_title' => 'Frequently Asked Questions',
+  'faqs_subtitle' => 'Find Answers to Common Questions',
+  'faqs_description' => 'Get quick answers to the most common questions about our service.',
+
 ];

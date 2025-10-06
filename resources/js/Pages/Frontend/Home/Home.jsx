@@ -7,8 +7,9 @@ import ContactSection from './Partials/ContactSection';
 import AboutSection from './Partials/AboutSection';
 import StoriesSection from './Partials/StoriesSection.jsx';
 import PricingSection from './Partials/PricingSection';
+import FAQs from './Partials/FAQs';
 
-export default function Home({ stories }) {
+export default function Home({ stories, faqs }) {
   return (
     <SiteLayout>
       <Head title={'Welcome'} />
@@ -16,7 +17,8 @@ export default function Home({ stories }) {
       <HeroSection />
       <FeaturesSection />
       {/* <StoriesSection stories={stories} /> */}
-      <PricingSection/>
+      <PricingSection />
+      <FAQs faqs={faqs} />
     </SiteLayout>
   );
 }
