@@ -112,16 +112,16 @@ export default function TabletNavigation() {
             </li>
             <li>
               <MenuNavLink
-                href="#about"
-                onClick={(e) => handleNavClick(e, 'about')}
-                active={isHomePage && activeSection === 'about'}
-                icon="fa-building"
+                href="#faqs"
+                onClick={(e) => handleNavClick(e, 'faqs')}
+                active={isHomePage && activeSection === 'faqs'}
+                icon="fa-question-circle"
               >
-                {t('about')}
+                {t('faqs')}
               </MenuNavLink>
             </li>
 
-            <li>
+            {/* <li>
               <MenuNavLink
                 href="#contact"
                 onClick={(e) => handleNavClick(e, 'contact')}
@@ -130,7 +130,7 @@ export default function TabletNavigation() {
               >
                 {t('contact_us')}
               </MenuNavLink>
-            </li>
+            </li> */}
 
             {user ? (
               <li>

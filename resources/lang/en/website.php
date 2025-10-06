@@ -459,7 +459,6 @@ return [
   'faq_category_name' => 'Category Name',
   'confirm_delete_faq_category' => 'Are you sure you want to delete this FAQ category?',
   'confirm_delete_faq_categories' => 'Are you sure you want to delete the selected FAQ categories?',
-  'select_category' => 'Select Category',
   'show_in_home' => 'Show in Home',
   'hide_from_home' => 'Hide from Home',
 
@@ -467,5 +466,8 @@ return [
   'faqs_title' => 'Frequently Asked Questions',
   'faqs_subtitle' => 'Find Answers to Common Questions',
   'faqs_description' => 'Get quick answers to the most common questions about our service.',
+  'view_all_faqs' => 'View All FAQs',
+  'no_faqs_in_category' => 'No FAQs available in :category category yet.',
+  'no_faq_categories' => 'No FAQ categories available yet.',
 
 ];

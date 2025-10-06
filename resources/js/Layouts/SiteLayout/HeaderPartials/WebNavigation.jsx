@@ -69,14 +69,14 @@ export default function WebNavigation() {
             </li>
             <li>
               <NavLink
-                href="#about"
-                onClick={(e) => handleNavClick(e, 'about')}
-                active={isHomePage && activeSection === 'about'}
+                href="#faqs"
+                onClick={(e) => handleNavClick(e, 'faqs')}
+                active={isHomePage && activeSection === 'faqs'}
               >
-                {t('about')}
+                {t('faqs')}
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 href="#contact"
                 onClick={(e) => handleNavClick(e, 'contact')}
@@ -84,7 +84,7 @@ export default function WebNavigation() {
               >
                 {t('contact_us')}
               </NavLink>
-            </li>
+            </li> */}
           </ul>
 
           {/* Right Side - Toggles and CTA */}

@@ -2,6 +2,7 @@ import React from 'react';
 import { useTrans } from '@/Hooks/useTrans';
 import AccordionGroup from '@/Components/AccordionGroup';
 import Accordion from '@/Components/Accordion';
+import { Link } from '@inertiajs/react';
 
 export default function FAQs({ faqs }) {
   const { t } = useTrans();
@@ -39,6 +40,18 @@ export default function FAQs({ faqs }) {
               ))}
             </AccordionGroup>
           </div>
+        </div>
+
+        {/* Link to Full FAQ Page */}
+        <div className="text-center">
+          <Link
+            href={route('faqs')}
+            className="inline-flex rtl:flex-row-reverse items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl"
+          >
+            <span>{t('view_all_faqs')}</span>
+            <i className="fa-solid fa-arrow-right "></i>
+          </Link>
+
         </div>
       </div>
     </section>

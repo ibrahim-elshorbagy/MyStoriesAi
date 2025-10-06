@@ -15,6 +15,9 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 // Static Pages
 Route::get('/page/{id}', [UserController::class, 'staticPage'])->name('static-page');
 
+// FAQ Page
+Route::get('/faqs', [HomeController::class, 'FaqPage'])->name('faqs');
+
 Route::get('/dashboard', function () {
   return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

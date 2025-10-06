@@ -8,11 +8,14 @@ import AboutSection from './Partials/AboutSection';
 import StoriesSection from './Partials/StoriesSection.jsx';
 import PricingSection from './Partials/PricingSection';
 import FAQs from './Partials/FAQs';
+import { useTrans } from '@/Hooks/useTrans';
 
 export default function Home({ stories, faqs }) {
+    const { t } = useTrans();
+
   return (
     <SiteLayout>
-      <Head title={'Welcome'} />
+      <Head title={t('home')} />
 
       <HeroSection />
       <FeaturesSection />
