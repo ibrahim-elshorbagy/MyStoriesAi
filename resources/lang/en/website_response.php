@@ -111,4 +111,14 @@ return [
   'settings_updated_title' => 'Updated',
   'settings_updated_message' => 'Site settings have been saved successfully',
 
+  // FAQ Responses
+  'faq_created_title' => 'FAQ Created',
+  'faq_created_message' => 'FAQ has been created successfully.',
+  'faq_updated_title' => 'FAQ Updated',
+  'faq_updated_message' => 'FAQ has been updated successfully.',
+  'faq_deleted_title' => 'FAQ Deleted',
+  'faq_deleted_message' => 'FAQ has been deleted successfully.',
+  'faqs_deleted_title' => 'FAQs Deleted',
+  'faqs_deleted_message' => ':count FAQs deleted successfully.',
+
 ];

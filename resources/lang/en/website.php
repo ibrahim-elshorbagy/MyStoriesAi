@@ -351,7 +351,7 @@ return [
   // End Pricing
 
   'static_pages' => 'Static Pages',
-  'static_pages_management' => 'Static Pages Management',
+  'static_pages_management' => 'Content Management',
   'create_page' => 'Create Page',
   'edit_page' => 'Edit Page',
   'search_pages' => 'Search pages...',
@@ -393,7 +393,9 @@ return [
   'confirm_delete_category' => 'Are you sure you want to delete this category?',
   'confirm_delete_categories' => 'Are you sure you want to delete the selected categories?',
   'category_has_pages' => 'This category contains pages and cannot be deleted.',
-  'categories_have_pages' => 'Some selected categories contain pages and cannot be deleted.',
+    'categories_have_pages' => 'Some selected categories contain pages and cannot be deleted.',
+
+
 
   /* Site Settings Contact */
   "site_settings"=>"Site Settings",
@@ -428,5 +430,24 @@ return [
   'footer_contact_phone_title' => 'Phone Support',
   'footer_rights_reserved' => 'All rights reserved',
   'footer_copyright_text' => 'MyStoriesAi {year}',
+
+  // FAQ Admin translations
+  'faq' => 'FAQ',
+  'faqs' => 'FAQs',
+  'search_faqs' => 'Search FAQs...',
+  'create_faq' => 'Create FAQ',
+  'edit_faq' => 'Edit FAQ',
+  'question' => 'Question',
+  'answer' => 'Answer',
+  'question_ar' => 'Question (Arabic)',
+  'question_en' => 'Question (English)',
+  'answer_ar' => 'Answer (Arabic)',
+  'answer_en' => 'Answer (English)',
+  'enter_question_ar' => 'Enter question in Arabic',
+  'enter_question_en' => 'Enter question in English',
+  'enter_answer_ar' => 'Enter answer in Arabic',
+  'enter_answer_en' => 'Enter answer in English',
+  'confirm_delete_faq' => 'Are you sure you want to delete this FAQ?',
+  'confirm_delete_faqs' => 'Are you sure you want to delete the selected FAQs?',
 
 ];

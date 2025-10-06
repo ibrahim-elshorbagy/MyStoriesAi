@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Management\UserManagementController;
 use App\Http\Controllers\Admin\SiteSetting\SiteSettingsController;
 use App\Http\Controllers\Admin\SiteSetting\StaticPagesController;
 use App\Http\Controllers\Admin\SiteSetting\StaticPagesCategoryController;
+use App\Http\Controllers\Admin\SiteSetting\FaqController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -53,5 +54,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('/dashboard')->group(function 
 
   // Static Pages Categories bulk actions
   Route::delete('/admin/static-pages-categories/bulk/delete', [StaticPagesCategoryController::class, 'bulkDelete'])->name('admin.static-pages-categories.bulk.delete');
+
+  // FAQ Management
+  Route::get('/admin/faq', [FaqController::class, 'index'])->name('admin.faq.index');
+  Route::get('/admin/faq/create', [FaqController::class, 'create'])->name('admin.faq.create');
+  Route::post('/admin/faq', [FaqController::class, 'store'])->name('admin.faq.store');
+  Route::get('/admin/faq/{faq}/edit', [FaqController::class, 'edit'])->name('admin.faq.edit');
+  Route::put('/admin/faq/{faq}', [FaqController::class, 'update'])->name('admin.faq.update');
+  Route::delete('/admin/faq/{faq}', [FaqController::class, 'destroy'])->name('admin.faq.destroy');
+
+  // FAQ bulk actions
+  Route::delete('/admin/faq/bulk/delete', [FaqController::class, 'bulkDelete'])->name('admin.faq.bulk.delete');
 
 });

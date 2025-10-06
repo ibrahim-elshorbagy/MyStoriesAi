@@ -396,7 +396,7 @@ return [
 
   // Static Pages
   'static_pages' => 'الصفحات الثابتة',
-  'static_pages_management' => 'إدارة الصفحات الثابتة',
+  'static_pages_management' => 'إدارة المحتوى',
   'create_page' => 'إنشاء صفحة',
   'edit_page' => 'تعديل صفحة',
   'search_pages' => 'البحث في الصفحات...',
@@ -473,5 +473,24 @@ return [
   'footer_contact_phone_title' => 'دعم الهاتف',
   'footer_rights_reserved' => 'جميع الحقوق محفوظة',
   'footer_copyright_text' => 'ماي ستوريز آي :year',
+
+  // FAQ Admin translations
+  'faq' => 'الأسئلة الشائعة',
+  'faqs' => 'الأسئلة الشائعة',
+  'search_faqs' => 'البحث في الأسئلة الشائعة...',
+  'create_faq' => 'إنشاء سؤال شائع',
+  'edit_faq' => 'تعديل سؤال شائع',
+  'question' => 'السؤال',
+  'answer' => 'الإجابة',
+  'question_ar' => 'السؤال (عربي)',
+  'question_en' => 'السؤال (إنجليزي)',
+  'answer_ar' => 'الإجابة (عربي)',
+  'answer_en' => 'الإجابة (إنجليزي)',
+  'enter_question_ar' => 'أدخل السؤال باللغة العربية',
+  'enter_question_en' => 'أدخل السؤال باللغة الإنجليزية',
+  'enter_answer_ar' => 'أدخل الإجابة باللغة العربية',
+  'enter_answer_en' => 'أدخل الإجابة باللغة الإنجليزية',
+  'confirm_delete_faq' => 'هل أنت متأكد من حذف هذا السؤال الشائع؟',
+  'confirm_delete_faqs' => 'هل أنت متأكد من حذف الأسئلة الشائعة المحددة؟',
 
 ];

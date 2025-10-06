@@ -110,4 +110,14 @@ return [
   'settings_updated_title' => 'تم التحديث',
   'settings_updated_message' => 'تم حفظ إعدادات الموقع بنجاح',
 
+  // FAQ Responses
+  'faq_created_title' => 'تم إنشاء السؤال الشائع',
+  'faq_created_message' => 'تم إنشاء السؤال الشائع بنجاح.',
+  'faq_updated_title' => 'تم تحديث السؤال الشائع',
+  'faq_updated_message' => 'تم تحديث السؤال الشائع بنجاح.',
+  'faq_deleted_title' => 'تم حذف السؤال الشائع',
+  'faq_deleted_message' => 'تم حذف السؤال الشائع بنجاح.',
+  'faqs_deleted_title' => 'تم حذف الأسئلة الشائعة',
+  'faqs_deleted_message' => 'تم حذف :count أسئلة شائعة بنجاح.',
+
 ];

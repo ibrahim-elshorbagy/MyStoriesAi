@@ -54,6 +54,12 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
           route: 'admin.static-pages.*',
           icon: 'fa-file'
         },
+        {
+          name: t('faq'),
+          href: route('admin.faq.index'),
+          route: 'admin.faq.*',
+          icon: 'fa-question-circle'
+        },
       ],
     },
 
