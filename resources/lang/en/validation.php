@@ -194,6 +194,8 @@ return [
 
         'content_en' => 'Content in English',
         'content_ar' => 'Content in Arabic',
+        "category_id"=>"Category"
+
 
     ],
 ];

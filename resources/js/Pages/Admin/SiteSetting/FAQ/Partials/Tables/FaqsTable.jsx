@@ -19,6 +19,7 @@ export default function FaqsTable({ faqs }) {
     { field: 'row_number', label: t('serial'), icon: 'fa-hashtag' },
     { field: 'question', label: t('question'), icon: 'fa-question-circle' },
     { field: 'answer', label: t('answer'), icon: 'fa-comment' },
+    { field: 'category', label: t('category'), icon: 'fa-folder' },
     { field: 'updated_at', label: t('updated_at'), icon: 'fa-calendar' },
     { field: 'actions', label: t('actions'), icon: 'fa-gear', className: 'flex justify-center' }
   ];
@@ -56,6 +57,14 @@ export default function FaqsTable({ faqs }) {
           <i className="fa-solid fa-comment text-green-500"></i>
           <span className="text-sm text-neutral-900 dark:text-neutral-100 line-clamp-2">
             {faq.answer_value}
+          </span>
+        </div>
+      </td>
+      <td className="px-6 py-4">
+        <div className="flex items-center gap-2">
+          <i className="fa-solid fa-folder text-purple-500"></i>
+          <span className="text-sm text-neutral-900 dark:text-neutral-100">
+            {faq.category ? faq.category.name_value : '-'}
           </span>
         </div>
       </td>

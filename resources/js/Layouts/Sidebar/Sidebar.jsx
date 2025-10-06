@@ -54,6 +54,22 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
           route: 'admin.static-pages.*',
           icon: 'fa-file'
         },
+      ],
+    },
+
+    // FAQ group (separated)
+    {
+      name: t('faq_management'),
+      icon: 'fa-question-circle',
+      route: 'admin.faq.*',
+      role: '',
+      submenu: [
+        {
+          name: t('faq_categories'),
+          href: route('admin.faq-categories.index'),
+          route: 'admin.faq-categories.*',
+          icon: 'fa-folder'
+        },
         {
           name: t('faq'),
           href: route('admin.faq.index'),

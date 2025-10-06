@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\SiteSetting;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\SiteSetting\Faq;
+use App\Models\Admin\SiteSetting\FaqCategory;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
@@ -30,7 +31,7 @@ class FaqController extends Controller
         ->orWhere("question->en", 'like', '%' . $request->question . '%');
     }
 
-    $faqs = $query->orderBy($sortField, $sortDirection)
+    $faqs = $query->with('category')->orderBy($sortField, $sortDirection)
       ->paginate($perPage)
       ->withQueryString();
 
@@ -45,7 +46,11 @@ class FaqController extends Controller
 
   public function create()
   {
-    return inertia('Admin/SiteSetting/FAQ/Partials/Pages/CreateFAQ');
+    $categories = FaqCategory::all();
+
+    return inertia('Admin/SiteSetting/FAQ/Partials/Pages/CreateFAQ', [
+      'categories' => $categories,
+    ]);
   }
 
   public function store(Request $request)
@@ -55,6 +60,7 @@ class FaqController extends Controller
       'question_en' => ['required', 'string', 'max:255'],
       'answer_ar' => ['required', 'string'],
       'answer_en' => ['required', 'string'],
+      'category_id' => ['required', 'exists:faq_categories,id'],
     ]);
 
     Faq::create([
@@ -66,6 +72,7 @@ class FaqController extends Controller
         'ar' => $validated['answer_ar'],
         'en' => $validated['answer_en'],
       ],
+      'category_id' => $validated['category_id'],
     ]);
 
     return redirect()->route('admin.faq.index')
@@ -76,8 +83,11 @@ class FaqController extends Controller
 
   public function edit(Faq $faq)
   {
+    $categories = FaqCategory::all();
+
     return inertia('Admin/SiteSetting/FAQ/Partials/Pages/EditFAQ', [
       'faq' => $faq,
+      'categories' => $categories,
     ]);
   }
 
@@ -88,6 +98,7 @@ class FaqController extends Controller
       'question_en' => ['required', 'string', 'max:255'],
       'answer_ar' => ['required', 'string'],
       'answer_en' => ['required', 'string'],
+      'category_id' => ['required', 'exists:faq_categories,id'],
     ]);
 
     $faq->update([
@@ -99,6 +110,7 @@ class FaqController extends Controller
         'ar' => $validated['answer_ar'],
         'en' => $validated['answer_en'],
       ],
+      'category_id' => $validated['category_id'],
     ]);
 
     return back()

@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model
 {
-  protected $guarded = ['id'];
 
+  protected $guarded = ['id'];
   protected $casts = [
     'question' => 'array',
     'answer' => 'array',
@@ -29,5 +29,10 @@ class Faq extends Model
   public function getAnswerValueAttribute(): string
   {
     return $this->getTranslatedValue($this->answer ?? []);
+  }
+
+  public function category()
+  {
+    return $this->belongsTo(FaqCategory::class, 'category_id');
   }
 }

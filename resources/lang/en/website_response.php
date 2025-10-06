@@ -107,6 +107,21 @@ return [
   'static_page_categories_bulk_delete_failed_title' => 'Delete Failed',
   'static_page_categories_bulk_delete_failed_message' => 'Cannot delete categories that contain pages',
 
+  // FAQ Categories
+  'faq_category_created_title' => 'Created',
+  'faq_category_created_message' => 'Category created successfully',
+  'faq_category_updated_title' => 'Updated',
+  'faq_category_updated_message' => 'Category updated successfully',
+  'faq_category_deleted_title' => 'Deleted',
+  'faq_category_deleted_message' => 'Category deleted successfully',
+  'faq_category_delete_failed_title' => 'Delete Failed',
+  'faq_category_delete_failed_message' => 'Cannot delete category that contains FAQs',
+  'faq_categories_deleted_title' => 'Deleted',
+  'faq_categories_deleted_message' => ':count categories deleted successfully',
+  'faq_categories_bulk_delete_failed_title' => 'Delete Failed',
+  'faq_categories_bulk_delete_failed_message' => 'Cannot delete categories that contain FAQs',
+  'faq_category_name_exists' => 'Category name already exists',
+
   // Site Settings Responses
   'settings_updated_title' => 'Updated',
   'settings_updated_message' => 'Site settings have been saved successfully',

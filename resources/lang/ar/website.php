@@ -476,6 +476,7 @@ return [
 
   // FAQ Admin translations
   'faq' => 'الأسئلة الشائعة',
+  'faq_management' => 'إدارة الأسئلة الشائعة',
   'faqs' => 'الأسئلة الشائعة',
   'search_faqs' => 'البحث في الأسئلة الشائعة...',
   'create_faq' => 'إنشاء سؤال شائع',
@@ -492,6 +493,15 @@ return [
   'enter_answer_en' => 'أدخل الإجابة باللغة الإنجليزية',
   'confirm_delete_faq' => 'هل أنت متأكد من حذف هذا السؤال الشائع؟',
   'confirm_delete_faqs' => 'هل أنت متأكد من حذف الأسئلة الشائعة المحددة؟',
+
+  // فئات الأسئلة الشائعة
+  'faq_categories' => 'فئات الأسئلة الشائعة',
+  'faq_categories_management' => 'إدارة فئات الأسئلة الشائعة',
+  'create_faq_category' => 'إنشاء فئة أسئلة شائعة',
+  'edit_faq_category' => 'تعديل فئة أسئلة شائعة',
+  'faq_category_name' => 'اسم الفئة',
+  'confirm_delete_faq_category' => 'هل أنت متأكد من حذف فئة الأسئلة الشائعة هذه؟',
+  'confirm_delete_faq_categories' => 'هل أنت متأكد من حذف فئات الأسئلة الشائعة المحددة؟',
 
   // قسم الأسئلة الشائعة
   'faqs_title' => 'الأسئلة الشائعة',

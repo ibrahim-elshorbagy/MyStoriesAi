@@ -5,17 +5,19 @@ import { useTrans } from '@/Hooks/useTrans';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import TextArea from '@/Components/TextArea';
+import SelectInput from '@/Components/SelectInput';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 
-export default function CreateFAQ() {
+export default function CreateFAQ({ categories = [] }) {
   const { t } = useTrans();
   const { data, setData, post, errors, processing } = useForm({
     question_ar: '',
     question_en: '',
     answer_ar: '',
     answer_en: '',
+    category_id: '',
   });
 
   const handleSubmit = (e) => {
@@ -117,6 +119,25 @@ export default function CreateFAQ() {
                   />
                   <InputError message={errors.answer_en} className="mt-2" />
                 </div>
+              </div>
+
+              {/* Category */}
+              <div>
+                <SelectInput
+                  name="category_id"
+                  value={data.category_id}
+                  onChange={(e) => setData('category_id', e.target.value)}
+                  options={[
+                    { value: '', label: t('select_category') },
+                    ...categories.map((category) => ({
+                      value: category.id,
+                      label: category.name_value,
+                    })),
+                  ]}
+                  label={t('category')}
+                  error={errors.category_id}
+                  required={true}
+                />
               </div>
 
               {/* Action Buttons */}

@@ -102,8 +102,25 @@ return [
   'static_page_category_delete_failed_message' => 'لا يمكن حذف الفئة التي تحتوي على صفحات',
   'static_page_categories_deleted_title' => 'تم الحذف',
   'static_page_categories_deleted_message' => 'تم حذف :count فئات بنجاح',
-  'static_page_categories_bulk_delete_failed_title' => 'فشل الحذف',
+    'static_page_categories_bulk_delete_failed_title' => 'فشل الحذف',
   'static_page_categories_bulk_delete_failed_message' => 'لا يمكن حذف الفئات التي تحتوي على صفحات',
+
+  // FAQ Categories
+  'faq_category_created_title' => 'تم الإنشاء',
+  'faq_category_created_message' => 'تم إنشاء الفئة بنجاح',
+  'faq_category_updated_title' => 'تم التحديث',
+  'faq_category_updated_message' => 'تم تحديث الفئة بنجاح',
+  'faq_category_deleted_title' => 'تم الحذف',
+  'faq_category_deleted_message' => 'تم حذف الفئة بنجاح',
+  'faq_category_delete_failed_title' => 'فشل الحذف',
+  'faq_category_delete_failed_message' => 'لا يمكن حذف الفئة التي تحتوي على أسئلة شائعة',
+  'faq_categories_deleted_title' => 'تم الحذف',
+  'faq_categories_deleted_message' => 'تم حذف :count فئات بنجاح',
+  'faq_categories_bulk_delete_failed_title' => 'فشل الحذف',
+  'faq_categories_bulk_delete_failed_message' => 'لا يمكن حذف الفئات التي تحتوي على أسئلة شائعة',
+  'faq_category_name_exists' => 'اسم الفئة موجود بالفعل',
+
+  // Site Settings Responses
 
 
   // Site Settings Responses

@@ -433,6 +433,7 @@ return [
 
   // FAQ Admin translations
   'faq' => 'FAQ',
+  'faq_management' => 'FAQ Management',
   'faqs' => 'FAQs',
   'search_faqs' => 'Search FAQs...',
   'create_faq' => 'Create FAQ',
@@ -449,6 +450,16 @@ return [
   'enter_answer_en' => 'Enter answer in English',
   'confirm_delete_faq' => 'Are you sure you want to delete this FAQ?',
   'confirm_delete_faqs' => 'Are you sure you want to delete the selected FAQs?',
+
+  // FAQ Categories
+  'faq_categories' => 'FAQ Categories',
+  'faq_categories_management' => 'FAQ Categories Management',
+  'create_faq_category' => 'Create FAQ Category',
+  'edit_faq_category' => 'Edit FAQ Category',
+  'faq_category_name' => 'Category Name',
+  'confirm_delete_faq_category' => 'Are you sure you want to delete this FAQ category?',
+  'confirm_delete_faq_categories' => 'Are you sure you want to delete the selected FAQ categories?',
+  'select_category' => 'Select Category',
 
   // FAQs Section
   'faqs_title' => 'Frequently Asked Questions',
