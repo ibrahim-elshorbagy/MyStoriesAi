@@ -40,7 +40,7 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
       name: t('static_pages_management'),
       icon: 'fa-file-alt',
       route: 'admin.static-pages.*',
-      role: '',
+      role: 'admin',
       submenu: [
         {
           name: t('static_page_categories'),
@@ -62,7 +62,7 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
       name: t('faq_management'),
       icon: 'fa-question-circle',
       route: 'admin.faq.*',
-      role: '',
+      role: 'admin',
       submenu: [
         {
           name: t('faq_categories'),

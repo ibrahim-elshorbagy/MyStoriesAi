@@ -239,6 +239,11 @@ return [
   'permissions' => 'Permissions',
   'search_users' => 'Search users...',
   "search_admins" => "Search admins...",
+  // Admin Impersonation
+  'login_as' => 'Login as',
+  'are_you_sure_login_as' => 'Are you sure you want to log in as',
+  'return_to_admin' => 'Return to admin account',
+
 
   'select_role_required' => '-- Select Role --',
 

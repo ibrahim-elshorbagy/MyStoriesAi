@@ -233,6 +233,7 @@ return [
   'select_role_required' => '-- اختر الدور --',
   'add_user' => 'إضافة مستخدم',
   'search_name_username_email' => 'البحث بالاسم أو اسم المستخدم أو البريد الإلكتروني...',
+  "login_as"=>"تسجيل الدخول كـ",
 
   /* Plans Management */
   'plans' => 'الخطط',
