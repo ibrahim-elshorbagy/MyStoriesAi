@@ -3,6 +3,7 @@ import { Link, router } from '@inertiajs/react';
 import { useTrans } from '@/Hooks/useTrans';
 import SelectableTable from '@/Components/SelectableTable';
 import ActionButton from '@/Components/ActionButton';
+import SwitchToggle from '@/Components/SwitchToggle';
 
 export default function FaqsTable({ faqs }) {
   const { t } = useTrans();
@@ -15,11 +16,30 @@ export default function FaqsTable({ faqs }) {
     });
   };
 
+  const handleBulkShowInHome = async (ids) => {
+    router.post(route('admin.faq.bulk.toggle.show-in-home'), {
+      ids, show_in_home: true
+    }, {
+      preserveState: true,
+      preserveScroll: true,
+    });
+  };
+
+  const handleBulkHideFromHome = async (ids) => {
+    router.post(route('admin.faq.bulk.toggle.show-in-home'), {
+      ids, show_in_home: false
+    }, {
+      preserveState: true,
+      preserveScroll: true,
+    });
+  };
+
   const columns = [
     { field: 'row_number', label: t('serial'), icon: 'fa-hashtag' },
     { field: 'question', label: t('question'), icon: 'fa-question-circle' },
     { field: 'answer', label: t('answer'), icon: 'fa-comment' },
     { field: 'category', label: t('category'), icon: 'fa-folder' },
+    { field: 'show_in_home', label: t('show_in_home'), icon: 'fa-home' },
     { field: 'updated_at', label: t('updated_at'), icon: 'fa-calendar' },
     { field: 'actions', label: t('actions'), icon: 'fa-gear', className: 'flex justify-center' }
   ];
@@ -29,6 +49,20 @@ export default function FaqsTable({ faqs }) {
   ];
 
   const bulkActions = [
+    {
+      label: t('show_in_home'),
+      icon: 'fa-solid fa-eye',
+      handler: handleBulkShowInHome,
+      variant: 'success',
+      requiresConfirmation: false,
+    },
+    {
+      label: t('hide_from_home'),
+      icon: 'fa-solid fa-eye-slash',
+      handler: handleBulkHideFromHome,
+      variant: 'warning',
+      requiresConfirmation: false,
+    },
     {
       label: t('delete'),
       icon: 'fa-solid fa-trash-can',
@@ -66,6 +100,20 @@ export default function FaqsTable({ faqs }) {
           <span className="text-sm text-neutral-900 dark:text-neutral-100">
             {faq.category ? faq.category.name_value : '-'}
           </span>
+        </div>
+      </td>
+      <td className="px-6 py-4">
+        <div className="flex justify-center">
+          <SwitchToggle
+            name={`show_in_home_${faq.id}`}
+            value={faq.show_in_home}
+            onChange={(e) => {
+              router.patch(route('admin.faq.toggle.show-in-home', faq.id), {}, {
+                preserveScroll: true,
+                preserveState: true,
+              });
+            }}
+          />
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-500 dark:text-neutral-400">

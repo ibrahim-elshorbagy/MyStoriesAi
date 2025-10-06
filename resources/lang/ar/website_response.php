@@ -137,4 +137,12 @@ return [
   'faqs_deleted_title' => 'تم حذف الأسئلة الشائعة',
   'faqs_deleted_message' => 'تم حذف :count أسئلة شائعة بنجاح.',
 
+  // FAQ Toggle Responses
+  'faq_toggle_title' => 'تم تحديث السؤال الشائع',
+  'faq_toggle_message' => 'تم :status السؤال الشائع في الصفحة الرئيسية.',
+  'faqs_bulk_toggle_title' => 'تم تحديث الأسئلة الشائعة',
+  'faqs_bulk_toggle_message' => 'تم :status :count أسئلة شائعة في الصفحة الرئيسية.',
+  'show' => 'إظهار',
+  'hide' => 'إخفاء',
+
 ];

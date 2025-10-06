@@ -502,6 +502,8 @@ return [
   'faq_category_name' => 'اسم الفئة',
   'confirm_delete_faq_category' => 'هل أنت متأكد من حذف فئة الأسئلة الشائعة هذه؟',
   'confirm_delete_faq_categories' => 'هل أنت متأكد من حذف فئات الأسئلة الشائعة المحددة؟',
+  'show_in_home' => 'إظهار في الرئيسية',
+  'hide_from_home' => 'إخفاء من الرئيسية',
 
   // قسم الأسئلة الشائعة
   'faqs_title' => 'الأسئلة الشائعة',

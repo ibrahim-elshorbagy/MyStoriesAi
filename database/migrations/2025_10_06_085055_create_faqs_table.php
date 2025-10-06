@@ -14,6 +14,7 @@ return new class extends Migration {
       $table->id();
       $table->json('question'); // {ar: '', en: ''}
       $table->json('answer'); // {ar: '', en: ''}
+      $table->boolean('show_in_home')->default(false);
       $table->foreignId('category_id')->nullable()->constrained('faq_categories')->onDelete('set null');
       $table->timestamps();
     });

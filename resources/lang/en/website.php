@@ -460,6 +460,8 @@ return [
   'confirm_delete_faq_category' => 'Are you sure you want to delete this FAQ category?',
   'confirm_delete_faq_categories' => 'Are you sure you want to delete the selected FAQ categories?',
   'select_category' => 'Select Category',
+  'show_in_home' => 'Show in Home',
+  'hide_from_home' => 'Hide from Home',
 
   // FAQs Section
   'faqs_title' => 'Frequently Asked Questions',

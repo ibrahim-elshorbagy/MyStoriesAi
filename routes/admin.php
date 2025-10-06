@@ -75,5 +75,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('/dashboard')->group(function 
 
   // FAQ bulk actions
   Route::delete('/admin/faq/bulk/delete', [FaqController::class, 'bulkDelete'])->name('admin.faq.bulk.delete');
+  Route::patch('/admin/faq/{faq}/toggle-show-in-home', [FaqController::class, 'toggleShowInHome'])->name('admin.faq.toggle.show-in-home');
+  Route::post('/admin/faq/bulk/toggle-show-in-home', [FaqController::class, 'bulkToggleShowInHome'])->name('admin.faq.bulk.toggle.show-in-home');
 
 });

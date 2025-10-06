@@ -136,4 +136,12 @@ return [
   'faqs_deleted_title' => 'FAQs Deleted',
   'faqs_deleted_message' => ':count FAQs deleted successfully.',
 
+  // FAQ Toggle Responses
+  'faq_toggle_title' => 'FAQ Updated',
+  'faq_toggle_message' => 'FAQ has been :status on home page.',
+  'faqs_bulk_toggle_title' => 'FAQs Updated',
+  'faqs_bulk_toggle_message' => ':count FAQs have been :status on home page.',
+  'show' => 'shown',
+  'hide' => 'hidden',
+
 ];
