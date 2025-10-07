@@ -26,7 +26,7 @@ export default function EditModal({ isOpen, onClose, category }) {
     } else if (!isOpen) {
       reset();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [category, isOpen]);
 
   if (!category) return null;

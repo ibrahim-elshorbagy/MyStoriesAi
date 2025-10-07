@@ -80,6 +80,14 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
     },
 
     {
+      name: t('age_categories'),
+      icon: 'fa-cogs',
+      href: route('admin.age-categories.index'),
+      route: 'admin.age-categories.*',
+      role: 'admin'
+    },
+
+    {
       name: t('site_settings'),
       icon: 'fa-cogs',
       href: route('admin.site-settings.index'),

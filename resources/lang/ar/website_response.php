@@ -145,4 +145,15 @@ return [
   'show' => 'إظهار',
   'hide' => 'إخفاء',
 
+  /* Age Category Responses */
+  'age_category_created_title' => 'تم إنشاء فئة العمر',
+  'age_category_created_message' => 'تم إنشاء فئة العمر بنجاح.',
+  'age_category_updated_title' => 'تم تحديث فئة العمر',
+  'age_category_updated_message' => 'تم تحديث فئة العمر بنجاح.',
+  'age_category_deleted_title' => 'تم حذف فئة العمر',
+  'age_category_deleted_message' => 'تم حذف فئة العمر بنجاح.',
+  'age_categories_deleted_title' => 'تم حذف فئات العمر',
+  'age_categories_deleted_message' => 'تم حذف :count فئات عمر بنجاح.',
+  'age_category_name_exists' => 'اسم فئة العمر موجود بالفعل.',
+
 ];

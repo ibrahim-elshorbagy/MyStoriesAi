@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Management\UserManagementController;
 use App\Http\Controllers\Admin\SiteSetting\SiteSettingsController;
+use App\Http\Controllers\Admin\Story\Category\AgeCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
@@ -28,5 +29,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('/dashboard')->group(function 
   Route::patch('/admin/users/bulk/block', [UserManagementController::class, 'bulkBlock'])->name('admin.users.bulk.block');
   Route::patch('/admin/users/bulk/unblock', [UserManagementController::class, 'bulkUnblock'])->name('admin.users.bulk.unblock');
   Route::delete('/admin/users/bulk/delete', [UserManagementController::class, 'bulkDelete'])->name('admin.users.bulk.delete');
+
+  // Age Categories routes
+  Route::get('/admin/age-categories', [AgeCategoryController::class, 'index'])->name('admin.age-categories.index');
+  Route::post('/admin/age-categories', [AgeCategoryController::class, 'store'])->name('admin.age-categories.store');
+  Route::put('/admin/age-categories/{ageCategory}', [AgeCategoryController::class, 'update'])->name('admin.age-categories.update');
+  Route::delete('/admin/age-categories/{ageCategory}', [AgeCategoryController::class, 'destroy'])->name('admin.age-categories.destroy');
+  Route::delete('/admin/age-categories/bulk/delete', [AgeCategoryController::class, 'bulkDelete'])->name('admin.age-categories.bulk.delete');
 
 });

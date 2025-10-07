@@ -35,7 +35,7 @@ export default function EditModal({ isOpen, onClose, user, roles }) {
     } else if (!isOpen) {
       reset();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [user, isOpen]);
 
   if (!user) return null;

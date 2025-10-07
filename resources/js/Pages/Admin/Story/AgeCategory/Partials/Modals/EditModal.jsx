@@ -5,6 +5,7 @@ import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
+import DragFileInput from '@/Components/DragFileInput';
 import { useTrans } from '@/Hooks/useTrans';
 import AppModal from '@/Components/AppModal';
 
@@ -13,6 +14,7 @@ export default function EditModal({ isOpen, onClose, category }) {
   const { data, setData, post, errors, reset, processing } = useForm({
     name_ar: '',
     name_en: '',
+    image: null,
     _method: 'PUT',
   });
 
@@ -21,6 +23,7 @@ export default function EditModal({ isOpen, onClose, category }) {
       setData({
         name_ar: category.name?.ar || '',
         name_en: category.name?.en || '',
+        image: null, // Don't set existing image, as it's for new upload
         _method: 'PUT',
       });
     } else if (!isOpen) {
@@ -34,11 +37,12 @@ export default function EditModal({ isOpen, onClose, category }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    post(route('admin.static-pages-categories.update', category.id), {
+    post(route('admin.age-categories.update', category.id), {
       onSuccess: () => {
         reset();
         onClose();
       },
+      forceFormData: true,
     });
   };
 
@@ -79,6 +83,25 @@ export default function EditModal({ isOpen, onClose, category }) {
             placeholder={t('enter_english_name')}
           />
           <InputError message={errors.name_en} className="mt-2" />
+        </div>
+
+        {/* Image */}
+        <div className="mb-4">
+          <InputLabel value={t('image')} />
+          {category?.image && (
+            <div className="mb-2">
+              <img src={`/storage/${category.image}`} alt="Current" className="h-20 w-20 object-cover rounded" />
+            </div>
+          )}
+          <DragFileInput
+            id="image"
+            accept="image/*"
+            onChange={(files) => setData('image', files[0] || null)}
+            value={data.image ? [data.image] : []}
+            maxFiles={1}
+            helperText={t('upload_image_helper')}
+          />
+          <InputError message={errors.image} className="mt-2" />
         </div>
 
         <div className="flex justify-end gap-2 mt-6">

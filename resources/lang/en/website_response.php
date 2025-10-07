@@ -144,4 +144,15 @@ return [
   'show' => 'shown',
   'hide' => 'hidden',
 
+  /* Age Category Responses */
+  'age_category_created_title' => 'Age Category Created',
+  'age_category_created_message' => 'Age category has been created successfully.',
+  'age_category_updated_title' => 'Age Category Updated',
+  'age_category_updated_message' => 'Age category has been updated successfully.',
+  'age_category_deleted_title' => 'Age Category Deleted',
+  'age_category_deleted_message' => 'Age category has been deleted successfully.',
+  'age_categories_deleted_title' => 'Age Categories Deleted',
+  'age_categories_deleted_message' => ':count age categories have been deleted successfully.',
+  'age_category_name_exists' => 'Age category name already exists.',
+
 ];

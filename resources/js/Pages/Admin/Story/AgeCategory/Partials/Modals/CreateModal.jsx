@@ -1,44 +1,30 @@
-import React, { useEffect } from 'react';
-import { useForm } from '@inertiajs/react';
+import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
-import InputError from '@/Components/InputError';
+import AppModal from '@/Components/AppModal';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
+import DragFileInput from '@/Components/DragFileInput';
+import { useForm } from '@inertiajs/react';
 import { useTrans } from '@/Hooks/useTrans';
-import AppModal from '@/Components/AppModal';
 
-export default function EditModal({ isOpen, onClose, category }) {
+export default function CreateModal({ isOpen, onClose }) {
   const { t } = useTrans();
   const { data, setData, post, errors, reset, processing } = useForm({
     name_ar: '',
     name_en: '',
-    _method: 'PUT',
+    image: null,
   });
-
-  useEffect(() => {
-    if (category && isOpen) {
-      setData({
-        name_ar: category.name?.ar || '',
-        name_en: category.name?.en || '',
-        _method: 'PUT',
-      });
-    } else if (!isOpen) {
-      reset();
-    }
-
-  }, [category, isOpen]);
-
-  if (!category) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    post(route('admin.static-pages-categories.update', category.id), {
+    post(route('admin.age-categories.store'), {
       onSuccess: () => {
         reset();
         onClose();
       },
+      forceFormData: true,
     });
   };
 
@@ -46,41 +32,60 @@ export default function EditModal({ isOpen, onClose, category }) {
     <AppModal
       isOpen={isOpen}
       onClose={onClose}
-      title={t('edit_category')}
-      icon="fa-pen-to-square"
+      title={t('create_category')}
+      icon="fa-folder-plus"
       size="md"
     >
       <form onSubmit={handleSubmit}>
+        {/* Category Name Arabic */}
         <div className="mb-4">
           <InputLabel htmlFor="name_ar" value={t('category_name_ar')} required />
           <TextInput
             id="name_ar"
+            type="text"
             name="name_ar"
             value={data.name_ar}
             className="mt-1 block w-full"
             onChange={(e) => setData('name_ar', e.target.value)}
-            required
             icon="fa-folder"
             placeholder={t('enter_arabic_name')}
+            required
           />
           <InputError message={errors.name_ar} className="mt-2" />
         </div>
 
+        {/* Category Name English */}
         <div className="mb-4">
           <InputLabel htmlFor="name_en" value={t('category_name_en')} required />
           <TextInput
             id="name_en"
+            type="text"
             name="name_en"
             value={data.name_en}
             className="mt-1 block w-full"
             onChange={(e) => setData('name_en', e.target.value)}
-            required
             icon="fa-folder"
             placeholder={t('enter_english_name')}
+            required
           />
           <InputError message={errors.name_en} className="mt-2" />
         </div>
 
+        {/* Image */}
+        <div className="mb-4">
+          <InputLabel value={t('image')} />
+          <DragFileInput
+            id="image"
+            accept="image/*"
+            onChange={(files) => setData('image', files[0] || null)}
+            value={data.image ? [data.image] : []}
+            maxFiles={1}
+            helperText={t('upload_image_helper')}
+          />
+          <InputError message={errors.image} className="mt-2" />
+        </div>
+
+        {/* Buttons */}
         <div className="flex justify-end gap-2 mt-6">
           <SecondaryButton
             type="button"
@@ -98,7 +103,7 @@ export default function EditModal({ isOpen, onClose, category }) {
             withShadow={false}
             disabled={processing}
           >
-            {processing ? t('updating') : t('save_changes')}
+            {processing ? t('saving') : t('save')}
           </PrimaryButton>
         </div>
       </form>
