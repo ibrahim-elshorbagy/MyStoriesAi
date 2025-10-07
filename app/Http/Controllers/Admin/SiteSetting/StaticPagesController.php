@@ -67,7 +67,7 @@ class StaticPagesController extends Controller
       'title_en' => ['required', 'string', 'max:255'],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
-      'category_id' => ['nullable', 'exists:static_page_categories,id'],
+      'category_id' => ['required', 'exists:static_page_categories,id'],
       'status' => ['required', 'in:draft,published,archived'],
     ]);
 
@@ -109,7 +109,7 @@ class StaticPagesController extends Controller
       'title_en' => ['required', 'string', 'max:255'],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
-      'category_id' => ['nullable', 'exists:static_page_categories,id'],
+      'category_id' => ['required', 'exists:static_page_categories,id'],
       'status' => ['required', 'in:draft,published,archived'],
     ]);
 

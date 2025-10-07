@@ -191,6 +191,7 @@ export default function CreateStaticPage({ categories = [] }) {
                       })),
                     ]}
                     icon="fa-folder"
+                    required
                   />
                   <InputError message={errors.category_id} className="mt-2" />
                 </div>

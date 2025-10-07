@@ -10,7 +10,6 @@ export default function StaticPagesTable({ pages }) {
   const columns = [
     { field: 'row_number', label: t('serial'), icon: 'fa-hashtag' },
     { field: 'title', label: t('title'), icon: 'fa-heading' },
-    { field: 'slug', label: t('slug'), icon: 'fa-link' },
     { field: 'status', label: t('status'), icon: 'fa-circle-check' },
     { field: 'updated_at', label: t('updated_at'), icon: 'fa-calendar' },
     { field: 'actions', label: t('actions'), icon: 'fa-gear', className: 'flex justify-center' }
@@ -93,9 +92,6 @@ export default function StaticPagesTable({ pages }) {
             {page.title_value}
           </span>
         </div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-500 dark:text-neutral-400">
-        {page.slug}
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         {getStatusBadge(page.status)}
