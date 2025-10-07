@@ -12,28 +12,28 @@ export default function HeroSection() {
       id="home"
       className="relative overflow-hidden flex items-center"
       style={{
-        backgroundImage: "url('assets/home/banner.png')",
+        backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/home/banner.png')",
         backgroundPosition: "center center",
         backgroundSize: "cover",
         backgroundAttachment: "fixed"
       }}
     >
       {/* Dark Orange Gradient Overlay - Low Opacity to Show Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-900/30 via-orange-800/40 to-orange-700/35 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-800/20 via-orange-700/30 to-orange-600/25 z-0"></div>
 
       {/* Secondary Gradient for Depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-orange-800/80 via-orange to-orange-600/75 z-5"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-orange-700/60 via-orange-500/70 to-orange-600/65 z-5"></div>
 
       {/* Modern Background Elements - Reduced Opacity */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
         {/* Primary Gradient Orbs */}
-        <div className="absolute top-20 -right-40 w-96 h-96 bg-gradient-to-br from-orange-400/10 to-orange-600/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-32 -left-40 w-80 h-80 bg-gradient-to-tr from-orange-500/8 to-orange-300/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 -right-40 w-96 h-96 bg-gradient-to-br from-orange-300/8 to-orange-500/4 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-32 -left-40 w-80 h-80 bg-gradient-to-tr from-orange-400/6 to-orange-200/4 rounded-full blur-3xl"></div>
 
         {/* Secondary Accent Orbs */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-orange-200/8 to-orange-400/4 rounded-full blur-2xl"></div>
-        <div className="absolute top-10 left-20 w-32 h-32 bg-orange-300/8 rounded-full blur-xl animate-bounce"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 bg-orange-400/10 rounded-full blur-lg"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-orange-100/6 to-orange-300/3 rounded-full blur-2xl"></div>
+        <div className="absolute top-10 left-20 w-32 h-32 bg-orange-200/6 rounded-full blur-xl animate-bounce"></div>
+        <div className="absolute bottom-20 right-20 w-24 h-24 bg-orange-300/8 rounded-full blur-lg"></div>
       </div>
 
       {/* Floating Decorative Icons - Updated Colors for Better Visibility */}
@@ -146,7 +146,7 @@ export default function HeroSection() {
                 size='large'
                 as={Link}
                 // href={route('stories.create')}
-                className="px-12 py-4 text-lg font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
+                className="px-12 py-4 text-lg font-bold bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-300 hover:to-orange-400 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
               >
                 {t('explore_our_stories')}
               </Link>

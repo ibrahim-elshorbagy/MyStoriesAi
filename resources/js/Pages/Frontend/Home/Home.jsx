@@ -21,7 +21,7 @@ export default function Home({ stories, faqs }) {
       <FeaturesSection />
       {/* <StoriesSection stories={stories} /> */}
       <PricingSection />
-      {/* <FAQs faqs={faqs} /> */}
+      <FAQs faqs={faqs} />
     </SiteLayout>
   );
 }
