@@ -96,7 +96,7 @@ export default function PricingSection() {
 
           {/* Heading */}
           <h2 className="text-2xl sm:text-3xl md:text-6xl font-extrabold text-gray-900 leading-snug relative z-10 text-center rtl:text-right ltr:text-left">
-            {t("choose_your_storybook_plan")} <br />
+            {t("personalize_your_story_now")} <br />
             <span className="text-emerald-600 text-base sm:text-lg md:text-3xl">
               {t("make_your_child_the_hero")}
             </span>

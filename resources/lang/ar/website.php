@@ -363,6 +363,7 @@ return [
 
   // Start Pricing
   "choose_your_storybook_plan" => "اختر قصتك",
+  "personalize_your_story_now" => "خصص قصتك الآن",
   "make_your_child_the_hero" => "اجعل طفلك البطل",
 
   'pricing_section_title' => 'اختر باقتك – اجعل طفلك البطل!',

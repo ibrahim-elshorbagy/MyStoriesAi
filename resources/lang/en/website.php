@@ -322,6 +322,7 @@ return [
   'contact_send' => 'Send Message',
 
   // Start Pricing
+  "personalize_your_story_now" => "Personalize your story now",
   "choose_your_storybook_plan" => "Choose Your Storybook Plan",
   "make_your_child_the_hero" => "Make Your Child the Hero!",
 
