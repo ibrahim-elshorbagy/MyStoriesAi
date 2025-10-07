@@ -15,11 +15,13 @@ export default function UpdateLanguagePreferences() {
     form.method = 'POST';
     form.action = route("locale.change");
 
+      const page = usePage()
+
     // Add CSRF token
     const csrfInput = document.createElement('input');
     csrfInput.type = 'hidden';
     csrfInput.name = '_token';
-    csrfInput.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    csrfInput.value = page.props.csrf_token;
     form.appendChild(csrfInput);
 
     // Add locale input

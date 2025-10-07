@@ -49,6 +49,7 @@ class HandleInertiaRequests extends Middleware
       // 'translations' => fn () => __('website'),
       'available_locales' => ['en', 'ar'],
       'locale' => fn () => app()->getLocale(),
+      'csrf_token' => csrf_token(),
       'footer' => $this->getFooterData(),
 
     ];

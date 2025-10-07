@@ -13,6 +13,10 @@ export default function LanguageToggle({ className = '' }) {
   const getLanguageIcon = () => {
     return locale === 'en' ? 'fa-language' : 'fa-language';
   };
+  const page = usePage()
+
+  console.log("CSRF Token:", page.props.csrf_token);
+
 
   return (
     <form
@@ -23,7 +27,7 @@ export default function LanguageToggle({ className = '' }) {
       <input
         type="hidden"
         name="_token"
-        value={document.querySelector('meta[name="csrf-token"]').getAttribute('content')}
+        value={page.props.csrf_token}
       />
       <input
         type="hidden"

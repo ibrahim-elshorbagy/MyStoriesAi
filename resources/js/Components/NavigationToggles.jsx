@@ -33,6 +33,7 @@ export default function NavigationToggles({
 
   const buttonClass = `${baseButtonClasses} ${variantClasses[variant]}`;
   const containerClass = `${containerClasses[variant]} ${className}`;
+  const page = usePage()
 
   return (
     <div className={containerClass}>
@@ -45,7 +46,7 @@ export default function NavigationToggles({
         <input
           type="hidden"
           name="_token"
-          value={document.querySelector('meta[name="csrf-token"]').getAttribute('content')}
+          value={page.props.csrf_token}
         />
         <input
           type="hidden"
