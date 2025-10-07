@@ -194,7 +194,8 @@ return [
 
         "content_en"=>"المحتوى بالإنجليزي",
         "content_ar"=>"المحتوى بالعربي",
-        "category_id"=>"الفئة"
+        "category_id"=>"الفئة",
+        "image"=>"الصورة",
 
     ],
 ];

@@ -39,16 +39,16 @@ export default function DragFileInput({
     if (multiple) {
       setSelectedFiles(value || []);
     } else {
-      setSelectedFileValue(keyValue?.name ?? null);
+      setSelectedFileValue(value?.name ?? null);
     }
-  }, [value, keyValue, multiple]);
+  }, [value, multiple]);
 
   // Determine input state for styling
   const hasError = !!error;
   const isValid = valid && !hasError;
 
   const handleFileChange = (e) => {
-    if (disabled) { return 0 }
+    if (disabled) return;
 
     if (multiple) {
       const files = Array.from(e.target.files);
@@ -56,6 +56,10 @@ export default function DragFileInput({
     } else {
       const file = e.target.files[0];
       if (file) {
+        // Check if file is an image when accept includes image/*
+        if (accept && accept.includes('image/') && !file.type.startsWith('image/')) {
+          return; // Ignore non-image files
+        }
         setSelectedFileValue(file.name);
         if (onChange) {
           onChange(file);
@@ -71,6 +75,10 @@ export default function DragFileInput({
 
     files.forEach(file => {
       if (newFiles.length < maxFiles) {
+        // Check if file is an image when accept includes image/*
+        if (accept && accept.includes('image/') && !file.type.startsWith('image/')) {
+          return; // Skip non-image files
+        }
         newFiles.push(file);
       }
     });
@@ -102,7 +110,7 @@ export default function DragFileInput({
   };
 
   const handleDrop = (e) => {
-    if (disabled) { return 0 }
+    if (disabled) return;
 
     e.preventDefault();
     setIsDragOver(false);
@@ -114,6 +122,10 @@ export default function DragFileInput({
     } else {
       if (files.length > 0) {
         const file = files[0];
+        // Check if file is an image when accept includes image/*
+        if (accept && accept.includes('image/') && !file.type.startsWith('image/')) {
+          return; // Ignore non-image files
+        }
         setSelectedFileValue(file.name);
         if (onChange) {
           onChange(file);
@@ -129,9 +141,9 @@ export default function DragFileInput({
 
   useEffect(() => {
     if (!multiple) {
-      setSelectedFileValue(keyValue?.name ?? null);
+      setSelectedFileValue(value?.name ?? null);
     }
-  }, [keyValue, multiple]);
+  }, [value, multiple]);
 
   // Container classes based on state
   const containerClasses = `

@@ -60,10 +60,10 @@ export default function AgeCategoryTable({ categories, onEdit }) {
       </td>
       <td className="px-3 py-4 whitespace-nowrap">
         {category.image ? (
-          <img src={`/storage/${category.image}`} alt={category.name_value} className="h-10 w-10 object-cover rounded" />
+          <img src={`/storage/${category.image}`} alt={category.name_value} className="h-12 w-12 object-cover rounded-lg border border-neutral-300 dark:border-neutral-600" />
         ) : (
-          <div className="h-10 w-10 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center">
-            <i className="fa fa-image text-gray-500"></i>
+          <div className="h-12 w-12 bg-gray-200 dark:bg-neutral-700 rounded-lg flex items-center justify-center">
+            <i className="fa fa-image text-gray-500 text-lg"></i>
           </div>
         )}
       </td>

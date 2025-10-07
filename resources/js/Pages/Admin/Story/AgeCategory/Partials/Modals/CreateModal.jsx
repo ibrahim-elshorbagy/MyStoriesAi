@@ -73,15 +73,26 @@ export default function CreateModal({ isOpen, onClose }) {
 
         {/* Image */}
         <div className="mb-4">
-          <InputLabel value={t('image')} />
+          <InputLabel value={t('image')} required />
           <DragFileInput
             id="image"
             accept="image/*"
-            onChange={(files) => setData('image', files[0] || null)}
-            value={data.image ? [data.image] : []}
+            onChange={(file) => setData('image', file || null)}
+            value={data.image}
             maxFiles={1}
             helperText={t('upload_image_helper')}
+            required
           />
+          {/* Image Preview */}
+          {data.image && (
+            <div className="mt-2">
+              <img
+                src={URL.createObjectURL(data.image)}
+                alt="Preview"
+                className="h-32 w-32 object-cover rounded-lg border border-neutral-300 dark:border-neutral-600"
+              />
+            </div>
+          )}
           <InputError message={errors.image} className="mt-2" />
         </div>
 

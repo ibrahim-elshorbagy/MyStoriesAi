@@ -88,19 +88,32 @@ export default function EditModal({ isOpen, onClose, category }) {
         {/* Image */}
         <div className="mb-4">
           <InputLabel value={t('image')} />
-          {category?.image && (
+          {/* Current Image */}
+          {category?.image && !data.image && (
             <div className="mb-2">
-              <img src={`/storage/${category.image}`} alt="Current" className="h-20 w-20 object-cover rounded" />
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">{t('current_image')}:</p>
+              <img src={`/storage/${category.image}`} alt="Current" className="h-32 w-32 object-cover rounded-lg border border-neutral-300 dark:border-neutral-600" />
             </div>
           )}
           <DragFileInput
             id="image"
             accept="image/*"
-            onChange={(files) => setData('image', files[0] || null)}
-            value={data.image ? [data.image] : []}
+            onChange={(file) => setData('image', file || null)}
+            value={data.image}
             maxFiles={1}
-            helperText={t('upload_image_helper')}
+            helperText={t('upload_image_helper_edit')}
           />
+          {/* New Image Preview */}
+          {data.image && (
+            <div className="mt-2">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">{t('new_image_preview')}:</p>
+              <img
+                src={URL.createObjectURL(data.image)}
+                alt="Preview"
+                className="h-32 w-32 object-cover rounded-lg border border-orange-400 dark:border-orange-600"
+              />
+            </div>
+          )}
           <InputError message={errors.image} className="mt-2" />
         </div>
 

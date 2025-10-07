@@ -50,7 +50,7 @@ class AgeCategoryController extends Controller
     $validated = $request->validate([
       'name_ar' => ['required', 'string', 'max:255'],
       'name_en' => ['required', 'string', 'max:255'],
-      'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+      'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'],
     ]);
 
     // Check for uniqueness in both languages
@@ -87,7 +87,7 @@ class AgeCategoryController extends Controller
     $validated = $request->validate([
       'name_ar' => ['required', 'string', 'max:255'],
       'name_en' => ['required', 'string', 'max:255'],
-      'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+      'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
     ]);
 
     // Check for uniqueness in both languages (excluding current category)
