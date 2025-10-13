@@ -143,6 +143,34 @@ return [
   'status' => 'Status',
   'search_stories' => 'Search stories...',
 
+  // Story Files
+  'cover_image' => 'Cover Image',
+  'cover_image_ar' => 'Cover Image (Arabic)',
+  'cover_image_en' => 'Cover Image (English)',
+  'gallery_images' => 'Gallery Images',
+  'gallery_images_ar' => 'Gallery Images (Arabic)',
+  'gallery_images_en' => 'Gallery Images (English)',
+  'pdf_file' => 'PDF File',
+  'pdf_ar' => 'PDF File (Arabic)',
+  'pdf_en' => 'PDF File (English)',
+  'choose_cover_image' => 'Choose Cover Image',
+  'choose_gallery_images' => 'Choose Gallery Images',
+  'choose_pdf_file' => 'Choose PDF File',
+  'current_cover_image' => 'Current Cover Image',
+  'current_gallery_images' => 'Current Gallery Images',
+  'current_pdf' => 'Current PDF',
+  'no_cover_image' => 'No Cover Image',
+  'no_gallery_images' => 'No Gallery Images',
+  'no_pdf_file' => 'No PDF File',
+  'drop_image_here' => 'Drop image here or',
+  'drop_pdf_here' => 'Drop PDF file here or',
+  'select_image' => 'Select Image',
+  'select_pdf' => 'Select PDF',
+  'max_file_size' => 'Max file size: :size',
+  'supported_formats' => 'Supported formats: :formats',
+  'files' => 'Files',
+  'view_pdf' => 'View PDF',
+
   "descending"=>"Descending",
   "ascending"=>"Ascending",
   "title"=>"Title",
@@ -481,6 +509,13 @@ return [
   'enter_answer_en' => 'Enter answer in English',
   'confirm_delete_faq' => 'Are you sure you want to delete this FAQ?',
   'confirm_delete_faqs' => 'Are you sure you want to delete the selected FAQs?',
+
+  // Story Bulk Actions
+  'bulk_actions' => 'Bulk Actions',
+  'confirm_delete_story' => 'Are you sure you want to delete this story?',
+  'confirm_delete_stories' => 'Are you sure you want to delete the selected stories?',
+  'confirm_publish_stories' => 'Are you sure you want to publish the selected stories?',
+  'confirm_archive_stories' => 'Are you sure you want to archive the selected stories?',
 
   // FAQ Categories
   'faq_categories' => 'FAQ Categories',

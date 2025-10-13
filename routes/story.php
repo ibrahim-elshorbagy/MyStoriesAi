@@ -19,7 +19,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('/dashboard')->group(function 
   Route::get('/admin/stories/create', [StoryController::class, 'create'])->name('admin.stories.create');
   Route::post('/admin/stories', [StoryController::class, 'store'])->name('admin.stories.store');
   Route::get('/admin/stories/{story}/edit', [StoryController::class, 'edit'])->name('admin.stories.edit');
-  Route::put('/admin/stories/{story}', [StoryController::class, 'update'])->name('admin.stories.update');
+  Route::post('/admin/stories/{story}', [StoryController::class, 'update'])->name('admin.stories.update');
   Route::delete('/admin/stories/{story}', [StoryController::class, 'destroy'])->name('admin.stories.destroy');
 
   // Bulk actions for stories

@@ -17,6 +17,19 @@ return new class extends Migration {
       $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
       $table->foreignId('category_id')->nullable()->constrained('age_categories')->onDelete('set null');
       $table->unsignedTinyInteger('gender')->nullable(); //0->boy 1->girl
+
+      // Cover images for Arabic and English
+      $table->string('cover_image_ar')->nullable();
+      $table->string('cover_image_en')->nullable();
+
+      // Gallery images for Arabic and English (JSON array of image paths)
+      $table->json('gallery_images_ar')->nullable();
+      $table->json('gallery_images_en')->nullable();
+
+      // PDFs for Arabic and English
+      $table->string('pdf_ar')->nullable();
+      $table->string('pdf_en')->nullable();
+
       $table->timestamps();
     });
   }

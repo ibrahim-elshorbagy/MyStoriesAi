@@ -14,7 +14,8 @@ export default function DragFileInput({
   keyValue = null,
   disabled = false,
   multiple = false,
-  maxFiles = 5,
+  showMaxFiles = true,
+  maxFiles = 999,
   ...rest
 }) {
   const fileInputRef = useRef(null);
@@ -242,9 +243,13 @@ export default function DragFileInput({
       {/* Selected files display for multiple mode */}
       {multiple && selectedFiles?.length > 0 && (
         <div className="mt-3 space-y-2">
-          <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+          {showMaxFiles && (
+            <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
             Selected files ({selectedFiles.length}/{maxFiles}):
           </p>
+          )
+          }
+
           <div className="space-y-1 max-h-40 overflow-y-auto">
             {selectedFiles.map((file, index) => (
               <div key={index} className="flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">

@@ -93,6 +93,16 @@ return [
   'confirm_delete_stories' => 'Are you sure you want to delete the selected stories?',
   'confirm_publish_stories' => 'Are you sure you want to publish the selected stories?',
   'confirm_archive_stories' => 'Are you sure you want to archive the selected stories?',
+
+  // Story File Upload Messages
+  'cover_image_uploaded_title' => 'Cover Image Uploaded',
+  'cover_image_uploaded_message' => 'Cover image has been uploaded successfully.',
+  'gallery_images_uploaded_title' => 'Gallery Images Uploaded',
+  'gallery_images_uploaded_message' => 'Gallery images have been uploaded successfully.',
+  'pdf_uploaded_title' => 'PDF Uploaded',
+  'pdf_uploaded_message' => 'PDF file has been uploaded successfully.',
+  'file_upload_error_title' => 'File Upload Error',
+  'file_upload_error_message' => 'An error occurred while uploading the file. Please try again.',
   'impersonation_return_message' => 'Successfully returned to the admin account.',
   'impersonation_failed_title' => 'Return failed',
   'impersonation_failed_message' => 'Could not return to the admin account.',
@@ -122,7 +132,7 @@ return [
   'static_page_category_delete_failed_message' => 'Cannot delete category that contains pages',
   'static_page_categories_deleted_title' => 'Deleted',
   'static_page_categories_deleted_message' => ':count categories deleted successfully',
-  // 'static_page_categories_bulk_delete_failed_title' => 'Delete Failed',
+  'static_page_categories_bulk_delete_failed_title' => 'Delete Failed',
   'static_page_categories_bulk_delete_failed_message' => 'Cannot delete categories that contain pages',
 
   // FAQ Categories

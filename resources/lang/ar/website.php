@@ -496,6 +496,12 @@ return [
   'confirm_delete_faq' => 'هل أنت متأكد من حذف هذا السؤال الشائع؟',
   'confirm_delete_faqs' => 'هل أنت متأكد من حذف الأسئلة الشائعة المحددة؟',
 
+  // إجراءات القصص المجمعة
+  'confirm_delete_story' => 'هل أنت متأكد من حذف هذه القصة؟',
+  'confirm_delete_stories' => 'هل أنت متأكد من حذف القصص المحددة؟',
+  'confirm_publish_stories' => 'هل أنت متأكد من نشر القصص المحددة؟',
+  'confirm_archive_stories' => 'هل أنت متأكد من أرشفة القصص المحددة؟',
+
   // فئات الأسئلة الشائعة
   'faq_categories' => 'فئات الأسئلة الشائعة',
   'faq_categories_management' => 'إدارة فئات الأسئلة الشائعة',
@@ -562,5 +568,33 @@ return [
   'story_content_ar' => 'محتوى القصة (عربي)',
   'story_content_en' => 'محتوى القصة (إنجليزي)',
   'search_stories' => 'البحث في القصص...',
+
+  // Story Files
+  'cover_image' => 'صورة الغلاف',
+  'cover_image_ar' => 'صورة الغلاف (عربي)',
+  'cover_image_en' => 'صورة الغلاف (إنجليزي)',
+  'gallery_images' => 'صور المعرض',
+  'gallery_images_ar' => 'صور المعرض (عربي)',
+  'gallery_images_en' => 'صور المعرض (إنجليزي)',
+  'pdf_file' => 'ملف PDF',
+  'pdf_ar' => 'ملف PDF (عربي)',
+  'pdf_en' => 'ملف PDF (إنجليزي)',
+  'choose_cover_image' => 'اختر صورة الغلاف',
+  'choose_gallery_images' => 'اختر صور المعرض',
+  'choose_pdf_file' => 'اختر ملف PDF',
+  'current_cover_image' => 'صورة الغلاف الحالية',
+  'current_gallery_images' => 'صور المعرض الحالية',
+  'current_pdf' => 'ملف PDF الحالي',
+  'no_cover_image' => 'لا توجد صورة غلاف',
+  'no_gallery_images' => 'لا توجد صور معرض',
+  'no_pdf_file' => 'لا يوجد ملف PDF',
+  'drop_image_here' => 'اسحب الصورة هنا أو',
+  'drop_pdf_here' => 'اسحب ملف PDF هنا أو',
+  'select_image' => 'اختر صورة',
+  'select_pdf' => 'اختر ملف PDF',
+  'max_file_size' => 'الحد الأقصى لحجم الملف: :size',
+  'supported_formats' => 'التنسيقات المدعومة: :formats',
+  'files' => 'الملفات',
+  'view_pdf' => 'عرض PDF',
 
 ];

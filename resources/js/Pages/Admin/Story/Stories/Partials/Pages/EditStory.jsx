@@ -8,10 +8,16 @@ import SelectInput from '@/Components/SelectInput';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
+import DragFileInput from '@/Components/DragFileInput';
 
 export default function EditStory({ story, categories = [] }) {
   const { t } = useTrans();
-  const { data, setData, put, errors, processing } = useForm({
+
+  // State for existing gallery images
+  const [existingGalleryAr, setExistingGalleryAr] = useState(story.gallery_images_ar || []);
+  const [existingGalleryEn, setExistingGalleryEn] = useState(story.gallery_images_en || []);
+
+  const { data, setData, post, errors, processing } = useForm({
     title_ar: story.title?.ar || '',
     title_en: story.title?.en || '',
     content_ar: story.content?.ar || '',
@@ -19,6 +25,14 @@ export default function EditStory({ story, categories = [] }) {
     category_id: story.category_id || '',
     gender: story.gender?.toString() || '',
     status: story.status || 'draft',
+    cover_image_ar: null,
+    cover_image_en: null,
+    gallery_images_ar: [],
+    gallery_images_en: [],
+    existing_gallery_images_ar: story.gallery_images_ar || [],
+    existing_gallery_images_en: story.gallery_images_en || [],
+    pdf_ar: null,
+    pdf_en: null,
   });
 
   const editorArRef = useRef(null);
@@ -52,23 +66,20 @@ export default function EditStory({ story, categories = [] }) {
       ],
       toolbar: 'undo redo | blocks | bold italic forecolor | alignleft aligncenter alignright alignjustify | ltr rtl | bullist numlist outdent indent | image media table | removeformat | help',
       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
-      // Image handling - convert to base64 blobs
       automatic_uploads: false,
-      images_dataimg_filter: function(img) {
+      images_dataimg_filter: function (img) {
         return img.hasAttribute('internal-blob');
       },
-      images_upload_handler: function(blobInfo, success, failure) {
-        // Convert blob to base64
+      images_upload_handler: function (blobInfo, success, failure) {
         const reader = new FileReader();
-        reader.onload = function() {
+        reader.onload = function () {
           success(reader.result);
         };
-        reader.onerror = function() {
+        reader.onerror = function () {
           failure('Failed to convert image to base64');
         };
         reader.readAsDataURL(blobInfo.blob());
       },
-      // Allow paste of images
       paste_data_images: true,
     };
 
@@ -105,18 +116,52 @@ export default function EditStory({ story, categories = [] }) {
     });
   };
 
+  // Delete existing gallery image
+  const deleteExistingGalleryImage = (imagePath, locale) => {
+    if (locale === 'ar') {
+      const updatedGallery = existingGalleryAr.filter(img => img !== imagePath);
+      setExistingGalleryAr(updatedGallery);
+      setData('existing_gallery_images_ar', updatedGallery);
+    } else {
+      const updatedGallery = existingGalleryEn.filter(img => img !== imagePath);
+      setExistingGalleryEn(updatedGallery);
+      setData('existing_gallery_images_en', updatedGallery);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Update content from editors before submit
-    if (editorArRef.current) {
-      setData('content_ar', editorArRef.current.getContent());
-    }
-    if (editorEnRef.current) {
-      setData('content_en', editorEnRef.current.getContent());
-    }
+    // Extract current content from editors
+    const contentAr = editorArRef.current?.getContent() || data.content_ar || '';
+    const contentEn = editorEnRef.current?.getContent() || data.content_en || '';
 
-    put(route('admin.stories.update', story.id), { preserveScroll: true });
+    // Build complete form data
+    const formData = {
+      title_ar: data.title_ar,
+      title_en: data.title_en,
+      content_ar: contentAr,
+      content_en: contentEn,
+      category_id: data.category_id,
+      gender: data.gender,
+      status: data.status,
+      existing_gallery_images_ar: existingGalleryAr,
+      existing_gallery_images_en: existingGalleryEn,
+      _method: 'PUT',
+    };
+
+    // Only include files if they were changed
+    if (data.cover_image_ar) formData.cover_image_ar = data.cover_image_ar;
+    if (data.cover_image_en) formData.cover_image_en = data.cover_image_en;
+    if (data.gallery_images_ar?.length > 0) formData.gallery_images_ar = data.gallery_images_ar;
+    if (data.gallery_images_en?.length > 0) formData.gallery_images_en = data.gallery_images_en;
+    if (data.pdf_ar) formData.pdf_ar = data.pdf_ar;
+    if (data.pdf_en) formData.pdf_en = data.pdf_en;
+
+    post(route('admin.stories.update', story.id), {
+      data: formData,
+      preserveScroll: true,
+    });
   };
 
   const categoryOptions = categories.map(category => ({
@@ -265,6 +310,227 @@ export default function EditStory({ story, categories = [] }) {
                     ></textarea>
                   </div>
                   <InputError message={errors.content_en} className="mt-2" />
+                </div>
+              </div>
+
+              {/* File Uploads Section */}
+              <div className="space-y-6 p-6 bg-neutral-50 dark:bg-neutral-800/50 rounded-lg border border-neutral-200 dark:border-neutral-700">
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 border-b border-neutral-200 dark:border-neutral-700 pb-2">
+                  <i className="fa-solid fa-file-arrow-up text-blue-500 me-2"></i>
+                  {t('files')}
+                </h3>
+
+                {/* Cover Images */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Arabic Cover Image */}
+                  <div>
+                    <DragFileInput
+                      id="cover_image_ar"
+                      label={t('cover_image_ar')}
+                      accept="image/*"
+                      onChange={(file) => setData('cover_image_ar', file)}
+                      error={errors.cover_image_ar}
+                      value={data.cover_image_ar}
+                      keyValue={story.cover_image_ar ? { name: t('current_cover_image'), path: story.cover_image_ar } : null}
+                      helperText={
+                        <div className="space-y-1">
+                          {story.cover_image_ar && (
+                            <div className="flex items-center space-x-2 text-sm text-blue-600 dark:text-blue-400">
+                              <img
+                                src={`/storage/${story.cover_image_ar}`}
+                                alt={t('current_cover_image')}
+                                className="w-20 h-20 object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
+
+                  {/* English Cover Image */}
+                  <div>
+                    <DragFileInput
+                      id="cover_image_en"
+                      label={t('cover_image_en')}
+                      accept="image/*"
+                      onChange={(file) => setData('cover_image_en', file)}
+                      error={errors.cover_image_en}
+                      value={data.cover_image_en}
+                      keyValue={story.cover_image_en ? { name: t('current_cover_image'), path: story.cover_image_en } : null}
+                      helperText={
+                        <div className="space-y-1">
+                          {story.cover_image_en && (
+                            <div className="flex items-center space-x-2 text-sm text-blue-600 dark:text-blue-400">
+                              <img
+                                src={`/storage/${story.cover_image_en}`}
+                                alt={t('current_cover_image')}
+                                className="w-20 h-20 object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
+                </div>
+
+                {/* Gallery Images */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Arabic Gallery Images */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_images_ar"
+                      label={t('gallery_images_ar')}
+                      accept="image/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_images_ar', files)}
+                      error={errors.gallery_images_ar}
+                      value={data.gallery_images_ar}
+                      helperText={
+                        <div className="space-y-2">
+                          {existingGalleryAr && existingGalleryAr.length > 0 && (
+                            <div className="space-y-2">
+                              <span className="text-sm text-blue-600 dark:text-blue-400">
+                                <i className="fa-solid fa-images me-1"></i>
+                                {t('current_gallery_images')} ({existingGalleryAr.length})
+                              </span>
+                              <div className="grid grid-cols-4 gap-2">
+                                {existingGalleryAr.map((image, index) => (
+                                  <div key={index} className="relative group">
+                                    <img
+                                      src={`/storage/${image}`}
+                                      alt={`Gallery ${index + 1}`}
+                                      className="w-16 h-16 object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
+                                    />
+                                    <button
+                                      type="button"
+                                      onClick={() => deleteExistingGalleryImage(image, 'ar')}
+                                      className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                      title={t('delete')}
+                                    >
+                                      <i className="fa-solid fa-times text-xs"></i>
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
+
+                  {/* English Gallery Images */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_images_en"
+                      label={t('gallery_images_en')}
+                      accept="image/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_images_en', files)}
+                      error={errors.gallery_images_en}
+                      value={data.gallery_images_en}
+                      helperText={
+                        <div className="space-y-2">
+                          {existingGalleryEn && existingGalleryEn.length > 0 && (
+                            <div className="space-y-2">
+                              <span className="text-sm text-blue-600 dark:text-blue-400">
+                                <i className="fa-solid fa-images me-1"></i>
+                                {t('current_gallery_images')} ({existingGalleryEn.length})
+                              </span>
+                              <div className="grid grid-cols-4 gap-2">
+                                {existingGalleryEn.map((image, index) => (
+                                  <div key={index} className="relative group">
+                                    <img
+                                      src={`/storage/${image}`}
+                                      alt={`Gallery ${index + 1}`}
+                                      className="w-16 h-16 object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
+                                    />
+                                    <button
+                                      type="button"
+                                      onClick={() => deleteExistingGalleryImage(image, 'en')}
+                                      className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                      title={t('delete')}
+                                    >
+                                      <i className="fa-solid fa-times text-xs"></i>
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
+                </div>
+
+                {/* PDF Files */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Arabic PDF */}
+                  <div>
+                    <DragFileInput
+                      id="pdf_ar"
+                      label={t('pdf_ar')}
+                      accept=".pdf"
+                      onChange={(file) => setData('pdf_ar', file)}
+                      error={errors.pdf_ar}
+                      value={data.pdf_ar}
+                      keyValue={story.pdf_ar ? { name: t('current_pdf'), path: story.pdf_ar } : null}
+                      helperText={
+                        <div className="space-y-1">
+                          {story.pdf_ar && (
+                            <div className="flex items-center gap-2 space-x-2 text-sm text-blue-600 dark:text-blue-400">
+                              <i className="fa-solid fa-file-pdf"></i>
+                              <span>{t('current_pdf')}</span>
+                              <a
+                                href={`/storage/${story.pdf_ar}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline hover:no-underline"
+                              >
+                                {t('view_pdf')}
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
+
+                  {/* English PDF */}
+                  <div>
+                    <DragFileInput
+                      id="pdf_en"
+                      label={t('pdf_en')}
+                      accept=".pdf"
+                      onChange={(file) => setData('pdf_en', file)}
+                      error={errors.pdf_en}
+                      value={data.pdf_en}
+                      keyValue={story.pdf_en ? { name: t('current_pdf'), path: story.pdf_en } : null}
+                      helperText={
+                        <div className="space-y-1">
+                          {story.pdf_en && (
+                            <div className="flex items-center gap-2 space-x-2 text-sm text-blue-600 dark:text-blue-400">
+                              <i className="fa-solid fa-file-pdf"></i>
+                              <span>{t('current_pdf')}</span>
+                              <a
+                                href={`/storage/${story.pdf_en}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline hover:no-underline"
+                              >
+                                {t('view_pdf')}
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
                 </div>
               </div>
 

@@ -8,6 +8,7 @@ import SelectInput from '@/Components/SelectInput';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
+import DragFileInput from '@/Components/DragFileInput';
 
 export default function CreateStory({ categories = [] }) {
   const { t } = useTrans();
@@ -19,6 +20,12 @@ export default function CreateStory({ categories = [] }) {
     category_id: '',
     gender: '',
     status: 'draft',
+    cover_image_ar: null,
+    cover_image_en: null,
+    gallery_images_ar: [],
+    gallery_images_en: [],
+    pdf_ar: null,
+    pdf_en: null,
   });
 
   const editorArRef = useRef(null);
@@ -259,6 +266,103 @@ export default function CreateStory({ categories = [] }) {
                     ></textarea>
                   </div>
                   <InputError message={errors.content_en} className="mt-2" />
+                </div>
+              </div>
+
+              {/* File Uploads Section */}
+              <div className="space-y-6 p-6 bg-neutral-50 dark:bg-neutral-800/50 rounded-lg border border-neutral-200 dark:border-neutral-700">
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 border-b border-neutral-200 dark:border-neutral-700 pb-2">
+                  <i className="fa-solid fa-file-arrow-up text-blue-500 me-2"></i>
+                  {t('files')}
+                </h3>
+
+                {/* Cover Images */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Arabic Cover Image */}
+                  <div>
+                    <DragFileInput
+                      id="cover_image_ar"
+                      label={t('cover_image_ar')}
+                      accept="image/*"
+                      onChange={(file) => setData('cover_image_ar', file)}
+                      error={errors.cover_image_ar}
+                      value={data.cover_image_ar}
+                      helperText={t('max_file_size', { size: '2MB' }) + ' - ' + t('supported_formats', { formats: 'JPG, PNG, GIF' })}
+                    />
+                  </div>
+
+                  {/* English Cover Image */}
+                  <div>
+                    <DragFileInput
+                      id="cover_image_en"
+                      label={t('cover_image_en')}
+                      accept="image/*"
+                      onChange={(file) => setData('cover_image_en', file)}
+                      error={errors.cover_image_en}
+                      value={data.cover_image_en}
+                      helperText={t('max_file_size', { size: '2MB' }) + ' - ' + t('supported_formats', { formats: 'JPG, PNG, GIF' })}
+                    />
+                  </div>
+                </div>
+
+                {/* Gallery Images */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Arabic Gallery Images */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_images_ar"
+                      label={t('gallery_images_ar')}
+                      accept="image/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_images_ar', files)}
+                      error={errors.gallery_images_ar}
+                      value={data.gallery_images_ar}
+                    />
+                  </div>
+
+                  {/* English Gallery Images */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_images_en"
+                      label={t('gallery_images_en')}
+                      accept="image/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_images_en', files)}
+                      error={errors.gallery_images_en}
+                      value={data.gallery_images_en}
+                    />
+                  </div>
+                </div>
+
+                {/* PDF Files */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Arabic PDF */}
+                  <div>
+                    <DragFileInput
+                      id="pdf_ar"
+                      label={t('pdf_ar')}
+                      accept=".pdf"
+                      onChange={(file) => setData('pdf_ar', file)}
+                      error={errors.pdf_ar}
+                      value={data.pdf_ar}
+                      helperText={t('max_file_size', { size: '10MB' }) + ' - ' + t('supported_formats', { formats: 'PDF' })}
+                    />
+                  </div>
+
+                  {/* English PDF */}
+                  <div>
+                    <DragFileInput
+                      id="pdf_en"
+                      label={t('pdf_en')}
+                      accept=".pdf"
+                      onChange={(file) => setData('pdf_en', file)}
+                      error={errors.pdf_en}
+                      value={data.pdf_en}
+                      helperText={t('max_file_size', { size: '10MB' }) + ' - ' + t('supported_formats', { formats: 'PDF' })}
+                    />
+                  </div>
                 </div>
               </div>
 

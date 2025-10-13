@@ -91,6 +91,18 @@ return [
   'confirm_delete_stories' => 'هل أنت متأكد من حذف القصص المحددة؟',
   'confirm_publish_stories' => 'هل أنت متأكد من نشر القصص المحددة؟',
   'confirm_archive_stories' => 'هل أنت متأكد من أرشفة القصص المحددة؟',
+
+  // Story File Upload Messages
+  'cover_image_uploaded_title' => 'تم تحميل صورة الغلاف',
+  'cover_image_uploaded_message' => 'تم تحميل صورة الغلاف بنجاح.',
+  'gallery_images_uploaded_title' => 'تم تحميل صور المعرض',
+  'gallery_images_uploaded_message' => 'تم تحميل صور المعرض بنجاح.',
+  'pdf_uploaded_title' => 'تم تحميل ملف PDF',
+  'pdf_uploaded_message' => 'تم تحميل ملف PDF بنجاح.',
+  'file_upload_error_title' => 'خطأ في تحميل الملف',
+  'file_upload_error_message' => 'حدث خطأ أثناء تحميل الملف. يرجى المحاولة مرة أخرى.',
+
+  // Admin Impersonation Responses
   'impersonation_return_message' => 'تم العودة إلى حساب المدير بنجاح.',
   'impersonation_failed_title' => 'فشل العودة',
   'impersonation_failed_message' => 'تعذر العودة إلى حساب المدير.',
