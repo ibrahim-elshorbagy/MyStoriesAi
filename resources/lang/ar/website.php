@@ -545,4 +545,22 @@ return [
   'confirm_delete_age_category' => 'هل أنت متأكد من حذف فئة العمر هذه؟',
   'confirm_delete_age_categories' => 'هل أنت متأكد من حذف فئات العمر المحددة؟',
 
+  /* Story Management */
+  'stories' => 'القصص',
+  'story_management' => 'إدارة القصص',
+  'create_story' => 'إنشاء قصة',
+  'edit_story' => 'تعديل القصة',
+  'story' => 'قصة',
+  'gender' => 'الجنس',
+  'boy' => 'ولد',
+  'girl' => 'بنت',
+  'age_category' => 'فئة العمر',
+  'select_age_category' => 'اختر فئة العمر',
+  'select_gender' => 'اختر الجنس',
+  'story_title_ar' => 'عنوان القصة (عربي)',
+  'story_title_en' => 'عنوان القصة (إنجليزي)',
+  'story_content_ar' => 'محتوى القصة (عربي)',
+  'story_content_en' => 'محتوى القصة (إنجليزي)',
+  'search_stories' => 'البحث في القصص...',
+
 ];

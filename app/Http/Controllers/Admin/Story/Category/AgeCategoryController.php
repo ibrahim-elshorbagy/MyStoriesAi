@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Story\Category;
 
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Story\Catgeory\AgeCategory;
+use App\Models\Admin\Story\Category\AgeCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;

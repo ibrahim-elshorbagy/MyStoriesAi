@@ -36,4 +36,6 @@ Route::any('/locale', [PreferencesController::class, 'changeLocale'])->name('loc
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/content.php';
+require __DIR__ . '/story.php';
+
 

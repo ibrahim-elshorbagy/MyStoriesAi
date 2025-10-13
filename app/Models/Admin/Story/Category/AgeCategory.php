@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Admin\Story\Catgeory;
+namespace App\Models\Admin\Story\Category;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -74,7 +74,25 @@ return [
   /* Admin Impersonation Responses */
   'impersonation_success_title' => 'Logged in as user',
   'impersonation_success_message' => 'Successfully logged in as user: :name',
-  'impersonation_return_title' => 'Returned to admin',
+  'impersonation_return_title' => 'Returned to Admin',
+
+  /* Story Management Responses */
+  'story_created_title' => 'Story Created',
+  'story_created_message' => 'Story has been created successfully.',
+  'story_updated_title' => 'Story Updated',
+  'story_updated_message' => 'Story has been updated successfully.',
+  'story_deleted_title' => 'Story Deleted',
+  'story_deleted_message' => 'Story has been deleted successfully.',
+  'stories_deleted_title' => 'Stories Deleted',
+  'stories_deleted_message' => ':count stories have been deleted successfully.',
+  'stories_published_title' => 'Stories Published',
+  'stories_published_message' => ':count stories have been published successfully.',
+  'stories_archived_title' => 'Stories Archived',
+  'stories_archived_message' => ':count stories have been archived successfully.',
+  'confirm_delete_story' => 'Are you sure you want to delete this story?',
+  'confirm_delete_stories' => 'Are you sure you want to delete the selected stories?',
+  'confirm_publish_stories' => 'Are you sure you want to publish the selected stories?',
+  'confirm_archive_stories' => 'Are you sure you want to archive the selected stories?',
   'impersonation_return_message' => 'Successfully returned to the admin account.',
   'impersonation_failed_title' => 'Return failed',
   'impersonation_failed_message' => 'Could not return to the admin account.',
@@ -104,7 +122,7 @@ return [
   'static_page_category_delete_failed_message' => 'Cannot delete category that contains pages',
   'static_page_categories_deleted_title' => 'Deleted',
   'static_page_categories_deleted_message' => ':count categories deleted successfully',
-  'static_page_categories_bulk_delete_failed_title' => 'Delete Failed',
+  // 'static_page_categories_bulk_delete_failed_title' => 'Delete Failed',
   'static_page_categories_bulk_delete_failed_message' => 'Cannot delete categories that contain pages',
 
   // FAQ Categories

@@ -79,12 +79,26 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
       ],
     },
 
+    // Stories group
     {
-      name: t('age_categories'),
-      icon: 'fa-cogs',
-      href: route('admin.age-categories.index'),
-      route: 'admin.age-categories.*',
-      role: 'admin'
+      name: t('story_management'),
+      icon: 'fa-book-open',
+      route: 'admin.stories.*',
+      role: 'admin',
+      submenu: [
+        {
+          name: t('stories'),
+          href: route('admin.stories.index'),
+          route: 'admin.stories.*',
+          icon: 'fa-book'
+        },
+        {
+          name: t('age_categories'),
+          href: route('admin.age-categories.index'),
+          route: 'admin.age-categories.*',
+          icon: 'fa-layer-group'
+        },
+      ],
     },
 
     {
