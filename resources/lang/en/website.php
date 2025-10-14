@@ -358,7 +358,22 @@ return [
 
   // Stories Section
   'stories_title' => 'Featured Stories',
+  'stories_description' => 'Discover amazing stories created with AI for children.',
   'stories_more_stories' => 'View All Stories',
+  'more_stories' => 'More Stories',
+  'all_genders' => 'All Genders',
+  'boy' => 'Boy',
+  'girl' => 'Girl',
+  'all_categories' => 'All Categories',
+  'sort_by' => 'Sort By',
+  'name_asc' => 'Name A-Z',
+  'name_desc' => 'Name Z-A',
+  'back_to_stories' => 'Back to Stories',
+  'category' => 'Category',
+  'gender' => 'Gender',
+  'gallery' => 'Gallery',
+  'download_pdf' => 'Download PDF',
+  'more' => 'Read More',
 
   // About Section
   'about_title' => 'About Us',

@@ -345,7 +345,21 @@ return [
 
   // Stories Section
   'stories_title' => 'القصص المميزة',
+  'stories_description' => 'اكتشف قصص رائعة تم إنشاؤها بالذكاء الاصطناعي للأطفال.',
   'stories_more_stories' => 'عرض جميع القصص',
+  'more_stories' => 'المزيد من القصص',
+  'all_genders' => 'جميع الأجناس',
+  'boy' => 'ولد',
+  'girl' => 'فتاة',
+  'all_categories' => 'جميع الفئات',
+  'sort_by' => 'ترتيب حسب',
+  'name_asc' => 'الاسم أ-ي',
+  'name_desc' => 'الاسم ي-أ',
+  'back_to_stories' => 'العودة للقصص',
+  'gender' => 'الجنس',
+  'gallery' => 'المعرض',
+  'download_pdf' => 'تحميل PDF',
+  'more' => 'اقرأ المزيد',
 
   // About Section
   'about_title' => 'من نحن',

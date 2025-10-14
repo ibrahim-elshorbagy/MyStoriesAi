@@ -88,14 +88,14 @@ class StoryController extends Controller
       'status' => ['required', 'in:draft,published,archived'],
 
       // Cover images
-      'cover_image_ar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
-      'cover_image_en' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+      'cover_image_ar' => ['nullable', 'image'],
+      'cover_image_en' => ['nullable', 'image'],
 
       // Gallery images
       'gallery_images_ar' => ['nullable', 'array', 'max:10'],
-      'gallery_images_ar.*' => ['image', 'mimes:jpeg,png,jpg,gif'],
+      'gallery_images_ar.*' => ['image'],
       'gallery_images_en' => ['nullable', 'array', 'max:10'],
-      'gallery_images_en.*' => ['image', 'mimes:jpeg,png,jpg,gif'],
+      'gallery_images_en.*' => ['image'],
 
       // PDFs
       'pdf_ar' => ['nullable', 'file', 'mimes:pdf'],
@@ -147,14 +147,14 @@ class StoryController extends Controller
       'status' => ['required', 'in:draft,published,archived'],
 
       // Cover images
-      'cover_image_ar' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
-      'cover_image_en' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif'],
+      'cover_image_ar' => ['nullable', 'image'],
+      'cover_image_en' => ['nullable', 'image'],
 
       // Gallery images - new uploads
       'gallery_images_ar' => ['nullable', 'array', 'max:10'],
-      'gallery_images_ar.*' => ['image', 'mimes:jpeg,png,jpg,gif'],
+      'gallery_images_ar.*' => ['image'],
       'gallery_images_en' => ['nullable', 'array', 'max:10'],
-      'gallery_images_en.*' => ['image', 'mimes:jpeg,png,jpg,gif'],
+      'gallery_images_en.*' => ['image'],
 
       // Existing gallery images to keep
       'existing_gallery_images_ar' => ['nullable', 'array'],
@@ -184,7 +184,7 @@ class StoryController extends Controller
     // Handle file uploads and deletions
     $this->handleFileUploads($request, $story);
 
-    return back()
+    return redirect()->route('admin.stories.index')
       ->with('title', __('website_response.story_updated_title'))
       ->with('message', __('website_response.story_updated_message'))
       ->with('status', 'success');

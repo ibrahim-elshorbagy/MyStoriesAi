@@ -28,7 +28,7 @@ export default function SelectInput({
           name={name}
           value={value || ''}
           onChange={onChange}
-          className={`mt-1 block w-full rounded-md border-neutral-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white ${
+          className={`block w-full rounded-md border-neutral-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white ${
             icon ? 'pl-10' : ''
           } ${className}`}
           {...props}

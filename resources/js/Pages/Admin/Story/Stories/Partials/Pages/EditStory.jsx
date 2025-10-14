@@ -402,7 +402,7 @@ export default function EditStory({ story, categories = [] }) {
                                     <img
                                       src={`/storage/${image}`}
                                       alt={`Gallery ${index + 1}`}
-                                      className="w-16 h-16 object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
+                                      className="object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
                                     />
                                     <button
                                       type="button"
@@ -447,7 +447,7 @@ export default function EditStory({ story, categories = [] }) {
                                     <img
                                       src={`/storage/${image}`}
                                       alt={`Gallery ${index + 1}`}
-                                      className="w-16 h-16 object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
+                                      className=" object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
                                     />
                                     <button
                                       type="button"

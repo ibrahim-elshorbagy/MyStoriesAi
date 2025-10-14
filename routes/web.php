@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Agents\ReportAgentController;
+use App\Http\Controllers\Frontend\StoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PreferencesController;
 use App\Http\Controllers\ProfileController;
@@ -17,6 +18,10 @@ Route::get('/page/{id}', [UserController::class, 'staticPage'])->name('static-pa
 
 // FAQ Page
 Route::get('/faqs', [HomeController::class, 'FaqPage'])->name('faqs');
+
+// Stories
+Route::get('/stories', [StoryController::class, 'index'])->name('stories');
+Route::get('/stories/{story}', [StoryController::class, 'show'])->name('story.show');
 
 Route::get('/dashboard', function () {
   return Inertia::render('Dashboard');
