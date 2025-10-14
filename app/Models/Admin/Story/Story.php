@@ -13,6 +13,7 @@ class Story extends Model
   protected $casts = [
     'title' => 'array',
     'content' => 'array',
+    'excerpt' => 'array',
     'gallery_images_ar' => 'array',
     'gallery_images_en' => 'array',
   ];
@@ -23,7 +24,7 @@ class Story extends Model
     return $translations[$locale] ?? $translations['en'] ?? '';
   }
 
-  protected $appends = ['title_value', 'content_value', 'cover_image_value', 'pdf_value', 'gallery_images_value'];
+  protected $appends = ['title_value', 'content_value', 'excerpt_value', 'cover_image_value', 'pdf_value', 'gallery_images_value'];
 
   public function getTitleValueAttribute(): string
   {
@@ -33,6 +34,11 @@ class Story extends Model
   public function getContentValueAttribute(): string
   {
     return $this->getTranslatedValue($this->content ?? []);
+  }
+
+  public function getExcerptValueAttribute(): string
+  {
+    return $this->getTranslatedValue($this->excerpt ?? []);
   }
 
   public function getCoverImageValueAttribute(): ?string

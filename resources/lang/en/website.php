@@ -137,6 +137,8 @@ return [
   'story_title_en' => 'Story Title (English)',
   'story_content_ar' => 'Story Content (Arabic)',
   'story_content_en' => 'Story Content (English)',
+  'story_excerpt_ar' => 'Story Excerpt (Arabic)',
+  'story_excerpt_en' => 'Story Excerpt (English)',
   'draft' => 'Draft',
   'published' => 'Published',
   'archived' => 'Archived',
@@ -358,7 +360,7 @@ return [
 
   // Stories Section
   'stories_title' => 'Featured Stories',
-  'stories_description' => 'Discover amazing stories created with AI for children.',
+  'stories_description' => 'Discover amazing stories created for children.',
   'stories_more_stories' => 'View All Stories',
   'more_stories' => 'More Stories',
   'all_genders' => 'All Genders',

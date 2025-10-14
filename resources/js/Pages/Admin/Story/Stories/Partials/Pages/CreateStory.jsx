@@ -9,12 +9,15 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 import DragFileInput from '@/Components/DragFileInput';
+import TextArea from '@/Components/TextArea';
 
 export default function CreateStory({ categories = [] }) {
   const { t } = useTrans();
   const { data, setData, post, errors, processing } = useForm({
     title_ar: '',
     title_en: '',
+    excerpt_ar: '',
+    excerpt_en: '',
     content_ar: '',
     content_en: '',
     category_id: '',
@@ -61,16 +64,16 @@ export default function CreateStory({ categories = [] }) {
       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
       // Image handling - convert to base64 blobs
       automatic_uploads: false,
-      images_dataimg_filter: function(img) {
+      images_dataimg_filter: function (img) {
         return img.hasAttribute('internal-blob');
       },
-      images_upload_handler: function(blobInfo, success, failure) {
+      images_upload_handler: function (blobInfo, success, failure) {
         // Convert blob to base64
         const reader = new FileReader();
-        reader.onload = function() {
+        reader.onload = function () {
           success(reader.result);
         };
-        reader.onerror = function() {
+        reader.onerror = function () {
           failure('Failed to convert image to base64');
         };
         reader.readAsDataURL(blobInfo.blob());
@@ -240,6 +243,35 @@ export default function CreateStory({ categories = [] }) {
                 </div>
               </div>
 
+              {/* Excerpt Fields */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Arabic Excerpt */}
+                <div>
+                  <InputLabel htmlFor="excerpt_ar" value={t('story_excerpt_ar')} required />
+                  <TextArea
+                    name="excerpt_ar"
+                    label={t('story_excerpt_ar')}
+                    value={data.excerpt_ar}
+                    onChange={(e) => setData('excerpt_ar', e.target.value)}
+                    rows={3}
+                  />
+                  <InputError message={errors.excerpt_ar} className="mt-2" />
+                </div>
+
+                {/* English Excerpt */}
+                <div>
+                  <InputLabel htmlFor="excerpt_en" value={t('story_excerpt_en')} required />
+                  <TextArea
+                    name="excerpt_en"
+                    label={t('story_excerpt_en')}
+                    value={data.excerpt_en}
+                    onChange={(e) => setData('excerpt_en', e.target.value)}
+                    rows={3}
+                  />
+                  <InputError message={errors.excerpt_en} className="mt-2" />
+                </div>
+              </div>
+
               {/* Content Editors */}
               <div className="space-y-6">
                 {/* Arabic Content */}
@@ -287,7 +319,6 @@ export default function CreateStory({ categories = [] }) {
                       onChange={(file) => setData('cover_image_ar', file)}
                       error={errors.cover_image_ar}
                       value={data.cover_image_ar}
-                      helperText={t('max_file_size', { size: '2MB' }) + ' - ' + t('supported_formats', { formats: 'JPG, PNG, GIF' })}
                     />
                   </div>
 
@@ -300,7 +331,6 @@ export default function CreateStory({ categories = [] }) {
                       onChange={(file) => setData('cover_image_en', file)}
                       error={errors.cover_image_en}
                       value={data.cover_image_en}
-                      helperText={t('max_file_size', { size: '2MB' }) + ' - ' + t('supported_formats', { formats: 'JPG, PNG, GIF' })}
                     />
                   </div>
                 </div>
@@ -347,7 +377,6 @@ export default function CreateStory({ categories = [] }) {
                       onChange={(file) => setData('pdf_ar', file)}
                       error={errors.pdf_ar}
                       value={data.pdf_ar}
-                      helperText={t('max_file_size', { size: '10MB' }) + ' - ' + t('supported_formats', { formats: 'PDF' })}
                     />
                   </div>
 
@@ -360,7 +389,6 @@ export default function CreateStory({ categories = [] }) {
                       onChange={(file) => setData('pdf_en', file)}
                       error={errors.pdf_en}
                       value={data.pdf_en}
-                      helperText={t('max_file_size', { size: '10MB' }) + ' - ' + t('supported_formats', { formats: 'PDF' })}
                     />
                   </div>
                 </div>

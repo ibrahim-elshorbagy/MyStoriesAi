@@ -9,6 +9,7 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 import DragFileInput from '@/Components/DragFileInput';
+import TextArea from '@/Components/TextArea';
 
 export default function EditStory({ story, categories = [] }) {
   const { t } = useTrans();
@@ -20,6 +21,8 @@ export default function EditStory({ story, categories = [] }) {
   const { data, setData, post, errors, processing } = useForm({
     title_ar: story.title?.ar || '',
     title_en: story.title?.en || '',
+    excerpt_ar: story.excerpt?.ar || '',
+    excerpt_en: story.excerpt?.en || '',
     content_ar: story.content?.ar || '',
     content_en: story.content?.en || '',
     category_id: story.category_id || '',
@@ -238,8 +241,37 @@ export default function EditStory({ story, categories = [] }) {
                   />
                   <InputError message={errors.title_en} className="mt-2" />
                 </div>
+              </div>
 
-                {/* Category */}
+              {/* Excerpt Fields */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Arabic Excerpt */}
+                <div>
+                  <InputLabel htmlFor="excerpt_ar" value={t('story_excerpt_ar')} required />
+                  <TextArea
+                    name="excerpt_ar"
+                    label={t('story_excerpt_ar')}
+                    value={data.excerpt_ar}
+                    onChange={(e) => setData('excerpt_ar', e.target.value)}
+                    rows={3}
+                  />
+                  <InputError message={errors.excerpt_ar} className="mt-2" />
+                </div>
+
+                {/* English Excerpt */}
+                <div>
+                  <InputLabel htmlFor="excerpt_en" value={t('story_excerpt_en')} required />
+                  <TextArea
+                    name="excerpt_en"
+                    label={t('story_excerpt_en')}
+                    value={data.excerpt_en}
+                    onChange={(e) => setData('excerpt_en', e.target.value)}
+                    rows={3}
+                  />
+                  <InputError message={errors.excerpt_en} className="mt-2" />
+                </div>
+
+              {/* Category */}
                 <div>
                   <SelectInput
                     name="category_id"

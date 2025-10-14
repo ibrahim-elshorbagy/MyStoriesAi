@@ -345,7 +345,7 @@ return [
 
   // Stories Section
   'stories_title' => 'القصص المميزة',
-  'stories_description' => 'اكتشف قصص رائعة تم إنشاؤها بالذكاء الاصطناعي للأطفال.',
+  'stories_description' => 'اكتشف قصص رائعة تم إنشاؤها بالذكاء للأطفال.',
   'stories_more_stories' => 'عرض جميع القصص',
   'more_stories' => 'المزيد من القصص',
   'all_genders' => 'جميع الأجناس',
@@ -581,6 +581,8 @@ return [
   'story_title_en' => 'عنوان القصة (إنجليزي)',
   'story_content_ar' => 'محتوى القصة (عربي)',
   'story_content_en' => 'محتوى القصة (إنجليزي)',
+  'story_excerpt_ar' => 'ملخص القصة (عربي)',
+  'story_excerpt_en' => 'ملخص القصة (إنجليزي)',
   'search_stories' => 'البحث في القصص...',
 
   // Story Files

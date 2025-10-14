@@ -29,8 +29,8 @@ export default function StoryCard({ story }) {
           {story.title_value}
         </h3>
 
-        <p className="text-sm sm:text-base text-neutral-600 line-clamp-3 flex-grow">
-          {story.content_value?.substring(0, 150)}...
+        <p className="text-sm sm:text-base text-neutral-600 line-clamp-3 flex-grow break-all">
+          {story.excerpt_value}...
         </p>
 
         {/* Category Badge */}

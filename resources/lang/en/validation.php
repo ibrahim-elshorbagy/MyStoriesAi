@@ -194,6 +194,10 @@ return [
 
         'content_en' => 'Content in English',
         'content_ar' => 'Content in Arabic',
+        'excerpt_ar' => 'Excerpt in Arabic',
+        'excerpt_en' => 'Excerpt in English',
+        'title_ar' => 'Title in Arabic',
+        'title_en' => 'Title in English',
         "category_id"=>"Category",
         "image"=>"Image",
 

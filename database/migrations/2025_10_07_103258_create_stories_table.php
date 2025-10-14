@@ -12,8 +12,9 @@ return new class extends Migration {
   {
     Schema::create('stories', function (Blueprint $table) {
       $table->id();
-      $table->json('title'); // {ar: '', en: ''}
-      $table->json('content'); // {ar: '', en: ''}
+      $table->json('title')->nullable(); // {ar: '', en: ''}
+      $table->json('content')->nullable(); // {ar: '', en: ''}
+      $table->json('excerpt')->nullable(); // {ar: '', en: ''}
       $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
       $table->foreignId('category_id')->nullable()->constrained('age_categories')->onDelete('set null');
       $table->unsignedTinyInteger('gender')->nullable(); //0->boy 1->girl

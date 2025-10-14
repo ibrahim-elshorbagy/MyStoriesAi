@@ -81,6 +81,8 @@ class StoryController extends Controller
     $validated = $request->validate([
       'title_ar' => ['required', 'string', 'max:255'],
       'title_en' => ['required', 'string', 'max:255'],
+      'excerpt_ar' => ['required', 'string',"max:350"],
+      'excerpt_en' => ['required', 'string',"max:350"],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
       'category_id' => ['required', 'exists:age_categories,id'],
@@ -106,6 +108,10 @@ class StoryController extends Controller
       'title' => [
         'ar' => $validated['title_ar'],
         'en' => $validated['title_en'],
+      ],
+      'excerpt' => [
+        'ar' => $validated['excerpt_ar'],
+        'en' => $validated['excerpt_en'],
       ],
       'content' => [
         'ar' => $validated['content_ar'],
@@ -140,6 +146,8 @@ class StoryController extends Controller
     $validated = $request->validate([
       'title_ar' => ['required', 'string', 'max:255'],
       'title_en' => ['required', 'string', 'max:255'],
+      'excerpt_ar' => ['required', 'string',"max:350"],
+      'excerpt_en' => ['required', 'string',"max:350"],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
       'category_id' => ['required', 'exists:age_categories,id'],
@@ -171,6 +179,10 @@ class StoryController extends Controller
       'title' => [
         'ar' => $validated['title_ar'],
         'en' => $validated['title_en'],
+      ],
+      'excerpt' => [
+        'ar' => $validated['excerpt_ar'],
+        'en' => $validated['excerpt_en'],
       ],
       'content' => [
         'ar' => $validated['content_ar'],
