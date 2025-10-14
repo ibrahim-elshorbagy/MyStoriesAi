@@ -122,7 +122,7 @@ export default function PricingSection() {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 bg-neutral-50">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
           {t("pricing_section_title")}
         </h2>
