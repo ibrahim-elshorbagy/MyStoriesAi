@@ -4,11 +4,12 @@ import React from 'react';
 import HeroSection from './Partials/HeroSection';
 import FeaturesSection from './Partials/FeaturesSection';
 import StoriesSection from './Partials/StoriesSection.jsx';
+import AgeCategoriesSection from './Partials/AgeCategoriesSection.jsx';
 import PricingSection from './Partials/PricingSection';
 import FAQs from './Partials/FAQs';
 import { useTrans } from '@/Hooks/useTrans';
 
-export default function Home({ stories, faqs }) {
+export default function Home({ stories, faqs, categories }) {
     const { t } = useTrans();
 
   return (
@@ -18,6 +19,7 @@ export default function Home({ stories, faqs }) {
       <HeroSection />
       <FeaturesSection />
       <StoriesSection stories={stories} />
+      <AgeCategoriesSection categories={categories} />
       <PricingSection />
       <FAQs faqs={faqs} />
     </SiteLayout>

@@ -18,10 +18,25 @@ class AgeCategory extends Model
         return $translations[$locale] ?? $translations['en'] ?? '';
     }
 
-    protected $appends = ['name_value'];
+    protected $appends = ['name_value', 'image_value'];
 
     public function getNameValueAttribute(): string
     {
         return $this->getTranslatedValue($this->name ?? []);
+    }
+
+    public function getImageValueAttribute(): ?string
+    {
+        if (!$this->image) {
+            return null;
+        }
+
+        // If image is already a full URL, return it
+        if (str_starts_with($this->image, 'http')) {
+            return $this->image;
+        }
+
+        // Otherwise, prepend storage path
+        return asset('storage/' . $this->image);
     }
 }

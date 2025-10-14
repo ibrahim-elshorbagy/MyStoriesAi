@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\SiteSetting\Faq;
 use App\Models\Admin\SiteSetting\FaqCategory;
 use App\Models\Admin\Story\Story;
+use App\Models\Admin\Story\Category\AgeCategory;
 
 class HomeController extends Controller
 {
@@ -17,10 +18,12 @@ class HomeController extends Controller
       ->latest()
       ->take(3)
       ->get();
+    $categories = AgeCategory::all();
 
     return inertia("Frontend/Home/Home", [
       'faqs' => $faqs,
       'stories' => $stories,
+      'categories' => $categories,
     ]);
   }
 
