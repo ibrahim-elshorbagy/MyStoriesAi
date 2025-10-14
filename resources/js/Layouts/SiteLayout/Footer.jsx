@@ -2,16 +2,31 @@ import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { useTrans } from '@/Hooks/useTrans';
+import { useSmoothScroll } from '@/Hooks/useSmoothScroll';
 
 export default function Footer() {
   const { footer } = usePage().props;
 
   const { t } = useTrans();
   const year = new Date().getFullYear();
+  const { scrollToSection } = useSmoothScroll();
 
   const settings = footer?.settings || {};
   const staticPages = footer?.static_pages || [];
   const categories = footer?.categories || [];
+
+  // Check if we're on the home page
+  const isHomePage = route().current("home");
+
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    if (isHomePage) {
+      scrollToSection(sectionId);
+    } else {
+      // If not on home page, navigate to home with hash
+      window.location.href = route('home') + '#' + sectionId;
+    }
+  };
 
   // Social media links with their icons and colors
   const socialLinks = [
@@ -139,6 +154,7 @@ export default function Footer() {
                   <li>
                     <Link
                       href="#features"
+                      onClick={(e) => handleNavClick(e, 'features')}
                       className="group flex items-center gap-2 text-sm hover:text-orange-600 transition-all duration-300 hover:translate-x-1"
                     >
                       <span>{t('features_title')}</span>
@@ -148,6 +164,7 @@ export default function Footer() {
                   <li>
                     <Link
                       href="#stories"
+                      onClick={(e) => handleNavClick(e, 'stories')}
                       className="group flex items-center gap-2 text-sm hover:text-orange-600 transition-all duration-300 hover:translate-x-1"
                     >
                       <span>{t('stories_title')}</span>
@@ -157,6 +174,7 @@ export default function Footer() {
                   <li>
                     <Link
                       href="#faqs"
+                      onClick={(e) => handleNavClick(e, 'faqs')}
                       className="group flex items-center gap-2 text-sm hover:text-orange-600 transition-all duration-300 hover:translate-x-1"
                     >
                       <span>{t('footer_nav_faqs')}</span>

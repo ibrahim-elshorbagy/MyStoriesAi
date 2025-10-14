@@ -112,6 +112,16 @@ export default function TabletNavigation() {
             </li>
             <li>
               <MenuNavLink
+                href="#stories"
+                onClick={(e) => handleNavClick(e, 'stories')}
+                active={isHomePage && activeSection === 'stories'}
+                icon="fa-book"
+              >
+                {t('stories_title')}
+              </MenuNavLink>
+            </li>
+            <li>
+              <MenuNavLink
                 href="#pricing"
                 onClick={(e) => handleNavClick(e, 'pricing')}
                 active={isHomePage && activeSection === 'pricing'}
