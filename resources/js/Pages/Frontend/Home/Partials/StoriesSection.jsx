@@ -20,7 +20,7 @@ export default function StoriesSection({ stories }) {
       <div className="container mx-auto flex flex-col gap-10 relative z-10">
         {/* Section Header */}
         <div className="text-center">
-          <h2 className="text-4xl xl:text-6xl pb-2 leading-normal font-bold bg-gradient-to-r from-neutral-700 to-orange-600 bg-clip-text text-transparent w-fit mx-auto">
+          <h2 className="text-4xl xl:text-6xl pb-2 leading-normal font-bold bg-gradient-to-r from-green-500 to-orange-600 bg-clip-text text-transparent w-fit mx-auto">
             {t('stories_title')}
           </h2>
           <p className="text-lg text-neutral-600 mt-4 max-w-2xl mx-auto">

@@ -13,7 +13,7 @@ export default function FeaturesSection() {
         {/* Section Header */}
         <div className="text-center mx-auto flex flex-col gap-4">
           <div className="flex items-center justify-center flex-col gap-1">
-            <h2 className="text-4xl pb-2 xl:text-6xl leading-normal font-bold bg-gradient-to-r from-neutral-700 to-orange-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl pb-2 xl:text-6xl leading-normal font-bold bg-gradient-to-r from-green-500 to-orange-600 bg-clip-text text-transparent">
               {t('features_title')}
             </h2>
             <h3 className="text-2xl xl:text-3xl font-semibold text-orange-700 mt-4">

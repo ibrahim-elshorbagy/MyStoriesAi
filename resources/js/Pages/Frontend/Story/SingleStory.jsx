@@ -27,7 +27,7 @@ export default function SingleStory({ story }) {
         {/* Floating Background Orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
           <div className="absolute top-20 -right-40 w-96 h-96 bg-gradient-to-br from-orange-300/20 to-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-32 -left-40 w-80 h-80 bg-gradient-to-tr from-green-400/20 to-green-200/10 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-32 -left-40 w-80 h-80 bg-gradient-to-tr from-green-500/20 to-green-200/10 rounded-full blur-3xl"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-yellow-300/15 to-orange-300/10 rounded-full blur-2xl"></div>
         </div>
 
@@ -174,7 +174,7 @@ export default function SingleStory({ story }) {
                           href={story.pdf_en}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white text-sm md:text-base font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                          className="inline-flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-500 hover:to-green-500 text-white text-sm md:text-base font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                         >
                           <i className="fa-solid fa-file-pdf text-base md:text-lg"></i>
                           PDF (English)

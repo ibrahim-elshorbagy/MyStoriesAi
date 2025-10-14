@@ -6,10 +6,10 @@ export default function AgeCategoriesSection({ categories }) {
   const { t } = useTrans();
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-neutral-50 pb-32">
       <div className="flex flex-col items-center gap-6 md:gap-8 max-w-custom mx-auto px-6">
         <div className="text-center">
-          <h2 className="text-4xl xl:text-6xl pb-2 leading-normal font-bold bg-gradient-to-r from-neutral-700 to-orange-600 bg-clip-text text-transparent w-fit mx-auto">
+          <h2 className="text-4xl xl:text-6xl pb-2 leading-normal font-bold bg-gradient-to-r from-green-500 to-orange-600 bg-clip-text text-transparent w-fit mx-auto">
             {t('browse_stories_by_age')}
           </h2>
         </div>
