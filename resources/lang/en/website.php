@@ -625,5 +625,6 @@ return [
   'default_cookie_message' => 'This website uses cookies to enhance your browsing experience. By continuing to use this site, you agree to our use of cookies.',
   'accept' => 'Accept',
   'decline' => 'Decline',
+  "search" => "Search"
 
 ];

@@ -655,4 +655,6 @@ return [
   'accept' => 'قبول ',
   'decline' => 'رفض',
 
+  "search" => "بحث"
+
 ];

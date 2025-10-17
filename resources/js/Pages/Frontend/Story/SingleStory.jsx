@@ -160,7 +160,7 @@ export default function SingleStory({ story }) {
                     <div className="flex flex-wrap gap-2 md:gap-3">
                       {story.pdf_ar && (
                         <a
-                          href={story.pdf_ar}
+                          href={`/storage/${story.pdf_ar}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-sm md:text-base font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -171,7 +171,7 @@ export default function SingleStory({ story }) {
                       )}
                       {story.pdf_en && (
                         <a
-                          href={story.pdf_en}
+                          href={`/storage/${story.pdf_en}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-500 hover:to-green-500 text-white text-sm md:text-base font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
