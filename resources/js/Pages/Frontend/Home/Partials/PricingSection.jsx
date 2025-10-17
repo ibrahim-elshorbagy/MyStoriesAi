@@ -2,56 +2,56 @@ import React from "react";
 import { useTrans } from "@/Hooks/useTrans";
 import { Link } from "@inertiajs/react";
 
-const PRICING = [
-  {
-    key: "pdf",
-    title: "pricing_pdf_title",
-    price: "pricing_pdf_price",
-    desc: "pricing_pdf_desc",
-    btn: "pricing_pdf_btn",
-    features: [
-      "plan_1_feature_1",
-      "plan_1_feature_2",
-      "plan_1_feature_3",
-    ],
-    cardClass: "border border-gray-200 bg-white",
-    btnClass: "bg-gray-400 hover:bg-gray-500 text-white",
-  },
-  {
-    key: "softcover",
-    title: "pricing_soft_title",
-    price: "pricing_soft_price",
-    desc: "pricing_soft_desc",
-    btn: "pricing_soft_btn",
-    features: [
-      "plan_2_feature_1",
-      "plan_2_feature_2",
-      "plan_2_feature_3",
-      "plan_2_feature_4",
-    ],
-    cardClass: "border-2 border-teal-300 bg-gradient-to-b from-blue-50 via-purple-50 to-white relative shadow-2xl scale-105 z-10",
-    btnClass: "bg-gradient-to-r from-teal-400 to-purple-500 hover:from-teal-500 hover:to-purple-600 text-white font-bold shadow-lg",
-    badge: true,
-  },
-  {
-    key: "hardcover",
-    title: "pricing_hard_title",
-    price: "pricing_hard_price",
-    desc: "pricing_hard_desc",
-    btn: "pricing_hard_btn",
-    features: [
-      "plan_3_feature_1",
-      "plan_3_feature_2",
-      "plan_3_feature_3",
-      "plan_3_feature_4",
-    ],
-    cardClass: "border border-yellow-200 bg-gradient-to-b from-yellow-50 to-white",
-    btnClass: "bg-gradient-to-r from-yellow-400 to-blue-700 hover:from-yellow-500 hover:to-blue-800 text-white",
-  },
-];
 
-export default function PricingSection() {
+export default function PricingSection({ settings = {} }) {
   const { t } = useTrans();
+  const PRICING = [
+    {
+      key: "pdf",
+      title: "pricing_pdf_title",
+      price: settings.pdf_price || t("pricing_pdf_price"),
+      desc: "pricing_pdf_desc",
+      btn: "pricing_pdf_btn",
+      features: [
+        "plan_1_feature_1",
+        "plan_1_feature_2",
+        "plan_1_feature_3",
+      ],
+      cardClass: "border border-gray-200 bg-white",
+      btnClass: "bg-gray-400 hover:bg-gray-500 text-white",
+    },
+    {
+      key: "softcover",
+      title: "pricing_soft_title",
+      price: settings.softcover_price || t("pricing_soft_price"),
+      desc: "pricing_soft_desc",
+      btn: "pricing_soft_btn",
+      features: [
+        "plan_2_feature_1",
+        "plan_2_feature_2",
+        "plan_2_feature_3",
+        "plan_2_feature_4",
+      ],
+      cardClass: "border-2 border-teal-300 bg-gradient-to-b from-blue-50 via-purple-50 to-white relative shadow-2xl scale-105 z-10",
+      btnClass: "bg-gradient-to-r from-teal-400 to-purple-500 hover:from-teal-500 hover:to-purple-600 text-white font-bold shadow-lg",
+      badge: true,
+    },
+    {
+      key: "hardcover",
+      title: "pricing_hard_title",
+      price: settings.hardcover_price || t("pricing_hard_price"),
+      desc: "pricing_hard_desc",
+      btn: "pricing_hard_btn",
+      features: [
+        "plan_3_feature_1",
+        "plan_3_feature_2",
+        "plan_3_feature_3",
+        "plan_3_feature_4",
+      ],
+      cardClass: "border border-yellow-200 bg-gradient-to-b from-yellow-50 to-white",
+      btnClass: "bg-gradient-to-r from-yellow-400 to-blue-700 hover:from-yellow-500 hover:to-blue-800 text-white",
+    },
+  ];
 
   return (
     <>

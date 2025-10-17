@@ -7,6 +7,7 @@ use App\Models\Admin\SiteSetting\Faq;
 use App\Models\Admin\SiteSetting\FaqCategory;
 use App\Models\Admin\Story\Story;
 use App\Models\Admin\Story\Category\AgeCategory;
+use App\Models\Admin\SiteSetting\SiteSetting;
 
 class HomeController extends Controller
 {
@@ -19,11 +20,13 @@ class HomeController extends Controller
       ->take(3)
       ->get();
     $categories = AgeCategory::all();
+    $settings = SiteSetting::all()->pluck('value', 'key')->toArray();
 
     return inertia("Frontend/Home/Home", [
       'faqs' => $faqs,
       'stories' => $stories,
       'categories' => $categories,
+      'settings' => $settings,
     ]);
   }
 

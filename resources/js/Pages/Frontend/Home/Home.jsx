@@ -9,7 +9,7 @@ import PricingSection from './Partials/PricingSection';
 import FAQs from './Partials/FAQs';
 import { useTrans } from '@/Hooks/useTrans';
 
-export default function Home({ stories, faqs, categories }) {
+export default function Home({ stories, faqs, categories, settings }) {
     const { t } = useTrans();
 
   return (
@@ -20,7 +20,7 @@ export default function Home({ stories, faqs, categories }) {
       <FeaturesSection />
       <StoriesSection stories={stories} />
       <AgeCategoriesSection categories={categories} />
-      <PricingSection />
+      <PricingSection settings={settings} />
       <FAQs faqs={faqs} />
     </SiteLayout>
   );

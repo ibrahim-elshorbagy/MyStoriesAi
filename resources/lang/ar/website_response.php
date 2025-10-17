@@ -157,6 +157,10 @@ return [
   'settings_updated_title' => 'تم التحديث',
   'settings_updated_message' => 'تم حفظ إعدادات الموقع بنجاح',
 
+  // Pricing Settings Responses
+  'pricing_updated_title' => 'تم تحديث التسعير',
+  'pricing_updated_message' => 'تم تحديث إعدادات التسعير بنجاح.',
+
   // FAQ Responses
   'faq_created_title' => 'تم إنشاء السؤال الشائع',
   'faq_created_message' => 'تم إنشاء السؤال الشائع بنجاح.',

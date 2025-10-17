@@ -154,6 +154,10 @@ return [
   'settings_updated_title' => 'Updated',
   'settings_updated_message' => 'Site settings have been saved successfully',
 
+  // Pricing Settings Responses
+  'pricing_updated_title' => 'Pricing Updated',
+  'pricing_updated_message' => 'Pricing settings have been updated successfully.',
+
   // FAQ Responses
   'faq_created_title' => 'FAQ Created',
   'faq_created_message' => 'FAQ has been created successfully.',

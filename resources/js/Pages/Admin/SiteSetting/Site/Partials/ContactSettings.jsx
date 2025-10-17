@@ -266,7 +266,7 @@ export default function ContactSettings({ settings }) {
               leave="transition ease-in-out"
               leaveTo="opacity-0"
             >
-              <p className="text-sm text-blue-600 dark:text-blue-400 flex items-center gap-1">
+              <p className="text-sm text-orange-600 dark:text-orange-400 flex items-center gap-1">
                 <i className="fa-solid fa-check"></i> {t('saved_successfully')}
               </p>
             </Transition>

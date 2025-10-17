@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useTrans } from '@/Hooks/useTrans';
 import AppLayout from '@/Layouts/AppLayout';
 import ContactSettings from './Partials/ContactSettings';
+import PricingSettings from './Partials/PricingSettings';
 
 export default function SiteSettings({ settings = {}, timezones = [] }) {
   const { t } = useTrans();
@@ -14,6 +15,7 @@ export default function SiteSettings({ settings = {}, timezones = [] }) {
 
   const menuItems = [
     { id: 'contact', icon: 'fa-solid fa-phone', label: t('contact_info') },
+    { id: 'pricing', icon: 'fa-solid fa-dollar-sign', label: t('pricing_settings') },
   ];
 
   return (
@@ -25,9 +27,6 @@ export default function SiteSettings({ settings = {}, timezones = [] }) {
           <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
             {t('site_settings')}
           </h1>
-          <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-            {t('manage_site_settings')}
-          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -62,6 +61,9 @@ export default function SiteSettings({ settings = {}, timezones = [] }) {
           <div className="lg:col-span-2 min-h-[60vh]">
             {activeSection === 'contact' && (
               <ContactSettings settings={settings} />
+            )}
+            {activeSection === 'pricing' && (
+              <PricingSettings settings={settings} />
             )}
           </div>
         </div>

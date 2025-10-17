@@ -115,9 +115,9 @@ return [
   'block_users' => 'Block Users',
   'unblock_users' => 'Unblock Users',
   'delete_users' => 'Delete Users',
-  "per_page"=>'Per Page',
-  "sort"=>'Sort',
-  "by"=>"by",
+  "per_page" => 'Per Page',
+  "sort" => 'Sort',
+  "by" => "by",
 
   /* Story Management */
   'stories' => 'Stories',
@@ -173,17 +173,17 @@ return [
   'files' => 'Files',
   'view_pdf' => 'View PDF',
 
-  "descending"=>"Descending",
-  "ascending"=>"Ascending",
-  "title"=>"Title",
-  "items"=>"Items",
-  "item"=>"Item",
-  "save"=>"Save",
-  "saving"=>"Saving...",
-  "edit"=>"Edit",
-  "delete"=>"Delete",
-  "serial"=>"Serial",
-  "no_items_found"=>"No Items Found",
+  "descending" => "Descending",
+  "ascending" => "Ascending",
+  "title" => "Title",
+  "items" => "Items",
+  "item" => "Item",
+  "save" => "Save",
+  "saving" => "Saving...",
+  "edit" => "Edit",
+  "delete" => "Delete",
+  "serial" => "Serial",
+  "no_items_found" => "No Items Found",
 
 
   // User Management Bulk Actions
@@ -472,12 +472,12 @@ return [
   'confirm_delete_category' => 'Are you sure you want to delete this category?',
   'confirm_delete_categories' => 'Are you sure you want to delete the selected categories?',
   'category_has_pages' => 'This category contains pages and cannot be deleted.',
-    'categories_have_pages' => 'Some selected categories contain pages and cannot be deleted.',
+  'categories_have_pages' => 'Some selected categories contain pages and cannot be deleted.',
 
 
 
   /* Site Settings Contact */
-  "site_settings"=>"Site Settings",
+  "site_settings" => "Site Settings",
   'contact_info' => 'Contact Information',
   'contact_info_description' => 'Manage your contact details and social media links',
   'support_whatsapp' => 'WhatsApp Number',
@@ -494,6 +494,13 @@ return [
   'snapchat_link' => 'Snapchat Link',
   'pinterest_link' => 'Pinterest Link',
   'social_media_links' => 'Social Media Links',
+
+  /* Pricing Settings */
+  'pricing_settings' => 'Pricing Settings',
+  'pdf_price' => 'PDF Price',
+  'price' => 'Price',
+  'softcover_price' => 'Softcover Price',
+  'hardcover_price' => 'Hardcover Price',
 
   /* Footer */
   'MyStoriesAi_description' => 'Towards transforming your ideas into unforgettable stories. Quickly, with a human voice, and in a wonderful style.',

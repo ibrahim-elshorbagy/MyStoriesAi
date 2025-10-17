@@ -478,6 +478,13 @@ return [
   'pinterest_link' => 'رابط بينترست',
   'social_media_links' => 'روابط وسائل التواصل الاجتماعي',
 
+  /* Pricing Settings */
+  'pricing_settings' => 'إعدادات التسعير',
+  'pdf_price' => 'سعر PDF',
+  'price' => 'سعر',
+  'softcover_price' => 'سعر الغلاف الطري',
+  'hardcover_price' => 'سعر الغلاف الصلب',
+
   /* Footer */
   'MyStoriesAi_description' => 'نحو تحويل أفكارك إلى قصص لا تُنسى. بسرعة، بصوت بشري، وبأسلوب رائع.',
   'footer_logo_alt' => 'شعار ماي ستوريز آي',
