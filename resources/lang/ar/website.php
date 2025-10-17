@@ -485,6 +485,24 @@ return [
   'softcover_price' => 'سعر الغلاف الطري',
   'hardcover_price' => 'سعر الغلاف الصلب',
 
+  /* Delivery Options */
+  'delivery_options' => 'خيارات التوصيل',
+  'delivery_options_management' => 'إدارة خيارات التوصيل',
+  'create_delivery_option' => 'إنشاء خيار توصيل',
+  'edit_delivery_option' => 'تعديل خيار التوصيل',
+  'delete_delivery_option' => 'حذف خيار التوصيل',
+  'delivery_option_city' => 'المدينة',
+  'delivery_option_price' => 'السعر',
+  'city_name_ar' => 'اسم المدينة بالعربية',
+  'city_name_en' => 'اسم المدينة بالإنجليزية',
+  'enter_arabic_city' => 'أدخل اسم المدينة بالعربية',
+  'enter_english_city' => 'أدخل اسم المدينة بالإنجليزية',
+  'confirm_delete_delivery_option' => 'هل أنت متأكد من حذف هذا الخيار التوصيل؟',
+  'confirm_delete_delivery_options' => 'هل أنت متأكد من حذف خيارات التوصيل المحددة؟',
+  'delivery_option_has_orders' => 'هذا الخيار التوصيل له طلبات مرتبطة ولا يمكن حذفه.',
+  'delivery_options_have_orders' => 'بعض خيارات التوصيل المحددة لها طلبات مرتبطة ولا يمكن حذفها.',
+  'search_delivery_options' => 'البحث في خيارات التوصيل...',
+
   /* Footer */
   'MyStoriesAi_description' => 'نحو تحويل أفكارك إلى قصص لا تُنسى. بسرعة، بصوت بشري، وبأسلوب رائع.',
   'footer_logo_alt' => 'شعار ماي ستوريز آي',

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Management\UserManagementController;
 use App\Http\Controllers\Admin\SiteSetting\SiteSettingsController;
 use App\Http\Controllers\Admin\Story\Category\AgeCategoryController;
+use App\Http\Controllers\Admin\SiteSetting\DeliveryOptionController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
@@ -35,6 +36,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('/dashboard')->group(function 
   Route::post('/admin/age-categories', [AgeCategoryController::class, 'store'])->name('admin.age-categories.store');
   Route::put('/admin/age-categories/{ageCategory}', [AgeCategoryController::class, 'update'])->name('admin.age-categories.update');
   Route::delete('/admin/age-categories/{ageCategory}', [AgeCategoryController::class, 'destroy'])->name('admin.age-categories.destroy');
-  Route::delete('/admin/age-categories/bulk/delete', [AgeCategoryController::class, 'bulkDelete'])->name('admin.age-categories.bulk.delete');
+  Route::delete('/admin/age-categories/bulk/delete', action: [AgeCategoryController::class, 'bulkDelete'])->name('admin.age-categories.bulk.delete');
+
+  // Delivery Options routes
+  Route::get('/admin/delivery-options', [DeliveryOptionController::class, 'index'])->name('admin.delivery-options.index');
+  Route::post('/admin/delivery-options', [DeliveryOptionController::class, 'store'])->name('admin.delivery-options.store');
+  Route::put('/admin/delivery-options/{deliveryOption}', [DeliveryOptionController::class, 'update'])->name('admin.delivery-options.update');
+  Route::delete('/admin/delivery-options/{deliveryOption}', [DeliveryOptionController::class, 'destroy'])->name('admin.delivery-options.destroy');
+  Route::delete('/admin/delivery-options/bulk/delete', action: [DeliveryOptionController::class, 'bulkDelete'])->name('admin.delivery-options.bulk.delete');
 
 });

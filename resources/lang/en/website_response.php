@@ -187,4 +187,15 @@ return [
   'age_categories_deleted_message' => ':count age categories have been deleted successfully.',
   'age_category_name_exists' => 'Age category name already exists.',
 
+  // Delivery Options Responses
+  'delivery_option_created_title' => 'Delivery Option Created',
+  'delivery_option_created_message' => 'Delivery option has been created successfully.',
+  'delivery_option_updated_title' => 'Delivery Option Updated',
+  'delivery_option_updated_message' => 'Delivery option has been updated successfully.',
+  'delivery_option_deleted_title' => 'Delivery Option Deleted',
+  'delivery_option_deleted_message' => 'Delivery option has been deleted successfully.',
+  'delivery_options_deleted_title' => 'Delivery Options Deleted',
+  'delivery_options_deleted_message' => ':count delivery options have been deleted successfully.',
+  'delivery_option_city_exists' => 'Delivery option city already exists.',
+
 ];

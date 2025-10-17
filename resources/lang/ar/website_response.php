@@ -190,4 +190,15 @@ return [
   'age_categories_deleted_message' => 'تم حذف :count فئات عمر بنجاح.',
   'age_category_name_exists' => 'اسم فئة العمر موجود بالفعل.',
 
+  // Delivery Options Responses
+  'delivery_option_created_title' => 'تم إنشاء خيار التوصيل',
+  'delivery_option_created_message' => 'تم إنشاء خيار التوصيل بنجاح.',
+  'delivery_option_updated_title' => 'تم تحديث خيار التوصيل',
+  'delivery_option_updated_message' => 'تم تحديث خيار التوصيل بنجاح.',
+  'delivery_option_deleted_title' => 'تم حذف خيار التوصيل',
+  'delivery_option_deleted_message' => 'تم حذف خيار التوصيل بنجاح.',
+  'delivery_options_deleted_title' => 'تم حذف خيارات التوصيل',
+  'delivery_options_deleted_message' => 'تم حذف :count خيارات توصيل بنجاح.',
+  'delivery_option_city_exists' => 'خيار التوصيل للمدينة موجود بالفعل.',
+
 ];

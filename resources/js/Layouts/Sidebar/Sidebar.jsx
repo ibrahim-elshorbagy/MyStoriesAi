@@ -101,12 +101,26 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
       ],
     },
 
+    // Site Settings group
     {
       name: t('site_settings'),
       icon: 'fa-cogs',
-      href: route('admin.site-settings.index'),
       route: 'admin.site-settings.*',
-      role: 'admin'
+      role: 'admin',
+      submenu: [
+        {
+          name: t('site_settings'),
+          href: route('admin.site-settings.index'),
+          route: 'admin.site-settings.*',
+          icon: 'fa-cogs'
+        },
+        {
+          name: t('delivery_options'),
+          href: route('admin.delivery-options.index'),
+          route: 'admin.delivery-options.*',
+          icon: 'fa-truck'
+        },
+      ],
     },
     // { name: t('settings'), icon: 'fa-gear', href: route('profile.edit'), route: 'profile', role: 'admin' },
   ];

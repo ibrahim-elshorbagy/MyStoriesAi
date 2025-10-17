@@ -502,6 +502,24 @@ return [
   'softcover_price' => 'Softcover Price',
   'hardcover_price' => 'Hardcover Price',
 
+  /* Delivery Options */
+  'delivery_options' => 'Delivery Options',
+  'delivery_options_management' => 'Delivery Options Management',
+  'create_delivery_option' => 'Create Delivery Option',
+  'edit_delivery_option' => 'Edit Delivery Option',
+  'delete_delivery_option' => 'Delete Delivery Option',
+  'delivery_option_city' => 'City',
+  'delivery_option_price' => 'Price',
+  'city_name_ar' => 'City Name (Arabic)',
+  'city_name_en' => 'City Name (English)',
+  'enter_arabic_city' => 'Enter city name in Arabic',
+  'enter_english_city' => 'Enter city name in English',
+  'confirm_delete_delivery_option' => 'Are you sure you want to delete this delivery option?',
+  'confirm_delete_delivery_options' => 'Are you sure you want to delete the selected delivery options?',
+  'delivery_option_has_orders' => 'This delivery option has associated orders and cannot be deleted.',
+  'delivery_options_have_orders' => 'Some selected delivery options have associated orders and cannot be deleted.',
+  'search_delivery_options' => 'Search delivery options...',
+
   /* Footer */
   'MyStoriesAi_description' => 'Towards transforming your ideas into unforgettable stories. Quickly, with a human voice, and in a wonderful style.',
   'footer_logo_alt' => 'MyStoriesAi Logo',
