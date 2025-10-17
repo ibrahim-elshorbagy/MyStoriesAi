@@ -8,7 +8,8 @@ export default function AppModal({
   iconColor = "text-orange-500",
   children,
   size = "md",
-  danger = false
+  danger = false,
+  showCloseButton = true,
 }) {
   if (!isOpen) return null;
 
@@ -39,13 +40,13 @@ export default function AppModal({
             {icon && <i className={`fa-solid ${icon} ${iconColor} text-xl`}></i>}
             <h2 className="text-xl font-bold dark:text-neutral-100 text-neutral-900">{title}</h2>
           </div>
-          <button
+          {showCloseButton && (<button
             onClick={onClose}
             className="rounded-full py-1 px-2 text-neutral-600 hover:bg-neutral-300 dark:text-neutral-400 dark:hover:bg-neutral-800"
           >
             <i className="fa-solid fa-times"></i>
             <span className="sr-only">Close</span>
-          </button>
+          </button>)}
         </div>
 
         {/* Modal Content */}

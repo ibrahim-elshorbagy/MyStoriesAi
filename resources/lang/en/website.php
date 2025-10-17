@@ -611,4 +611,19 @@ return [
   'confirm_delete_age_category' => 'Are you sure you want to delete this age category?',
   'confirm_delete_age_categories' => 'Are you sure you want to delete the selected age categories?',
 
+
+  /* Cookie Settings */
+  'cookie_settings' => 'Cookie Settings',
+  'cookie_settings_description' => 'Manage cookie consent messages for your website',
+  'cookie_message_ar' => 'Cookie Message (Arabic)',
+  'cookie_message_en' => 'Cookie Message (English)',
+  'enter_cookie_message_ar' => 'Enter cookie consent message in Arabic',
+  'enter_cookie_message_en' => 'Enter cookie consent message in English',
+  'accept_cookies' => 'Accept Cookies',
+  'decline_cookies' => 'Decline Cookies',
+  'cookie_consent_title' => 'Cookie Consent',
+  'default_cookie_message' => 'This website uses cookies to enhance your browsing experience. By continuing to use this site, you agree to our use of cookies.',
+  'accept' => 'Accept',
+  'decline' => 'Decline',
+
 ];

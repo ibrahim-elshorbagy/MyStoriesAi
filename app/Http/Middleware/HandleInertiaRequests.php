@@ -50,9 +50,22 @@ class HandleInertiaRequests extends Middleware
       'available_locales' => ['en', 'ar'],
       'locale' => fn () => app()->getLocale(),
       'csrf_token' => csrf_token(),
+      'cookie_data' => $this->getCookieData(),
       'footer' => $this->getFooterData(),
-
     ];
+  }
+
+  /**
+   * Get cookie data
+   */
+  private function getCookieData(): array
+  {
+    return \App\Models\Admin\SiteSetting\SiteSetting::whereIn('key', [
+      'cookie_message_ar',
+      'cookie_message_en',
+    ])
+      ->pluck('value', 'key')
+      ->toArray();
   }
 
   /**

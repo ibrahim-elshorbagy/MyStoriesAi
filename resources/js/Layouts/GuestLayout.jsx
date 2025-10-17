@@ -2,6 +2,7 @@ import React from 'react';
 import { Head, usePage } from '@inertiajs/react';
 import { useTrans } from '@/Hooks/useTrans';
 import Header from '@/Layouts/SiteLayout/Header';
+import CookieModal from '@/Components/CookieModal';
 
 export default function GuestLayout({ children, title = 'Authentication' }) {
   const { locale } = usePage().props;
@@ -81,7 +82,7 @@ export default function GuestLayout({ children, title = 'Authentication' }) {
         </div>
       </main>
 
-
+      <CookieModal />
     </div>
   );
 }

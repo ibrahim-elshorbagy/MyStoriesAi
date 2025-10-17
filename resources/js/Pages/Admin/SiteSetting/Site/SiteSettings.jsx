@@ -4,6 +4,7 @@ import { useTrans } from '@/Hooks/useTrans';
 import AppLayout from '@/Layouts/AppLayout';
 import ContactSettings from './Partials/ContactSettings';
 import PricingSettings from './Partials/PricingSettings';
+import CookieSettings from './Partials/CookieSettings';
 
 export default function SiteSettings({ settings = {}, timezones = [] }) {
   const { t } = useTrans();
@@ -16,6 +17,7 @@ export default function SiteSettings({ settings = {}, timezones = [] }) {
   const menuItems = [
     { id: 'contact', icon: 'fa-solid fa-phone', label: t('contact_info') },
     { id: 'pricing', icon: 'fa-solid fa-dollar-sign', label: t('pricing_settings') },
+    { id: 'cookies', icon: 'fa-solid fa-cookie-bite', label: t('cookie_settings') },
   ];
 
   return (
@@ -64,6 +66,9 @@ export default function SiteSettings({ settings = {}, timezones = [] }) {
             )}
             {activeSection === 'pricing' && (
               <PricingSettings settings={settings} />
+            )}
+            {activeSection === 'cookies' && (
+              <CookieSettings settings={settings} />
             )}
           </div>
         </div>

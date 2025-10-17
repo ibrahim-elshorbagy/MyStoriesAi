@@ -4,6 +4,7 @@ import { usePage, Link } from '@inertiajs/react';
 import Toastify from './Partials/Toastify';
 import { useTrans } from '@/Hooks/useTrans';
 import SidebarProfileMenu from './Sidebar/SidebarProfileMenu';
+import CookieModal from '@/Components/CookieModal';
 
 export default function AppLayout({ children, title }) {
   const { locale } = usePage().props;
@@ -57,6 +58,7 @@ export default function AppLayout({ children, title }) {
       </div>
 
       <Toastify />
+      <CookieModal />
     </div>
   );
 }

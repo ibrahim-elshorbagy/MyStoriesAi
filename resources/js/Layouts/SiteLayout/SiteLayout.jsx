@@ -4,6 +4,7 @@ import Toastify from '../Partials/Toastify';
 import Header from './Header';
 import Footer from './Footer';
 import { useTrans } from '@/Hooks/useTrans';
+import CookieModal from '@/Components/CookieModal';
 
 export default function SiteLayout({ children, title }) {
   const { locale } = usePage().props;
@@ -15,13 +16,13 @@ export default function SiteLayout({ children, title }) {
       {/* Header */}
       <Header />
 
-      {/* Main content - ADD PADDING TOP HERE */}
       <main className="pt-20 md:pt-20">{children}</main>
 
       {/* Footer */}
       <Footer />
 
       <Toastify />
+      <CookieModal />
     </div>
   );
 }
