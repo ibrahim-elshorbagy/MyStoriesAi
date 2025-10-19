@@ -39,7 +39,7 @@ export default function FAQs({ categories }) {
                 <div key={category.id} className="flex flex-col gap-6">
                   {/* Category Header */}
                   <div className="text-center">
-                    <h3 className="text-2xl xl:text-3xl font-bold text-neutral-800 dark:text-neutral-200">
+                    <h3 className="text-2xl xl:text-3xl font-bold text-neutral-800 ">
                       {category.name_value}
                     </h3>
                     <div className="w-24 h-1 bg-orange-500 mx-auto mt-2 rounded-full"></div>
@@ -52,7 +52,7 @@ export default function FAQs({ categories }) {
                         <AccordionGroup>
                           {category.faqs.map((faq, index) => (
                             <Accordion key={faq.id} title={faq.question_value} className="w-full">
-                              <div className="text-neutral-600 leading-relaxed dark:text-neutral-300">
+                              <div className="text-neutral-600 leading-relaxed ">
                                 {faq.answer_value}
                               </div>
                             </Accordion>
@@ -61,14 +61,14 @@ export default function FAQs({ categories }) {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center text-neutral-500 dark:text-neutral-400">
+                    <div className="text-center text-neutral-500 ">
                       {t('no_faqs_in_category', { category: category.name_value })}
                     </div>
                   )}
                 </div>
               ))
             ) : (
-              <div className="text-center text-neutral-500 dark:text-neutral-400">
+              <div className="text-center text-neutral-500 ">
                 {t('no_faq_categories')}
               </div>
             )}
