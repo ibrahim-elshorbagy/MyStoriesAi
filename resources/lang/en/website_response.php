@@ -198,4 +198,8 @@ return [
   'delivery_options_deleted_message' => ':count delivery options have been deleted successfully.',
   'delivery_option_city_exists' => 'Delivery option city already exists.',
 
+  // Order Management Responses
+  'order_created_title' => 'Order Created',
+  'order_created_message' => 'Your order has been created successfully.',
+
 ];

@@ -202,5 +202,23 @@ return [
         "category_id"=>"الفئة",
         "image"=>"الصورة",
 
+        // Order validation attributes
+        'child_name' => 'اسم الطفل',
+        'child_age' => 'عمر الطفل',
+        'language' => 'اللغة',
+        'child_gender' => 'جنس الطفل',
+        'format' => 'التنسيق',
+        'value' => 'القيمة',
+        'value.*' => 'القيمة',
+        'custom_value' => 'القيمة المخصصة',
+        'child_image' => 'صورة الطفل',
+        'child_image_base64' => 'صورة الطفل',
+        'hair_color' => 'لون الشعر',
+        'hair_style' => 'تسريحة الشعر',
+        'eye_color' => 'لون العيون',
+        'skin_tone' => 'لون البشرة',
+        'clothing_description' => 'وصف الملابس',
+        'customer_note' => 'ملاحظات',
+
     ],
 ];

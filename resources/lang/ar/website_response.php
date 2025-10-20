@@ -201,4 +201,8 @@ return [
   'delivery_options_deleted_message' => 'تم حذف :count خيارات توصيل بنجاح.',
   'delivery_option_city_exists' => 'خيار التوصيل للمدينة موجود بالفعل.',
 
+  // Order Management Responses
+  'order_created_title' => 'تم إنشاء الطلب',
+  'order_created_message' => 'تم إنشاء طلبك بنجاح.',
+
 ];

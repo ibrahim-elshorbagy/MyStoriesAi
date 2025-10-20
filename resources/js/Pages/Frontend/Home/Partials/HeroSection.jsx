@@ -140,13 +140,17 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Single CTA Button - Enhanced Styling */}
-            <div className="flex items-center justify-center lg:justify-start pt-6">
+            {/* CTA Buttons - Enhanced Styling */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-6">
               <Link
-                size='large'
-                as={Link}
-                // href={route('stories.create')}
+                href={route('frontend.order.create')}
                 className="px-12 py-4 text-lg font-bold bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-300 hover:to-orange-400 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
+              >
+                {t('new_story_now')}
+              </Link>
+              <Link
+                href={route('stories')}
+                className="px-12 py-4 text-lg font-bold bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 backdrop-blur-sm shadow-2xl shadow-black/20 hover:shadow-black/30 transform hover:scale-105 transition-all duration-300 rounded-md"
               >
                 {t('explore_our_stories')}
               </Link>

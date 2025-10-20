@@ -201,6 +201,24 @@ return [
         "category_id"=>"Category",
         "image"=>"Image",
 
+        // Order validation attributes
+        'child_name' => 'Child Name',
+        'child_age' => 'Child Age',
+        'language' => 'Language',
+        'child_gender' => 'Child Gender',
+        'format' => 'Format',
+        'value' => 'Value',
+        'value.*' => 'Value',
+        'custom_value' => 'Custom Value',
+        'child_image' => 'Child Image',
+        'child_image_base64' => 'Child Image',
+        'hair_color' => 'Hair Color',
+        'hair_style' => 'Hair Style',
+        'eye_color' => 'Eye Color',
+        'skin_tone' => 'Skin Tone',
+        'clothing_description' => 'Clothing Description',
+        'customer_note' => 'Notes',
+
 
 
     ],
