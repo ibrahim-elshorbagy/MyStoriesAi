@@ -775,6 +775,8 @@ return [
   'new_status' => 'New Status',
   'chat_on_whatsapp' => 'Chat on WhatsApp',
   'pdf_uploaded' => 'PDF Uploaded',
+  'story_pdf' => 'Story PDF',
+  'pdf_ready' => 'PDF Ready for Download',
   'update_pdf' => 'Update PDF',
   "update_status" => "Update Status",
   'no_payment'=>'No Payment',

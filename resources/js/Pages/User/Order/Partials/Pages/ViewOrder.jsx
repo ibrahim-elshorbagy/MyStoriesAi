@@ -39,7 +39,7 @@ export default function ViewOrder({ auth, order }) {
       <Head title={`${t('order')} #${order.id}`} />
 
       <div className="m-3 xl:m-5">
-        <div className="max-w-6xl mx-auto space-y-6">
+        <div className="mx-auto space-y-6">
           {/* Header */}
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
@@ -54,16 +54,38 @@ export default function ViewOrder({ auth, order }) {
                 {t('order')} #{order.id}
               </h1>
             </div>
-            <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${
-              order.status === 'completed' ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' :
-              order.status === 'processing' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
-              order.status === 'pending' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400' :
-              'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
-            }`}>
+            <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${order.status === 'completed' ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' :
+                order.status === 'processing' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
+                  order.status === 'pending' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400' :
+                    'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
+              }`}>
               {statusOptions[order.status]}
             </span>
           </div>
 
+          {/* PDF Download */}
+          {order.pdf_path && (
+            <div className="bg-white dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4">{t('story_pdf')}</h3>
+              <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <i className="fas fa-file-pdf text-green-600 dark:text-green-400 mx-2"></i>
+                    <span className="text-green-800 dark:text-green-200">{t('pdf_ready')}</span>
+                  </div>
+                  <a
+                    href={`/storage/${order.pdf_path}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-3 py-1 border border-transparent text-sm leading-4 font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:bg-green-900 dark:text-green-200 dark:hover:bg-green-800 transition-colors duration-200"
+                  >
+                    <i className="fa fa-external-link-alt mx-1"></i>
+                    {t('view_pdf')}
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Order Details */}
             <div className="bg-white dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
@@ -295,12 +317,11 @@ export default function ViewOrder({ auth, order }) {
                         </div>
                         <div>
                           <span className="font-medium text-neutral-700 dark:text-neutral-300 block">{t('status')}:</span>
-                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                            payment.status === 'paid' ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' :
-                            payment.status === 'pending' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
-                            payment.status === 'failed' ? 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400' :
-                            'bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400'
-                          }`}>
+                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${payment.status === 'paid' ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' :
+                              payment.status === 'pending' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
+                                payment.status === 'failed' ? 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400' :
+                                  'bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400'
+                            }`}>
                             {t(`payment_status_${payment.status}`)}
                           </span>
                         </div>
@@ -327,6 +348,8 @@ export default function ViewOrder({ auth, order }) {
               </div>
             )}
           </div>
+
+
         </div>
       </div>
     </AppLayout>

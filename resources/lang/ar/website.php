@@ -812,12 +812,14 @@ return [
   'new_status' => 'الحالة الجديدة',
   'chat_on_whatsapp' => 'الدردشة على واتساب',
   'pdf_uploaded' => 'تم رفع PDF',
+  'story_pdf' => 'PDF القصة',
+  'pdf_ready' => 'PDF جاهز للتحميل',
   'update_pdf' => 'تحديث PDF',
   "update_status" => "تحديث الحالة",
   'no_payment'=>'لا توجد مدفوعات لهذا الطلب.',
   'select'=>'اختر',
   "selected_file" => "الملف المختار",
-  
+
   // Navigation
   'orders_management' => 'إدارة الطلبات',
   'my_orders' => 'طلباتي',
