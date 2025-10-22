@@ -15,8 +15,6 @@ export default function LanguageToggle({ className = '' }) {
   };
   const page = usePage()
 
-  console.log("CSRF Token:", page.props.csrf_token);
-
 
   return (
     <form
