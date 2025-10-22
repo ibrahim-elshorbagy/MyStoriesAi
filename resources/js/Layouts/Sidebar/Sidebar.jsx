@@ -101,6 +101,22 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
       ],
     },
 
+    // Orders group
+    {
+      name: t('orders_management'),
+      icon: 'fa-shopping-cart',
+      route: 'admin.orders.*',
+      role: 'admin',
+      submenu: [
+        {
+          name: t('orders'),
+          href: route('admin.orders.index'),
+          route: 'admin.orders.*',
+          icon: 'fa-shopping-cart'
+        },
+      ],
+    },
+
     // Site Settings group
     {
       name: t('site_settings'),

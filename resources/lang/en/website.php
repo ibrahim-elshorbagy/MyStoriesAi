@@ -649,6 +649,7 @@ return [
   'custom_learning_value' => 'Or write your custom learning value',
   'child_image' => 'Child Image',
   'upload_child_image' => 'Click to upload child image',
+  'view_full_image' => 'View Full Image',
   'additional_customizations' => 'Additional Customizations (Optional)',
   'hair_color' => 'Hair Color',
   'hair_style' => 'Hair Style',
@@ -718,14 +719,45 @@ return [
   'value' => 'Value',
   'value.*' => 'Value',
   'custom_value' => 'Custom Value',
-  'child_image' => 'Child Image',
-  'child_image_base64' => 'Child Image',
-  'hair_color' => 'Hair Color',
-  'hair_style' => 'Hair Style',
-  'eye_color' => 'Eye Color',
-  'skin_tone' => 'Skin Tone',
-  'clothing_description' => 'Clothing Description',
-  'customer_note' => 'Notes',
-  'validation_errors' => 'Validation Errors',
+
+  // Orders Management
+  'orders' => 'Orders',
+  'orders_management' => 'Orders Management',
+  'order' => 'Order',
+  'order_id' => 'Order ID',
+  'customer' => 'Customer',
+  'search_orders' => 'Search orders...',
+  'back_to_orders' => 'Back to Orders',
+  'view' => 'View',
+  'order_details' => 'Order Details',
+  'customer_information' => 'Customer Information',
+  'payment_history' => 'Payment History',
+  'transaction_id' => 'Transaction ID',
+  'notes' => 'Notes',
+  'customization' => 'Customization',
+  'appearance' => 'Appearance',
+  'accessory_description' => 'Accessory Description',
+  'personality_traits' => 'Personality Traits',
+  'moral_value' => 'Moral Value',
+  'delivery_option' => 'Delivery Option',
+  'name' => 'Name',
+  'phone' => 'Phone',
+  'email' => 'Email',
+
+  // Order Status
+  'order_status_pending' => 'Pending',
+  'order_status_processing' => 'Processing',
+  'order_status_completed' => 'Completed',
+  'order_status_cancelled' => 'Cancelled',
+
+  // Payment Status
+  'payment_status_pending' => 'Pending',
+  'payment_status_paid' => 'Paid',
+  'payment_status_failed' => 'Failed',
+  'payment_status_refunded' => 'Refunded',
+
+  // Payment Methods
+  'paymob' => 'Paymob',
+  'cash_on_delivery' => 'Cash on Delivery',
 
 ];

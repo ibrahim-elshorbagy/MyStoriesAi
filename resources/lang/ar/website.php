@@ -678,6 +678,7 @@ return [
   'custom_learning_value' => 'أو اكتب قيمة تعليمية مخصصة',
   'child_image' => 'صورة الطفل',
   'upload_child_image' => 'اضغط لتحميل صورة الطفل',
+  'view_full_image' => 'عرض الصورة الكاملة',
   'additional_customizations' => 'تخصيصات إضافية (اختياري)',
   'hair_color' => 'لون الشعر',
   'hair_style' => 'تسريحة الشعر',
@@ -755,5 +756,45 @@ return [
   'clothing_description' => 'وصف الملابس',
   'customer_note' => 'ملاحظات',
   'validation_errors' => 'أخطاء التحقق',
+
+  // Orders Management
+  'orders' => 'الطلبات',
+  'orders_management' => 'إدارة الطلبات',
+  'order' => 'طلب',
+  'order_id' => 'رقم الطلب',
+  'customer' => 'العميل',
+  'search_orders' => 'البحث في الطلبات...',
+  'back_to_orders' => 'العودة للطلبات',
+  'view' => 'عرض',
+  'order_details' => 'تفاصيل الطلب',
+  'customer_information' => 'معلومات العميل',
+  'payment_history' => 'تاريخ الدفع',
+  'transaction_id' => 'رقم المعاملة',
+  'notes' => 'ملاحظات',
+  'customization' => 'التخصيص',
+  'appearance' => 'المظهر',
+  'accessory_description' => 'وصف الإكسسوارات',
+  'personality_traits' => 'سمات الشخصية',
+  'moral_value' => 'القيمة الأخلاقية',
+  'delivery_option' => 'خيار التوصيل',
+  'name' => 'الاسم',
+  'phone' => 'الهاتف',
+  'email' => 'البريد الإلكتروني',
+
+  // Order Status
+  'order_status_pending' => 'في الانتظار',
+  'order_status_processing' => 'قيد المعالجة',
+  'order_status_completed' => 'مكتمل',
+  'order_status_cancelled' => 'ملغي',
+
+  // Payment Status
+  'payment_status_pending' => 'في الانتظار',
+  'payment_status_paid' => 'مدفوع',
+  'payment_status_failed' => 'فاشل',
+  'payment_status_refunded' => 'مسترد',
+
+  // Payment Methods
+  'paymob' => 'باي موب',
+  'cash_on_delivery' => 'الدفع عند الاستلام',
 
 ];
