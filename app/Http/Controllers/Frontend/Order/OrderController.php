@@ -52,9 +52,7 @@ class OrderController extends Controller
   // Store the complete order
   public function store(Request $request)
   {
-    // Full Laravel validation
     $validated = $request->validate([
-      // Order data
       'child_name' => ['required', 'string', 'max:255'],
       'child_age' => ['required', 'integer', 'min:1'],
       'language' => ['required', 'in:arabic,english'],
@@ -73,8 +71,6 @@ class OrderController extends Controller
       'story_price' => ['required', 'numeric', 'min:0'],
       'delivery_price' => ['required', 'numeric', 'min:0'],
       'total_price' => ['required', 'numeric', 'min:0'],
-
-      // Address data (only required for non-PDF formats)
       'delivery_option_id' => ['required_unless:format,pdf', 'nullable', 'exists:delivery_options,id'],
       'area' => ['required_unless:format,pdf', 'nullable', 'string', 'max:255'],
       'street' => ['required_unless:format,pdf', 'nullable', 'string', 'max:255'],
@@ -85,15 +81,11 @@ class OrderController extends Controller
     DB::beginTransaction();
 
     try {
-      // Save child image
-      $imagePath = null;
-      if ($request->hasFile('child_image')) {
-        $imagePath = $request->file('child_image')->store('orders/child_images', 'public');
-      }
+      $userId = Auth::id();
 
-      // Create the order
+      // Step 1: Create the order first (without image)
       $order = Order::create([
-        'user_id' => Auth::id(),
+        'user_id' => $userId,
         'child_name' => $validated['child_name'],
         'child_age' => $validated['child_age'],
         'language' => $validated['language'],
@@ -101,7 +93,6 @@ class OrderController extends Controller
         'format' => $validated['format'],
         'value' => json_encode($validated['value']),
         'custom_value' => $validated['custom_value'] ?? null,
-        'child_image_path' => $imagePath,
         'status' => 'pending',
         'payment_method' => 'cod',
         'story_price' => $validated['story_price'],
@@ -115,7 +106,14 @@ class OrderController extends Controller
         'clothing_description' => $validated['clothing_description'] ?? null,
       ]);
 
-      // Create shipping address (only for non-PDF formats)
+      $imagePath = null;
+      if ($request->hasFile('child_image')) {
+        $path = "users/{$userId}/{$order->id}/images";
+        $imagePath = $request->file('child_image')->store($path, 'public');
+        $order->update(['child_image_path' => $imagePath]);
+      }
+
+      // Step 3: Create shipping address if needed
       if ($validated['format'] !== 'pdf' && !empty($validated['delivery_option_id'])) {
         $order->shippingAddress()->create([
           'delivery_option_id' => $validated['delivery_option_id'],
@@ -126,43 +124,36 @@ class OrderController extends Controller
         ]);
       }
 
-      // Send email notifications
+      // Step 4: Send notifications
       try {
-        // Send confirmation email to user
         $order->user->notify(new OrderConfirmation($order));
 
-        // Send notification to admin (always send if admin email is configured)
         $adminEmailSetting = SiteSetting::where('key', 'admin_notification_email')->first();
-
         if ($adminEmailSetting && $adminEmailSetting->value) {
-          // Create a temporary user object for admin notification
           $adminUser = new User();
           $adminUser->email = $adminEmailSetting->value;
           $adminUser->name = 'Admin';
-
           $adminUser->notify(new NotifyAdmin($order));
         }
       } catch (\Exception $e) {
-        // Log email error but don't fail the order creation
         Log::error('Failed to send order notification emails: ' . $e->getMessage());
       }
 
       DB::commit();
 
-      // Redirect to payment page
       return redirect()->route('frontend.order.payment', $order->id)
         ->with('title', __('website_response.order_created_title'))
         ->with('message', __('website_response.order_created_message'))
         ->with('status', 'success');
+
     } catch (\Exception $e) {
       DB::rollBack();
-
-      // Return validation errors with specific messages
       return back()->withErrors([
         'submit' => 'Failed to create order: ' . $e->getMessage()
       ])->withInput();
     }
   }
+
 
   // Payment Method Selection
   public function payment(Order $order)

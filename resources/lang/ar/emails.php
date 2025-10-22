@@ -18,6 +18,9 @@ return [
     // Order Emails
     'new_order_admin_subject' => 'طلب جديد تم إنشاؤه - #:id',
     'order_confirmation_subject' => 'تأكيد الطلب - #:id',
+    'payment_status_update_subject' => 'تحديث حالة الدفع - الطلب #:id',
+    'order_status_update_subject' => 'تحديث حالة الطلب - #:id',
+    'pdf_uploaded_subject' => 'قصتك جاهزة PDF - الطلب #:id',
 
     // Common
     'regards' => 'أطيب التحيات',

@@ -797,6 +797,27 @@ return [
   'paymob' => 'باي موب',
   'cash_on_delivery' => 'الدفع عند الاستلام',
 
+  // Order Management UI
+  'update_payment_status' => 'تحديث حالة الدفع',
+  'update_order_status' => 'تحديث حالة الطلب',
+  'upload_story_pdf' => 'رفع PDF القصة',
+  'select_payment' => 'اختر الدفع',
+  'select_pdf_file' => 'اختر ملف PDF',
+  'pdf_upload_helper' => 'ارفع ملف PDF القصة المكتملة',
+  'notify_user' => 'إشعار المستخدم',
+  'notify_user_pdf' => 'إشعار المستخدم بالـ PDF',
+  'updating' => 'جاري التحديث...',
+  'sending' => 'جاري الإرسال...',
+  'current_status' => 'الحالة الحالية',
+  'new_status' => 'الحالة الجديدة',
+  'chat_on_whatsapp' => 'الدردشة على واتساب',
+  'pdf_uploaded' => 'تم رفع PDF',
+  'update_pdf' => 'تحديث PDF',
+  "update_status" => "تحديث الحالة",
+  'no_payment'=>'لا توجد مدفوعات لهذا الطلب.',
+  'select'=>'اختر',
+  "selected_file" => "الملف المختار",
+  
   // Navigation
   'orders_management' => 'إدارة الطلبات',
   'my_orders' => 'طلباتي',

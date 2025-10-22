@@ -99,6 +99,10 @@ return [
   'gallery_images_uploaded_message' => 'تم تحميل صور المعرض بنجاح.',
   'pdf_uploaded_title' => 'تم تحميل ملف PDF',
   'pdf_uploaded_message' => 'تم تحميل ملف PDF بنجاح.',
+  'payment_status_updated_title' => 'تم تحديث حالة الدفع',
+  'order_status_updated_title' => 'تم تحديث حالة الطلب',
+  'notification_sent_title' => 'تم إرسال الإشعار',
+  'pdf_not_found_title' => 'ملف PDF غير موجود',
   'file_upload_error_title' => 'خطأ في تحميل الملف',
   'file_upload_error_message' => 'حدث خطأ أثناء تحميل الملف. يرجى المحاولة مرة أخرى.',
 
@@ -204,6 +208,11 @@ return [
   // Order Management Responses
   'order_created_title' => 'تم إنشاء الطلب',
   'order_created_message' => 'تم إنشاء طلبك بنجاح.',
+  'payment_status_updated' => 'تم تحديث حالة الدفع بنجاح.',
+  'order_status_updated' => 'تم تحديث حالة الطلب بنجاح.',
+  'pdf_uploaded' => 'تم رفع ملف PDF بنجاح.',
+  'pdf_not_found' => 'ملف PDF غير موجود.',
+  'notification_sent' => 'تم إرسال الإشعار بنجاح.',
 
   // Email Settings Responses
   'email_settings_updated_title' => 'تم تحديث إعدادات البريد الإلكتروني',

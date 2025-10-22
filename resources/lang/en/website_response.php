@@ -101,6 +101,10 @@ return [
   'gallery_images_uploaded_message' => 'Gallery images have been uploaded successfully.',
   'pdf_uploaded_title' => 'PDF Uploaded',
   'pdf_uploaded_message' => 'PDF file has been uploaded successfully.',
+  'payment_status_updated_title' => 'Payment Status Updated',
+  'order_status_updated_title' => 'Order Status Updated',
+  'notification_sent_title' => 'Notification Sent',
+  'pdf_not_found_title' => 'PDF Not Found',
   'file_upload_error_title' => 'File Upload Error',
   'file_upload_error_message' => 'An error occurred while uploading the file. Please try again.',
   'impersonation_return_message' => 'Successfully returned to the admin account.',
@@ -201,6 +205,11 @@ return [
   // Order Management Responses
   'order_created_title' => 'Order Created',
   'order_created_message' => 'Your order has been created successfully.',
+  'payment_status_updated' => 'Payment status updated successfully.',
+  'order_status_updated' => 'Order status updated successfully.',
+  'pdf_uploaded' => 'PDF uploaded successfully.',
+  'pdf_not_found' => 'PDF file not found.',
+  'notification_sent' => 'Notification sent successfully.',
 
   // Email Settings Responses
   'email_settings_updated_title' => 'Email Settings Updated',

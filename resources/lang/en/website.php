@@ -760,6 +760,27 @@ return [
   'paymob' => 'Paymob',
   'cash_on_delivery' => 'Cash on Delivery',
 
+  // Order Management UI
+  'update_payment_status' => 'Update Payment Status',
+  'update_order_status' => 'Update Order Status',
+  'upload_story_pdf' => 'Upload Story PDF',
+  'select_payment' => 'Select Payment',
+  'select_pdf_file' => 'Select PDF File',
+  'pdf_upload_helper' => 'Upload the completed story PDF file',
+  'notify_user' => 'Notify User',
+  'notify_user_pdf' => 'Notify User of PDF',
+  'updating' => 'Updating...',
+  'sending' => 'Sending...',
+  'current_status' => 'Current Status',
+  'new_status' => 'New Status',
+  'chat_on_whatsapp' => 'Chat on WhatsApp',
+  'pdf_uploaded' => 'PDF Uploaded',
+  'update_pdf' => 'Update PDF',
+  "update_status" => "Update Status",
+  'no_payment'=>'No Payment',
+  'select'=>"Select",
+  "selected_file" => "Selected File:",
+
   // Navigation
   'orders_management' => 'Orders Management',
   'my_orders' => 'My Orders',

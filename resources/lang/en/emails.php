@@ -18,6 +18,9 @@ return [
     // Order Emails
     'new_order_admin_subject' => 'New Order Created - #:id',
     'order_confirmation_subject' => 'Order Confirmation - #:id',
+    'payment_status_update_subject' => 'Payment Status Update - Order #:id',
+    'order_status_update_subject' => 'Order Status Update - #:id',
+    'pdf_uploaded_subject' => 'Your Story PDF is Ready - Order #:id',
 
     // Common
     'regards' => 'Best regards',

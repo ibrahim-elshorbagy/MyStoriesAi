@@ -21,11 +21,14 @@ return new class extends Migration {
       $table->enum('child_gender', ['boy', 'girl']);
 
       $table->enum('format', ['pdf', 'soft', 'hard']);
-      $table->json('value')->nullable(); // Change to JSON to support multiple values
-      $table->text('custom_value')->nullable()->after('value'); // Add custom value column
+      $table->json('value')->nullable();
+      $table->text('custom_value')->nullable();
 
       // Child's uploaded image
       $table->string('child_image_path')->nullable();
+
+      // PDF file path
+      $table->string('pdf_path')->nullable();
 
       // Nullable foreign key to stories if user customized a story
       $table->foreignId('story_id')->nullable()->constrained('stories')->onDelete('set null');
