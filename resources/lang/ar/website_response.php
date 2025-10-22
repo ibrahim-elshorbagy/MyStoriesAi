@@ -205,4 +205,8 @@ return [
   'order_created_title' => 'تم إنشاء الطلب',
   'order_created_message' => 'تم إنشاء طلبك بنجاح.',
 
+  // Email Settings Responses
+  'email_settings_updated_title' => 'تم تحديث إعدادات البريد الإلكتروني',
+  'email_settings_updated_message' => 'تم تحديث إعدادات البريد الإلكتروني بنجاح.',
+
 ];

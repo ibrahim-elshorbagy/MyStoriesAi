@@ -801,4 +801,11 @@ return [
   'orders_management' => 'إدارة الطلبات',
   'my_orders' => 'طلباتي',
 
+  // Email Settings
+  'email_settings' => 'إعدادات البريد الإلكتروني',
+  'email_settings_description' => 'تكوين إشعارات البريد الإلكتروني والإعدادات',
+  'admin_notification_email' => 'بريد إشعارات المدير',
+  'enter_admin_email' => 'أدخل عنوان بريد المدير الإلكتروني',
+  'admin_email_help' => 'سيتلقى هذا البريد الإلكتروني تلقائياً إشعارات حول الطلبات الجديدة والأحداث المهمة',
+
 ];

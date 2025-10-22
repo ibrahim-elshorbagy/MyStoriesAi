@@ -202,4 +202,8 @@ return [
   'order_created_title' => 'Order Created',
   'order_created_message' => 'Your order has been created successfully.',
 
+  // Email Settings Responses
+  'email_settings_updated_title' => 'Email Settings Updated',
+  'email_settings_updated_message' => 'Email settings have been updated successfully.',
+
 ];

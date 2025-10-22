@@ -5,6 +5,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import ContactSettings from './Partials/ContactSettings';
 import PricingSettings from './Partials/PricingSettings';
 import CookieSettings from './Partials/CookieSettings';
+import EmailSettings from './Partials/EmailSettings';
 
 export default function SiteSettings({ settings = {}, timezones = [] }) {
   const { t } = useTrans();
@@ -17,6 +18,7 @@ export default function SiteSettings({ settings = {}, timezones = [] }) {
   const menuItems = [
     { id: 'contact', icon: 'fa-solid fa-phone', label: t('contact_info') },
     { id: 'pricing', icon: 'fa-solid fa-dollar-sign', label: t('pricing_settings') },
+    { id: 'email', icon: 'fa-solid fa-envelope', label: t('email_settings') },
     { id: 'cookies', icon: 'fa-solid fa-cookie-bite', label: t('cookie_settings') },
   ];
 
@@ -66,6 +68,9 @@ export default function SiteSettings({ settings = {}, timezones = [] }) {
             )}
             {activeSection === 'pricing' && (
               <PricingSettings settings={settings} />
+            )}
+            {activeSection === 'email' && (
+              <EmailSettings settings={settings} />
             )}
             {activeSection === 'cookies' && (
               <CookieSettings settings={settings} />

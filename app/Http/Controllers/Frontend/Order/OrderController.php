@@ -7,10 +7,15 @@ use App\Models\Admin\SiteSetting\DeliveryOption;
 use App\Models\Admin\SiteSetting\SiteSetting;
 use App\Models\Order\Order;
 use App\Models\Order\Payment;
+use App\Models\User;
+use App\Notifications\Orders\Creating\NotifyAdmin;
+use App\Notifications\Orders\Creating\OrderConfirmation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class OrderController extends Controller
@@ -119,6 +124,27 @@ class OrderController extends Controller
           'house_number' => $validated['house_number'],
           'additional_info' => $validated['additional_info'] ?? null,
         ]);
+      }
+
+      // Send email notifications
+      try {
+        // Send confirmation email to user
+        $order->user->notify(new OrderConfirmation($order));
+
+        // Send notification to admin (always send if admin email is configured)
+        $adminEmailSetting = SiteSetting::where('key', 'admin_notification_email')->first();
+
+        if ($adminEmailSetting && $adminEmailSetting->value) {
+          // Create a temporary user object for admin notification
+          $adminUser = new User();
+          $adminUser->email = $adminEmailSetting->value;
+          $adminUser->name = 'Admin';
+
+          $adminUser->notify(new NotifyAdmin($order));
+        }
+      } catch (\Exception $e) {
+        // Log email error but don't fail the order creation
+        Log::error('Failed to send order notification emails: ' . $e->getMessage());
       }
 
       DB::commit();

@@ -764,4 +764,11 @@ return [
   'orders_management' => 'Orders Management',
   'my_orders' => 'My Orders',
 
+  // Email Settings
+  'email_settings' => 'Email Settings',
+  'email_settings_description' => 'Configure email notifications and settings',
+  'admin_notification_email' => 'Admin Notification Email',
+  'enter_admin_email' => 'Enter admin email address',
+  'admin_email_help' => 'This email will automatically receive notifications about new orders and important events',
+
 ];
