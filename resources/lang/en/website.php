@@ -760,4 +760,8 @@ return [
   'paymob' => 'Paymob',
   'cash_on_delivery' => 'Cash on Delivery',
 
+  // Navigation
+  'orders_management' => 'Orders Management',
+  'my_orders' => 'My Orders',
+
 ];

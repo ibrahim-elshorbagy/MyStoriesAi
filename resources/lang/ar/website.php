@@ -797,4 +797,8 @@ return [
   'paymob' => 'باي موب',
   'cash_on_delivery' => 'الدفع عند الاستلام',
 
+  // Navigation
+  'orders_management' => 'إدارة الطلبات',
+  'my_orders' => 'طلباتي',
+
 ];

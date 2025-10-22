@@ -24,6 +24,15 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
       role: ''
     },
 
+    // User Orders
+    {
+      name: t('my_orders'),
+      icon: 'fa-shopping-cart',
+      href: route('user.orders.index'),
+      route: 'user.orders.*',
+      role: 'user'
+    },
+
     // Admin
     {
       name: t('user_management'),
