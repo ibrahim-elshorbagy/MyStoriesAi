@@ -481,10 +481,10 @@ return [
 
   /* Pricing Settings */
   'pricing_settings' => 'إعدادات التسعير',
-  'first_plan_price' => 'سعر الخطة الأولى',
+  'first_plan_price' => 'غلاف ورقي + نسخة PDF مجانية',
   'price' => 'سعر',
-  'second_plan_price' => 'سعر الخطة الثانية',
-  'third_plan_price' => 'سعر الخطة الثالثة',
+  'second_plan_price' =>'نسخة هدايا فاخرة + PDF مجاني',
+  'third_plan_price' =>  'النسخة التذكارية الخاصة (إصدار محدود)',
 
   /* Delivery Options */
   'delivery_options' => 'خيارات التوصيل',

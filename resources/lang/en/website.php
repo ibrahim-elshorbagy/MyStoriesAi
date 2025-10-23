@@ -498,10 +498,10 @@ return [
 
   /* Pricing Settings */
   'pricing_settings' => 'Pricing Settings',
-  'first_plan_price' => 'First Plan Price',
+  'first_plan_price' => 'Paperback Book + Free PDF Copy',
   'price' => 'Price',
-  'second_plan_price' => 'Second Plan Price',
-  'third_plan_price' => 'Third Plan Price',
+  'second_plan_price' => 'Premium Gift Edition + Free PDF',
+  'third_plan_price' => 'Collector\'s Limited Edition (Exclusive)',
 
   /* Delivery Options */
   'delivery_options' => 'Delivery Options',
