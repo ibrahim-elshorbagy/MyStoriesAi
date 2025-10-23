@@ -24,7 +24,7 @@ class Story extends Model
     return $translations[$locale] ?? $translations['en'] ?? '';
   }
 
-  protected $appends = ['title_value', 'content_value', 'excerpt_value', 'cover_image_value', 'pdf_value', 'gallery_images_value'];
+  protected $appends = ['title_value', 'content_value', 'excerpt_value', 'cover_image_value', 'pdf_value', 'gallery_images_value', 'gender_text'];
 
   public function getTitleValueAttribute(): string
   {

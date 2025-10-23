@@ -60,7 +60,7 @@ export default function Stories({ stories, categories, queryParams }) {
         <div className="container mx-auto px-4">
           {/* Page Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl xl:text-6xl font-bold bg-gradient-to-r from-green-500 to-orange-600 bg-clip-text text-transparent mb-4">
+            <h1 className="text-4xl xl:text-6xl font-bold bg-gradient-to-r from-green-500 to-orange-600 bg-clip-text text-transparent mb-4 pb-4">
               {t('stories_title')}
             </h1>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">

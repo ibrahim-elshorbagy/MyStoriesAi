@@ -75,7 +75,7 @@ export default function SingleStory({ story }) {
 
               {/* Title Overlay with Enhanced Styling */}
               <div className="relative w-full p-4 md:p-8 text-white">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-3 md:mb-4 drop-shadow-2xl bg-gradient-to-r from-white via-orange-50 to-white bg-clip-text text-transparent">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black  pb-10 mb-3 md:mb-4 drop-shadow-2xl bg-gradient-to-r from-white via-orange-50 to-white bg-clip-text text-transparent">
                   {story.title_value}
                 </h1>
 
