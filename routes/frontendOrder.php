@@ -3,7 +3,7 @@
 use App\Http\Controllers\Frontend\Order\OrderController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','role:user'])->group(function () {
   // Single route to show the multi-step form
   Route::get('/create-order', [OrderController::class, 'create'])->name('frontend.order.create');
 

@@ -20,7 +20,7 @@ return new class extends Migration {
       $table->enum('language', ['arabic', 'english']);
       $table->enum('child_gender', ['boy', 'girl']);
 
-      $table->enum('format', ['pdf', 'soft', 'hard']);
+      $table->enum('format', ['first_plan', 'second_plan', 'third_plan']);
       $table->json('value')->nullable();
       $table->text('custom_value')->nullable();
 

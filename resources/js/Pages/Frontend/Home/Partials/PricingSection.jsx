@@ -7,25 +7,26 @@ export default function PricingSection({ settings = {} }) {
   const { t } = useTrans();
   const PRICING = [
     {
-      key: "pdf",
-      title: "pricing_pdf_title",
-      price: settings.pdf_price || t("pricing_pdf_price"),
-      desc: "pricing_pdf_desc",
-      btn: "pricing_pdf_btn",
+      key: "first_plan",
+      title: "pricing_first_plan_title",
+      price: settings.first_plan_price || t("pricing_first_plan_price"),
+      desc: "pricing_first_plan_desc",
+      btn: "pricing_first_plan_btn",
       features: [
         "plan_1_feature_1",
         "plan_1_feature_2",
         "plan_1_feature_3",
+        "plan_1_feature_4",
       ],
       cardClass: "border border-gray-200 bg-white",
       btnClass: "bg-gray-400 hover:bg-gray-500 text-white",
     },
     {
-      key: "softcover",
-      title: "pricing_soft_title",
-      price: settings.softcover_price || t("pricing_soft_price"),
-      desc: "pricing_soft_desc",
-      btn: "pricing_soft_btn",
+      key: "second_plan",
+      title: "pricing_second_plan_title",
+      price: settings.second_plan_price || t("pricing_second_plan_price"),
+      desc: "pricing_second_plan_desc",
+      btn: "pricing_second_plan_btn",
       features: [
         "plan_2_feature_1",
         "plan_2_feature_2",
@@ -37,11 +38,11 @@ export default function PricingSection({ settings = {} }) {
       badge: true,
     },
     {
-      key: "hardcover",
-      title: "pricing_hard_title",
-      price: settings.hardcover_price || t("pricing_hard_price"),
-      desc: "pricing_hard_desc",
-      btn: "pricing_hard_btn",
+      key: "third_plan",
+      title: "pricing_third_plan_title",
+      price: settings.third_plan_price || t("pricing_third_plan_price"),
+      desc: "pricing_third_plan_desc",
+      btn: "pricing_third_plan_btn",
       features: [
         "plan_3_feature_1",
         "plan_3_feature_2",
@@ -141,7 +142,7 @@ export default function PricingSection({ settings = {} }) {
               <div className="flex flex-col flex-1 items-center p-8 text-center space-y-4">
                 <div className="flex-1 flex flex-col justify-start w-full min-h-[280px] pt-8">
                   <h4 className="text-lg sm:text-xl font-bold text-emerald-600">{t(pkg.title)}</h4>
-                  <p className="text-2xl sm:text-3xl font-extrabold text-gray-900">{t(pkg.price)}</p>
+                  <p className="text-2xl sm:text-2xl font-extrabold text-gray-900">{t(pkg.price)} {t('currency')}</p>
                   <p className="text-sm sm:text-base text-gray-600">{t(pkg.desc)}</p>
                   <ul className="mt-4 text-gray-700 list-disc list-inside space-y-1 ltr:text-left rtl:text-right text-xs sm:text-sm">
                     {pkg.features.map((featKey) => (

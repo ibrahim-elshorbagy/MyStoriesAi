@@ -79,9 +79,9 @@ export default function StepOne({
   ];
 
   const formatOptions = [
-    { value: 'pdf', label: t('format_pdf') },
-    { value: 'soft', label: t('format_soft') },
-    { value: 'hard', label: t('format_hard') },
+    { value: 'first_plan', label: t('format_first_plan') },
+    { value: 'second_plan', label: t('format_second_plan') },
+    { value: 'third_plan', label: t('format_third_plan') },
   ];
 
   const learningValues = [

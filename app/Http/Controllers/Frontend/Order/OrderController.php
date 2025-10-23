@@ -24,13 +24,10 @@ class OrderController extends Controller
   public function create()
   {
     // Get pricing settings
-    $settings = SiteSetting::whereIn('key', ['pdf_price', 'softcover_price', 'hardcover_price'])
+        $settings = SiteSetting::whereIn('key', ['first_plan_price', 'second_plan_price', 'third_plan_price'])
       ->pluck('value', 'key')
       ->map(function ($value) {
-        if (preg_match('/([\d.]+)/', $value, $matches)) {
-          return (float) $matches[1];
-        }
-        return 0;
+        return is_numeric($value) ? (float) $value : 0;
       })
       ->toArray();
 
@@ -57,7 +54,7 @@ class OrderController extends Controller
       'child_age' => ['required', 'integer', 'min:1'],
       'language' => ['required', 'in:arabic,english'],
       'child_gender' => ['required', 'in:boy,girl'],
-      'format' => ['required', 'in:pdf,soft,hard'],
+      'format' => ['required', 'in:first_plan,second_plan,third_plan'],
       'value' => ['required', 'array', 'min:1'],
       'value.*' => ['string', 'in:honesty,kindness,courage,respect,responsibility,friendship,perseverance,creativity'],
       'custom_value' => ['nullable', 'string', 'max:500'],

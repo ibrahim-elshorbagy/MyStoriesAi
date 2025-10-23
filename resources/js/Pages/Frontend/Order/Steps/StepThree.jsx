@@ -12,9 +12,9 @@ export default function StepThree({
 }) {
 
   const formatOptions = {
-    pdf: t('format_pdf'),
-    soft: t('format_soft'),
-    hard: t('format_hard'),
+    first_plan: t('format_first_plan'),
+    second_plan: t('format_second_plan'),
+    third_plan: t('format_third_plan'),
   };
 
   const genderOptions = {

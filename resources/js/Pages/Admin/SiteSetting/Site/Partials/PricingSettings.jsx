@@ -7,9 +7,9 @@ export default function PricingSettings({ settings }) {
   const { t } = useTrans();
   const { data, setData, post, processing, errors, recentlySuccessful } = useForm({
     settings: {
-      pdf_price: settings.pdf_price || '',
-      softcover_price: settings.softcover_price || '',
-      hardcover_price: settings.hardcover_price || '',
+      first_plan_price: settings.first_plan_price || '',
+      second_plan_price: settings.second_plan_price || '',
+      third_plan_price: settings.third_plan_price || '',
     }
   });
 
@@ -34,44 +34,44 @@ export default function PricingSettings({ settings }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              {t('price')} (PDF)
+              {t('first_plan_price')}
             </label>
             <input
-              type="text"
-              value={data.settings.pdf_price}
-              onChange={(e) => setData('settings', { ...data.settings, pdf_price: e.target.value })}
+              type="number"
+              value={data.settings.first_plan_price}
+              onChange={(e) => setData('settings', { ...data.settings, first_plan_price: e.target.value })}
               className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
-              placeholder="199 EGP"
+              placeholder="339"
             />
-            {errors['settings.pdf_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.pdf_price']}</p>}
+            {errors['settings.first_plan_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.first_plan_price']}</p>}
           </div>
 
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-            {t('price')} (SOFT + PDF)
+              {t('second_plan_price')}
             </label>
             <input
-              type="text"
-              value={data.settings.softcover_price}
-              onChange={(e) => setData('settings', { ...data.settings, softcover_price: e.target.value })}
+              type="number"
+              value={data.settings.second_plan_price}
+              onChange={(e) => setData('settings', { ...data.settings, second_plan_price: e.target.value })}
               className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
-              placeholder="339 EGP"
+              placeholder="439"
             />
-            {errors['settings.softcover_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.softcover_price']}</p>}
+            {errors['settings.second_plan_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.second_plan_price']}</p>}
           </div>
 
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-            {t('price')} (HARD + PDF)
+              {t('third_plan_price')}
             </label>
             <input
-              type="text"
-              value={data.settings.hardcover_price}
-              onChange={(e) => setData('settings', { ...data.settings, hardcover_price: e.target.value })}
+              type="number"
+              value={data.settings.third_plan_price}
+              onChange={(e) => setData('settings', { ...data.settings, third_plan_price: e.target.value })}
               className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
-              placeholder="439 EGP"
+              placeholder="549"
             />
-            {errors['settings.hardcover_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.hardcover_price']}</p>}
+            {errors['settings.third_plan_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.third_plan_price']}</p>}
           </div>
         </div>
 
