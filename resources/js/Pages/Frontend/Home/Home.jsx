@@ -7,9 +7,10 @@ import StoriesSection from './Partials/StoriesSection.jsx';
 import AgeCategoriesSection from './Partials/AgeCategoriesSection.jsx';
 import PricingSection from './Partials/PricingSection';
 import FAQs from './Partials/FAQs';
+import CustomerFeedbackSection from './Partials/CustomerFeedbackSection';
 import { useTrans } from '@/Hooks/useTrans';
 
-export default function Home({ stories, faqs, categories, settings }) {
+export default function Home({ stories, faqs, categories, settings, feedbacks }) {
   const { t } = useTrans();
   const { locale } = usePage().props;
 
@@ -26,6 +27,7 @@ export default function Home({ stories, faqs, categories, settings }) {
 
       <AgeCategoriesSection categories={categories} />
       <PricingSection settings={settings} />
+      <CustomerFeedbackSection feedbacks={feedbacks} />
       <FAQs faqs={faqs} />
     </SiteLayout>
   );

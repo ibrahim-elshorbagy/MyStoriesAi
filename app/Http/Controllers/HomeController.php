@@ -8,6 +8,7 @@ use App\Models\Admin\SiteSetting\FaqCategory;
 use App\Models\Admin\Story\Story;
 use App\Models\Admin\Story\Category\AgeCategory;
 use App\Models\Admin\SiteSetting\SiteSetting;
+use App\Models\Admin\SiteSetting\CustomerFeedback;
 
 class HomeController extends Controller
 {
@@ -21,12 +22,14 @@ class HomeController extends Controller
       ->get();
     $categories = AgeCategory::all();
     $settings = SiteSetting::all()->pluck('value', 'key')->toArray();
+    $feedbacks = CustomerFeedback::all();
 
     return inertia("Frontend/Home/Home", [
       'faqs' => $faqs,
       'stories' => $stories,
       'categories' => $categories,
       'settings' => $settings,
+      'feedbacks' => $feedbacks,
     ]);
   }
 

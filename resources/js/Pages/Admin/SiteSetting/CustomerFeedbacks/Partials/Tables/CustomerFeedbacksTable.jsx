@@ -57,7 +57,7 @@ export default function CustomerFeedbacksTable({ feedbacks, onEdit }) {
       <td className="px-3 py-4 whitespace-nowrap text-sm text-neutral-900 dark:text-neutral-100">
         {feedback.row_number}
       </td>
-      <td className="px-3 py-4 whitespace-nowrap">
+      <td className="px-3 py-4 max-w-96">
         <div className="flex items-center gap-2">
           <i className="fa-solid fa-comment text-blue-500"></i>
           <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
