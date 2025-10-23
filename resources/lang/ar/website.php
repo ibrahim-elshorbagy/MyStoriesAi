@@ -795,8 +795,26 @@ return [
   'payment_status_refunded' => 'مسترد',
 
   // Payment Methods
+    // Payment Methods
   'paymob' => 'باي موب',
   'cash_on_delivery' => 'الدفع عند الاستلام',
+
+  // Customer Feedback
+  'customer_feedbacks' => 'تعليقات العملاء',
+  'customer_feedbacks_management' => 'إدارة تعليقات العملاء',
+  'create_customer_feedback' => 'إنشاء تعليق عميل',
+  'edit_customer_feedback' => 'تعديل تعليق عميل',
+  'customer_feedback' => 'تعليق العميل',
+  'customer_feedback_text' => 'نص التعليق',
+  'upload_image' => 'تحميل صورة',
+  'search_customer_feedbacks' => 'البحث في تعليقات العملاء',
+  'enter_customer_feedback' => 'أدخل نص التعليق',
+  'image_optional' => 'الصورة (اختياري)',
+  'feedback_text_optional' => 'نص التعليق (اختياري)',
+  'at_least_one_required' => 'يجب إدخال نص التعليق أو تحميل صورة على الأقل',
+  'confirm_delete_customer_feedback' => 'هل أنت متأكد من حذف تعليق العميل هذا؟',
+  'confirm_delete_customer_feedbacks' => 'هل أنت متأكد من حذف تعليقات العملاء المحددة؟',
+  'no_feedback_text' => 'لا يوجد نص تعليق',
 
   // Order Management UI
   'update_payment_status' => 'تحديث حالة الدفع',
@@ -831,5 +849,4 @@ return [
   'admin_notification_email' => 'بريد إشعارات المدير',
   'enter_admin_email' => 'أدخل عنوان بريد المدير الإلكتروني',
   'admin_email_help' => 'سيتلقى هذا البريد الإلكتروني تلقائياً إشعارات حول الطلبات الجديدة والأحداث المهمة',
-
 ];

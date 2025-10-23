@@ -219,6 +219,8 @@ return [
         'skin_tone' => 'لون البشرة',
         'clothing_description' => 'وصف الملابس',
         'customer_note' => 'ملاحظات',
+        'customer_feedback' => 'تعليق العميل',
+        'image' => 'الصورة',
 
     ],
 ];

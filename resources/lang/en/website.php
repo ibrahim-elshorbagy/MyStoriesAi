@@ -795,4 +795,20 @@ return [
   'enter_admin_email' => 'Enter admin email address',
   'admin_email_help' => 'This email will automatically receive notifications about new orders and important events',
 
+  // Customer Feedback
+  'customer_feedbacks' => 'Customer Feedbacks',
+  'customer_feedbacks_management' => 'Customer Feedbacks Management',
+  'create_customer_feedback' => 'Create Customer Feedback',
+  'edit_customer_feedback' => 'Edit Customer Feedback',
+  'customer_feedback' => 'Customer Feedback',
+  'customer_feedback_text' => 'Feedback Text',
+  'upload_image' => 'Upload Image',
+  'search_customer_feedbacks' => 'Search Customer Feedbacks',
+  'enter_customer_feedback' => 'Enter feedback text',
+  'image_optional' => 'Image (Optional)',
+  'feedback_text_optional' => 'Feedback Text (Optional)',
+  'at_least_one_required' => 'At least feedback text or image must be provided',
+  'confirm_delete_customer_feedback' => 'Are you sure you want to delete this customer feedback?',
+  'confirm_delete_customer_feedbacks' => 'Are you sure you want to delete the selected customer feedbacks?',
+  'no_feedback_text' => 'No feedback text',
 ];

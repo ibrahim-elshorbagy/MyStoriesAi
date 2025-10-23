@@ -163,16 +163,5 @@ class AgeCategoryController extends Controller
       ->with('status', 'success');
   }
 
-  protected function addRowNumbers($paginatedItems)
-  {
-    $currentPage = $paginatedItems->currentPage();
-    $perPage = $paginatedItems->perPage();
-    $startNumber = ($currentPage - 1) * $perPage + 1;
 
-    foreach ($paginatedItems as $index => $item) {
-      $item->row_number = $startNumber + $index;
-    }
-
-    return $paginatedItems;
-  }
 }

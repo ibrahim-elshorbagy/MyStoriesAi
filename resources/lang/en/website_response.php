@@ -215,4 +215,13 @@ return [
   'email_settings_updated_title' => 'Email Settings Updated',
   'email_settings_updated_message' => 'Email settings have been updated successfully.',
 
+  // Customer Feedback Responses
+  'customer_feedback_created_title' => 'Customer Feedback Created',
+  'customer_feedback_created_message' => 'Customer feedback has been created successfully.',
+  'customer_feedback_updated_title' => 'Customer Feedback Updated',
+  'customer_feedback_updated_message' => 'Customer feedback has been updated successfully.',
+  'customer_feedback_deleted_title' => 'Customer Feedback Deleted',
+  'customer_feedback_deleted_message' => 'Customer feedback has been deleted successfully.',
+  'customer_feedbacks_bulk_deleted_title' => 'Customer Feedbacks Deleted',
+  'customer_feedbacks_bulk_deleted_message' => 'Selected customer feedbacks have been deleted successfully.',
 ];

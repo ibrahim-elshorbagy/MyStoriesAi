@@ -145,6 +145,12 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
           route: 'admin.delivery-options.*',
           icon: 'fa-truck'
         },
+        {
+          name: t('customer_feedbacks'),
+          href: route('admin.customer-feedbacks.index'),
+          route: 'admin.customer-feedbacks.*',
+          icon: 'fa-comments'
+        },
       ],
     },
     // { name: t('settings'), icon: 'fa-gear', href: route('profile.edit'), route: 'profile', role: 'admin' },

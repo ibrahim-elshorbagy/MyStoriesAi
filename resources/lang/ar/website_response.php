@@ -218,4 +218,13 @@ return [
   'email_settings_updated_title' => 'تم تحديث إعدادات البريد الإلكتروني',
   'email_settings_updated_message' => 'تم تحديث إعدادات البريد الإلكتروني بنجاح.',
 
+  // Customer Feedback Responses
+  'customer_feedback_created_title' => 'تم إنشاء تعليق العميل',
+  'customer_feedback_created_message' => 'تم إنشاء تعليق العميل بنجاح.',
+  'customer_feedback_updated_title' => 'تم تحديث تعليق العميل',
+  'customer_feedback_updated_message' => 'تم تحديث تعليق العميل بنجاح.',
+  'customer_feedback_deleted_title' => 'تم حذف تعليق العميل',
+  'customer_feedback_deleted_message' => 'تم حذف تعليق العميل بنجاح.',
+  'customer_feedbacks_bulk_deleted_title' => 'تم حذف تعليقات العملاء',
+  'customer_feedbacks_bulk_deleted_message' => 'تم حذف تعليقات العملاء المحددة بنجاح.',
 ];

@@ -218,6 +218,8 @@ return [
         'skin_tone' => 'Skin Tone',
         'clothing_description' => 'Clothing Description',
         'customer_note' => 'Notes',
+        'customer_feedback' => 'Customer Feedback',
+        'image' => 'Image',
 
 
 

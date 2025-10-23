@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Management\UserManagementController;
 use App\Http\Controllers\Admin\SiteSetting\SiteSettingsController;
 use App\Http\Controllers\Admin\Story\Category\AgeCategoryController;
 use App\Http\Controllers\Admin\SiteSetting\DeliveryOptionController;
+use App\Http\Controllers\Admin\SiteSettings\CustomerFeedbackController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
@@ -44,5 +45,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('/dashboard')->group(function 
   Route::put('/admin/delivery-options/{deliveryOption}', [DeliveryOptionController::class, 'update'])->name('admin.delivery-options.update');
   Route::delete('/admin/delivery-options/{deliveryOption}', [DeliveryOptionController::class, 'destroy'])->name('admin.delivery-options.destroy');
   Route::delete('/admin/delivery-options/bulk/delete', action: [DeliveryOptionController::class, 'bulkDelete'])->name('admin.delivery-options.bulk.delete');
+
+  // Customer Feedback routes
+  Route::get('/admin/customer-feedbacks', [CustomerFeedbackController::class, 'index'])->name('admin.customer-feedbacks.index');
+  Route::post('/admin/customer-feedbacks', [CustomerFeedbackController::class, 'store'])->name('admin.customer-feedbacks.store');
+  Route::put('/admin/customer-feedbacks/{customerFeedback}', [CustomerFeedbackController::class, 'update'])->name('admin.customer-feedbacks.update');
+  Route::delete('/admin/customer-feedbacks/{customerFeedback}', [CustomerFeedbackController::class, 'destroy'])->name('admin.customer-feedbacks.destroy');
+  Route::delete('/admin/customer-feedbacks/bulk/delete', [CustomerFeedbackController::class, 'bulkDelete'])->name('admin.customer-feedbacks.bulk.delete');
 
 });
