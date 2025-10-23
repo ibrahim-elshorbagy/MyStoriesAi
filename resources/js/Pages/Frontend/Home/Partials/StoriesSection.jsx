@@ -8,7 +8,7 @@ export default function StoriesSection({ stories }) {
 
   return (
     <section
-      className="relative overflow-hidden py-16 min-h-[calc(100dvh-4rem)] bg-neutral-50"
+      className="relative overflow-hidden py-8 min-h-[calc(100dvh-4rem)] bg-neutral-50"
       id="stories"
     >
       {/* Decorative Background Elements */}

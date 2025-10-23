@@ -9,7 +9,7 @@ export default function FAQs({ faqs }) {
 
   return (
     <section
-      className="relative py-16 min-h-[calc(100dvh-4rem)] bg-neutral-50"
+      className="relative py-8 min-h-[calc(100dvh-4rem)] bg-neutral-50"
       id="faqs"
     >
       <div className="container mx-auto flex flex-col gap-14 md:gap-16">
