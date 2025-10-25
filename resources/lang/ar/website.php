@@ -872,8 +872,11 @@ return [
   'image_too_large' => 'الصورة كبيرة جداً. الحد الأقصى 6000x6000 بكسل.',
 
   'uploading_images' => 'جاري تحميل الصور...',
-  'processing_faces' => 'جاري معالجة الوجوه...',
-  'creating_result' => 'جاري إنشاء النتيجة...',
+  'analyzing_images' => 'جاري تحليل الصور...',
+  'detecting_faces' => 'جاري اكتشاف الوجوه...',
+  'processing_swap' => 'جاري معالجة التبديل...',
+  'blending_result' => 'جاري دمج النتيجة...',
+  'finalizing' => 'جاري الإنهاء...',
   'almost_done' => 'أوشكنا على الانتهاء...',
   'customized_cover' => 'الغلاف المخصص',
 

@@ -837,9 +837,13 @@ return [
   'image_too_large' => 'Image too large. Maximum 6000x6000 pixels.',
 
   'uploading_images' => 'Uploading images...',
-  'processing_faces' => 'Processing faces...',
-  'creating_result' => 'Creating the result...',
+  'analyzing_images' => 'Analyzing images...',
+  'detecting_faces' => 'Detecting faces...',
+  'processing_swap' => 'Processing face swap...',
+  'blending_result' => 'Blending result...',
+  'finalizing' => 'Finalizing...',
   'almost_done' => 'Almost done...',
-  'customized_cover' => 'Customized cover',
+  'customized_cover' => 'Customized Cover',
+
 ];
 

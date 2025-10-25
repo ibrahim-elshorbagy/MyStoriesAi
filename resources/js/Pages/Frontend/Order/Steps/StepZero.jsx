@@ -77,16 +77,53 @@ export default function StepZero({
     setProgress(0);
 
     try {
-      // Simulate progress
-      const progressInterval = setInterval(() => {
-        setProgress(prev => {
-          if (prev >= 90) {
-            clearInterval(progressInterval);
-            return 90;
-          }
-          return prev + 10;
-        });
-      }, 500);
+      // More realistic progress simulation for ~30 second task
+      const progressStages = [
+        { progress: 8, duration: 1500 },   // Upload images: 0-8% in 1.5s
+        { progress: 15, duration: 2000 },  // Still uploading: 8-15% in 2s
+        { progress: 25, duration: 3000 },  // Analyzing: 15-25% in 3s
+        { progress: 35, duration: 3500 },  // Detecting faces: 25-35% in 3.5s
+        { progress: 48, duration: 4000 },  // Processing: 35-48% in 4s
+        { progress: 58, duration: 3500 },  // Aligning: 48-58% in 3.5s
+        { progress: 68, duration: 3000 },  // Blending: 58-68% in 3s
+        { progress: 78, duration: 2500 },  // Refining: 68-78% in 2.5s
+        { progress: 85, duration: 2000 },  // Finalizing: 78-85% in 2s
+        { progress: 92, duration: 2000 },  // Almost done: 85-92% in 2s
+      ];
+
+      let currentStageIndex = 0;
+      let progressInterval;
+
+      const advanceProgress = () => {
+        if (currentStageIndex >= progressStages.length) {
+          clearInterval(progressInterval);
+          return;
+        }
+
+        const stage = progressStages[currentStageIndex];
+        const startProgress = currentStageIndex === 0 ? 0 : progressStages[currentStageIndex - 1].progress;
+        const endProgress = stage.progress;
+        const steps = Math.ceil(stage.duration / 200); // Update every 200ms
+        const increment = (endProgress - startProgress) / steps;
+        let stepCount = 0;
+
+        progressInterval = setInterval(() => {
+          stepCount++;
+          setProgress(prev => {
+            const newProgress = Math.min(startProgress + (increment * stepCount), endProgress);
+            if (newProgress >= endProgress) {
+              clearInterval(progressInterval);
+              currentStageIndex++;
+              if (currentStageIndex < progressStages.length) {
+                setTimeout(advanceProgress, 100);
+              }
+            }
+            return Math.round(newProgress);
+          });
+        }, 200);
+      };
+
+      advanceProgress();
 
       const coverResponse = await fetch(coverImageUrl);
       const coverBlob = await coverResponse.blob();
@@ -98,7 +135,8 @@ export default function StepZero({
         target_img: coverBlob,
       });
 
-      clearInterval(progressInterval);
+      // Complete progress
+      if (progressInterval) clearInterval(progressInterval);
       setProgress(100);
 
       console.log('Full result:', result);
@@ -205,7 +243,7 @@ export default function StepZero({
         {/* Original Story Cover */}
         <div>
           <label className="block text-sm font-medium text-neutral-700 mb-2">
-            {t('story_cover') || 'غلاف القصة'}
+            {t('story_cover')}
           </label>
           <div className="border-2 border-neutral-300 rounded-lg p-4">
             {coverImageUrl ? (
@@ -252,17 +290,20 @@ export default function StepZero({
           <div className="mt-6">
             <div className="w-full bg-neutral-200 rounded-full h-4 overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-500 ease-out flex items-center justify-center text-white text-xs font-bold"
+                className="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 ease-out flex items-center justify-center text-white text-xs font-bold"
                 style={{ width: `${progress}%` }}
               >
                 {progress}%
               </div>
             </div>
             <p className="text-sm text-neutral-600 mt-2">
-              {progress < 30 && (t('uploading_images') || 'جاري تحميل الصور...')}
-              {progress >= 30 && progress < 60 && (t('processing_faces') || 'جاري معالجة الوجوه...')}
-              {progress >= 60 && progress < 90 && (t('creating_result') || 'جاري إنشاء النتيجة...')}
-              {progress >= 90 && (t('almost_done') || 'أوشكنا على الانتهاء...')}
+              {progress < 15 && (t('uploading_images'))}
+              {progress >= 15 && progress < 25 && (t('analyzing_images'))}
+              {progress >= 25 && progress < 48 && (t('detecting_faces'))}
+              {progress >= 48 && progress < 68 && (t('processing_swap'))}
+              {progress >= 68 && progress < 85 && (t('blending_result'))}
+              {progress >= 85 && progress < 95 && (t('finalizing'))}
+              {progress >= 95 && (t('almost_done'))}
             </p>
           </div>
         )}

@@ -27,12 +27,14 @@ export default function StepTwo({
     }));
   };
 
-  const deliveryOptionChoices = deliveryOptions.map(option => ({
+  const allDeliveryOptions = [{ id: 'custom', city_value: t('select') }, ...deliveryOptions];
+
+  const deliveryOptionChoices = allDeliveryOptions.map(option => ({
     value: option.id,
-    label: `${option.city_value} - ${option.price} ${t('currency')}`,
+    label: option.price ? `${option.city_value} - ${option.price} ${t('currency')}` : option.city_value,
   }));
 
-  const selectedOption = deliveryOptions.find(opt => opt.id == data.delivery_option_id);
+  const selectedOption = allDeliveryOptions.find(opt => opt.id == data.delivery_option_id);
 
   return (
     <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20">
