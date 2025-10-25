@@ -46,16 +46,16 @@ export default function StepOne({
     let deliveryPrice = 0;
 
     switch (format) {
-      case 'pdf':
-        storyPrice = pricing.pdf_price || 0;
+      case 'first_plan':
+        storyPrice = pricing.first_plan_price || 0;
         deliveryPrice = 0;
         break;
-      case 'soft':
-        storyPrice = pricing.softcover_price || 0;
+      case 'second_plan':
+        storyPrice = pricing.second_plan_price || 0;
         deliveryPrice = 0;
         break;
-      case 'hard':
-        storyPrice = pricing.hardcover_price || 0;
+      case 'third_plan':
+        storyPrice = pricing.third_plan_price || 0;
         deliveryPrice = 0;
         break;
     }
@@ -69,6 +69,7 @@ export default function StepOne({
     }));
   };
 
+
   const languageOptions = [
     { value: 'arabic', label: t('language_arabic') },
     { value: 'english', label: t('language_english') },
@@ -80,9 +81,10 @@ export default function StepOne({
   ];
 
   const formatOptions = [
-    { value: 'first_plan', label: t('format_first_plan') },
-    { value: 'second_plan', label: t('format_second_plan') },
-    { value: 'third_plan', label: t('format_third_plan') },
+    { value: '', label: t('select') },
+    { value: 'first_plan', label: `${t('format_first_plan')} - ${(pricing?.first_plan_price || 0)} ${t('currency')}` },
+    { value: 'second_plan', label: `${t('format_second_plan')} - ${(pricing?.second_plan_price || 0)} ${t('currency')}` },
+    { value: 'third_plan', label: `${t('format_third_plan')} - ${(pricing?.third_plan_price || 0)} ${t('currency')}` },
   ];
 
   const learningValues = [
