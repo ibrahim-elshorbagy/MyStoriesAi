@@ -205,7 +205,11 @@ return [
   // Order Management Responses
   'order_created_title' => 'Order Created',
   'order_created_message' => 'Your order has been created successfully.',
+  'order_created_cod_title' => 'Order Payment Created - Cash on Delivery',
+  'order_created_cod_message' => 'You will pay upon delivery.',
   'payment_status_updated' => 'Payment status updated successfully.',
+  'payment_already_initiated_title' => 'Payment Already Initiated',
+  'payment_already_initiated' => 'Payment already initiated for this order.',
   'order_status_updated' => 'Order status updated successfully.',
   'pdf_uploaded' => 'PDF uploaded successfully.',
   'pdf_not_found' => 'PDF file not found.',

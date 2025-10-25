@@ -54,11 +54,10 @@ export default function PaymentMethod({ order }) {
               <div className="space-y-4">
                 <div
                   onClick={() => setData('payment_method', 'cod')}
-                  className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${
-                    data.payment_method === 'cod'
+                  className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${data.payment_method === 'cod'
                       ? 'border-orange-500 bg-orange-50 shadow-lg scale-105'
                       : 'border-neutral-200 hover:border-orange-300 hover:shadow-md'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-start">
                     <input
@@ -85,11 +84,10 @@ export default function PaymentMethod({ order }) {
 
                 <div
                   onClick={() => setData('payment_method', 'paymob')}
-                  className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${
-                    data.payment_method === 'paymob'
+                  className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${data.payment_method === 'paymob'
                       ? 'border-orange-500 bg-orange-50 shadow-lg scale-105'
                       : 'border-neutral-200 hover:border-orange-300 hover:shadow-md'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-start">
                     <input
@@ -148,12 +146,12 @@ export default function PaymentMethod({ order }) {
                   {processing ? (
                     <span className="flex items-center gap-3">
                       <i className="fa-solid fa-spinner fa-spin"></i>
-                      {t('processing')}
+                      <span> {t('processing')}</span>
                     </span>
                   ) : (
-                    <span className="flex items-center gap-3">
-                      {t('complete_payment')}
-                      <i className="fa-solid fa-arrow-right rtl:fa-arrow-left"></i>
+                    <span className="flex rtl:flex-row-reverse items-center gap-3">
+                      <span>{t('complete_payment')}</span>
+                      <i className="fa-solid fa-arrow-right "></i>
                     </span>
                   )}
                 </button>

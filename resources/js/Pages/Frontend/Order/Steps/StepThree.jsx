@@ -106,7 +106,7 @@ export default function StepThree({
           </div>
 
           {/* Shipping Information */}
-          {data.format !== 'pdf' && data.delivery_option_id && (
+          {data.format !== 'first_plan' && data.delivery_option_id && (
             <div>
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-semibold text-neutral-900 flex items-center">
@@ -141,6 +141,20 @@ export default function StepThree({
                     <p className="text-neutral-900 mt-1">{data.additional_info}</p>
                   </div>
                 )}
+              </div>
+            </div>
+          )}
+
+          {/* Digital Delivery for First Plan */}
+          {data.format === 'first_plan' && (
+            <div>
+              <h3 className="text-lg font-semibold text-neutral-900 flex items-center mb-4">
+                <i className="fa-solid fa-cloud text-green-500 mx-2"></i>
+                {t('delivery_method')}
+              </h3>
+              <div className="bg-green-50 p-4 rounded-lg">
+                <span className="text-green-800 font-medium">{t('digital_delivery')}</span>
+                <p className="text-green-700 text-sm mt-1">{t('no_shipping_required')}</p>
               </div>
             </div>
           )}

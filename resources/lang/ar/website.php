@@ -599,8 +599,9 @@ return [
   'story_management' => 'إدارة القصص',
   'create_story' => 'إنشاء قصة',
   'edit_story' => 'تعديل القصة',
-  'story' => 'قصة',
+  'story' => 'القصة',
   'payment_details' => 'تفاصيل الدفع',
+  'continue_payment' => 'متابعة الدفع',
   'gender' => 'الجنس',
   'boy' => 'ولد',
   'girl' => 'بنت',
@@ -879,5 +880,8 @@ return [
   'finalizing' => 'جاري الإنهاء...',
   'almost_done' => 'أوشكنا على الانتهاء...',
   'customized_cover' => 'الغلاف المخصص',
+  'delivery_method' => 'طريقة التسليم',
+  'digital_delivery' => 'تسليم رقمي',
+  'no_shipping_required' => 'لا يتطلب شحن',
 
 ];

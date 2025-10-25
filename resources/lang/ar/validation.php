@@ -221,6 +221,7 @@ return [
         'customer_note' => 'ملاحظات',
         'customer_feedback' => 'تعليق العميل',
         'image' => 'الصورة',
+        "delivery_option_id"=>"خيار التوصيل",
 
     ],
 ];

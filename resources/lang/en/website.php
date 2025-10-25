@@ -22,6 +22,7 @@ return [
 
   'story' => 'Story',
   'payment_details' => 'Payment Details',
+  'continue_payment' => 'Continue Payment',
 
   // Auth Pages
   'auth_login' => 'Login',
@@ -844,6 +845,9 @@ return [
   'finalizing' => 'Finalizing...',
   'almost_done' => 'Almost done...',
   'customized_cover' => 'Customized Cover',
+  'delivery_method' => 'Delivery Method',
+  'digital_delivery' => 'Digital Delivery',
+  'no_shipping_required' => 'No shipping required',
 
 ];
 

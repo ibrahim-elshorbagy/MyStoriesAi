@@ -11,7 +11,7 @@ return [
 
   'language_changed_title' => 'تم تغيير اللغة',
   'language_changed_message' => 'تم تغيير اللغة بنجاح.',
-  "blocked_account"=>"تم حظر حسابك. يُرجى التواصل مع المسؤول.",
+  "blocked_account" => "تم حظر حسابك. يُرجى التواصل مع المسؤول.",
 
   /* Auth Controller Responses */
   'login_successful_title' => 'تم تسجيل الدخول بنجاح',
@@ -136,7 +136,7 @@ return [
   'static_page_category_delete_failed_message' => 'لا يمكن حذف الفئة التي تحتوي على صفحات',
   'static_page_categories_deleted_title' => 'تم الحذف',
   'static_page_categories_deleted_message' => 'تم حذف :count فئات بنجاح',
-    'static_page_categories_bulk_delete_failed_title' => 'فشل الحذف',
+  'static_page_categories_bulk_delete_failed_title' => 'فشل الحذف',
   'static_page_categories_bulk_delete_failed_message' => 'لا يمكن حذف الفئات التي تحتوي على صفحات',
 
   // FAQ Categories
@@ -208,7 +208,11 @@ return [
   // Order Management Responses
   'order_created_title' => 'تم إنشاء الطلب',
   'order_created_message' => 'تم إنشاء طلبك بنجاح.',
+  'order_created_cod_title' => 'تم إنشاء طلب الدفع - الدفع عند الاستلام',
+  'order_created_cod_message' => '.سيتم الدفع عند الاستلام.',
   'payment_status_updated' => 'تم تحديث حالة الدفع بنجاح.',
+  'payment_already_initiated_title' => 'تم بالفعل بدء الدفع',
+  'payment_already_initiated' => 'تم بالفعل بدء الدفع لهذا الطلب.',
   'order_status_updated' => 'تم تحديث حالة الطلب بنجاح.',
   'pdf_uploaded' => 'تم رفع ملف PDF بنجاح.',
   'pdf_not_found' => 'ملف PDF غير موجود.',

@@ -83,10 +83,10 @@ class OrderController extends Controller
       'story_price' => ['required', 'numeric', 'min:0'],
       'delivery_price' => ['required', 'numeric', 'min:0'],
       'total_price' => ['required', 'numeric', 'min:0'],
-      'delivery_option_id' => ['required_unless:format,pdf', 'nullable', 'exists:delivery_options,id'],
-      'area' => ['required_unless:format,pdf', 'nullable', 'string', 'max:255'],
-      'street' => ['required_unless:format,pdf', 'nullable', 'string', 'max:255'],
-      'house_number' => ['required_unless:format,pdf', 'nullable', 'string', 'max:255'],
+      'delivery_option_id' => ['required_unless:format,first_plan', 'nullable', 'exists:delivery_options,id'],
+      'area' => ['required_unless:format,first_plan', 'nullable', 'string', 'max:255'],
+      'street' => ['required_unless:format,first_plan', 'nullable', 'string', 'max:255'],
+      'house_number' => ['required_unless:format,first_plan', 'nullable', 'string', 'max:255'],
       'additional_info' => ['nullable', 'string', 'max:500'],
     ]);
 
@@ -94,6 +94,41 @@ class OrderController extends Controller
 
     try {
       $userId = Auth::id();
+
+      // Get pricing from SiteSetting
+      $settings = SiteSetting::whereIn('key', ['first_plan_price', 'second_plan_price', 'third_plan_price'])
+        ->pluck('value', 'key')
+        ->map(function ($value) {
+          return is_numeric($value) ? (float) $value : 0;
+        })
+        ->toArray();
+
+      // Calculate story price based on format
+      $storyPrice = 0;
+      switch ($validated['format']) {
+        case 'first_plan':
+          $storyPrice = $settings['first_plan_price'] ?? 0;
+          break;
+        case 'second_plan':
+          $storyPrice = $settings['second_plan_price'] ?? 0;
+          break;
+        case 'third_plan':
+          $storyPrice = $settings['third_plan_price'] ?? 0;
+          break;
+      }
+
+      // Calculate delivery price
+      $deliveryPrice = 0;
+      if ($validated['format'] !== 'first_plan' && isset($validated['delivery_option_id'])) {
+        $deliveryOption = DeliveryOption::find($validated['delivery_option_id']);
+
+        if ($deliveryOption) {
+          $deliveryPrice = $deliveryOption->price ?? 0;
+        }
+      }
+
+      // Calculate total price
+      $totalPrice = $storyPrice + $deliveryPrice;
 
       $order = Order::create([
         'user_id' => $userId,
@@ -107,9 +142,11 @@ class OrderController extends Controller
         'custom_value' => $validated['custom_value'] ?? null,
         'status' => 'pending',
         'payment_method' => 'cod',
-        'story_price' => $validated['story_price'],
-        'delivery_price' => $validated['delivery_price'],
-        'total_price' => $validated['total_price'],
+
+        'story_price' => $storyPrice,
+        'delivery_price' => $deliveryPrice,
+        'total_price' => $totalPrice,
+
         'customer_note' => $validated['customer_note'] ?? null,
         'hair_color' => $validated['hair_color'] ?? null,
         'hair_style' => $validated['hair_style'] ?? null,
@@ -134,8 +171,9 @@ class OrderController extends Controller
         $order->update(['face_swap_image_path' => $faceSwapPath]);
       }
 
+
       // Create shipping address if needed
-      if ($validated['format'] !== 'pdf' && !empty($validated['delivery_option_id'])) {
+      if ($validated['format'] !== 'first_plan' && !empty($validated['delivery_option_id'])) {
         $order->shippingAddress()->create([
           'delivery_option_id' => $validated['delivery_option_id'],
           'area' => $validated['area'],
@@ -201,6 +239,13 @@ class OrderController extends Controller
     if ($order->user_id !== Auth::id()) {
       abort(403);
     }
+    if ($order->payments()->exists()) {
+      return redirect()->route('user.orders.show', $order->id)
+        ->with('title', __('website_response.payment_already_initiated_title'))
+        ->with('message', __('website_response.payment_already_initiated'))
+        ->with('status', 'error');
+    }
+
 
     return Inertia::render('Frontend/Order/PaymentMethod', [
       'order' => $order->load('shippingAddress'),
@@ -221,16 +266,12 @@ class OrderController extends Controller
     DB::beginTransaction();
 
     try {
-      $order->update([
-        'payment_method' => $validated['payment_method'],
-        'status' => $validated['payment_method'] === 'cod' ? 'processing' : 'pending',
-      ]);
 
       // Create payment record
       Payment::create([
         'order_id' => $order->id,
         'payment_method' => $validated['payment_method'],
-        'status' => $validated['payment_method'] === 'cod' ? 'paid' : 'pending',
+        'status' => 'pending',
         'amount' => $order->total_price,
       ]);
 
@@ -238,8 +279,8 @@ class OrderController extends Controller
 
       if ($validated['payment_method'] === 'cod') {
         return redirect()->route('home')
-          ->with('title', __('website_response.order_created_title'))
-          ->with('message', __('website_response.order_created_message'))
+          ->with('title', __('website_response.order_created_cod_title'))
+          ->with('message', __('website_response.order_created_cod_message'))
           ->with('status', 'success');
       } else {
         // Redirect to Paymob payment gateway

@@ -72,6 +72,16 @@ export default function OrdersTable({ orders }) {
             <i className="fa fa-eye mr-1"></i>
             {t('view')}
           </ActionButton>
+          {(!order.payments || order.payments.length === 0) && (
+            <ActionButton
+              href={route('frontend.order.payment', order.id)}
+              variant='success'
+              as="a"
+            >
+              <i className="fa fa-credit-card mr-1"></i>
+              {t('continue_payment')}
+            </ActionButton>
+          )}
         </div>
       </td>
     </>

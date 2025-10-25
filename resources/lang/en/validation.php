@@ -220,6 +220,7 @@ return [
         'customer_note' => 'Notes',
         'customer_feedback' => 'Customer Feedback',
         'image' => 'Image',
+        "delivery_option_id"=>"Delivery Option",
 
 
 
