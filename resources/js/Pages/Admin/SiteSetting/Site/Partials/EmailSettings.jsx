@@ -1,6 +1,7 @@
 import { useForm } from '@inertiajs/react';
 import { useTrans } from '@/Hooks/useTrans';
 import PrimaryButton from '@/Components/PrimaryButton';
+import TextInput from '@/Components/TextInput';
 import { Transition } from '@headlessui/react';
 
 export default function EmailSettings({ settings }) {
@@ -36,11 +37,11 @@ export default function EmailSettings({ settings }) {
           <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
             {t('admin_notification_email')}
           </label>
-          <input
+          <TextInput
             type="email"
             value={data.settings.admin_notification_email}
             onChange={(e) => setData('settings', { ...data.settings, admin_notification_email: e.target.value })}
-            className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100"
+            className="px-3 py-2"
             placeholder={t('enter_admin_email')}
           />
           {errors['settings.admin_notification_email'] && <p className="text-red-500 text-sm mt-1">{errors['settings.admin_notification_email']}</p>}

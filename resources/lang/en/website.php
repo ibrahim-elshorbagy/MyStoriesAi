@@ -849,5 +849,25 @@ return [
   'digital_delivery' => 'Digital Delivery',
   'no_shipping_required' => 'No shipping required',
 
+  // Paymob Settings
+  'paymob_settings' => 'Paymob Settings',
+  'paymob_settings_description' => 'Paymob payment gateway settings',
+  'paymob_api_key' => 'API Key',
+  'paymob_secret_key' => 'Secret Key',
+  'paymob_public_key' => 'Public Key',
+  'paymob_mode' => 'Mode',
+  'paymob_test_mode' => 'Test Mode',
+  'paymob_live_mode' => 'Live Mode',
+  'paymob_api_key_help' => 'Your Paymob API Key for authentication',
+  'paymob_secret_key_help' => 'Your Paymob Secret Key for secure transactions',
+  'paymob_public_key_help' => 'Your Paymob Public Key for client-side integration',
+  'paymob_mode_help' => 'Choose between test mode for development and live mode for production',
+  'paymob_mobile_wallet_id' => 'Mobile Wallet ID',
+  'paymob_online_card_id' => 'Online Card ID',
+  'paymob_mobile_wallet_id_help' => 'Your Paymob Mobile Wallet integration ID',
+  'paymob_online_card_id_help' => 'Your Paymob Online Card integration ID',
+
+
+
 ];
 

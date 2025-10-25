@@ -852,6 +852,7 @@ return [
   'enter_admin_email' => 'أدخل عنوان بريد المدير الإلكتروني',
   'admin_email_help' => 'سيتلقى هذا البريد الإلكتروني تلقائياً إشعارات حول الطلبات الجديدة والأحداث المهمة',
 
+
   // Story Step Zero
   'customize_story' => 'تخصيص القصة',
   'customize_story_cover' => 'تخصيص غلاف القصة',
@@ -883,5 +884,28 @@ return [
   'delivery_method' => 'طريقة التسليم',
   'digital_delivery' => 'تسليم رقمي',
   'no_shipping_required' => 'لا يتطلب شحن',
+
+
+
+
+  // Paymob Settings
+  'paymob_settings' => 'إعدادات Paymob',
+  'paymob_settings_description' => 'إعدادات بوابة الدفع Paymob',
+  'paymob_api_key' => 'API Key',
+  'paymob_api_key' => 'API Key',
+  'paymob_secret_key' => 'Secret Key',
+  'paymob_public_key' => 'Public Key',
+  'paymob_mode' => 'Mode',
+  'paymob_test_mode' => 'Test Mode',
+  'paymob_live_mode' => 'Live Mode',
+  'paymob_api_key_help' => 'Your Paymob API Key for authentication',
+  'paymob_secret_key_help' => 'Your Paymob Secret Key for secure transactions',
+  'paymob_public_key_help' => 'Your Paymob Public Key for client-side integration',
+  'paymob_mode_help' => 'Choose between test mode for development and live mode for production',
+  'paymob_mobile_wallet_id' => 'Mobile Wallet ID',
+  'paymob_online_card_id' => 'Online Card ID',
+  'paymob_mobile_wallet_id_help' => 'Your Paymob Mobile Wallet integration ID',
+  'paymob_online_card_id_help' => 'Your Paymob Online Card integration ID',
+
 
 ];

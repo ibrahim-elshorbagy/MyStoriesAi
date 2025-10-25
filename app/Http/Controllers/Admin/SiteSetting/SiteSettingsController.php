@@ -51,6 +51,12 @@ class SiteSettingsController extends Controller
       'mail_password' => 'MAIL_PASSWORD',
       'google_client_id' => 'GOOGLE_CLIENT_ID',
       'google_client_secret' => 'GOOGLE_CLIENT_SECRET',
+      'paymob_api_key' => 'PAYMOB_API_KEY',
+      'paymob_secret_key' => 'PAYMOB_SECRET_KEY',
+      'paymob_public_key' => 'PAYMOB_PUBLIC_KEY',
+      'paymob_mode' => 'PAYMOB_MODE',
+      'paymob_mobile_wallet_id' => 'PAYMOB_MOBILE_WALLET_ID',
+      'paymob_online_card_id' => 'PAYMOB_ONLINE_CARD_ID',
       // Add more mappings as needed
     ];
 

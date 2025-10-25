@@ -1,6 +1,7 @@
 import { useForm } from '@inertiajs/react';
 import { useTrans } from '@/Hooks/useTrans';
 import PrimaryButton from '@/Components/PrimaryButton';
+import TextArea from '@/Components/TextArea';
 import { Transition } from '@headlessui/react';
 
 export default function CookieSettings({ settings }) {
@@ -37,11 +38,11 @@ export default function CookieSettings({ settings }) {
           <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
             {t('cookie_message_ar')}
           </label>
-          <textarea
+          <TextArea
             value={data.settings.cookie_message_ar}
             onChange={(e) => setData('settings', { ...data.settings, cookie_message_ar: e.target.value })}
             rows={6}
-            className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 resize-vertical"
+            className="px-3 py-2"
             placeholder={t('enter_cookie_message_ar')}
           />
           {errors['settings.cookie_message_ar'] && <p className="text-red-500 text-sm mt-1">{errors['settings.cookie_message_ar']}</p>}
@@ -51,11 +52,11 @@ export default function CookieSettings({ settings }) {
           <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
             {t('cookie_message_en')}
           </label>
-          <textarea
+          <TextArea
             value={data.settings.cookie_message_en}
             onChange={(e) => setData('settings', { ...data.settings, cookie_message_en: e.target.value })}
             rows={6}
-            className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-neutral-50 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 resize-vertical"
+            className="px-3 py-2"
             placeholder={t('enter_cookie_message_en')}
           />
           {errors['settings.cookie_message_en'] && <p className="text-red-500 text-sm mt-1">{errors['settings.cookie_message_en']}</p>}

@@ -6,6 +6,7 @@ import ContactSettings from './Partials/ContactSettings';
 import PricingSettings from './Partials/PricingSettings';
 import CookieSettings from './Partials/CookieSettings';
 import EmailSettings from './Partials/EmailSettings';
+import PaymobSettings from './Partials/PaymobSettings';
 
 export default function SiteSettings({ settings = {}, timezones = [] }) {
   const { t } = useTrans();
@@ -20,6 +21,7 @@ export default function SiteSettings({ settings = {}, timezones = [] }) {
     { id: 'pricing', icon: 'fa-solid fa-dollar-sign', label: t('pricing_settings') },
     { id: 'email', icon: 'fa-solid fa-envelope', label: t('email_settings') },
     { id: 'cookies', icon: 'fa-solid fa-cookie-bite', label: t('cookie_settings') },
+    { id: 'paymob', icon: 'fa-solid fa-credit-card', label: t('paymob_settings') },
   ];
 
   return (
@@ -74,6 +76,9 @@ export default function SiteSettings({ settings = {}, timezones = [] }) {
             )}
             {activeSection === 'cookies' && (
               <CookieSettings settings={settings} />
+            )}
+            {activeSection === 'paymob' && (
+              <PaymobSettings settings={settings} />
             )}
           </div>
         </div>
