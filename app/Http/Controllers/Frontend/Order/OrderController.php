@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\Order;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\SiteSetting\DeliveryOption;
 use App\Models\Admin\SiteSetting\SiteSetting;
+use App\Models\Admin\Story\Story;
 use App\Models\Order\Order;
 use App\Models\Order\Payment;
 use App\Models\User;
@@ -20,18 +21,30 @@ use Inertia\Inertia;
 
 class OrderController extends Controller
 {
-  // Show the multi-step form
-  public function create()
+  // Show the multi-step form`
+  public function create(Request $request)
   {
-    // Get pricing settings
-        $settings = SiteSetting::whereIn('key', ['first_plan_price', 'second_plan_price', 'third_plan_price'])
+    $storyId = $request->query('story_id');
+    $story = null;
+
+    if ($storyId) {
+      $story = Story::with('category')->findOrFail($storyId);
+      // Format story data for frontend
+      $story = [
+        'id' => $story->id,
+        'title_value' => $story->title_value,
+        'cover_image_ar' => $story->cover_image_ar,
+        'cover_image_en' => $story->cover_image_en,
+      ];
+    }
+
+    $settings = SiteSetting::whereIn('key', ['first_plan_price', 'second_plan_price', 'third_plan_price'])
       ->pluck('value', 'key')
       ->map(function ($value) {
         return is_numeric($value) ? (float) $value : 0;
       })
       ->toArray();
 
-    // Get delivery options
     $deliveryOptions = DeliveryOption::all()->map(function ($option) {
       return [
         'id' => $option->id,
@@ -43,13 +56,15 @@ class OrderController extends Controller
     return Inertia::render('Frontend/Order/CreateOrder', [
       'pricing' => $settings,
       'deliveryOptions' => $deliveryOptions,
+      'story' => $story,
     ]);
   }
 
-  // Store the complete order
   public function store(Request $request)
   {
     $validated = $request->validate([
+      'story_id' => ['nullable', 'exists:stories,id'],
+      'face_swap_result' => ['nullable', 'string'],
       'child_name' => ['required', 'string', 'max:255'],
       'child_age' => ['required', 'integer', 'min:1'],
       'language' => ['required', 'in:arabic,english'],
@@ -80,9 +95,9 @@ class OrderController extends Controller
     try {
       $userId = Auth::id();
 
-      // Step 1: Create the order first (without image)
       $order = Order::create([
         'user_id' => $userId,
+        'story_id' => $validated['story_id'] ?? null,
         'child_name' => $validated['child_name'],
         'child_age' => $validated['child_age'],
         'language' => $validated['language'],
@@ -103,14 +118,23 @@ class OrderController extends Controller
         'clothing_description' => $validated['clothing_description'] ?? null,
       ]);
 
-      $imagePath = null;
+      // Upload child image
       if ($request->hasFile('child_image')) {
         $path = "users/{$userId}/{$order->id}/images";
         $imagePath = $request->file('child_image')->store($path, 'public');
         $order->update(['child_image_path' => $imagePath]);
       }
 
-      // Step 3: Create shipping address if needed
+      // Handle face swap result if exists
+      if (!empty($validated['face_swap_result'])) {
+        // Save the face swap result
+        // The face_swap_result might be a base64 or URL
+        // You'll need to download and save it
+        $faceSwapPath = $this->saveFaceSwapImage($validated['face_swap_result'], $userId, $order->id);
+        $order->update(['face_swap_image_path' => $faceSwapPath]);
+      }
+
+      // Create shipping address if needed
       if ($validated['format'] !== 'pdf' && !empty($validated['delivery_option_id'])) {
         $order->shippingAddress()->create([
           'delivery_option_id' => $validated['delivery_option_id'],
@@ -121,7 +145,7 @@ class OrderController extends Controller
         ]);
       }
 
-      // Step 4: Send notifications
+      // Send notifications
       try {
         $order->user->notify(new OrderConfirmation($order));
 
@@ -150,6 +174,25 @@ class OrderController extends Controller
       ])->withInput();
     }
   }
+
+  private function saveFaceSwapImage($imageData, $userId, $orderId)
+  {
+    // Handle base64 or URL
+    if (filter_var($imageData, FILTER_VALIDATE_URL)) {
+      // It's a URL, download it
+      $contents = file_get_contents($imageData);
+    } else {
+      // It's base64
+      $contents = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData));
+    }
+
+    $path = "users/{$userId}/{$orderId}/face_swap";
+    $filename = 'face_swap_' . time() . '.png';
+    Storage::disk('public')->put("{$path}/{$filename}", $contents);
+
+    return "{$path}/{$filename}";
+  }
+
 
 
   // Payment Method Selection

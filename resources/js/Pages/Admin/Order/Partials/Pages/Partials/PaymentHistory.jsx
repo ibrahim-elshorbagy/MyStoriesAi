@@ -5,7 +5,7 @@ export default function PaymentHistory({ order, t, paymentMethodOptions }) {
 
   return (
     <div className="bg-white dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6 lg:col-span-2">
-      <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4">{t('payment_history')}</h3>
+      <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4">{t('payment_details')}</h3>
 
       <div className="space-y-4">
         {order.payments.map((payment, index) => (

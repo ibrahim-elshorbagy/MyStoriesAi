@@ -42,22 +42,22 @@ export default function ViewOrder({ auth, order }) {
         <div className="mx-auto space-y-6">
           {/* Header */}
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center  gap-4">
               <Link
                 href={route('user.orders.index')}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800"
+                className="inline-flex  items-center px-4 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800"
               >
-                <i className="fa fa-arrow-left mr-2"></i>
-                {t('back_to_orders')}
+                <i className="fa fa-arrow-left mx-2 rtl:rotate-180"></i>
+                <span>{t('back_to_orders')}</span>
               </Link>
               <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
                 {t('order')} #{order.id}
               </h1>
             </div>
             <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${order.status === 'completed' ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' :
-                order.status === 'processing' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
-                  order.status === 'pending' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400' :
-                    'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
+              order.status === 'processing' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
+                order.status === 'pending' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400' :
+                  'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
               }`}>
               {statusOptions[order.status]}
             </span>
@@ -124,6 +124,39 @@ export default function ViewOrder({ auth, order }) {
                   <div className="pt-4 border-t border-neutral-200 dark:border-neutral-600">
                     <span className="font-medium text-neutral-700 dark:text-neutral-300 block mb-2">{t('customer_note')}:</span>
                     <p className="text-neutral-900 dark:text-neutral-100 bg-neutral-50 dark:bg-neutral-700 p-3 rounded-lg">{order.customer_note}</p>
+                  </div>
+                )}
+                {order.story && (
+                  <div className="pt-4 border-t border-neutral-200 dark:border-neutral-600">
+                    <span className="font-medium text-neutral-700 dark:text-neutral-300 block mb-2">{t('story')}:</span>
+                    <div className="flex flex-col  gap-4">
+                      {order.face_swap_image_path && (
+                        <img
+                          src={`/storage/${order.face_swap_image_path}`}
+                          alt="Face Swap"
+                          className="w-48 h-48 object-cover rounded-lg border border-neutral-300 dark:border-neutral-600"
+                        />
+                      )}
+                      <div>
+                        <a
+                          href={`/storage/${order.face_swap_image_path}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800 transition-colors duration-200"
+                        >
+                          <i className="fa fa-external-link-alt mx-2"></i>
+                          {t('view_full_image')}
+                        </a>
+                      </div>
+                      <Link
+                        href={route('story.show', order.story.id)}
+                        className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {order.story.title_value}
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>
@@ -201,7 +234,7 @@ export default function ViewOrder({ auth, order }) {
                       <img
                         src={`/storage/${order.child_image_path}`}
                         alt={order.child_name}
-                        className="w-32 h-32 object-cover rounded-lg border border-neutral-300 dark:border-neutral-600"
+                        className="w-48 h-48 object-cover rounded-lg border border-neutral-300 dark:border-neutral-600"
                       />
                       <a
                         href={`/storage/${order.child_image_path}`}
@@ -209,7 +242,7 @@ export default function ViewOrder({ auth, order }) {
                         rel="noopener noreferrer"
                         className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800 transition-colors duration-200"
                       >
-                        <i className="fa fa-external-link-alt mr-2"></i>
+                        <i className="fa fa-external-link-alt mx-2"></i>
                         {t('view_full_image')}
                       </a>
                     </div>
@@ -301,7 +334,7 @@ export default function ViewOrder({ auth, order }) {
             {/* Payments */}
             {order.payments && Array.isArray(order.payments) && order.payments.length > 0 && (
               <div className="bg-white dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6 lg:col-span-2">
-                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4">{t('payment_history')}</h3>
+                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4">{t('payment_details')}</h3>
 
                 <div className="space-y-4">
                   {order.payments.map((payment, index) => (
@@ -318,9 +351,9 @@ export default function ViewOrder({ auth, order }) {
                         <div>
                           <span className="font-medium text-neutral-700 dark:text-neutral-300 block">{t('status')}:</span>
                           <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${payment.status === 'paid' ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' :
-                              payment.status === 'pending' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
-                                payment.status === 'failed' ? 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400' :
-                                  'bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400'
+                            payment.status === 'pending' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
+                              payment.status === 'failed' ? 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400' :
+                                'bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400'
                             }`}>
                             {t(`payment_status_${payment.status}`)}
                           </span>

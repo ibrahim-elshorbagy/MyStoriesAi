@@ -20,6 +20,9 @@ return [
 
   // end Dashboard translations
 
+  'story' => 'Story',
+  'payment_details' => 'Payment Details',
+
   // Auth Pages
   'auth_login' => 'Login',
   'auth_welcome_back' => 'Welcome Back',
@@ -706,10 +709,10 @@ return [
   'edit' => 'Edit',
   'please_fill_required_fields' => 'Please fill all required fields',
   'please_fill_address_fields' => 'Please fill address fields',
-  "required"=>"Required",
-  "validation_max_string"=>"The field may not be greater than 255 characters.",
-  "validation_mimes"=>"The child image must be a file of type: jpeg, png, jpg, gif, webp.",
-  "validation_max_file"=>"The child image may not be greater than 5 MB.",
+  "required" => "Required",
+  "validation_max_string" => "The field may not be greater than 255 characters.",
+  "validation_mimes" => "The child image must be a file of type: jpeg, png, jpg, gif, webp.",
+  "validation_max_file" => "The child image may not be greater than 5 MB.",
 
   // Order validation attributes
   'child_name' => 'Child Name',
@@ -780,8 +783,8 @@ return [
   'pdf_ready' => 'PDF Ready for Download',
   'update_pdf' => 'Update PDF',
   "update_status" => "Update Status",
-  'no_payment'=>'No Payment',
-  'select'=>"Select",
+  'no_payment' => 'No Payment',
+  'select' => "Select",
   "selected_file" => "Selected File:",
 
   // Navigation
@@ -811,4 +814,32 @@ return [
   'confirm_delete_customer_feedback' => 'Are you sure you want to delete this customer feedback?',
   'confirm_delete_customer_feedbacks' => 'Are you sure you want to delete the selected customer feedbacks?',
   'no_feedback_text' => 'No feedback text',
+
+
+  // Story Step Zero
+  'customize_story' => 'Customize Story',
+  'customize_story_cover' => 'Customize Story Cover',
+  'customize_this_story' => 'Customize This Story',
+  'story_cover' => 'Story Cover',
+  'no_cover_available' => 'No cover available',
+  'please_upload_child_image' => 'Please upload child image first',
+  'no_cover_image' => 'No cover image available',
+  'face_swap_failed' => 'Face swap failed. Please try again.',
+  'please_generate_preview' => 'Please generate preview first',
+  'processing' => 'Processing...',
+  'generate_preview' => 'Generate Preview',
+  'preview_result' => 'Preview Result',
+  'satisfied_with_result' => 'Are you satisfied with the result?',
+  'try_again' => 'Try Again',
+  'confirm_and_continue' => 'Confirm and Continue',
+  'invalid_image_format' => 'Invalid format. Only JPG and PNG allowed.',
+  'image_too_small' => 'Image too small. Minimum 400x400 pixels.',
+  'image_too_large' => 'Image too large. Maximum 6000x6000 pixels.',
+
+  'uploading_images' => 'Uploading images...',
+  'processing_faces' => 'Processing faces...',
+  'creating_result' => 'Creating the result...',
+  'almost_done' => 'Almost done...',
+  'customized_cover' => 'Customized cover',
 ];
+

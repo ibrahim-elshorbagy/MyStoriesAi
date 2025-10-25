@@ -183,8 +183,20 @@ export default function SingleStory({ story }) {
                     </div>
                   </div>
                 )}
+
+
+                <div className="mt-6">
+                  <Link
+                    href={route('frontend.order.create', { story_id: story.id })}
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white text-lg font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  >
+                    <i className="fa-solid fa-wand-magic-sparkles"></i>
+                    {t('customize_this_story') || 'تخصيص هذه القصة'}
+                  </Link>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>

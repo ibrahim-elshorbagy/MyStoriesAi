@@ -73,7 +73,7 @@ export default function ChildInformation({ order, t, genderOptions, languageOpti
               <img
                 src={`/storage/${order.child_image_path}`}
                 alt={order.child_name}
-                className="w-32 h-32 object-cover rounded-lg border border-neutral-300 dark:border-neutral-600"
+                className="w-48 h-48 object-cover rounded-lg border border-neutral-300 dark:border-neutral-600"
               />
               <a
                 href={`/storage/${order.child_image_path}`}
@@ -81,7 +81,7 @@ export default function ChildInformation({ order, t, genderOptions, languageOpti
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-blue-900 dark:text-blue-200 dark:hover:bg-blue-800 transition-colors duration-200"
               >
-                <i className="fa fa-external-link-alt mr-2"></i>
+                <i className="fa fa-external-link-alt mx-2"></i>
                 {t('view_full_image')}
               </a>
             </div>

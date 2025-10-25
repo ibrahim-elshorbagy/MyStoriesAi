@@ -32,4 +32,9 @@ class Order extends Model
     return $this->hasOne(ShippingAddress::class);
   }
 
+  public function story(): BelongsTo
+  {
+    return $this->belongsTo(\App\Models\Admin\Story\Story::class);
+  }
+
 }

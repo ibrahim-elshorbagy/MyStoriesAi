@@ -3,22 +3,25 @@ import { useForm, router } from '@inertiajs/react';
 import SiteLayout from '@/Layouts/SiteLayout/SiteLayout';
 import { Head } from '@inertiajs/react';
 import { useTrans } from '@/Hooks/useTrans';
+import StepZero from './Steps/StepZero';
 import StepOne from './Steps/StepOne';
 import StepTwo from './Steps/StepTwo';
 import StepThree from './Steps/StepThree';
 
-export default function CreateOrder({ pricing, deliveryOptions }) {
+export default function CreateOrder({ pricing, deliveryOptions, story = null }) {
   const { t } = useTrans();
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(story ? 0 : 1);
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [clientErrors, setClientErrors] = useState({});
+  const [cameFromStepZero, setCameFromStepZero] = useState(story ? true : false);
 
   const { data, setData, post, processing, errors } = useForm({
-    // Step 1 - Order Data
+    story_id: story?.id || null,
+    face_swap_result: null,
     child_name: '',
     child_age: '',
-    language: '',
+    language: story ? 'arabic' : '',
     child_gender: '',
     format: '',
     value: [],
@@ -33,8 +36,6 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
     story_price: 0,
     delivery_price: 0,
     total_price: 0,
-
-    // Step 2 - Address Data
     delivery_option_id: '',
     area: '',
     street: '',
@@ -42,23 +43,24 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
     additional_info: '',
   });
 
-  // Handle server errors and navigation
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
-      // Determine which step has errors
-      const step1Fields = ['child_name', 'child_age', 'language', 'child_gender', 'format', 'value', 'child_image', 'custom_value', 'hair_color', 'hair_style', 'eye_color', 'skin_tone', 'clothing_description', 'customer_note', 'story_price'];
+      const step0Fields = ['story_id', 'face_swap_result', 'child_image'];
+      const step1Fields = ['child_name', 'child_age', 'language', 'child_gender', 'format', 'value', 'custom_value', 'hair_color', 'hair_style', 'eye_color', 'skin_tone', 'clothing_description', 'customer_note', 'story_price'];
       const step2Fields = ['delivery_option_id', 'area', 'street', 'house_number', 'additional_info', 'delivery_price'];
 
+      const hasStep0Errors = Object.keys(errors).some(key => step0Fields.includes(key));
       const hasStep1Errors = Object.keys(errors).some(key => step1Fields.includes(key));
       const hasStep2Errors = Object.keys(errors).some(key => step2Fields.includes(key));
 
-      if (hasStep1Errors) {
+      if (hasStep0Errors && story) {
+        setCurrentStep(0);
+      } else if (hasStep1Errors) {
         setCurrentStep(1);
       } else if (hasStep2Errors) {
         setCurrentStep(2);
       }
 
-      // Scroll to first error after re-render
       setTimeout(() => {
         const firstError = document.querySelector('.text-red-600');
         if (firstError) {
@@ -68,10 +70,8 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
     }
   }, [errors]);
 
-  // Merge server errors and client errors
   const allErrors = { ...errors, ...clientErrors };
 
-  // Client-side validation for step 1
   const validateStep1 = () => {
     const newErrors = {};
 
@@ -101,15 +101,14 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
       newErrors.value = t('required');
     }
 
-    if (!imageFile) {
+    // Only validate image if NOT coming from step 0
+    if (!imageFile && !cameFromStepZero) {
       newErrors.child_image = t('required');
-    } else {
-      // Validate file type
+    } else if (imageFile) {
       const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/webp'];
       if (!validTypes.includes(imageFile.type)) {
         newErrors.child_image = t('validation_mimes');
       }
-      // Validate file size (max 5MB)
       if (imageFile.size > 5120 * 1024) {
         newErrors.child_image = t('validation_max_file');
       }
@@ -119,10 +118,8 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Client-side validation for step 2
   const validateStep2 = () => {
-    // PDF format doesn't need address
-    if (data.format === 'pdf') {
+    if (data.format === 'first_plan') {
       setClientErrors({});
       return true;
     }
@@ -142,7 +139,7 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
     if (!data.street || data.street.trim() === '') {
       newErrors.street = t('required');
     } else if (data.street.length > 255) {
-      newErrors.street = t('validation_max_string') ;
+      newErrors.street = t('validation_max_string');
     }
 
     if (!data.house_number || data.house_number.trim() === '') {
@@ -156,8 +153,14 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
   };
 
   const goToStep = (step) => {
+    if (step === 1 && currentStep === 0) {
+      setClientErrors({});
+      setCameFromStepZero(true);
+      setCurrentStep(step);
+      return;
+    }
+
     if (step === 2 && !validateStep1()) {
-      // Scroll to first error
       setTimeout(() => {
         const firstError = document.querySelector('.text-red-600');
         if (firstError) {
@@ -190,7 +193,6 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
       }
     }
 
-    // Clear errors when moving to next step
     setClientErrors({});
     setCurrentStep(step);
   };
@@ -198,9 +200,7 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Final validation
     if (!validateStep1() || !validateStep2()) {
-      // Navigate to step with errors
       if (Object.keys(clientErrors).some(key =>
         ['child_name', 'child_age', 'language', 'child_gender', 'format', 'value', 'child_image'].includes(key)
       )) {
@@ -218,17 +218,14 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
       return;
     }
 
-    // Prepare data for submission
     const submitData = { ...data };
     submitData.child_image = imageFile;
 
-    // Submit using Inertia form
     post(route('frontend.order.store'), submitData, {
       forceFormData: true,
       preserveScroll: true,
       onError: (errors) => {
         console.log('Validation errors:', errors);
-        // Navigation and scrolling handled by useEffect
       },
       onSuccess: () => {
         console.log('Order submitted successfully');
@@ -236,38 +233,59 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
     });
   };
 
+  const getStepTitle = () => {
+    if (currentStep === 0) return t('customize_story') || 'تخصيص القصة';
+    if (currentStep === 1) return t('step_1') || 'الخطوة 1';
+    if (currentStep === 2) return data.format === 'first_plan' ? t('step_3') || 'الخطوة 3' : t('step_2') || 'الخطوة 2';
+    if (currentStep === 3) return t('step_3') || 'الخطوة 3';
+  };
+
   return (
     <SiteLayout>
-      <Head title={t('create_story_title')} />
+      <Head title={t('create_story_title') || 'إنشاء قصة'} />
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-16">
         <div className="max-w-4xl mx-auto px-6">
-          {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-orange-400 to-pink-500 rounded-full mb-6 shadow-lg">
               <i className="fa-solid fa-book-open text-3xl text-white"></i>
             </div>
             <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4 py-4">
-              {t('create_story_title')}
+              {t('create_story_title') || 'إنشاء قصة مخصصة'}
             </h1>
             <p className="text-xl text-neutral-600 font-medium">
-              {currentStep === 1 && t('step_1')}
-              {currentStep === 2 && (data.format === 'pdf' ? t('step_3') : t('step_2'))}
-              {currentStep === 3 && t('step_3')}
+              {getStepTitle()}
             </p>
 
             {/* Progress Indicator */}
             <div className="mt-6 flex justify-center">
               <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                <div className={`${currentStep === 1 ? 'w-12 h-2 bg-gradient-to-r from-orange-400 to-pink-500' : 'w-2 h-2 bg-green-500'} rounded-full transition-all duration-300`}></div>
+                {story && (
+                  <div className={`${currentStep === 0 ? 'w-12 h-2 bg-gradient-to-r from-orange-400 to-pink-500' : currentStep > 0 ? 'w-2 h-2 bg-green-500' : 'w-2 h-2 bg-neutral-300'} rounded-full transition-all duration-300`}></div>
+                )}
+                <div className={`${currentStep === 1 ? 'w-12 h-2 bg-gradient-to-r from-orange-400 to-pink-500' : currentStep > 1 ? 'w-2 h-2 bg-green-500' : 'w-2 h-2 bg-neutral-300'} rounded-full transition-all duration-300`}></div>
                 <div className={`${currentStep === 2 ? 'w-12 h-2 bg-gradient-to-r from-orange-400 to-pink-500' : currentStep > 2 ? 'w-2 h-2 bg-green-500' : 'w-2 h-2 bg-neutral-300'} rounded-full transition-all duration-300`}></div>
                 <div className={`${currentStep === 3 ? 'w-12 h-2 bg-gradient-to-r from-orange-400 to-pink-500' : 'w-2 h-2 bg-neutral-300'} rounded-full transition-all duration-300`}></div>
               </div>
             </div>
           </div>
 
-          {/* Form Steps */}
           <form onSubmit={handleSubmit}>
+            {currentStep === 0 && story && (
+              <StepZero
+                story={story}
+                data={data}
+                setData={setData}
+                errors={allErrors}
+                imageFile={imageFile}
+                setImageFile={setImageFile}
+                imagePreview={imagePreview}
+                setImagePreview={setImagePreview}
+                onNext={() => goToStep(1)}
+                t={t}
+              />
+            )}
+
             {currentStep === 1 && (
               <StepOne
                 data={data}
@@ -278,12 +296,14 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
                 setImagePreview={setImagePreview}
                 imageFile={imageFile}
                 setImageFile={setImageFile}
-                onNext={() => goToStep(data.format === 'pdf' ? 3 : 2)}
+                onNext={() => goToStep(data.format === 'first_plan' ? 3 : 2)}
+                onBack={cameFromStepZero ? () => setCurrentStep(0) : null}
+                cameFromStepZero={cameFromStepZero}
                 t={t}
               />
             )}
 
-            {currentStep === 2 && data.format !== 'pdf' && (
+            {currentStep === 2 && data.format !== 'first_plan' && (
               <StepTwo
                 data={data}
                 setData={setData}
@@ -299,7 +319,7 @@ export default function CreateOrder({ pricing, deliveryOptions }) {
               <StepThree
                 data={data}
                 imagePreview={imagePreview}
-                onBack={() => setCurrentStep(data.format === 'pdf' ? 1 : 2)}
+                onBack={() => setCurrentStep(data.format === 'first_plan' ? 1 : 2)}
                 onEdit={(step) => setCurrentStep(step)}
                 processing={processing}
                 errors={allErrors}

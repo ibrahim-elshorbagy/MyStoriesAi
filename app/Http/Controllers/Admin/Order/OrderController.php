@@ -26,7 +26,7 @@ class OrderController extends Controller
     $sortDirection = $request->input('direction', 'desc');
     $perPage = $request->input('per_page', 15);
 
-    $query = Order::with(['user', 'payments', 'shippingAddress']);
+    $query = Order::with(['user', 'payments', 'shippingAddress', 'story']);
 
     // Filter by child name or user name
     if ($request->filled('name')) {
@@ -53,7 +53,7 @@ class OrderController extends Controller
 
   public function show(Order $order)
   {
-    $order->load(['user', 'payments', 'shippingAddress.deliveryOption']);
+    $order->load(['user', 'payments', 'shippingAddress.deliveryOption', 'story']);
 
     // Check if PDF file exists, if not, set pdf_path to null
     if ($order->pdf_path && !Storage::disk('public')->exists($order->pdf_path)) {

@@ -23,6 +23,7 @@
         "vite": "^7.0.4"
     },
     "dependencies": {
+        "@gradio/client": "^2.0.0-dev.1",
         "react-toastify": "^11.0.5",
         "swiper": "^11.2.10"
     }

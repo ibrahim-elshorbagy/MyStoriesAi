@@ -15,7 +15,8 @@ export default function StepOne({
   imageFile,
   setImageFile,
   onNext,
-  t
+  t,
+  cameFromStepZero
 }) {
 
   const handleImageChange = (e) => {
@@ -266,6 +267,26 @@ export default function StepOne({
             </div>
             <InputError message={errors.child_image} className="mt-2" />
           </div>
+
+          {/* Show face-swapped image if came from Step Zero */}
+          {cameFromStepZero && data.face_swap_result && (
+            <div className="md:col-span-2 mb-6">
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-xl border-2 border-green-200">
+                <h3 className="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
+                  <i className="fa-solid fa-sparkles text-yellow-500 mx-2"></i>
+                  {t('customized_cover') || 'الغلاف المخصص'}
+                </h3>
+                <div className="flex justify-center">
+                  <img
+                    src={data.face_swap_result}
+                    alt="Face swapped cover"
+                    className="max-w-md h-auto rounded-lg shadow-xl"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
         </div>
       </div>
 

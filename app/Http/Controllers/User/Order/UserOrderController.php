@@ -22,7 +22,7 @@ class UserOrderController extends Controller
     $sortDirection = $request->input('direction', 'desc');
     $perPage = $request->input('per_page', 15);
 
-    $query = Order::with(['user', 'payments', 'shippingAddress'])
+    $query = Order::with(['user', 'payments', 'shippingAddress', 'story'])
       ->where('user_id', Auth::id()); // Only show user's own orders
 
     // Filter by child name
@@ -50,7 +50,7 @@ class UserOrderController extends Controller
       abort(403, 'Unauthorized');
     }
 
-    $order->load(['user', 'payments', 'shippingAddress.deliveryOption']);
+    $order->load(['user', 'payments', 'shippingAddress.deliveryOption', 'story']);
 
     return inertia('User/Order/Partials/Pages/ViewOrder', [
       'order' => $order,
