@@ -126,7 +126,7 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
 
     const newErrors = {};
 
-    if (!data.delivery_option_id) {
+    if (!data.delivery_option_id || data.delivery_option_id === 'custom') {
       newErrors.delivery_option_id = t('required');
     }
 
