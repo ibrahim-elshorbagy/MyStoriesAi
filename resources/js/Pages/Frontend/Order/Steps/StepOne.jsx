@@ -71,11 +71,13 @@ export default function StepOne({
 
 
   const languageOptions = [
+    { value: '', label: t('select') },
     { value: 'arabic', label: t('language_arabic') },
     { value: 'english', label: t('language_english') },
   ];
 
   const genderOptions = [
+    { value: '', label: t('select') },
     { value: 'boy', label: t('gender_boy') },
     { value: 'girl', label: t('gender_girl') },
   ];

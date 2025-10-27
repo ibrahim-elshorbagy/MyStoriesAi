@@ -91,7 +91,7 @@ class OrderController extends Controller
       'story_price' => ['required', 'numeric', 'min:0'],
       'delivery_price' => ['required', 'numeric', 'min:0'],
       'total_price' => ['required', 'numeric', 'min:0'],
-      'delivery_option_id' => ['required_if:format,second_plan,third_plan', 'exists:delivery_options,id'],
+      'delivery_option_id' => ['nullable', 'required_if:format,second_plan,third_plan', 'exists:delivery_options,id'],
       'area' => ['required_unless:format,first_plan', 'nullable', 'string', 'max:255'],
       'street' => ['required_unless:format,first_plan', 'nullable', 'string', 'max:255'],
       'house_number' => ['required_unless:format,first_plan', 'nullable', 'string', 'max:255'],
