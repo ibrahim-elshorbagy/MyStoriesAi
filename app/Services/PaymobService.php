@@ -76,12 +76,19 @@ class PaymobService
       $orderData = [
         'api_source' => 'INVOICE',
         "amount_cents" => $order->total_price * 100,
+        "currency" => "EGP",
         "integrations" => $integrations,
-        'merchant_order_id' => $order->id . '_' . time(),
+        "shipping_data" => [
+          "first_name" => $order->user->name,
+          "last_name" => "NA",
+          "email" => $order->user->email,
+          "phone_number" => $order->user->phone,
+        ],
       ];
+
       Log::info('Paymob order data', $orderData);
 
-      $response = Http::withHeaders([
+      $response = Http::withHeaders(headers: [
         'Authorization' => "Bearer {$token}"
       ])->post(
           "{$this->base_url}/ecommerce/orders",

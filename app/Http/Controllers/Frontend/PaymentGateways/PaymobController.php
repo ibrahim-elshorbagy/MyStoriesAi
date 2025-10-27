@@ -21,8 +21,11 @@ class PaymobController extends Controller
   }
 
 
-  public function success(Order $order)
+  public function success(Request $request,Order $order)
   {
+
+    Log::info($request->all());
+
     if ($order->user_id !== Auth::id())
       abort(403);
 
