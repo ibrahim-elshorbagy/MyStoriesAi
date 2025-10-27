@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\Order\OrderController;
+use App\Http\Controllers\Frontend\PaymentGateways\PaymobController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth','role:user'])->group(function () {
@@ -13,4 +14,9 @@ Route::middleware(['auth','role:user'])->group(function () {
   // Payment routes (keep these as before)
   Route::get('/orders/{order}/payment', [OrderController::class, 'payment'])->name('frontend.order.payment');
   Route::post('/orders/{order}/process-payment', [OrderController::class, 'processPayment'])->name('frontend.order.processPayment');
+
+  // Paymob Payment Routes
+  Route::get('/payment/paymob/{order}', [PaymobController::class, 'initiatePayment'])->name('frontend.payment.paymob.initiate');
+  Route::get('/payment/paymob/success/{order?}', [PaymobController::class, 'success'])->name('frontend.payment.success');
+  Route::get('/payment/paymob/failed/{order?}', [PaymobController::class, 'failure'])->name('frontend.payment.failed');
 });

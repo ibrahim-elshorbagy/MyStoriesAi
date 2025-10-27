@@ -22,24 +22,19 @@ const ExternalLink = ({ href, title = "View Settings" }) => (
   </a>
 );
 
-export default function PaymobSettings({ settings }) {
+export default function PaymobSettings({ settings, paymobUrls = {} }) {
   const { t } = useTrans();
 
   const { data, setData, post, processing, errors, recentlySuccessful } = useForm({
     settings: {
       paymob_api_key: settings.paymob_api_key || '',
-      paymob_secret_key: settings.paymob_secret_key || '',
-      paymob_public_key: settings.paymob_public_key || '',
-      paymob_mode: settings.paymob_mode || 'test',
       paymob_mobile_wallet_id: settings.paymob_mobile_wallet_id || '',
       paymob_online_card_id: settings.paymob_online_card_id || '',
     },
-    env_settings: ['paymob_api_key', 'paymob_secret_key', 'paymob_public_key', 'paymob_mode', 'paymob_mobile_wallet_id', 'paymob_online_card_id']
+    env_settings: ['paymob_api_key', 'paymob_mobile_wallet_id', 'paymob_online_card_id']
   });
 
   const [showApiKey, setShowApiKey] = useState(false);
-  const [showSecretKey, setShowSecretKey] = useState(false);
-  const [showPublicKey, setShowPublicKey] = useState(false);
   const [showMobileWalletId, setShowMobileWalletId] = useState(false);
   const [showOnlineCardId, setShowOnlineCardId] = useState(false);
 
@@ -100,94 +95,6 @@ export default function PaymobSettings({ settings }) {
               <InputError message={errors['settings.paymob_api_key']} className="mt-2" />
             </div>
 
-            {/* Secret Key */}
-            <div className="md:col-span-2">
-              <InputLabel value={t('paymob_secret_key')} />
-              <div className="flex gap-2">
-                <div className="flex-1">
-                  <TextInput
-                    type={showSecretKey ? 'text' : 'password'}
-                    value={data.settings.paymob_secret_key}
-                    onChange={(e) => setData('settings', {
-                      ...data.settings,
-                      paymob_secret_key: e.target.value
-                    })}
-                    className=" resize-none"
-                    placeholder="Enter Secret Key"
-                  />
-                </div>
-                <SecondaryButton
-                  type="button"
-                  onClick={() => setShowSecretKey(!showSecretKey)}
-                  className="w-8 h-8 flex items-center justify-center"
-                >
-                  <i className={`fa-solid ${showSecretKey ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-                </SecondaryButton>
-
-              </div>
-              <div className="flex items-center gap-2 mt-1">
-                <p className="text-xs text-neutral-500">
-                  {t('paymob_secret_key_help')}
-                </p>
-                <ExternalLink href="https://accept.paymob.com/portal2/en/settings" />
-              </div>
-              <InputError message={errors['settings.paymob_secret_key']} className="mt-2" />
-            </div>
-
-            {/* Public Key */}
-            <div className="md:col-span-2">
-              <InputLabel value={t('paymob_public_key')} />
-              <div className="flex gap-2">
-                <div className="flex-1">
-                  <TextInput
-                    type={showPublicKey ? 'text' : 'password'}
-                    value={data.settings.paymob_public_key}
-                    onChange={(e) => setData('settings', {
-                      ...data.settings,
-                      paymob_public_key: e.target.value
-                    })}
-                    className=" resize-none"
-                    placeholder="Enter Public Key"
-                  />
-                </div>
-                <SecondaryButton
-                  type="button"
-                  onClick={() => setShowPublicKey(!showPublicKey)}
-                  className="w-8 h-8 flex items-center justify-center"
-                >
-                  <i className={`fa-solid ${showPublicKey ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-                </SecondaryButton>
-
-              </div>
-              <div className="flex items-center gap-2 mt-1">
-                <p className="text-xs text-neutral-500">
-                  {t('paymob_public_key_help')}
-                </p>
-                <ExternalLink href="https://accept.paymob.com/portal2/en/settings" />
-              </div>
-              <InputError message={errors['settings.paymob_public_key']} className="mt-2" />
-            </div>
-
-            {/* Mode */}
-            <div>
-              <InputLabel value={t('paymob_mode')} />
-              <select
-                value={data.settings.paymob_mode}
-                onChange={(e) => setData('settings', {
-                  ...data.settings,
-                  paymob_mode: e.target.value
-                })}
-                className="mt-1 block w-full rounded-md border-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 shadow-sm"
-              >
-                <option value="">{t('select')}</option>
-                <option value="test">{t('paymob_test_mode')}</option>
-                <option value="live">{t('paymob_live_mode')}</option>
-              </select>
-              <p className="text-xs text-neutral-500 mt-1">
-                {t('paymob_mode_help')}
-              </p>
-              <InputError message={errors['settings.paymob_mode']} className="mt-2" />
-            </div>
 
             {/* Mobile Wallet ID */}
             <div className="md:col-span-2">
@@ -253,6 +160,32 @@ export default function PaymobSettings({ settings }) {
                 <ExternalLink href="https://accept.paymob.com/portal2/en/PaymentIntegrations" title="View Payment Integrations" />
               </div>
               <InputError message={errors['settings.paymob_online_card_id']} className="mt-2" />
+            </div>
+          </div>
+
+          {/* Paymob Callback URLs */}
+          <div className="bg-neutral-50 dark:bg-neutral-800/50 rounded-lg p-4 border border-neutral-200 dark:border-neutral-700">
+            <h3 className="font-medium text-neutral-900 dark:text-neutral-100 mb-3 flex items-center gap-2">
+              <i className="fa-solid fa-link text-blue-500"></i>
+              {t('paymob_callback_urls')}
+            </h3>
+            <div className="space-y-2">
+              <div>
+                <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                  {t('success_url')}:
+                </label>
+                <div className="mt-1 p-2 bg-neutral-100 dark:bg-neutral-900 rounded border font-mono text-sm text-neutral-900 dark:text-neutral-100 break-all">
+                  {paymobUrls.success_url || 'Not configured'}
+                </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                  {t('failure_url')}:
+                </label>
+                <div className="mt-1 p-2 bg-neutral-100 dark:bg-neutral-900 rounded border font-mono text-sm text-neutral-900 dark:text-neutral-100 break-all">
+                  {paymobUrls.failure_url || 'Not configured'}
+                </div>
+              </div>
             </div>
           </div>
 

@@ -8,7 +8,7 @@ import CookieSettings from './Partials/CookieSettings';
 import EmailSettings from './Partials/EmailSettings';
 import PaymobSettings from './Partials/PaymobSettings';
 
-export default function SiteSettings({ settings = {}, timezones = [] }) {
+export default function SiteSettings({ settings = {}, timezones = [], paymobUrls = {} }) {
   const { t } = useTrans();
   const [activeSection, setActiveSection] = useState('contact');
 
@@ -78,7 +78,7 @@ export default function SiteSettings({ settings = {}, timezones = [] }) {
               <CookieSettings settings={settings} />
             )}
             {activeSection === 'paymob' && (
-              <PaymobSettings settings={settings} />
+              <PaymobSettings settings={settings} paymobUrls={paymobUrls} />
             )}
           </div>
         </div>

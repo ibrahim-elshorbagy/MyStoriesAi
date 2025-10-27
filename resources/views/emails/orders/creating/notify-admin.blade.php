@@ -12,7 +12,7 @@
 
       <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0; direction: rtl;">
         <strong style="color:#333;">معرف الطلب:</strong> #{{ $order->id }}<br/>
-        <strong style="color:#333;">اسم العميل:</strong> {{ $order->user->name }}<br/>
+        <strong style="color:#333;">اسم العميل:</strong> {{ $order->user ? $order->user->name : 'غير معروف' }}<br/>
         <strong style="color:#333;">اسم الطفل:</strong> {{ $order->child_name }}<br/>
         <strong style="color:#333;">عمر الطفل:</strong> {{ $order->child_age }} سنوات<br/>
         <strong style="color:#333;">اللغة:</strong> {{ $order->language === 'arabic' ? 'العربية' : 'الإنجليزية' }}<br/>
@@ -26,7 +26,7 @@
         @endif
         <br/>
         <strong style="color:#333;">المبلغ الإجمالي:</strong> {{ $order->total_price }} جنيه<br/>
-        <strong style="color:#333;">طريقة الدفع:</strong> {{ $order->payment_method === 'cod' ? 'الدفع عند الاستلام' : 'دفع إلكتروني' }}<br/>
+        <strong style="color:#333;">طريقة الدفع:</strong> {{ $order->payment_method === 'cod' ? __('website.cod') : __('website.online_payment') }}<br/>
         <strong style="color:#333;">حالة الطلب:</strong>
         @if($order->status === 'pending')
           في الانتظار
@@ -56,7 +56,7 @@
 
       <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
         <strong style="color:#333;">Order ID:</strong> #{{ $order->id }}<br/>
-        <strong style="color:#333;">Customer Name:</strong> {{ $order->user->name }}<br/>
+        <strong style="color:#333;">Customer Name:</strong> {{ $order->user ? $order->user->name : 'Unknown' }}<br/>
         <strong style="color:#333;">Child Name:</strong> {{ $order->child_name }}<br/>
         <strong style="color:#333;">Child Age:</strong> {{ $order->child_age }} years<br/>
         <strong style="color:#333;">Language:</strong> {{ $order->language === 'arabic' ? 'Arabic' : 'English' }}<br/>

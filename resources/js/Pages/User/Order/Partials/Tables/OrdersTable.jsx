@@ -72,7 +72,7 @@ export default function OrdersTable({ orders }) {
             <i className="fa fa-eye mr-1"></i>
             {t('view')}
           </ActionButton>
-          {(!order.payments || order.payments.length === 0) && (
+          {(!order.payments || order.payments.length === 0 || order.status === 'pending') && (
             <ActionButton
               href={route('frontend.order.payment', order.id)}
               variant='success'

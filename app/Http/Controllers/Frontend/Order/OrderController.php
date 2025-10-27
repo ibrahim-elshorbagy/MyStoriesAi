@@ -16,11 +16,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
+use App\Services\PaymobService;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class OrderController extends Controller
 {
+  protected $paymobService;
+
+  public function __construct(PaymobService $paymobService)
+  {
+    $this->paymobService = $paymobService;
+  }
+
   // Show the multi-step form`
   public function create(Request $request)
   {
@@ -185,7 +193,9 @@ class OrderController extends Controller
 
       // Send notifications
       try {
-        $order->user->notify(new OrderConfirmation($order));
+        if ($order->user) {
+          $order->user->notify(new OrderConfirmation($order));
+        }
 
         $adminEmailSetting = SiteSetting::where('key', 'admin_notification_email')->first();
         if ($adminEmailSetting && $adminEmailSetting->value) {
@@ -239,12 +249,12 @@ class OrderController extends Controller
     if ($order->user_id !== Auth::id()) {
       abort(403);
     }
-    if ($order->payments()->exists()) {
-      return redirect()->route('user.orders.show', $order->id)
-        ->with('title', __('website_response.payment_already_initiated_title'))
-        ->with('message', __('website_response.payment_already_initiated'))
-        ->with('status', 'error');
-    }
+    // if ($order->payments()->exists()) {
+    //   return redirect()->route('user.orders.show', $order->id)
+    //     ->with('title', __('website_response.payment_already_initiated_title'))
+    //     ->with('message', __('website_response.payment_already_initiated'))
+    //     ->with('status', 'error');
+    // }
 
 
     return Inertia::render('Frontend/Order/PaymentMethod', [
@@ -268,27 +278,49 @@ class OrderController extends Controller
     try {
 
       // Create payment record
-      Payment::create([
+      $payment = Payment::create([
         'order_id' => $order->id,
         'payment_method' => $validated['payment_method'],
         'status' => 'pending',
         'amount' => $order->total_price,
       ]);
 
+      // Update order payment method
+      $order->update(['payment_method' => $validated['payment_method']]);
+
       DB::commit();
 
       if ($validated['payment_method'] === 'cod') {
+        $payment->update(['status' => 'pending']);
+        $order->update(['status' => 'pending']);
+
         return redirect()->route('home')
           ->with('title', __('website_response.order_created_cod_title'))
           ->with('message', __('website_response.order_created_cod_message'))
           ->with('status', 'success');
       } else {
-        // Redirect to Paymob payment gateway
-        return redirect()->route('frontend.payment.paymob', $order->id);
+        // Handle Paymob payment
+        $result = $this->paymobService->sendPayment($order);
+
+        Log::info('Paymob payment result: ' . json_encode($result));  
+        if (!$result['status']) {
+          return redirect()->route('home')
+            ->with('title', __('website_response.payment_error_title'))
+            ->with('message', $result['message'])
+            ->with('status', 'error');
+        }
+
+        // Update payment with transaction id
+        $payment->update(['transaction_id' => $result['paymob_order_id']]);
+
+        return redirect($result['url']);
       }
     } catch (\Exception $e) {
       DB::rollBack();
-      return back()->withErrors(['error' => 'Payment processing failed. Please try again.']);
+      return redirect()->route('home')
+        ->with('title', __('website_response.payment_error_title'))
+        ->with('message', __('website_response.payment_failed'))
+        ->with('status', 'error');
     }
   }
 }

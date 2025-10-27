@@ -1,20 +1,11 @@
-import React from 'react';
-import { useForm } from '@inertiajs/react';
+import React, { useState } from 'react';
 import SiteLayout from '@/Layouts/SiteLayout/SiteLayout';
 import { Head } from '@inertiajs/react';
 import { useTrans } from '@/Hooks/useTrans';
 
 export default function PaymentMethod({ order }) {
   const { t } = useTrans();
-
-  const { data, setData, post, processing } = useForm({
-    payment_method: 'cod',
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    post(route('frontend.order.processPayment', order.id));
-  };
+  const [paymentMethod, setPaymentMethod] = useState('cod');
 
   return (
     <SiteLayout>
@@ -44,7 +35,8 @@ export default function PaymentMethod({ order }) {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20">
+          <form method="post" action={route('frontend.order.processPayment', order.id)} className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20">
+            <input type="hidden" name="_token" value={document.querySelector('meta[name="csrf-token"]').getAttribute('content')} />
             <div className="space-y-6">
               <h2 className="text-2xl font-semibold text-center text-neutral-900 mb-6">
                 {t('choose_payment_method')}
@@ -53,8 +45,8 @@ export default function PaymentMethod({ order }) {
               {/* Payment Options */}
               <div className="space-y-4">
                 <div
-                  onClick={() => setData('payment_method', 'cod')}
-                  className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${data.payment_method === 'cod'
+                  onClick={() => setPaymentMethod('cod')}
+                  className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${paymentMethod === 'cod'
                       ? 'border-orange-500 bg-orange-50 shadow-lg scale-105'
                       : 'border-neutral-200 hover:border-orange-300 hover:shadow-md'
                     }`}
@@ -64,8 +56,8 @@ export default function PaymentMethod({ order }) {
                       type="radio"
                       name="payment_method"
                       value="cod"
-                      checked={data.payment_method === 'cod'}
-                      onChange={() => setData('payment_method', 'cod')}
+                      checked={paymentMethod === 'cod'}
+                      onChange={() => setPaymentMethod('cod')}
                       className="mt-1 mx-3 w-5 h-5 text-orange-500"
                     />
                     <div className="flex-1">
@@ -83,8 +75,8 @@ export default function PaymentMethod({ order }) {
                 </div>
 
                 <div
-                  onClick={() => setData('payment_method', 'paymob')}
-                  className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${data.payment_method === 'paymob'
+                  onClick={() => setPaymentMethod('paymob')}
+                  className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${paymentMethod === 'paymob'
                       ? 'border-orange-500 bg-orange-50 shadow-lg scale-105'
                       : 'border-neutral-200 hover:border-orange-300 hover:shadow-md'
                     }`}
@@ -94,8 +86,8 @@ export default function PaymentMethod({ order }) {
                       type="radio"
                       name="payment_method"
                       value="paymob"
-                      checked={data.payment_method === 'paymob'}
-                      onChange={() => setData('payment_method', 'paymob')}
+                      checked={paymentMethod === 'paymob'}
+                      onChange={() => setPaymentMethod('paymob')}
                       className="mt-1 mx-3 w-5 h-5 text-orange-500"
                     />
                     <div className="flex-1">
@@ -136,24 +128,16 @@ export default function PaymentMethod({ order }) {
                 </div>
               </div>
 
-              {/* Submit Button - No Back Button */}
+              {/* Submit Button */}
               <div className="flex justify-center pt-6">
                 <button
                   type="submit"
-                  disabled={processing}
-                  className="px-12 py-4 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white font-bold text-lg rounded-2xl hover:from-orange-600 hover:via-pink-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  className="px-12 py-4 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white font-bold text-lg rounded-2xl hover:from-orange-600 hover:via-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                 >
-                  {processing ? (
-                    <span className="flex items-center gap-3">
-                      <i className="fa-solid fa-spinner fa-spin"></i>
-                      <span> {t('processing')}</span>
-                    </span>
-                  ) : (
-                    <span className="flex rtl:flex-row-reverse items-center gap-3">
-                      <span>{t('complete_payment')}</span>
-                      <i className="fa-solid fa-arrow-right "></i>
-                    </span>
-                  )}
+                  <span className="flex rtl:flex-row-reverse items-center gap-3">
+                    <span>{t('complete_payment')}</span>
+                    <i className="fa-solid fa-arrow-right "></i>
+                  </span>
                 </button>
               </div>
             </div>

@@ -231,4 +231,16 @@ return [
   'customer_feedback_deleted_message' => 'تم حذف تعليق العميل بنجاح.',
   'customer_feedbacks_bulk_deleted_title' => 'تم حذف تعليقات العملاء',
   'customer_feedbacks_bulk_deleted_message' => 'تم حذف تعليقات العملاء المحددة بنجاح.',
+
+  // Payment Responses
+  'payment_already_completed' => 'تم إكمال الدفع لهذا الطلب بالفعل.',
+  'payment_failed' => 'فشل الدفع. يرجى المحاولة مرة أخرى.',
+  'payment_methods_not_configured' => 'طرق الدفع غير مكونة. يرجى التواصل مع الدعم.',
+  'payment_successful_title' => 'تم الدفع بنجاح',
+  'payment_successful_message' => 'تم معالجة الدفع بنجاح.',
+  'payment_pending_title' => 'الدفع معلق',
+  'payment_pending_message' => 'جارٍ معالجة الدفع الخاص بك.',
+  'payment_error_title' => 'خطأ في الدفع',
+  'payment_already_initiated_title' => 'تم بدء الدفع بالفعل',
+  'payment_already_initiated' => 'تم بدء الدفع لهذا الطلب بالفعل.',
 ];

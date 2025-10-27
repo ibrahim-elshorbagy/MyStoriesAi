@@ -23,6 +23,23 @@ return [
   'story' => 'Story',
   'payment_details' => 'Payment Details',
   'continue_payment' => 'Continue Payment',
+  'payment_success' => 'Payment Successful',
+  'payment_failed' => 'Payment Failed',
+  'payment_processing' => 'Processing Payment',
+  'back_to_orders' => 'Back to Orders',
+  'order_paid_successfully' => 'Your order has been paid successfully',
+  'payment_error_occurred' => 'An error occurred during payment',
+  'order_details' => 'Order Details',
+  'order_number' => 'Order Number',
+  'total_amount' => 'Total Amount',
+  'currency' => 'EGP',
+  'payment_method' => 'Payment Method',
+  'paymob' => 'Paymob',
+  'cod' => 'Cash on Delivery',
+  'online_payment' => 'Online Payment',
+  'transaction_id' => 'Transaction ID',
+  'back_to_dashboard' => 'Back to Dashboard',
+  'view_all_orders' => 'View All Orders',
 
   // Auth Pages
   'auth_login' => 'Login',
@@ -866,8 +883,9 @@ return [
   'paymob_online_card_id' => 'Online Card ID',
   'paymob_mobile_wallet_id_help' => 'Your Paymob Mobile Wallet integration ID',
   'paymob_online_card_id_help' => 'Your Paymob Online Card integration ID',
-
-
+  "paymob_callback_urls"=>"Paymob Call Back URL",
+  "success_url"=>"Success URL",
+  "failure_url"=>"Failure URL",
 
 ];
 

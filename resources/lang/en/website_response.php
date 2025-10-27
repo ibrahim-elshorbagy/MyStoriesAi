@@ -228,4 +228,16 @@ return [
   'customer_feedback_deleted_message' => 'Customer feedback has been deleted successfully.',
   'customer_feedbacks_bulk_deleted_title' => 'Customer Feedbacks Deleted',
   'customer_feedbacks_bulk_deleted_message' => 'Selected customer feedbacks have been deleted successfully.',
+
+  // Payment Responses
+  'payment_already_completed' => 'Payment has already been completed for this order.',
+  'payment_failed' => 'Payment failed. Please try again.',
+  'payment_methods_not_configured' => 'Payment methods not configured. Please contact support.',
+  'payment_successful_title' => 'Payment Successful',
+  'payment_successful_message' => 'Your payment has been processed successfully.',
+  'payment_pending_title' => 'Payment Pending',
+  'payment_pending_message' => 'Your payment is being processed.',
+  'payment_error_title' => 'Payment Error',
+  'payment_already_initiated_title' => 'Payment Already Initiated',
+  'payment_already_initiated' => 'Payment for this order has already been initiated.',
 ];

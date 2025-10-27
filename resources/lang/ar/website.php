@@ -21,6 +21,27 @@ return [
 
   // end Dashboard translations
 
+  'story' => 'القصة',
+  'payment_details' => 'تفاصيل الدفع',
+  'continue_payment' => 'متابعة الدفع',
+  'payment_success' => 'تم الدفع بنجاح',
+  'payment_failed' => 'فشل الدفع',
+  'payment_processing' => 'جارٍ معالجة الدفع',
+  'back_to_orders' => 'العودة للطلبات',
+  'order_paid_successfully' => 'تم دفع طلبك بنجاح',
+  'payment_error_occurred' => 'حدث خطأ أثناء الدفع',
+  'order_details' => 'تفاصيل الطلب',
+  'order_number' => 'رقم الطلب',
+  'total_amount' => 'المبلغ الإجمالي',
+  'currency' => 'جنيه مصري',
+  'payment_method' => 'طريقة الدفع',
+  'paymob' => 'باي موب',
+  'cod' => 'الدفع عند الاستلام',
+  'online_payment' => 'دفع إلكتروني',
+  'transaction_id' => 'رقم المعاملة',
+  'back_to_dashboard' => 'العودة للوحة التحكم',
+  'view_all_orders' => 'عرض جميع الطلبات',
+
   // Auth Pages
   'auth_login' => 'تسجيل الدخول',
   'auth_welcome_back' => 'مرحباً بعودتك',
@@ -906,6 +927,7 @@ return [
   'paymob_online_card_id' => 'Online Card ID',
   'paymob_mobile_wallet_id_help' => 'Your Paymob Mobile Wallet integration ID',
   'paymob_online_card_id_help' => 'Your Paymob Online Card integration ID',
-
-
+  "paymob_callback_urls"=>"Paymob Call Back URL",
+  "success_url"=>"Success URL",
+  "failure_url"=>"Failure URL",
 ];
