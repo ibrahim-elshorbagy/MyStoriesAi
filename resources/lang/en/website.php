@@ -8,38 +8,67 @@ return [
   |
   |
   */
+
+
   // Dashboard translations
+  'welcome' => "Welcome",
   'dashboard' => 'Dashboard',
-  'total_tasks' => 'Total Tasks',
-  'ai_agents' => 'AI Agents',
-  'processed_today' => 'Processed Today',
-  'time_saved' => 'Time Saved',
   'hello_user' => 'Hello :name',
-  'new_task' => 'New Task',
-  'all_systems_operational' => 'All systems operational',
+
+  'language' => 'Language',
+  'english' => 'English',
+  'arabic' => 'Arabic',
+  'change_language' => 'Change Language',
+  'language_changed' => 'Language Changed',
+  'current_language' => 'Current Language',
+
+  // site Layout
+  'home' => "Home",
+  "pricing" => "Pricing",
+  'get_started' => 'Get Started',
+
+
+  /* Sidebar */
+  'dashboard' => 'Dashboard',
+  'user_management' => 'User Management',
+  'users' => 'Users',
+  'roles' => 'Roles',
+  'permissions' => 'Permissions',
+  'settings' => 'Settings',
+  'search_navigation' => 'Search navigation...',
+  'no_results_for' => 'No results found for {:query}',
+  'open_sidebar' => 'Open sidebar menu',
+
+  /* Profile Menu */
+  'profile' => 'Profile',
+  'theme' => 'Theme',
+  'light_mode' => 'Light Mode',
+  'dark_mode' => 'Dark Mode',
+  'system_mode' => 'System Mode',
+  'sign_out' => 'Sign Out',
+
+  /* Error Pages */
+  'error' => 'Error',
+  'error_occurred' => 'An error has occurred',
+  'not_found' => 'Not Found',
+  'page_not_found' => 'The page you are looking for does not exist.',
+  'forbidden' => 'Forbidden',
+  'access_denied' => 'You do not have permission to access this resource.',
+  'server_error' => 'Server Error',
+  'server_error_message' => 'Something went wrong on our servers.',
+  'unauthorized' => 'Unauthorized',
+  'unauthorized_message' => 'You need to log in to access this resource.',
+  'too_many_requests' => 'Too Many Requests',
+  'too_many_requests_message' => 'You have sent too many requests. Please wait a while before trying again.',
+  'page_expired' => 'Page Expired',
+  'page_expired_message' => 'This page has expired due to inactivity.',
+  'return_home' => 'Return Home',
+  'try_again' => 'Try Again',
+  'contact_support' => 'Contact Support',
+  'login' => 'Log In',
+
 
   // end Dashboard translations
-
-  'story' => 'Story',
-  'payment_details' => 'Payment Details',
-  'continue_payment' => 'Continue Payment',
-  'payment_success' => 'Payment Successful',
-  'payment_failed' => 'Payment Failed',
-  'payment_processing' => 'Processing Payment',
-  'back_to_orders' => 'Back to Orders',
-  'order_paid_successfully' => 'Your order has been paid successfully',
-  'payment_error_occurred' => 'An error occurred during payment',
-  'order_details' => 'Order Details',
-  'order_number' => 'Order Number',
-  'total_amount' => 'Total Amount',
-  'currency' => 'EGP',
-  'payment_method' => 'Payment Method',
-  'paymob' => 'Paymob',
-  'cod' => 'Cash on Delivery',
-  'online_payment' => 'Online Payment',
-  'transaction_id' => 'Transaction ID',
-  'back_to_dashboard' => 'Back to Dashboard',
-  'view_all_orders' => 'View All Orders',
 
   // Auth Pages
   'auth_login' => 'Login',
@@ -83,18 +112,11 @@ return [
   'auth_log_out' => 'Log Out',
   'auth_security_check' => 'Security Check',
   'auth_confirm_password_continue' => 'Please confirm your password to continue',
-  'auth_secure_area_message' => 'This is a secure area of the application. Please verify your identity by confirming your password.',
   // end Auth Pages
 
-  'welcome' => "Welcome",
 
+  //Start Profile Page ----------------------------------------------------------
 
-  'language' => 'Language',
-  'english' => 'English',
-  'arabic' => 'Arabic',
-  'change_language' => 'Change Language',
-  'language_changed' => 'Language Changed',
-  'current_language' => 'Current Language',
 
   /* Profile Page */
   'profile_settings' => 'Profile Settings',
@@ -122,6 +144,42 @@ return [
   'save_changes' => 'Save Changes',
   'saved_successfully' => 'Saved successfully',
 
+  /* Profile Image Form */
+  'profile_image' => 'Profile Image',
+  'update_profile_image' => 'Update your profile picture',
+  "choose_file" => "Choose File",
+  'current_image' => 'Current',
+  'new_image' => 'New',
+  'no_image' => 'No image',
+  'uploading' => 'Uploading...',
+
+  /* Password Form */
+  'ensure_strong_password' => 'Ensure your account is using a strong password to stay secure. We recommend using a password manager',
+  'password_tip' => 'A strong password should be at least 12 characters long and include a mix of letters, numbers, and special characters',
+  'current_password' => 'Current Password',
+  'new_password' => 'New Password',
+  'confirm_new_password' => 'Confirm New Password',
+  'update_password' => 'Update Password',
+  'password_updated' => 'Password updated',
+
+  /* Delete Account Form */
+  'account_deletion_warning' => 'Once your account is deleted, all of its resources and data will be permanently deleted. This action cannot be undone',
+  'delete_my_account' => 'Delete My Account',
+  'delete_account' => 'Delete Account',
+  'delete_account_confirmation' => 'Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account',
+  'confirm_with_password' => 'Confirm with your password',
+  'enter_current_password' => 'Enter your current password',
+  'cancel' => 'Cancel',
+  'permanently_delete_account' => 'Permanently Delete Account',
+
+
+  //End Profile Page ----------------------------------------------------------
+
+  'story' => 'Story',
+  'back_to_dashboard' => 'Back to Dashboard',
+
+
+
 
   /* User Management */
   'user' => 'User',
@@ -145,7 +203,6 @@ return [
   'story_management' => 'Story Management',
   'create_story' => 'Create Story',
   'edit_story' => 'Edit Story',
-  'story' => 'Story',
   'title' => 'Title',
   'content' => 'Content',
   'gender' => 'Gender',
@@ -203,7 +260,6 @@ return [
   "saving" => "Saving...",
   "edit" => "Edit",
   "delete" => "Delete",
-  "serial" => "Serial",
   "no_items_found" => "No Items Found",
 
 
@@ -213,89 +269,15 @@ return [
   'confirm_delete_users' => 'Are you sure you want to delete :count users? This action cannot be undone.',
 
 
-  /* Profile Image Form */
-  'profile_image' => 'Profile Image',
-  'update_profile_image' => 'Update your profile picture',
-  "choose_file" => "Choose File",
-  'current_image' => 'Current',
-  'new_image' => 'New',
-  'no_image' => 'No image',
-  'uploading' => 'Uploading...',
-
-  /* Password Form */
-  'ensure_strong_password' => 'Ensure your account is using a strong password to stay secure. We recommend using a password manager',
-  'password_tip' => 'A strong password should be at least 12 characters long and include a mix of letters, numbers, and special characters',
-  'current_password' => 'Current Password',
-  'new_password' => 'New Password',
-  'confirm_new_password' => 'Confirm New Password',
-  'update_password' => 'Update Password',
-  'password_updated' => 'Password updated',
-
-  /* Delete Account Form */
-  'account_deletion_warning' => 'Once your account is deleted, all of its resources and data will be permanently deleted. This action cannot be undone',
-  'delete_my_account' => 'Delete My Account',
-  'delete_account' => 'Delete Account',
-  'delete_account_confirmation' => 'Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account',
-  'confirm_with_password' => 'Confirm with your password',
-  'enter_current_password' => 'Enter your current password',
-  'cancel' => 'Cancel',
-  'permanently_delete_account' => 'Permanently Delete Account',
 
   "search" => "Search",
   "serial" => "Serial",
 
-  /* Draft/Sent Bulk Action Confirmations */
-  'confirm_send_drafts' => 'Are you sure you want to send :count draft messages?',
-  'confirm_delete_drafts' => 'Are you sure you want to delete :count draft messages?',
-  'confirm_delete_sent_messages' => 'Are you sure you want to delete :count sent messages?',
-
-  /* End Email Agent Response Messages */
 
 
 
-  /* Sidebar */
-  'dashboard' => 'Dashboard',
-  'user_management' => 'User Management',
-  'users' => 'Users',
-  'roles' => 'Roles',
-  'permissions' => 'Permissions',
-  'sidebar_wallets' => 'Wallets',
-  'sidebar_all_wallets' => 'All Wallets',
-  'all_tasks' => 'All Tasks',
-  'sidebar_active_tasks' => 'Active Tasks',
-  'sidebar_completed' => 'Completed',
-  'settings' => 'Settings',
-  'search_navigation' => 'Search navigation...',
-  'no_results_for' => 'No results found for {:query}',
-  'open_sidebar' => 'Open sidebar menu',
 
-  /* Profile Menu */
-  'profile' => 'Profile',
-  'theme' => 'Theme',
-  'light_mode' => 'Light Mode',
-  'dark_mode' => 'Dark Mode',
-  'system_mode' => 'System Mode',
-  'sign_out' => 'Sign Out',
 
-  /* Error Pages */
-  'error' => 'Error',
-  'error_occurred' => 'An error has occurred',
-  'not_found' => 'Not Found',
-  'page_not_found' => 'The page you are looking for does not exist.',
-  'forbidden' => 'Forbidden',
-  'access_denied' => 'You do not have permission to access this resource.',
-  'server_error' => 'Server Error',
-  'server_error_message' => 'Something went wrong on our servers.',
-  'unauthorized' => 'Unauthorized',
-  'unauthorized_message' => 'You need to log in to access this resource.',
-  'too_many_requests' => 'Too Many Requests',
-  'too_many_requests_message' => 'You have sent too many requests. Please wait a while before trying again.',
-  'page_expired' => 'Page Expired',
-  'page_expired_message' => 'This page has expired due to inactivity.',
-  'return_home' => 'Return Home',
-  'try_again' => 'Try Again',
-  'contact_support' => 'Contact Support',
-  'login' => 'Log In',
 
   /* User Management */
   'user_management' => 'User Management',
@@ -324,15 +306,7 @@ return [
   'select_role_required' => '-- Select Role --',
 
 
-  // Plan validation attributes
-  'limit_value' => 'Limit Value',
-  'enabled' => 'Enabled',
-  'disabled' => 'Disabled',
 
-  // site Layout
-  'home' => "Home",
-  "pricing" => "Pricing",
-  'get_started' => 'Get Started',
 
 
   // Common terms
@@ -865,6 +839,28 @@ return [
   'delivery_method' => 'Delivery Method',
   'digital_delivery' => 'Digital Delivery',
   'no_shipping_required' => 'No shipping required',
+
+
+  //Start Payment
+  'payment_details' => 'Payment Details',
+  'continue_payment' => 'Continue Payment',
+  'payment_success' => 'Payment Successful',
+  'payment_failed' => 'Payment Failed',
+  'payment_processing' => 'Processing Payment',
+  'back_to_orders' => 'Back to Orders',
+  'order_paid_successfully' => 'Your order has been paid successfully',
+  'payment_error_occurred' => 'An error occurred during payment',
+  'order_details' => 'Order Details',
+  'order_number' => 'Order Number',
+  'total_amount' => 'Total Amount',
+  'currency' => 'EGP',
+  'payment_method' => 'Payment Method',
+  'paymob' => 'Paymob',
+  'cod' => 'Cash on Delivery',
+  'online_payment' => 'Online Payment',
+  'transaction_id' => 'Transaction ID',
+  'view_all_orders' => 'View All Orders',
+
 
   // Paymob Settings
   'paymob_settings' => 'Paymob Settings',

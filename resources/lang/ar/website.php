@@ -9,38 +9,66 @@ return [
   |
   */
 
+
   // Dashboard translations
+  'welcome' => " مرحباً",
   'dashboard' => 'لوحة التحكم',
-  'total_tasks' => 'إجمالي المهام',
-  'ai_agents' => 'وكلاء الذكاء الاصطناعي',
-  'processed_today' => 'تمت معالجتها اليوم',
-  'time_saved' => 'الوقت المُوفر',
   'hello_user' => 'مرحباً :name',
-  'new_task' => 'مهمة جديدة',
-  'all_systems_operational' => 'جميع الأنظمة تعمل بشكل طبيعي',
+
+  'language' => 'اللغة',
+  'english' => 'الإنجليزية',
+  'arabic' => 'العربية',
+  'change_language' => 'تغيير اللغة',
+  'language_changed' => 'تم تغيير اللغة',
+  'current_language' => 'اللغة الحالية',
+
+
+  // Site Layout
+  'home' => "الرئيسية",
+  "pricing" => "التسعير",
+  'get_started' => 'البدء',
+
+  /* Sidebar */
+  'dashboard' => 'لوحة التحكم',
+  'user_management' => 'إدارة المستخدمين',
+  'users' => 'المستخدمين',
+  'roles' => 'الأدوار',
+  'permissions' => 'الصلاحيات',
+  'settings' => 'الإعدادات',
+  'search_navigation' => 'البحث في القائمة...',
+  'no_results_for' => 'لا توجد نتائج لـ {:query}',
+  'open_sidebar' => 'فتح القائمة الجانبية',
+
+  /* Profile Menu */
+  'profile' => 'الملف الشخصي',
+  'theme' => 'السمة',
+  'light_mode' => 'الوضع الفاتح',
+  'dark_mode' => 'الوضع الداكن',
+  'system_mode' => 'وضع النظام',
+  'sign_out' => 'تسجيل الخروج',
+
+  /* Error Pages */
+  'error' => 'خطأ',
+  'error_occurred' => 'حدث خطأ',
+  'not_found' => 'غير موجود',
+  'page_not_found' => 'الصفحة التي تبحث عنها غير موجودة.',
+  'forbidden' => 'محظور',
+  'access_denied' => 'ليس لديك صلاحية للوصول إلى هذه الصفحه.',
+  'server_error' => 'خطأ في الخادم',
+  'server_error_message' => 'حدث خطأ ما على خوادمنا.',
+  'unauthorized' => 'غير مصرح',
+  'unauthorized_message' => 'تحتاج إلى تسجيل الدخول للوصول إلى هذه الصفحه.',
+  'too_many_requests' => 'طلبات كثيرة جدًا',
+  'too_many_requests_message' => 'لقد أرسلت الكثير من الطلبات. يرجى الانتظار قليلاً قبل المحاولة مرة أخرى.',
+  'page_expired' => 'انتهت صلاحية الصفحة',
+  'page_expired_message' => 'انتهت صلاحية هذه الصفحة بسبب عدم النشاط.',
+  'return_home' => 'العودة للرئيسية',
+  'try_again' => 'حاول مرة أخرى',
+  'contact_support' => 'تواصل مع الدعم',
+  'login' => 'تسجيل الدخول',
+
 
   // end Dashboard translations
-
-  'story' => 'القصة',
-  'payment_details' => 'تفاصيل الدفع',
-  'continue_payment' => 'متابعة الدفع',
-  'payment_success' => 'تم الدفع بنجاح',
-  'payment_failed' => 'فشل الدفع',
-  'payment_processing' => 'جارٍ معالجة الدفع',
-  'back_to_orders' => 'العودة للطلبات',
-  'order_paid_successfully' => 'تم دفع طلبك بنجاح',
-  'payment_error_occurred' => 'حدث خطأ أثناء الدفع',
-  'order_details' => 'تفاصيل الطلب',
-  'order_number' => 'رقم الطلب',
-  'total_amount' => 'المبلغ الإجمالي',
-  'currency' => 'جنيه مصري',
-  'payment_method' => 'طريقة الدفع',
-  'paymob' => 'باي موب',
-  'cod' => 'الدفع عند الاستلام',
-  'online_payment' => 'دفع إلكتروني',
-  'transaction_id' => 'رقم المعاملة',
-  'back_to_dashboard' => 'العودة للوحة التحكم',
-  'view_all_orders' => 'عرض جميع الطلبات',
 
   // Auth Pages
   'auth_login' => 'تسجيل الدخول',
@@ -84,18 +112,10 @@ return [
   'auth_log_out' => 'تسجيل الخروج',
   'auth_security_check' => 'فحص أمني',
   'auth_confirm_password_continue' => 'يرجى تأكيد كلمة المرور للمتابعة',
-  'auth_secure_area_message' => 'هذه منطقة آمنة في التطبيق. يرجى التحقق من هويتك عن طريق تأكيد كلمة المرور.',
   // end Auth Pages
 
-  'welcome' => " مرحباً",
-  'language' => 'اللغة',
-  'english' => 'الإنجليزية',
-  'arabic' => 'العربية',
-  'change_language' => 'تغيير اللغة',
-  'language_changed' => 'تم تغيير اللغة',
-  'current_language' => 'اللغة الحالية',
 
-
+  // Profile Page ----------------------------------------------------------
   /* Profile Page */
   'profile_settings' => 'إعدادات الملف الشخصي',
   'manage_account_settings' => 'إدارة إعدادات الحساب وتفضيلات الأمان',
@@ -150,56 +170,10 @@ return [
   'cancel' => 'إلغاء',
   'permanently_delete_account' => 'حذف الحساب بشكل دائم',
 
+  // Profile Page ----------------------------------------------------------
 
-  /* End Email Agent Response Messages */
-
-
-
-
-  /* Sidebar */
-  'dashboard' => 'لوحة التحكم',
-  'user_management' => 'إدارة المستخدمين',
-  'users' => 'المستخدمين',
-  'roles' => 'الأدوار',
-  'permissions' => 'الصلاحيات',
-  'all_tasks' => 'جميع المهام',
-  'sidebar_wallets' => 'المحافظ',
-  'sidebar_all_wallets' => 'جميع المحافظ',
-  'sidebar_active_tasks' => 'المهام النشطة',
-  'sidebar_completed' => 'المهام المكتملة',
-  'settings' => 'الإعدادات',
-  'search_navigation' => 'البحث في القائمة...',
-  'no_results_for' => 'لا توجد نتائج لـ {:query}',
-  'open_sidebar' => 'فتح القائمة الجانبية',
-
-  /* Profile Menu */
-  'profile' => 'الملف الشخصي',
-  'theme' => 'السمة',
-  'light_mode' => 'الوضع الفاتح',
-  'dark_mode' => 'الوضع الداكن',
-  'system_mode' => 'وضع النظام',
-  'sign_out' => 'تسجيل الخروج',
-
-  /* Error Pages */
-  'error' => 'خطأ',
-  'error_occurred' => 'حدث خطأ',
-  'not_found' => 'غير موجود',
-  'page_not_found' => 'الصفحة التي تبحث عنها غير موجودة.',
-  'forbidden' => 'محظور',
-  'access_denied' => 'ليس لديك صلاحية للوصول إلى هذه الصفحه.',
-  'server_error' => 'خطأ في الخادم',
-  'server_error_message' => 'حدث خطأ ما على خوادمنا.',
-  'unauthorized' => 'غير مصرح',
-  'unauthorized_message' => 'تحتاج إلى تسجيل الدخول للوصول إلى هذه الصفحه.',
-  'too_many_requests' => 'طلبات كثيرة جدًا',
-  'too_many_requests_message' => 'لقد أرسلت الكثير من الطلبات. يرجى الانتظار قليلاً قبل المحاولة مرة أخرى.',
-  'page_expired' => 'انتهت صلاحية الصفحة',
-  'page_expired_message' => 'انتهت صلاحية هذه الصفحة بسبب عدم النشاط.',
-  'return_home' => 'العودة للرئيسية',
-  'try_again' => 'حاول مرة أخرى',
-  'contact_support' => 'تواصل مع الدعم',
-  'login' => 'تسجيل الدخول',
-
+  'story' => 'القصة',
+  'back_to_dashboard' => 'العودة للوحة التحكم',
 
   /* User Management */
   'user' => 'مستخدم',
@@ -256,44 +230,9 @@ return [
   'search_name_username_email' => 'البحث بالاسم أو اسم المستخدم أو البريد الإلكتروني...',
   "login_as" => "تسجيل الدخول كـ",
 
-  /* Plans Management */
-  'plans' => 'الخطط',
-  'plan' => 'خطة',
-  'monthly_plans' => 'الخطط الشهرية',
-  'yearly_plans' => 'الخطط السنوية',
-  'plan_management' => 'إدارة الخطط',
-  'manage_plans' => 'إدارة الخطط',
-  'create_plan' => 'إنشاء خطة',
-  'edit_plan' => 'تعديل الخطة',
-  'delete_plan' => 'حذف الخطة',
-  'plan_name' => 'اسم الخطة',
-  'plan_description' => 'وصف الخطة',
-  'plan_price' => 'سعر الخطة',
-  'plan_type' => 'نوع الخطة',
-  'monthly' => 'شهرية',
-  'yearly' => 'سنوية',
-  'features' => 'الميزات',
-  'feature' => 'ميزة',
-  'type' => 'النوع',
-  'description' => 'الوصف',
-  'search_plans' => 'البحث عن خطط...',
-  'plan_name_en' => 'اسم الخطة (إنجليزي)',
-  'plan_name_ar' => 'اسم الخطة (عربي)',
-  'plan_description_en' => 'وصف الخطة (إنجليزي)',
-  'plan_description_ar' => 'وصف الخطة (عربي)',
-  'creating' => 'جاري الإنشاء...',
 
 
-  // Plan validation attributes
-  'limit_value' => 'اقصي قيمة',
-  'enabled' => 'ممكن',
-  'disabled' => 'غير ممكن',
 
-
-  // Site Layout
-  'home' => "الرئيسية",
-  "pricing" => "التسعير",
-  'get_started' => 'البدء',
 
   // Home Page Translations
   'manage_your' => 'عزز',
@@ -620,7 +559,6 @@ return [
   'story_management' => 'إدارة القصص',
   'create_story' => 'إنشاء قصة',
   'edit_story' => 'تعديل القصة',
-  'story' => 'القصة',
   'payment_details' => 'تفاصيل الدفع',
   'continue_payment' => 'متابعة الدفع',
   'gender' => 'الجنس',
@@ -907,7 +845,26 @@ return [
   'no_shipping_required' => 'لا يتطلب شحن',
 
 
+  //Start Payment
 
+  'payment_details' => 'تفاصيل الدفع',
+  'continue_payment' => 'متابعة الدفع',
+  'payment_success' => 'تم الدفع بنجاح',
+  'payment_failed' => 'فشل الدفع',
+  'payment_processing' => 'جارٍ معالجة الدفع',
+  'back_to_orders' => 'العودة للطلبات',
+  'order_paid_successfully' => 'تم دفع طلبك بنجاح',
+  'payment_error_occurred' => 'حدث خطأ أثناء الدفع',
+  'order_details' => 'تفاصيل الطلب',
+  'order_number' => 'رقم الطلب',
+  'total_amount' => 'المبلغ الإجمالي',
+  'currency' => 'جنيه مصري',
+  'payment_method' => 'طريقة الدفع',
+  'paymob' => 'باي موب',
+  'cod' => 'الدفع عند الاستلام',
+  'online_payment' => 'دفع إلكتروني',
+  'transaction_id' => 'رقم المعاملة',
+  'view_all_orders' => 'عرض جميع الطلبات',
 
   // Paymob Settings
   'paymob_settings' => 'إعدادات Paymob',
