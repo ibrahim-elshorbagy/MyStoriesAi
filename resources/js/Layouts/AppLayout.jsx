@@ -3,8 +3,9 @@ import Sidebar from './Sidebar/Sidebar';
 import { usePage, Link } from '@inertiajs/react';
 import Toastify from './Partials/Toastify';
 import { useTrans } from '@/Hooks/useTrans';
-import SidebarProfileMenu from './Sidebar/SidebarProfileMenu';
+import ProfileMenu from './Sidebar/ProfileMenu';
 import CookieModal from '@/Components/CookieModal';
+import Navbar from './Header/Navbar';
 
 export default function AppLayout({ children, title }) {
   const { locale } = usePage().props;
@@ -33,7 +34,7 @@ export default function AppLayout({ children, title }) {
           </button>
           {/* <div className="w-8" /> */}
           {/* Profile menu at the bottom */}
-          <SidebarProfileMenu />
+          <ProfileMenu />
         </nav>
 
         {/* Dark overlay for mobile sidebar */}
@@ -46,14 +47,22 @@ export default function AppLayout({ children, title }) {
           />
         )}
 
-        <div className="relative flex w-full flex-col md:flex-row">
+        <div className="relative flex w-full flex-col md:flex-row min-h-screen">
           {/* Sidebar Navigation */}
           <Sidebar sidebarIsOpen={sidebarIsOpen} setSidebarIsOpen={setSidebarIsOpen} />
 
-          {/* Main Content */}
-          <main className="h-full w-full overflow-y-auto">
-            {children}
-          </main>
+          {/* Main Content with Footer */}
+          <div className="flex-1 flex flex-col min-w-0 relative">
+            {/* Top header */}
+            <Navbar />
+
+            {/* Main content */}
+            <main className="flex-1 w-full">
+              {children}
+            </main>
+
+          </div>
+
         </div>
       </div>
 

@@ -4,7 +4,8 @@ import { useTrans } from "@/Hooks/useTrans";
 import SelectInput from "@/Components/SelectInput";
 
 export default function UpdateLanguagePreferences() {
-  const { locale } = usePage().props;
+  const page = usePage();
+  const { locale } = page.props;
   const { t } = useTrans();
 
   const languages = {
@@ -20,8 +21,6 @@ export default function UpdateLanguagePreferences() {
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = route("locale.change");
-
-    const page = usePage()
 
     // Add CSRF token
     const csrfInput = document.createElement('input');

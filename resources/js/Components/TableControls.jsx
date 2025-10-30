@@ -162,7 +162,7 @@ export default function TableControls({
         )}
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center flex-wrap gap-3">
         {/* Sort dropdown */}
         {sortOptions.length > 0 && (
           <div className="relative" onClick={stopPropagation}>

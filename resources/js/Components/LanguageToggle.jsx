@@ -52,17 +52,17 @@ export default function LanguageToggle({ className = '' }) {
   };
 
   return (
-    <div className={`relative ${className}`} ref={dropdownRef}>
+    <div className={`relative`} ref={dropdownRef}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100"
+        className={`flex w-full items-center gap-2 text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100 ${className}`}
         aria-label="Select language"
         title="Select language"
       >
-        <i className="fa-solid fa-language"></i>
+        <i className="fa-solid fa-language shrink-0"></i>
         <span>{languages[locale]?.flag} {languages[locale]?.name}</span>
-        <i className={`fa-solid fa-chevron-${isOpen ? 'up' : 'down'} text-xs`}></i>
+        <i className={`fa-solid fa-chevron-${isOpen ? 'up' : 'down'} text-xs ltr:ml-auto rtl:mr-auto shrink-0`}></i>
       </button>
 
       {isOpen && (

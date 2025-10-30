@@ -18,6 +18,8 @@ return [
   'language' => 'اللغة',
   'english' => 'الإنجليزية',
   'arabic' => 'العربية',
+  "german"=>"ألماني",
+  "deutsche"=>"الألمانية",
   'change_language' => 'تغيير اللغة',
   'language_changed' => 'تم تغيير اللغة',
   'current_language' => 'اللغة الحالية',

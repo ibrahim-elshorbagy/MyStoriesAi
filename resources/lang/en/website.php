@@ -18,6 +18,8 @@ return [
   'language' => 'Language',
   'english' => 'English',
   'arabic' => 'Arabic',
+  "german"=>"German",
+  "deutsche"=>"Deutsche",
   'change_language' => 'Change Language',
   'language_changed' => 'Language Changed',
   'current_language' => 'Current Language',
