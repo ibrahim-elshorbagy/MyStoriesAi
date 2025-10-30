@@ -47,7 +47,7 @@ class HandleInertiaRequests extends Middleware
       'impersonate_admin_id' => session('impersonate_admin_id'),
 
       // 'translations' => fn () => __('website'),
-      'available_locales' => ['en', 'ar'],
+      'available_locales' => ['en', 'ar', 'de'],
       'locale' => fn () => app()->getLocale(),
       'csrf_token' => csrf_token(),
       'cookie_data' => $this->getCookieData(),

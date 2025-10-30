@@ -17,7 +17,7 @@ class PreferencesController extends Controller
   public function changeLocale(Request $request)
   {
     $data = $request->validate([
-      'locale' => ['required', 'string', 'in:en,ar'],
+      'locale' => ['required', 'string', 'in:en,ar,de'],
     ]);
 
     // Store the locale in session

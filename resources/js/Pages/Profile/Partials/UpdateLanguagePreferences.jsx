@@ -7,6 +7,12 @@ export default function UpdateLanguagePreferences() {
   const { locale } = usePage().props;
   const { t } = useTrans();
 
+  const languages = {
+    en: t('english'),
+    ar: t('arabic'),
+    de: t('german')
+  };
+
   const handleLanguageChange = (e) => {
     const newLocale = e.target.value;
 
@@ -15,7 +21,7 @@ export default function UpdateLanguagePreferences() {
     form.method = 'POST';
     form.action = route("locale.change");
 
-      const page = usePage()
+    const page = usePage()
 
     // Add CSRF token
     const csrfInput = document.createElement('input');
@@ -51,7 +57,7 @@ export default function UpdateLanguagePreferences() {
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             {t("current_language")}:{" "}
-            {locale === "en" ? t("english") : t("arabic")}
+            {languages[locale] || locale}
           </label>
 
           <SelectInput
@@ -61,6 +67,7 @@ export default function UpdateLanguagePreferences() {
             options={[
               { value: "en", label: t("english") },
               { value: "ar", label: t("arabic") },
+              { value: "de", label: t("german") },
             ]}
             icon="fa-language"
             required
