@@ -4,7 +4,7 @@
 
   <!-- Card -->
   <div style="max-width:600px; margin:0 auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:{{ $locale === 'ar' ? 'right' : 'left' }};" dir="{{ $locale === 'ar' ? 'rtl' : 'ltr' }}">
-    @if($locale === 'ar')
+  @if($locale === 'ar')
       <h2 style="color:#333; direction: rtl;">تحديث حالة الطلب - رقم #{{ $order->id }} 🎉</h2>
       <p style="color:#555; font-size:16px; direction: rtl;">
         مرحباً {{ $notifiable->name }}،
@@ -58,6 +58,56 @@
       <p style="margin-top:30px; font-size:14px; color:#999; direction: rtl;">
         شكراً لاختيار MyStoryAI!
       </p>
+    @elseif($locale === 'de')
+      <h2 style="color:#333;">Aktualisierung des Bestellstatus - Bestellung #{{ $order->id }} 🎉</h2>
+      <p style="color:#555; font-size:16px;">
+        Hallo {{ $notifiable->name }},
+      </p>
+
+      <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
+        <h3 style="color:#fa7508; margin-top:0;">Aktualisierte Bestelldetails:</h3>
+        <strong style="color:#333;">Bestellnummer:</strong> #{{ $order->id }}<br/>
+        <strong style="color:#333;">Name des Kindes:</strong> {{ $order->child_name }}<br/>
+        <strong style="color:#333;">Neuer Status:</strong>
+        @if($order->status === 'processing')
+          <span style="color:#ffc107;">In Bearbeitung</span>
+        @elseif($order->status === 'completed')
+          <span style="color:#28a745;">Abgeschlossen</span>
+        @elseif($order->status === 'cancelled')
+          <span style="color:#dc3545;">Storniert</span>
+        @else
+          <span style="color:#6c757d;">Ausstehend</span>
+        @endif
+        <br/>
+        <strong style="color:#333;">Aktualisierungsdatum:</strong> {{ $order->updated_at->format('Y-m-d H:i') }}
+      </div>
+
+      <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
+        <h4 style="color:#2d5a2d; margin-top:0;">Was bedeutet das?</h4>
+        <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
+          @if($order->status === 'processing')
+            Wir haben mit der Bearbeitung Ihrer Geschichte begonnen! Wir erstellen die personalisierte Geschichte und bereiten sie für den Versand oder digitalen Download vor.
+          @elseif($order->status === 'completed')
+            Die Geschichte Ihres Kindes wurde erfolgreich fertiggestellt! Sie erhalten die Geschichte bald entsprechend Ihrer gewählten Liefermethode.
+          @elseif($order->status === 'cancelled')
+            Ihre Bestellung wurde storniert. Wenn dies ein Fehler ist, kontaktieren Sie uns bitte umgehend.
+          @else
+            Ihre Bestellung steht noch aus. Wir werden mit der Bearbeitung bald beginnen.
+          @endif
+        </p>
+      </div>
+
+      @if($order->status === 'completed')
+      <div style="text-align:center; margin:20px 0;">
+        <a href="{{ config('app.url') }}/orders/{{ $order->id }}" style="background:#fa7508; color:#fff; padding:12px 24px; text-decoration:none; border-radius:6px; display:inline-block;">
+          Bestelldetails ansehen
+        </a>
+      </div>
+      @endif
+
+      <p style="color:#777; font-size:14px;">Wenn Sie Fragen zu diesem Update haben, kontaktieren Sie uns bitte.</p>
+
+      <p style="margin-top:30px; font-size:14px; color:#999;">Vielen Dank, dass Sie MyStoryAI gewählt haben!</p>
     @else
       <h2 style="color:#333;">Order Status Update - #{{ $order->id }} 🎉</h2>
       <p style="color:#555; font-size:16px;">

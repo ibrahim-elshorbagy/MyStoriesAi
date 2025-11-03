@@ -4,7 +4,7 @@
 
   <!-- Card -->
   <div style="max-width:600px; margin:0 auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:{{ $locale === 'ar' ? 'right' : 'left' }};" dir="{{ $locale === 'ar' ? 'rtl' : 'ltr' }}">
-    @if($locale === 'ar')
+  @if($locale === 'ar')
       <h2 style="color:#333; direction: rtl;">شكراً لك {{ $notifiable->name }} 🎉</h2>
       <p style="color:#555; font-size:16px; direction: rtl;">
         تم إنشاء طلبك بنجاح! نحن متحمسون لإنشاء قصة مخصصة لطفلك.
@@ -51,6 +51,49 @@
       <p style="margin-top:30px; font-size:14px; color:#999; direction: rtl;">
         شكراً لاختيارك MyStoryAI ❤️
       </p>
+    @elseif($locale === 'de')
+      <h2 style="color:#333;">Vielen Dank {{ $notifiable->name }} 🎉</h2>
+      <p style="color:#555; font-size:16px;">
+        Ihre Bestellung wurde erfolgreich erstellt! Wir freuen uns darauf, eine personalisierte Geschichte für Ihr Kind zu erstellen.
+      </p>
+
+      <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
+        <h3 style="color:#fa7508; margin-top:0;">Ihre Bestelldetails:</h3>
+        <strong style="color:#333;">Bestellnummer:</strong> #{{ $order->id }}<br/>
+        <strong style="color:#333;">Name des Kindes:</strong> {{ $order->child_name }}<br/>
+        <strong style="color:#333;">Alter des Kindes:</strong> {{ $order->child_age }} Jahre<br/>
+        <strong style="color:#333;">Sprache:</strong> {{ $order->language === 'arabic' ? 'Arabisch' : 'Englisch' }}<br/>
+        <strong style="color:#333;">Format:</strong>
+        @if($order->format === 'pdf')
+          Nur PDF
+        @elseif($order->format === 'soft')
+          PDF + Softcover
+        @else
+          PDF + Hardcover
+        @endif
+        <br/>
+        <strong style="color:#333;">Gesamtbetrag:</strong> {{ $order->total_price }} EGP<br/>
+        <strong style="color:#333;">Zahlungsmethode:</strong> {{ $order->payment_method === 'cod' ? 'Zahlung bei Lieferung' : 'Online-Zahlung' }}
+      </div>
+
+      <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
+        <h4 style="color:#2d5a2d; margin-top:0;">Was passiert jetzt?</h4>
+        <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
+          ✅ Unser Team prüft Ihre Bestellung<br/>
+          ✅ Wir beginnen mit der Erstellung der personalisierten Geschichte<br/>
+          ✅ Sie erhalten per E-Mail Updates zum Fortschritt<br/>
+        </p>
+      </div>
+
+      <div style="text-align:center; margin:20px 0;">
+        <a href="{{ route('user.orders.show', $order->id) }}" style="background:#fa7508; color:#fff; padding:15px 30px; text-decoration:none; border-radius:8px; display:inline-block;">
+          Meine Bestellung ansehen
+        </a>
+      </div>
+
+      <p style="color:#777; font-size:14px;">Bei Fragen kontaktieren Sie uns bitte.</p>
+
+      <p style="margin-top:30px; font-size:14px; color:#999;">Vielen Dank, dass Sie MyStoryAI gewählt haben ❤️</p>
     @else
       <h2 style="color:#333;">Thank you {{ $notifiable->name }} 🎉</h2>
       <p style="color:#555; font-size:16px;">

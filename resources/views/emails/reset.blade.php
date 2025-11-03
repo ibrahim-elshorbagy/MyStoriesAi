@@ -21,6 +21,23 @@
             </p>
 
             <p style="margin-top:30px; font-size:14px; color:#999; direction: rtl;">أطيب التحيات ❤️ فريق MyStoryAI</p>
+          @elseif(app()->getLocale() === 'de')
+            <h2 style="color:#333;">Hallo {{ $notifiable->name }} 👋</h2>
+            <p style="color:#555; font-size:16px;">
+              Sie erhalten diese E-Mail, weil wir eine Anfrage zum Zurücksetzen des Passworts für Ihr Konto erhalten haben. 🚀
+              Klicken Sie auf den untenstehenden Button, um Ihr Passwort zurückzusetzen:
+            </p>
+
+            <!-- Button -->
+            <div style="text-align:center; margin:20px 0;">
+              <a href="{{ $resetUrl }}" style="background:#fa7508; color:#fff; padding:15px 30px; text-decoration:none; border-radius:8px; display:inline-block;">Passwort zurücksetzen</a>
+            </div>
+
+            <p style="color:#777; font-size:14px;">
+              Wenn Sie das Zurücksetzen des Passworts nicht angefordert haben, ist keine weitere Aktion erforderlich.
+            </p>
+
+            <p style="margin-top:30px; font-size:14px; color:#999;">Mit freundlichen Grüßen ❤️ Das MyStoryAI Team</p>
           @else
             <h2 style="color:#333;">Hello {{ $notifiable->name }} 👋</h2>
             <p style="color:#555; font-size:16px;">

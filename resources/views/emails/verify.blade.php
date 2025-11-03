@@ -21,6 +21,23 @@
             </p>
 
             <p style="margin-top:30px; font-size:14px; color:#999; direction: rtl;">أطيب التحيات ❤️ فريق MyStoryAI</p>
+          @elseif(app()->getLocale() === 'de')
+            <h2 style="color:#333;">Hallo {{ $notifiable->name }} 👋</h2>
+            <p style="color:#555; font-size:16px;">
+              Vielen Dank für Ihre Registrierung bei <strong>MyStoryAI</strong> 🚀
+              Bitte klicken Sie auf den untenstehenden Button, um Ihre E-Mail-Adresse zu bestätigen:
+            </p>
+
+            <!-- Button -->
+            <div style="text-align:center; margin:20px 0;">
+              <a href="{{ $verificationUrl }}" style="background:#fa7508; color:#fff; padding:15px 30px; text-decoration:none; border-radius:8px; display:inline-block;">E-Mail bestätigen</a>
+            </div>
+
+            <p style="color:#777; font-size:14px;">
+              Wenn Sie dieses Konto nicht erstellt haben, können Sie diese E-Mail ignorieren.
+            </p>
+
+            <p style="margin-top:30px; font-size:14px; color:#999;">Mit freundlichen Grüßen ❤️ Das MyStoryAI Team</p>
           @else
             <h2 style="color:#333;">Hello {{ $notifiable->name }} 👋</h2>
             <p style="color:#555; font-size:16px;">

@@ -4,7 +4,7 @@
 
   <!-- Card -->
   <div style="max-width:600px; margin:0 auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:{{ $locale === 'ar' ? 'right' : 'left' }};" dir="{{ $locale === 'ar' ? 'rtl' : 'ltr' }}">
-    @if($locale === 'ar')
+  @if($locale === 'ar')
       <h2 style="color:#333; direction: rtl;">تحديث حالة الدفع - طلب رقم #{{ $order->id }} 🎉</h2>
       <p style="color:#555; font-size:16px; direction: rtl;">
         مرحباً {{ $notifiable->name }}،
@@ -54,6 +54,52 @@
       <p style="margin-top:30px; font-size:14px; color:#999; direction: rtl;">
         شكراً لاختيار MyStoryAI!
       </p>
+    @elseif($locale === 'de')
+      <h2 style="color:#333;">Zahlungsstatus-Aktualisierung - Bestellung #{{ $order->id }} 🎉</h2>
+      <p style="color:#555; font-size:16px;">
+        Hallo {{ $notifiable->name }},
+      </p>
+
+      <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
+        <h3 style="color:#fa7508; margin-top:0;">Aktualisierte Zahlungsdetails:</h3>
+        <strong style="color:#333;">Bestellnummer:</strong> #{{ $order->id }}<br/>
+        <strong style="color:#333;">Name des Kindes:</strong> {{ $order->child_name }}<br/>
+        <strong style="color:#333;">Zahlungsmethode:</strong> {{ $payment->payment_method === 'cod' ? 'Zahlung bei Lieferung' : 'Online-Zahlung' }}<br/>
+        <strong style="color:#333;">Betrag:</strong> {{ $payment->amount }} {{ $payment->currency }}<br/>
+        <strong style="color:#333;">Neuer Status:</strong>
+        @if($payment->status === 'paid')
+          <span style="color:#28a745;">Bezahlt</span>
+        @elseif($payment->status === 'pending')
+          <span style="color:#ffc107;">Ausstehend</span>
+        @elseif($payment->status === 'failed')
+          <span style="color:#dc3545;">Fehlgeschlagen</span>
+        @else
+          <span style="color:#6c757d;">Erstattet</span>
+        @endif
+        <br/>
+        @if($payment->transaction_id)
+          <strong style="color:#333;">Transaktions-ID:</strong> {{ $payment->transaction_id }}<br/>
+        @endif
+      </div>
+
+      <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
+        <h4 style="color:#2d5a2d; margin-top:0;">Was bedeutet das?</h4>
+        <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
+          @if($payment->status === 'paid')
+            Ihre Zahlung wurde erfolgreich bestätigt. Wir beginnen bald mit der Bearbeitung Ihrer Bestellung.
+          @elseif($payment->status === 'pending')
+            Ihre Zahlung wird noch geprüft. Wir informieren Sie, sobald sie bestätigt wurde.
+          @elseif($payment->status === 'failed')
+            Wir konnten Ihre Zahlung nicht verarbeiten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns.
+          @else
+            Ihre Zahlung wurde erstattet. Bei Fragen kontaktieren Sie uns bitte.
+          @endif
+        </p>
+      </div>
+
+      <p style="color:#777; font-size:14px;">Bei Fragen zu diesem Update kontaktieren Sie uns bitte.</p>
+
+      <p style="margin-top:30px; font-size:14px; color:#999;">Vielen Dank, dass Sie MyStoryAI gewählt haben!</p>
     @else
       <h2 style="color:#333;">Payment Status Update - Order #{{ $order->id }} 🎉</h2>
       <p style="color:#555; font-size:16px;">

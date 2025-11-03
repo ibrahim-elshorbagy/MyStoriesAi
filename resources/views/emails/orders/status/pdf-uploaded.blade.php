@@ -4,7 +4,7 @@
 
   <!-- Card -->
   <div style="max-width:600px; margin:0 auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:{{ $locale === 'ar' ? 'right' : 'left' }};" dir="{{ $locale === 'ar' ? 'rtl' : 'ltr' }}">
-    @if($locale === 'ar')
+  @if($locale === 'ar')
       <h2 style="color:#333; direction: rtl;">قصة طفلك جاهزة! - طلب رقم #{{ $order->id }} 📖✨</h2>
       <p style="color:#555; font-size:16px; direction: rtl;">
         مرحباً {{ $notifiable->name }}،
@@ -62,6 +62,56 @@
       <p style="margin-top:30px; font-size:14px; color:#999; direction: rtl;">
         شكراً لاختيار MyStoryAI - حيث يصبح كل طفل بطلاً في قصته!
       </p>
+    @elseif($locale === 'de')
+      <h2 style="color:#333;">Die Geschichte Ihres Kindes ist fertig! - Bestellung #{{ $order->id }} 📖✨</h2>
+      <p style="color:#555; font-size:16px;">
+        Hallo {{ $notifiable->name }},
+      </p>
+
+      <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
+        <h3 style="color:#fa7508; margin-top:0;">Details zur fertigen Geschichte:</h3>
+        <strong style="color:#333;">Bestellnummer:</strong> #{{ $order->id }}<br/>
+        <strong style="color:#333;">Name des Kindes:</strong> {{ $order->child_name }}<br/>
+        <strong style="color:#333;">Alter des Kindes:</strong> {{ $order->child_age }} Jahre<br/>
+        <strong style="color:#333;">Format:</strong>
+        @if($order->format === 'pdf')
+          Nur PDF
+        @elseif($order->format === 'soft')
+          PDF + Softcover
+        @else
+          PDF + Hardcover
+        @endif
+        <br/>
+        <strong style="color:#333;">Fertigstellungsdatum:</strong> {{ $order->updated_at->format('Y-m-d H:i') }}
+      </div>
+
+      <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
+        <h4 style="color:#2d5a2d; margin-top:0;">🎉 Herzlichen Glückwunsch! Die Geschichte Ihres Kindes ist fertig 🎉</h4>
+        <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">Die personalisierte Geschichte Ihres Kindes wurde erstellt und ist jetzt bereit zum Herunterladen.</p>
+        <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">Sie können jetzt:</p>
+        <ul style="color:#2d5a2d; font-size:14px; margin:5px 0; padding-left:20px;">
+          <li>Die Geschichte herunterladen und ausdrucken</li>
+          <li>Sie auf Ihrem Tablet oder Handy lesen</li>
+          <li>Sie mit Familie und Freunden teilen</li>
+          @if($order->format !== 'pdf')
+            <li>Auf Ihre gedruckte Kopie warten</li>
+          @endif
+        </ul>
+      </div>
+
+      <div style="text-align:center; margin:20px 0;">
+        <a href="{{ config('app.url') }}/storage/{{ $order->pdf_path }}" style="background:#fa7508; color:#fff; padding:12px 24px; text-decoration:none; border-radius:6px; display:inline-block; margin:5px;">
+          📖 Geschichte jetzt herunterladen
+        </a>
+        <br/>
+        <a href="{{route('user.orders.show', $order->id)}}" style="background:#007bff; color:#fff; padding:12px 24px; text-decoration:none; border-radius:6px; display:inline-block; margin:5px;">
+          Bestelldetails ansehen
+        </a>
+      </div>
+
+      <p style="color:#777; font-size:14px;">Wir hoffen, Ihr Kind genießt seine personalisierte Geschichte! Bei Feedback kontaktieren Sie uns bitte.</p>
+
+      <p style="margin-top:30px; font-size:14px; color:#999;">Vielen Dank, dass Sie MyStoryAI gewählt haben - wo jedes Kind der Held seiner eigenen Geschichte wird!</p>
     @else
       <h2 style="color:#333;">Your Child's Story is Ready! - Order #{{ $order->id }} 📖✨</h2>
       <p style="color:#555; font-size:16px;">
