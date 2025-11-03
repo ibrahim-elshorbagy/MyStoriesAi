@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\Management\UserManagementController;
 use App\Http\Controllers\Admin\SiteSetting\SiteSettingsController;
 use App\Http\Controllers\Admin\Story\Category\AgeCategoryController;
 use App\Http\Controllers\Admin\SiteSetting\DeliveryOptionController;
-use App\Http\Controllers\Admin\SiteSettings\CustomerFeedbackController;
+use App\Http\Controllers\Admin\SiteSetting\CustomerFeedbackController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {

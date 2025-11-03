@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\SiteSettings;
+namespace App\Http\Controllers\Admin\SiteSetting;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\SiteSetting\CustomerFeedback;
