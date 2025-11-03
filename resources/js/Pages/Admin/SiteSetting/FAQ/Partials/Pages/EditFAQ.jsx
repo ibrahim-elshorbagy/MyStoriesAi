@@ -15,8 +15,10 @@ export default function EditFAQ({ faq, categories = [] }) {
   const { data, setData, put, errors, processing } = useForm({
     question_ar: faq.question?.ar || '',
     question_en: faq.question?.en || '',
+    question_de: faq.question?.de || '',
     answer_ar: faq.answer?.ar || '',
     answer_en: faq.answer?.en || '',
+    answer_de: faq.answer?.de || '',
     category_id: faq.category_id || '',
   });
 
@@ -84,6 +86,22 @@ export default function EditFAQ({ faq, categories = [] }) {
                   />
                   <InputError message={errors.question_en} className="mt-2" />
                 </div>
+
+                {/* German Question */}
+                <div>
+                  <InputLabel htmlFor="question_de" value={t('question_de')} required />
+                  <TextInput
+                    id="question_de"
+                    type="text"
+                    name="question_de"
+                    value={data.question_de}
+                    className="mt-1 block w-full"
+                    onChange={(e) => setData('question_de', e.target.value)}
+                    required
+                    placeholder={t('enter_question_de')}
+                  />
+                  <InputError message={errors.question_de} className="mt-2" />
+                </div>
               </div>
 
               {/* Answers */}
@@ -118,6 +136,22 @@ export default function EditFAQ({ faq, categories = [] }) {
                     placeholder={t('enter_answer_en')}
                   />
                   <InputError message={errors.answer_en} className="mt-2" />
+                </div>
+
+                {/* German Answer */}
+                <div>
+                  <InputLabel htmlFor="answer_de" value={t('answer_de')} required />
+                  <TextArea
+                    id="answer_de"
+                    name="answer_de"
+                    value={data.answer_de}
+                    className="mt-1 block w-full"
+                    onChange={(e) => setData('answer_de', e.target.value)}
+                    required
+                    rows={6}
+                    placeholder={t('enter_answer_de')}
+                  />
+                  <InputError message={errors.answer_de} className="mt-2" />
                 </div>
               </div>
 
