@@ -12,6 +12,7 @@ export default function CreateModal({ isOpen, onClose }) {
   const { data, setData, post, errors, reset, processing } = useForm({
     city_ar: '',
     city_en: '',
+    city_de: '',
     price: '',
   });
 
@@ -67,6 +68,23 @@ export default function CreateModal({ isOpen, onClose }) {
             required
           />
           <InputError message={errors.city_en} className="mt-2" />
+        </div>
+
+        {/* City Name German */}
+        <div className="mb-4">
+          <InputLabel htmlFor="city_de" value={t('city_name_de')} required />
+          <TextInput
+            id="city_de"
+            type="text"
+            name="city_de"
+            value={data.city_de}
+            className="mt-1 block w-full"
+            onChange={(e) => setData('city_de', e.target.value)}
+            icon="fa-city"
+            placeholder={t('enter_german_city')}
+            required
+          />
+          <InputError message={errors.city_de} className="mt-2" />
         </div>
 
         {/* Price */}

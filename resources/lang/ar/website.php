@@ -26,6 +26,10 @@ return [
   'language_changed' => 'تم تغيير اللغة',
   'current_language' => 'اللغة الحالية',
 
+  // Delivery options - German
+  'city_name_de' => 'اسم المدينة (بالألمانية)',
+  'enter_german_city' => 'أدخل المدينة بالألمانية',
+
 
   // Site Layout
   'home' => "الرئيسية",

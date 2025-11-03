@@ -156,6 +156,7 @@ return [
         'password' => 'كلمة المرور',
         'password_confirmation' => 'تأكيد كلمة المرور',
         'city' => 'المدينة',
+    'city_de' => 'المدينة (بالألمانية)',
         'country' => 'الدولة',
         'address' => 'عنوان السكن',
         'phone' => 'الهاتف',

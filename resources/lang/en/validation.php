@@ -213,7 +213,8 @@ return [
     'cover_image_de' => 'Cover Image (German)',
     'gallery_images_de' => 'Gallery Images (German)',
     'pdf_de' => 'PDF (German)',
-        'name_de' => 'Category Name German',
+    'name_de' => 'Category Name German',
+    'city_de' => 'City (German)',
 
         // Order validation attributes
         'child_name' => 'Child Name',

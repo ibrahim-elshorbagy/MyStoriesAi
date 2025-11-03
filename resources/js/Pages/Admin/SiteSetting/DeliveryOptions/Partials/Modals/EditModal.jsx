@@ -13,6 +13,7 @@ export default function EditModal({ isOpen, onClose, deliveryOption }) {
   const { data, setData, post, errors, reset, processing } = useForm({
     city_ar: '',
     city_en: '',
+    city_de: '',
     price: '',
     _method: 'PUT',
   });
@@ -22,6 +23,7 @@ export default function EditModal({ isOpen, onClose, deliveryOption }) {
       setData({
         city_ar: deliveryOption.city?.ar || '',
         city_en: deliveryOption.city?.en || '',
+        city_de: deliveryOption.city?.de || '',
         price: deliveryOption.price || '',
         _method: 'PUT',
       });
@@ -81,6 +83,21 @@ export default function EditModal({ isOpen, onClose, deliveryOption }) {
             placeholder={t('enter_english_city')}
           />
           <InputError message={errors.city_en} className="mt-2" />
+        </div>
+
+        <div className="mb-4">
+          <InputLabel htmlFor="city_de" value={t('city_name_de')} required />
+          <TextInput
+            id="city_de"
+            name="city_de"
+            value={data.city_de}
+            className="mt-1 block w-full"
+            onChange={(e) => setData('city_de', e.target.value)}
+            required
+            icon="fa-city"
+            placeholder={t('enter_german_city')}
+          />
+          <InputError message={errors.city_de} className="mt-2" />
         </div>
 
         <div className="mb-4">

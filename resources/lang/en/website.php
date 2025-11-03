@@ -26,6 +26,10 @@ return [
   'language_changed' => 'Language Changed',
   'current_language' => 'Current Language',
 
+  // Delivery options - German
+  'city_name_de' => 'City Name (German)',
+  'enter_german_city' => 'Enter German city',
+
   // site Layout
   'home' => "Home",
   "pricing" => "Pricing",

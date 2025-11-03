@@ -27,7 +27,8 @@ class DeliveryOptionController extends Controller
     if ($request->filled('name')) {
       $query->where(function ($q) use ($request) {
         $q->whereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.ar')) LIKE ?", ['%' . $request->name . '%'])
-          ->orWhereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.en')) LIKE ?", ['%' . $request->name . '%']);
+          ->orWhereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.en')) LIKE ?", ['%' . $request->name . '%'])
+          ->orWhereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.de')) LIKE ?", ['%' . $request->name . '%']);
       });
     }
 
@@ -49,13 +50,15 @@ class DeliveryOptionController extends Controller
     $validated = $request->validate([
       'city_ar' => ['required', 'string', 'max:255'],
       'city_en' => ['required', 'string', 'max:255'],
+      'city_de' => ['required', 'string', 'max:255'],
       'price' => ['required', 'numeric', 'min:0'],
     ]);
 
-    // Check for uniqueness in both languages
+    // Check for uniqueness in all languages
     $existingOption = DeliveryOption::where(function ($query) use ($validated) {
       $query->whereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.ar')) = ?", [$validated['city_ar']])
-            ->orWhereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.en')) = ?", [$validated['city_en']]);
+            ->orWhereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.en')) = ?", [$validated['city_en']])
+            ->orWhereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.de')) = ?", [$validated['city_de']]);
     })->first();
 
     if ($existingOption) {
@@ -66,6 +69,7 @@ class DeliveryOptionController extends Controller
       'city' => [
         'ar' => $validated['city_ar'],
         'en' => $validated['city_en'],
+        'de' => $validated['city_de'],
       ],
       'price' => $validated['price'],
     ]);
@@ -83,14 +87,16 @@ class DeliveryOptionController extends Controller
     $validated = $request->validate([
       'city_ar' => ['required', 'string', 'max:255'],
       'city_en' => ['required', 'string', 'max:255'],
+      'city_de' => ['required', 'string', 'max:255'],
       'price' => ['required', 'numeric', 'min:0'],
     ]);
 
-    // Check for uniqueness in both languages (excluding current option)
+    // Check for uniqueness in all languages (excluding current option)
     $existingOption = DeliveryOption::where('id', '!=', $deliveryOption->id)
       ->where(function ($query) use ($validated) {
         $query->whereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.ar')) = ?", [$validated['city_ar']])
-              ->orWhereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.en')) = ?", [$validated['city_en']]);
+              ->orWhereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.en')) = ?", [$validated['city_en']])
+              ->orWhereRaw("JSON_UNQUOTE(JSON_EXTRACT(city, '$.de')) = ?", [$validated['city_de']]);
       })->first();
 
     if ($existingOption) {
@@ -101,6 +107,7 @@ class DeliveryOptionController extends Controller
       'city' => [
         'ar' => $validated['city_ar'],
         'en' => $validated['city_en'],
+        'de' => $validated['city_de'],
       ],
       'price' => $validated['price'],
     ]);
