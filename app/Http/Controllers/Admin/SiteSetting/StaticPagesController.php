@@ -26,11 +26,14 @@ class StaticPagesController extends Controller
 
     $query = StaticPage::query();
 
-    // Filter by title
+    // Filter by title (include German)
     if ($request->filled('title')) {
       $locale = app()->getLocale();
-      $query->where("title->{$locale}", 'like', '%' . $request->title . '%')
-        ->orWhere("title->en", 'like', '%' . $request->title . '%');
+      $query->where(function ($q) use ($request, $locale) {
+        $q->where("title->{$locale}", 'like', '%' . $request->title . '%')
+          ->orWhere("title->en", 'like', '%' . $request->title . '%')
+          ->orWhere("title->de", 'like', '%' . $request->title . '%');
+      });
     }
 
     // Filter by status

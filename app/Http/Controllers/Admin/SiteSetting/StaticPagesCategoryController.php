@@ -25,10 +25,14 @@ class StaticPagesCategoryController extends Controller
 
     $query = StaticPageCategory::query();
 
-    // Filter by name (search in both Arabic and English)
+    // Filter by name (include German)
     if ($request->filled('name')) {
       $locale = app()->getLocale();
-      $query->where("name->{$locale}", 'like', '%' . $request->name . '%');
+      $query->where(function ($q) use ($request, $locale) {
+        $q->where("name->{$locale}", 'like', '%' . $request->name . '%')
+          ->orWhere("name->en", 'like', '%' . $request->name . '%')
+          ->orWhere("name->de", 'like', '%' . $request->name . '%');
+      });
     }
 
     $categories = $query->orderBy($sortField, $sortDirection)

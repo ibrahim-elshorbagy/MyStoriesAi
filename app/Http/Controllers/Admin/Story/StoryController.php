@@ -28,11 +28,13 @@ class StoryController extends Controller
 
     $query = Story::with('category');
 
-    // Filter by title
+    // Filter by title (include German)
     if ($request->filled('title')) {
-      $query->where(function ($q) use ($request) {
-        $q->where('title->ar', 'like', '%' . $request->title . '%')
-          ->orWhere('title->en', 'like', '%' . $request->title . '%');
+      $locale = app()->getLocale();
+      $query->where(function ($q) use ($request, $locale) {
+        $q->where("title->{$locale}", 'like', '%' . $request->title . '%')
+          ->orWhere('title->en', 'like', '%' . $request->title . '%')
+          ->orWhere('title->de', 'like', '%' . $request->title . '%');
       });
     }
 

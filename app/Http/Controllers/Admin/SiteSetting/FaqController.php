@@ -24,11 +24,14 @@ class FaqController extends Controller
 
     $query = Faq::query();
 
-    // Filter by question
+    // Filter by question (include German)
     if ($request->filled('question')) {
       $locale = app()->getLocale();
-      $query->where("question->{$locale}", 'like', '%' . $request->question . '%')
-        ->orWhere("question->en", 'like', '%' . $request->question . '%');
+      $query->where(function ($q) use ($request, $locale) {
+        $q->where("question->{$locale}", 'like', '%' . $request->question . '%')
+          ->orWhere("question->en", 'like', '%' . $request->question . '%')
+          ->orWhere("question->de", 'like', '%' . $request->question . '%');
+      });
     }
 
     $faqs = $query->with('category')->orderBy($sortField, $sortDirection)
