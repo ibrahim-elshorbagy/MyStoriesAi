@@ -49,12 +49,14 @@ class StaticPagesCategoryController extends Controller
     $validated = $request->validate([
       'name_ar' => ['required', 'string', 'max:255'],
       'name_en' => ['required', 'string', 'max:255'],
+      'name_de' => ['required', 'string', 'max:255'],
     ]);
 
     // Check for uniqueness in both languages
     $existingCategory = StaticPageCategory::where(function ($query) use ($validated) {
       $query->where('name->ar', $validated['name_ar'])
-            ->orWhere('name->en', $validated['name_en']);
+            ->orWhere('name->en', $validated['name_en'])
+            ->orWhere('name->de', $validated['name_de']);
     })->first();
 
     if ($existingCategory) {
@@ -65,6 +67,7 @@ class StaticPagesCategoryController extends Controller
       'name' => [
         'ar' => $validated['name_ar'],
         'en' => $validated['name_en'],
+        'de' => $validated['name_de'],
       ],
     ]);
 
@@ -81,13 +84,15 @@ class StaticPagesCategoryController extends Controller
     $validated = $request->validate([
       'name_ar' => ['required', 'string', 'max:255'],
       'name_en' => ['required', 'string', 'max:255'],
+      'name_de' => ['required', 'string', 'max:255'],
     ]);
 
     // Check for uniqueness in both languages (excluding current category)
     $existingCategory = StaticPageCategory::where('id', '!=', $staticPageCategory->id)
       ->where(function ($query) use ($validated) {
         $query->where('name->ar', $validated['name_ar'])
-              ->orWhere('name->en', $validated['name_en']);
+              ->orWhere('name->en', $validated['name_en'])
+              ->orWhere('name->de', $validated['name_de']);
       })->first();
 
     if ($existingCategory) {
@@ -98,6 +103,7 @@ class StaticPagesCategoryController extends Controller
       'name' => [
         'ar' => $validated['name_ar'],
         'en' => $validated['name_en'],
+        'de' => $validated['name_de'],
       ],
     ]);
 

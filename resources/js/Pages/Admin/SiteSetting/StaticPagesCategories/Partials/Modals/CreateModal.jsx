@@ -12,6 +12,7 @@ export default function CreateModal({ isOpen, onClose }) {
   const { data, setData, post, errors, reset, processing } = useForm({
     name_ar: '',
     name_en: '',
+    name_de: '',
   });
 
   const handleSubmit = (e) => {
@@ -66,6 +67,23 @@ export default function CreateModal({ isOpen, onClose }) {
             required
           />
           <InputError message={errors.name_en} className="mt-2" />
+        </div>
+
+        {/* Category Name German */}
+        <div className="mb-4">
+          <InputLabel htmlFor="name_de" value={t('category_name_de')} required />
+          <TextInput
+            id="name_de"
+            type="text"
+            name="name_de"
+            value={data.name_de}
+            className="mt-1 block w-full"
+            onChange={(e) => setData('name_de', e.target.value)}
+            icon="fa-folder"
+            placeholder={t('enter_german_name')}
+            required
+          />
+          <InputError message={errors.name_de} className="mt-2" />
         </div>
 
         {/* Buttons */}
