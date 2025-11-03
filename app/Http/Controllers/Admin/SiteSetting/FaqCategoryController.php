@@ -49,12 +49,14 @@ class FaqCategoryController extends Controller
     $validated = $request->validate([
       'name_ar' => ['required', 'string', 'max:255'],
       'name_en' => ['required', 'string', 'max:255'],
+      'name_de' => ['required', 'string', 'max:255'],
     ]);
 
     // Check for uniqueness in both languages
     $existingCategory = FaqCategory::where(function ($query) use ($validated) {
       $query->where('name->ar', $validated['name_ar'])
-            ->orWhere('name->en', $validated['name_en']);
+            ->orWhere('name->en', $validated['name_en'])
+            ->orWhere('name->de', $validated['name_de']);
     })->first();
 
     if ($existingCategory) {
@@ -65,6 +67,7 @@ class FaqCategoryController extends Controller
       'name' => [
         'ar' => $validated['name_ar'],
         'en' => $validated['name_en'],
+        'de' => $validated['name_de'],
       ],
     ]);
 
@@ -79,13 +82,15 @@ class FaqCategoryController extends Controller
     $validated = $request->validate([
       'name_ar' => ['required', 'string', 'max:255'],
       'name_en' => ['required', 'string', 'max:255'],
+      'name_de' => ['required', 'string', 'max:255'],
     ]);
 
     // Check for uniqueness in both languages (excluding current category)
     $existingCategory = FaqCategory::where('id', '!=', $faqCategory->id)
       ->where(function ($query) use ($validated) {
         $query->where('name->ar', $validated['name_ar'])
-              ->orWhere('name->en', $validated['name_en']);
+              ->orWhere('name->en', $validated['name_en'])
+              ->orWhere('name->de', $validated['name_de']);
       })->first();
 
     if ($existingCategory) {
@@ -96,6 +101,7 @@ class FaqCategoryController extends Controller
       'name' => [
         'ar' => $validated['name_ar'],
         'en' => $validated['name_en'],
+        'de' => $validated['name_de'],
       ],
     ]);
 
