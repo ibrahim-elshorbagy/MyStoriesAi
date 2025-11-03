@@ -65,8 +65,10 @@ class StaticPagesController extends Controller
     $validated = $request->validate([
       'title_ar' => ['required', 'string', 'max:255'],
       'title_en' => ['required', 'string', 'max:255'],
+      'title_de' => ['required', 'string', 'max:255'],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
+      'content_de' => ['required', 'string'],
       'category_id' => ['required', 'exists:static_page_categories,id'],
       'status' => ['required', 'in:draft,published,archived'],
     ]);
@@ -75,10 +77,12 @@ class StaticPagesController extends Controller
       'title' => [
         'ar' => $validated['title_ar'],
         'en' => $validated['title_en'],
+        'de' => $validated['title_de'],
       ],
       'content' => [
         'ar' => $validated['content_ar'],
         'en' => $validated['content_en'],
+        'de' => $validated['content_de'],
       ],
       'category_id' => $validated['category_id'],
       'status' => $validated['status'],
@@ -107,8 +111,10 @@ class StaticPagesController extends Controller
     $validated = $request->validate([
       'title_ar' => ['required', 'string', 'max:255'],
       'title_en' => ['required', 'string', 'max:255'],
+      'title_de' => ['required', 'string', 'max:255'],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
+      'content_de' => ['required', 'string'],
       'category_id' => ['required', 'exists:static_page_categories,id'],
       'status' => ['required', 'in:draft,published,archived'],
     ]);
@@ -117,10 +123,12 @@ class StaticPagesController extends Controller
       'title' => [
         'ar' => $validated['title_ar'],
         'en' => $validated['title_en'],
+        'de' => $validated['title_de'],
       ],
       'content' => [
         'ar' => $validated['content_ar'],
         'en' => $validated['content_en'],
+        'de' => $validated['content_de'],
       ],
       'category_id' => $validated['category_id'],
       'status' => $validated['status'],

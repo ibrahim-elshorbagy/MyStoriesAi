@@ -14,14 +14,17 @@ export default function CreateStaticPage({ categories = [] }) {
   const { data, setData, post, errors, processing } = useForm({
     title_ar: '',
     title_en: '',
+    title_de: '',
     content_ar: '',
     content_en: '',
+    content_de: '',
     category_id: '',
     status: 'draft',
   });
 
   const editorArRef = useRef(null);
   const editorEnRef = useRef(null);
+  const editorDeRef = useRef(null);
 
   useEffect(() => {
     // Load TinyMCE
@@ -96,6 +99,19 @@ export default function CreateStaticPage({ categories = [] }) {
         });
       }
     });
+
+    // German editor
+    window.tinymce.init({
+      ...commonConfig,
+      selector: '#content_de',
+      directionality: 'ltr',
+      setup: (editor) => {
+        editorDeRef.current = editor;
+        editor.on('change', () => {
+          setData('content_de', editor.getContent());
+        });
+      }
+    });
   };
 
   const handleSubmit = (e) => {
@@ -107,6 +123,9 @@ export default function CreateStaticPage({ categories = [] }) {
     }
     if (editorEnRef.current) {
       setData('content_en', editorEnRef.current.getContent());
+    }
+    if (editorDeRef.current) {
+      setData('content_de', editorDeRef.current.getContent());
     }
 
     post(route('admin.static-pages.store'));
@@ -176,6 +195,21 @@ export default function CreateStaticPage({ categories = [] }) {
                   <InputError message={errors.title_en} className="mt-2" />
                 </div>
 
+                {/* German Title */}
+                <div>
+                  <InputLabel htmlFor="title_de" value={t('title_de')} required />
+                  <TextInput
+                    id="title_de"
+                    type="text"
+                    name="title_de"
+                    value={data.title_de}
+                    className="mt-1 block w-full"
+                    onChange={(e) => setData('title_de', e.target.value)}
+                    required
+                  />
+                  <InputError message={errors.title_de} className="mt-2" />
+                </div>
+
                 {/* Category */}
                 <div>
                   <SelectInput
@@ -237,6 +271,19 @@ export default function CreateStaticPage({ categories = [] }) {
                     ></textarea>
                   </div>
                   <InputError message={errors.content_en} className="mt-2" />
+                </div>
+
+                {/* German Content */}
+                <div className=''>
+                  <InputLabel htmlFor="content_de" value={t('content_de')} required />
+                  <div className='no-tailwindcss-support-display'>
+                    <textarea
+                      id="content_de"
+                      name="content_de"
+                      className="mt-1 block w-full "
+                    ></textarea>
+                  </div>
+                  <InputError message={errors.content_de} className="mt-2" />
                 </div>
               </div>
 
