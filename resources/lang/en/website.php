@@ -20,6 +20,8 @@ return [
   'arabic' => 'Arabic',
   "german"=>"German",
   "deutsche"=>"Deutsche",
+  'category_name_de' => 'Category Name (German)',
+  'enter_german_name' => 'Enter German name',
   'change_language' => 'Change Language',
   'language_changed' => 'Language Changed',
   'current_language' => 'Current Language',

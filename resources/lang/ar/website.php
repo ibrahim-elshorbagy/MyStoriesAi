@@ -20,6 +20,8 @@ return [
   'arabic' => 'العربية',
   "german"=>"ألماني",
   "deutsche"=>"الألمانية",
+  'category_name_de' => 'اسم الفئة (بالألمانية)',
+  'enter_german_name' => 'أدخل الاسم بالألمانية',
   'change_language' => 'تغيير اللغة',
   'language_changed' => 'تم تغيير اللغة',
   'current_language' => 'اللغة الحالية',

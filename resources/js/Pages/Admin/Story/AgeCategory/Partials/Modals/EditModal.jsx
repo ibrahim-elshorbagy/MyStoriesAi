@@ -14,6 +14,7 @@ export default function EditModal({ isOpen, onClose, category }) {
   const { data, setData, post, errors, reset, processing } = useForm({
     name_ar: '',
     name_en: '',
+    name_de: '',
     image: null,
     _method: 'PUT',
   });
@@ -23,6 +24,7 @@ export default function EditModal({ isOpen, onClose, category }) {
       setData({
         name_ar: category.name?.ar || '',
         name_en: category.name?.en || '',
+        name_de: category.name?.de || '',
         image: null, // Don't set existing image, as it's for new upload
         _method: 'PUT',
       });
@@ -83,6 +85,21 @@ export default function EditModal({ isOpen, onClose, category }) {
             placeholder={t('enter_english_name')}
           />
           <InputError message={errors.name_en} className="mt-2" />
+        </div>
+
+        <div className="mb-4">
+          <InputLabel htmlFor="name_de" value={t('category_name_de')} required />
+          <TextInput
+            id="name_de"
+            name="name_de"
+            value={data.name_de}
+            className="mt-1 block w-full"
+            onChange={(e) => setData('name_de', e.target.value)}
+            required
+            icon="fa-folder"
+            placeholder={t('enter_german_name')}
+          />
+          <InputError message={errors.name_de} className="mt-2" />
         </div>
 
         {/* Image */}
