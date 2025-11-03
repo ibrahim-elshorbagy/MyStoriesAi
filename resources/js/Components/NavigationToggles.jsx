@@ -8,10 +8,11 @@ export default function NavigationToggles({
   showLabels = true
 }) {
   const { t } = useTrans();
-  const { locale, url } = usePage().props;
+  const page = usePage();
+  const locale = page?.props?.locale ?? 'en';
+  const url = page?.url ?? page?.props?.url ?? '';
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const page = usePage();
   const isDashboard = url.startsWith('/dashboard');
 
   const languages = {
