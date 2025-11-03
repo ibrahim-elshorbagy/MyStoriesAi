@@ -200,6 +200,8 @@ return [
         'title_ar' => 'Title in Arabic',
         'title_en' => 'Title in English',
         'title_de' => 'Title in German',
+    'excerpt_de' => 'Excerpt in German',
+    'content_de' => 'Content in German',
         'question_ar' => 'Question (Arabic)',
         'question_en' => 'Question (English)',
         'question_de' => 'Question (German)',
@@ -208,6 +210,9 @@ return [
         'answer_de' => 'Answer (German)',
         'category_id' => 'Category',
         'image' => 'Image',
+    'cover_image_de' => 'Cover Image (German)',
+    'gallery_images_de' => 'Gallery Images (German)',
+    'pdf_de' => 'PDF (German)',
         'name_de' => 'Category Name German',
 
         // Order validation attributes

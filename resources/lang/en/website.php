@@ -166,6 +166,16 @@ return [
   'update_password' => 'Update Password',
   'password_updated' => 'Password updated',
 
+  // Story fields (German)
+  'story_title_de' => 'Title (German)',
+  'story_excerpt_de' => 'Excerpt (German)',
+  'story_content_de' => 'Content (German)',
+  'enter_german_title' => 'Enter German title',
+  'enter_german_excerpt' => 'Enter German excerpt',
+  'cover_image_de' => 'Cover Image (German)',
+  'gallery_images_de' => 'Gallery Images (German)',
+  'pdf_de' => 'PDF (German)',
+
   /* Delete Account Form */
   'account_deletion_warning' => 'Once your account is deleted, all of its resources and data will be permanently deleted. This action cannot be undone',
   'delete_my_account' => 'Delete My Account',

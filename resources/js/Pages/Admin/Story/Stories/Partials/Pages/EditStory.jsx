@@ -17,29 +17,38 @@ export default function EditStory({ story, categories = [] }) {
   // State for existing gallery images
   const [existingGalleryAr, setExistingGalleryAr] = useState(story.gallery_images_ar || []);
   const [existingGalleryEn, setExistingGalleryEn] = useState(story.gallery_images_en || []);
+  const [existingGalleryDe, setExistingGalleryDe] = useState(story.gallery_images_de || []);
 
   const { data, setData, post, errors, processing } = useForm({
     title_ar: story.title?.ar || '',
     title_en: story.title?.en || '',
+    title_de: story.title?.de || '',
     excerpt_ar: story.excerpt?.ar || '',
     excerpt_en: story.excerpt?.en || '',
+    excerpt_de: story.excerpt?.de || '',
     content_ar: story.content?.ar || '',
     content_en: story.content?.en || '',
+    content_de: story.content?.de || '',
     category_id: story.category_id || '',
     gender: story.gender?.toString() || '',
     status: story.status || 'draft',
     cover_image_ar: null,
     cover_image_en: null,
+    cover_image_de: null,
     gallery_images_ar: [],
     gallery_images_en: [],
-    existing_gallery_images_ar: story.gallery_images_ar || [],
-    existing_gallery_images_en: story.gallery_images_en || [],
+    gallery_images_de: [],
+  existing_gallery_images_ar: story.gallery_images_ar || [],
+  existing_gallery_images_en: story.gallery_images_en || [],
+  existing_gallery_images_de: story.gallery_images_de || [],
     pdf_ar: null,
     pdf_en: null,
+    pdf_de: null,
   });
 
   const editorArRef = useRef(null);
   const editorEnRef = useRef(null);
+  const editorDeRef = useRef(null);
 
   useEffect(() => {
     // Load TinyMCE
@@ -117,6 +126,22 @@ export default function EditStory({ story, categories = [] }) {
         });
       }
     });
+
+    // German editor
+    window.tinymce.init({
+      ...commonConfig,
+      selector: '#content_de',
+      directionality: 'ltr',
+      setup: (editor) => {
+        editorDeRef.current = editor;
+        editor.on('init', () => {
+          editor.setContent(data.content_de);
+        });
+        editor.on('change', () => {
+          setData('content_de', editor.getContent());
+        });
+      }
+    });
   };
 
   // Delete existing gallery image
@@ -125,10 +150,14 @@ export default function EditStory({ story, categories = [] }) {
       const updatedGallery = existingGalleryAr.filter(img => img !== imagePath);
       setExistingGalleryAr(updatedGallery);
       setData('existing_gallery_images_ar', updatedGallery);
-    } else {
+    } else if (locale === 'en') {
       const updatedGallery = existingGalleryEn.filter(img => img !== imagePath);
       setExistingGalleryEn(updatedGallery);
       setData('existing_gallery_images_en', updatedGallery);
+    } else if (locale === 'de') {
+      const updatedGallery = existingGalleryDe.filter(img => img !== imagePath);
+      setExistingGalleryDe(updatedGallery);
+      setData('existing_gallery_images_de', updatedGallery);
     }
   };
 
@@ -140,26 +169,37 @@ export default function EditStory({ story, categories = [] }) {
     const contentEn = editorEnRef.current?.getContent() || data.content_en || '';
 
     // Build complete form data
+    const contentDe = editorDeRef.current?.getContent() || data.content_de || '';
+
     const formData = {
       title_ar: data.title_ar,
       title_en: data.title_en,
+      title_de: data.title_de,
+      excerpt_ar: data.excerpt_ar,
+      excerpt_en: data.excerpt_en,
+      excerpt_de: data.excerpt_de,
       content_ar: contentAr,
       content_en: contentEn,
+      content_de: contentDe,
       category_id: data.category_id,
       gender: data.gender,
       status: data.status,
       existing_gallery_images_ar: existingGalleryAr,
       existing_gallery_images_en: existingGalleryEn,
+      existing_gallery_images_de: existingGalleryDe,
       _method: 'PUT',
     };
 
     // Only include files if they were changed
-    if (data.cover_image_ar) formData.cover_image_ar = data.cover_image_ar;
-    if (data.cover_image_en) formData.cover_image_en = data.cover_image_en;
+  if (data.cover_image_ar) formData.cover_image_ar = data.cover_image_ar;
+  if (data.cover_image_en) formData.cover_image_en = data.cover_image_en;
+  if (data.cover_image_de) formData.cover_image_de = data.cover_image_de;
     if (data.gallery_images_ar?.length > 0) formData.gallery_images_ar = data.gallery_images_ar;
     if (data.gallery_images_en?.length > 0) formData.gallery_images_en = data.gallery_images_en;
+  if (data.gallery_images_de?.length > 0) formData.gallery_images_de = data.gallery_images_de;
     if (data.pdf_ar) formData.pdf_ar = data.pdf_ar;
     if (data.pdf_en) formData.pdf_en = data.pdf_en;
+  if (data.pdf_de) formData.pdf_de = data.pdf_de;
 
     post(route('admin.stories.update', story.id), {
       data: formData,
@@ -241,6 +281,20 @@ export default function EditStory({ story, categories = [] }) {
                   />
                   <InputError message={errors.title_en} className="mt-2" />
                 </div>
+                {/* German Title */}
+                <div>
+                  <InputLabel htmlFor="title_de" value={t('story_title_de')} required />
+                  <TextInput
+                    id="title_de"
+                    type="text"
+                    name="title_de"
+                    value={data.title_de}
+                    className="mt-1 block w-full"
+                    onChange={(e) => setData('title_de', e.target.value)}
+                    required
+                  />
+                  <InputError message={errors.title_de} className="mt-2" />
+                </div>
               </div>
 
               {/* Excerpt Fields */}
@@ -269,6 +323,18 @@ export default function EditStory({ story, categories = [] }) {
                     rows={3}
                   />
                   <InputError message={errors.excerpt_en} className="mt-2" />
+                </div>
+                {/* German Excerpt */}
+                <div>
+                  <InputLabel htmlFor="excerpt_de" value={t('story_excerpt_de')} required />
+                  <TextArea
+                    name="excerpt_de"
+                    label={t('story_excerpt_de')}
+                    value={data.excerpt_de}
+                    onChange={(e) => setData('excerpt_de', e.target.value)}
+                    rows={3}
+                  />
+                  <InputError message={errors.excerpt_de} className="mt-2" />
                 </div>
 
               {/* Category */}
@@ -343,6 +409,19 @@ export default function EditStory({ story, categories = [] }) {
                   </div>
                   <InputError message={errors.content_en} className="mt-2" />
                 </div>
+
+                {/* German Content */}
+                <div>
+                  <InputLabel htmlFor="content_de" value={t('story_content_de')} required />
+                  <div className='no-tailwindcss-support-display'>
+                    <textarea
+                      id="content_de"
+                      name="content_de"
+                      className="mt-1 block w-full"
+                    ></textarea>
+                  </div>
+                  <InputError message={errors.content_de} className="mt-2" />
+                </div>
               </div>
 
               {/* File Uploads Section */}
@@ -396,6 +475,31 @@ export default function EditStory({ story, categories = [] }) {
                             <div className="flex items-center space-x-2 text-sm text-blue-600 dark:text-blue-400">
                               <img
                                 src={`/storage/${story.cover_image_en}`}
+                                alt={t('current_cover_image')}
+                                className="w-20 h-20 object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
+                  {/* German Cover Image */}
+                  <div>
+                    <DragFileInput
+                      id="cover_image_de"
+                      label={t('cover_image_de')}
+                      accept="image/*"
+                      onChange={(file) => setData('cover_image_de', file)}
+                      error={errors.cover_image_de}
+                      value={data.cover_image_de}
+                      keyValue={story.cover_image_de ? { name: t('current_cover_image'), path: story.cover_image_de } : null}
+                      helperText={
+                        <div className="space-y-1">
+                          {story.cover_image_de && (
+                            <div className="flex items-center space-x-2 text-sm text-blue-600 dark:text-blue-400">
+                              <img
+                                src={`/storage/${story.cover_image_de}`}
                                 alt={t('current_cover_image')}
                                 className="w-20 h-20 object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
                               />
@@ -498,6 +602,50 @@ export default function EditStory({ story, categories = [] }) {
                       }
                     />
                   </div>
+                  {/* German Gallery Images */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_images_de"
+                      label={t('gallery_images_de')}
+                      accept="image/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_images_de', files)}
+                      error={errors.gallery_images_de}
+                      value={data.gallery_images_de}
+                      helperText={
+                        <div className="space-y-2">
+                          {existingGalleryDe && existingGalleryDe.length > 0 && (
+                            <div className="space-y-2">
+                              <span className="text-sm text-blue-600 dark:text-blue-400">
+                                <i className="fa-solid fa-images me-1"></i>
+                                {t('current_gallery_images')} ({existingGalleryDe.length})
+                              </span>
+                              <div className="grid grid-cols-4 gap-2">
+                                {existingGalleryDe.map((image, index) => (
+                                  <div key={index} className="relative group">
+                                    <img
+                                      src={`/storage/${image}`}
+                                      alt={`Gallery ${index + 1}`}
+                                      className=" object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
+                                    />
+                                    <button
+                                      type="button"
+                                      onClick={() => deleteExistingGalleryImage(image, 'de')}
+                                      className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                      title={t('delete')}
+                                    >
+                                      <i className="fa-solid fa-times text-xs"></i>
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
                 </div>
 
                 {/* PDF Files */}
@@ -551,6 +699,36 @@ export default function EditStory({ story, categories = [] }) {
                               <span>{t('current_pdf')}</span>
                               <a
                                 href={`/storage/${story.pdf_en}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline hover:no-underline"
+                              >
+                                {t('view_pdf')}
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
+                  {/* German PDF */}
+                  <div>
+                    <DragFileInput
+                      id="pdf_de"
+                      label={t('pdf_de')}
+                      accept=".pdf"
+                      onChange={(file) => setData('pdf_de', file)}
+                      error={errors.pdf_de}
+                      value={data.pdf_de}
+                      keyValue={story.pdf_de ? { name: t('current_pdf'), path: story.pdf_de } : null}
+                      helperText={
+                        <div className="space-y-1">
+                          {story.pdf_de && (
+                            <div className="flex items-center gap-2 space-x-2 text-sm text-blue-600 dark:text-blue-400">
+                              <i className="fa-solid fa-file-pdf"></i>
+                              <span>{t('current_pdf')}</span>
+                              <a
+                                href={`/storage/${story.pdf_de}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="underline hover:no-underline"

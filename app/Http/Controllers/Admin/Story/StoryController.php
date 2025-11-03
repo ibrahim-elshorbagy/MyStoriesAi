@@ -81,10 +81,13 @@ class StoryController extends Controller
     $validated = $request->validate([
       'title_ar' => ['required', 'string', 'max:255'],
       'title_en' => ['required', 'string', 'max:255'],
+      'title_de' => ['required', 'string', 'max:255'],
       'excerpt_ar' => ['required', 'string',"max:350"],
       'excerpt_en' => ['required', 'string',"max:350"],
+      'excerpt_de' => ['required', 'string',"max:350"],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
+      'content_de' => ['required', 'string'],
       'category_id' => ['required', 'exists:age_categories,id'],
       'gender' => ['nullable', 'in:0,1'],
       'status' => ['required', 'in:draft,published,archived'],
@@ -92,30 +95,37 @@ class StoryController extends Controller
       // Cover images
       'cover_image_ar' => ['nullable', 'image'],
       'cover_image_en' => ['nullable', 'image'],
+      'cover_image_de' => ['nullable', 'image'],
 
       // Gallery images
-      'gallery_images_ar' => ['nullable', 'array', 'max:10'],
-      'gallery_images_ar.*' => ['image'],
-      'gallery_images_en' => ['nullable', 'array', 'max:10'],
-      'gallery_images_en.*' => ['image'],
+  'gallery_images_ar' => ['nullable', 'array', 'max:10'],
+  'gallery_images_ar.*' => ['image'],
+  'gallery_images_en' => ['nullable', 'array', 'max:10'],
+  'gallery_images_en.*' => ['image'],
+  'gallery_images_de' => ['nullable', 'array', 'max:10'],
+  'gallery_images_de.*' => ['image'],
 
       // PDFs
       'pdf_ar' => ['nullable', 'file', 'mimes:pdf'],
       'pdf_en' => ['nullable', 'file', 'mimes:pdf'],
+      'pdf_de' => ['nullable', 'file', 'mimes:pdf'],
     ]);
 
     $story = Story::create([
       'title' => [
         'ar' => $validated['title_ar'],
         'en' => $validated['title_en'],
+        'de' => $validated['title_de'],
       ],
       'excerpt' => [
         'ar' => $validated['excerpt_ar'],
         'en' => $validated['excerpt_en'],
+        'de' => $validated['excerpt_de'],
       ],
       'content' => [
         'ar' => $validated['content_ar'],
         'en' => $validated['content_en'],
+        'de' => $validated['content_de'],
       ],
       'category_id' => $validated['category_id'],
       'gender' => $validated['gender'],
@@ -146,10 +156,13 @@ class StoryController extends Controller
     $validated = $request->validate([
       'title_ar' => ['required', 'string', 'max:255'],
       'title_en' => ['required', 'string', 'max:255'],
+      'title_de' => ['required', 'string', 'max:255'],
       'excerpt_ar' => ['required', 'string',"max:350"],
       'excerpt_en' => ['required', 'string',"max:350"],
+      'excerpt_de' => ['required', 'string',"max:350"],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
+      'content_de' => ['required', 'string'],
       'category_id' => ['required', 'exists:age_categories,id'],
       'gender' => ['nullable', 'in:0,1'],
       'status' => ['required', 'in:draft,published,archived'],
@@ -157,36 +170,45 @@ class StoryController extends Controller
       // Cover images
       'cover_image_ar' => ['nullable', 'image'],
       'cover_image_en' => ['nullable', 'image'],
+      'cover_image_de' => ['nullable', 'image'],
 
       // Gallery images - new uploads
-      'gallery_images_ar' => ['nullable', 'array', 'max:10'],
-      'gallery_images_ar.*' => ['image'],
-      'gallery_images_en' => ['nullable', 'array', 'max:10'],
-      'gallery_images_en.*' => ['image'],
+  'gallery_images_ar' => ['nullable', 'array', 'max:10'],
+  'gallery_images_ar.*' => ['image'],
+  'gallery_images_en' => ['nullable', 'array', 'max:10'],
+  'gallery_images_en.*' => ['image'],
+  'gallery_images_de' => ['nullable', 'array', 'max:10'],
+  'gallery_images_de.*' => ['image'],
 
       // Existing gallery images to keep
-      'existing_gallery_images_ar' => ['nullable', 'array'],
-      'existing_gallery_images_ar.*' => ['string'],
-      'existing_gallery_images_en' => ['nullable', 'array'],
-      'existing_gallery_images_en.*' => ['string'],
+  'existing_gallery_images_ar' => ['nullable', 'array'],
+  'existing_gallery_images_ar.*' => ['string'],
+  'existing_gallery_images_en' => ['nullable', 'array'],
+  'existing_gallery_images_en.*' => ['string'],
+  'existing_gallery_images_de' => ['nullable', 'array'],
+  'existing_gallery_images_de.*' => ['string'],
 
       // PDFs
       'pdf_ar' => ['nullable', 'file', 'mimes:pdf'],
       'pdf_en' => ['nullable', 'file', 'mimes:pdf'],
+      'pdf_de' => ['nullable', 'file', 'mimes:pdf'],
     ]);
 
     $story->update([
       'title' => [
         'ar' => $validated['title_ar'],
         'en' => $validated['title_en'],
+        'de' => $validated['title_de'],
       ],
       'excerpt' => [
         'ar' => $validated['excerpt_ar'],
         'en' => $validated['excerpt_en'],
+        'de' => $validated['excerpt_de'],
       ],
       'content' => [
         'ar' => $validated['content_ar'],
         'en' => $validated['content_en'],
+        'de' => $validated['content_de'],
       ],
       'category_id' => $validated['category_id'],
       'gender' => $validated['gender'],
@@ -302,11 +324,27 @@ class StoryController extends Controller
       $story->update(['cover_image_en' => $coverImageEn]);
     }
 
+    if ($request->hasFile('cover_image_de')) {
+      // Delete old cover image if exists
+      if ($story->cover_image_de) {
+        Storage::disk('public')->delete($story->cover_image_de);
+      }
+
+      $coverImageDe = $request->file('cover_image_de')->store(
+        "admin/story/{$storyId}/de/cover",
+        'public'
+      );
+      $story->update(['cover_image_de' => $coverImageDe]);
+    }
+
     // Handle gallery images for Arabic
     $this->handleGalleryImages($request, $story, 'ar');
 
     // Handle gallery images for English
     $this->handleGalleryImages($request, $story, 'en');
+
+  // Handle gallery images for German
+  $this->handleGalleryImages($request, $story, 'de');
 
     // Handle PDFs
     if ($request->hasFile('pdf_ar')) {
@@ -333,6 +371,19 @@ class StoryController extends Controller
         'public'
       );
       $story->update(['pdf_en' => $pdfEn]);
+    }
+
+    if ($request->hasFile('pdf_de')) {
+      // Delete old PDF if exists
+      if ($story->pdf_de) {
+        Storage::disk('public')->delete($story->pdf_de);
+      }
+
+      $pdfDe = $request->file('pdf_de')->store(
+        "admin/story/{$storyId}/de/pdf",
+        'public'
+      );
+      $story->update(['pdf_de' => $pdfDe]);
     }
   }
 
@@ -403,12 +454,21 @@ class StoryController extends Controller
       }
     }
 
+    if ($story->gallery_images_de) {
+      foreach ($story->gallery_images_de as $imagePath) {
+        Storage::disk('public')->delete($imagePath);
+      }
+    }
+
     // Delete PDFs
     if ($story->pdf_ar) {
       Storage::disk('public')->delete($story->pdf_ar);
     }
     if ($story->pdf_en) {
       Storage::disk('public')->delete($story->pdf_en);
+    }
+    if ($story->pdf_de) {
+      Storage::disk('public')->delete($story->pdf_de);
     }
 
     // Delete the entire story directory

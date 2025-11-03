@@ -164,6 +164,16 @@ return [
   'update_password' => 'تحديث كلمة المرور',
   'password_updated' => 'تم تحديث كلمة المرور',
 
+  // Story fields (German)
+  'story_title_de' => 'العنوان بالألمانية',
+  'story_excerpt_de' => 'الملخص بالألمانية',
+  'story_content_de' => 'المحتوى بالألمانية',
+  'enter_german_title' => 'أدخل العنوان بالألمانية',
+  'enter_german_excerpt' => 'أدخل الملخص بالألمانية',
+  'cover_image_de' => 'صورة الغلاف (بالألمانية)',
+  'gallery_images_de' => 'صور المعرض (بالألمانية)',
+  'pdf_de' => 'PDF (بالألمانية)',
+
   /* Delete Account Form */
   'account_deletion_warning' => 'بمجرد حذف حسابك، سيتم حذف جميع الموارد والبيانات الخاصة به بشكل دائم. لا يمكن التراجع عن هذا الإجراء',
   'delete_my_account' => 'حذف حسابي',

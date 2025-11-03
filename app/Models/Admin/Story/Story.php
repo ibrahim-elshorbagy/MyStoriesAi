@@ -16,6 +16,7 @@ class Story extends Model
     'excerpt' => 'array',
     'gallery_images_ar' => 'array',
     'gallery_images_en' => 'array',
+    'gallery_images_de' => 'array',
   ];
 
   protected function getTranslatedValue(array $translations): string
@@ -44,7 +45,13 @@ class Story extends Model
   public function getCoverImageValueAttribute(): ?string
   {
     $locale = app()->getLocale();
-    $image = $locale === 'ar' ? $this->cover_image_ar : $this->cover_image_en;
+    if ($locale === 'ar') {
+      $image = $this->cover_image_ar;
+    } elseif ($locale === 'de') {
+      $image = $this->cover_image_de ?? $this->cover_image_en;
+    } else {
+      $image = $this->cover_image_en;
+    }
 
     if (!$image) {
       return null;
@@ -62,7 +69,13 @@ class Story extends Model
   public function getPdfValueAttribute(): ?string
   {
     $locale = app()->getLocale();
-    $pdf = $locale === 'ar' ? $this->pdf_ar : $this->pdf_en;
+    if ($locale === 'ar') {
+      $pdf = $this->pdf_ar;
+    } elseif ($locale === 'de') {
+      $pdf = $this->pdf_de ?? $this->pdf_en;
+    } else {
+      $pdf = $this->pdf_en;
+    }
 
     if (!$pdf) {
       return null;
@@ -80,7 +93,13 @@ class Story extends Model
   public function getGalleryImagesValueAttribute(): array
   {
     $locale = app()->getLocale();
-    $images = $locale === 'ar' ? ($this->gallery_images_ar ?? []) : ($this->gallery_images_en ?? []);
+    if ($locale === 'ar') {
+      $images = $this->gallery_images_ar ?? [];
+    } elseif ($locale === 'de') {
+      $images = $this->gallery_images_de ?? $this->gallery_images_en ?? [];
+    } else {
+      $images = $this->gallery_images_en ?? [];
+    }
 
     // If images are relative paths, prepend storage URL
     return array_map(function ($image) {

@@ -195,6 +195,7 @@ return [
         'content_en' => 'المحتوى بالإنجليزي',
         'content_de' => 'المحتوى بالألمانية',
         'content_ar' => 'المحتوى بالعربي',
+    'excerpt_de' => 'الملخص بالألمانية',
         'excerpt_ar' => 'الملخص بالعربي',
         'excerpt_en' => 'الملخص بالإنجليزي',
         'title_ar' => 'العنوان بالعربي',
@@ -209,6 +210,9 @@ return [
 
         'category_id' => 'الفئة',
         'image' => 'الصورة',
+    'cover_image_de' => 'صورة الغلاف (بالألمانية)',
+    'gallery_images_de' => 'صور المعرض (بالألمانية)',
+    'pdf_de' => 'PDF (بالألمانية)',
         'name_de' => 'اسم الفئة بالألمانية',
 
         // Order validation attributes

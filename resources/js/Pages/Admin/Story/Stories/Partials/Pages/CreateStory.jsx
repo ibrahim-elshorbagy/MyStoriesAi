@@ -16,23 +16,30 @@ export default function CreateStory({ categories = [] }) {
   const { data, setData, post, errors, processing } = useForm({
     title_ar: '',
     title_en: '',
+    title_de: '',
     excerpt_ar: '',
     excerpt_en: '',
+    excerpt_de: '',
     content_ar: '',
     content_en: '',
+    content_de: '',
     category_id: '',
     gender: '',
     status: 'draft',
     cover_image_ar: null,
     cover_image_en: null,
+    cover_image_de: null,
     gallery_images_ar: [],
     gallery_images_en: [],
+    gallery_images_de: [],
     pdf_ar: null,
     pdf_en: null,
+    pdf_de: null,
   });
 
   const editorArRef = useRef(null);
   const editorEnRef = useRef(null);
+  const editorDeRef = useRef(null);
 
   useEffect(() => {
     // Load TinyMCE
@@ -107,6 +114,19 @@ export default function CreateStory({ categories = [] }) {
         });
       }
     });
+
+    // German editor
+    window.tinymce.init({
+      ...commonConfig,
+      selector: '#content_de',
+      directionality: 'ltr',
+      setup: (editor) => {
+        editorDeRef.current = editor;
+        editor.on('change', () => {
+          setData('content_de', editor.getContent());
+        });
+      }
+    });
   };
 
   const handleSubmit = (e) => {
@@ -118,6 +138,9 @@ export default function CreateStory({ categories = [] }) {
     }
     if (editorEnRef.current) {
       setData('content_en', editorEnRef.current.getContent());
+    }
+    if (editorDeRef.current) {
+      setData('content_de', editorDeRef.current.getContent());
     }
 
     post(route('admin.stories.store'));
@@ -198,6 +221,21 @@ export default function CreateStory({ categories = [] }) {
                   <InputError message={errors.title_en} className="mt-2" />
                 </div>
 
+                {/* German Title */}
+                <div>
+                  <InputLabel htmlFor="title_de" value={t('story_title_de')} required />
+                  <TextInput
+                    id="title_de"
+                    type="text"
+                    name="title_de"
+                    value={data.title_de}
+                    className="mt-1 block w-full"
+                    onChange={(e) => setData('title_de', e.target.value)}
+                    required
+                  />
+                  <InputError message={errors.title_de} className="mt-2" />
+                </div>
+
                 {/* Category */}
                 <div>
                   <SelectInput
@@ -270,6 +308,18 @@ export default function CreateStory({ categories = [] }) {
                   />
                   <InputError message={errors.excerpt_en} className="mt-2" />
                 </div>
+                {/* German Excerpt */}
+                <div>
+                  <InputLabel htmlFor="excerpt_de" value={t('story_excerpt_de')} required />
+                  <TextArea
+                    name="excerpt_de"
+                    label={t('story_excerpt_de')}
+                    value={data.excerpt_de}
+                    onChange={(e) => setData('excerpt_de', e.target.value)}
+                    rows={3}
+                  />
+                  <InputError message={errors.excerpt_de} className="mt-2" />
+                </div>
               </div>
 
               {/* Content Editors */}
@@ -298,6 +348,19 @@ export default function CreateStory({ categories = [] }) {
                     ></textarea>
                   </div>
                   <InputError message={errors.content_en} className="mt-2" />
+                </div>
+
+                {/* German Content */}
+                <div>
+                  <InputLabel htmlFor="content_de" value={t('story_content_de')} required />
+                  <div className='no-tailwindcss-support-display'>
+                    <textarea
+                      id="content_de"
+                      name="content_de"
+                      className="mt-1 block w-full "
+                    ></textarea>
+                  </div>
+                  <InputError message={errors.content_de} className="mt-2" />
                 </div>
               </div>
 
@@ -333,6 +396,18 @@ export default function CreateStory({ categories = [] }) {
                       value={data.cover_image_en}
                     />
                   </div>
+
+                  {/* German Cover Image */}
+                  <div>
+                    <DragFileInput
+                      id="cover_image_de"
+                      label={t('cover_image_de')}
+                      accept="image/*"
+                      onChange={(file) => setData('cover_image_de', file)}
+                      error={errors.cover_image_de}
+                      value={data.cover_image_de}
+                    />
+                  </div>
                 </div>
 
                 {/* Gallery Images */}
@@ -364,6 +439,19 @@ export default function CreateStory({ categories = [] }) {
                       value={data.gallery_images_en}
                     />
                   </div>
+                  {/* German Gallery Images */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_images_de"
+                      label={t('gallery_images_de')}
+                      accept="image/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_images_de', files)}
+                      error={errors.gallery_images_de}
+                      value={data.gallery_images_de}
+                    />
+                  </div>
                 </div>
 
                 {/* PDF Files */}
@@ -389,6 +477,17 @@ export default function CreateStory({ categories = [] }) {
                       onChange={(file) => setData('pdf_en', file)}
                       error={errors.pdf_en}
                       value={data.pdf_en}
+                    />
+                  </div>
+                  {/* German PDF */}
+                  <div>
+                    <DragFileInput
+                      id="pdf_de"
+                      label={t('pdf_de')}
+                      accept=".pdf"
+                      onChange={(file) => setData('pdf_de', file)}
+                      error={errors.pdf_de}
+                      value={data.pdf_de}
                     />
                   </div>
                 </div>
