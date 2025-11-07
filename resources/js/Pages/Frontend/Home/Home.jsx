@@ -22,8 +22,9 @@ export default function Home({ stories, faqs, categories, settings, feedbacks })
       <FeaturesSection />
       <StoriesSection stories={stories} />
 
-      {locale === 'en' && <img className="object-contain " src="/assets/home/1.png" alt="" />}
-      {locale === 'ar' && <img className="object-contain " src="/assets/home/2.png" alt="" />}
+      {locale === 'en' && (<img className="w-full h-auto object-cover" src="/assets/home/1.png" alt=""  />)}
+
+      {locale === 'ar' && (<img className="w-full h-auto object-cover" src="/assets/home/2.png" alt=""  />)}
 
       <AgeCategoriesSection categories={categories} />
       <PricingSection settings={settings} />
