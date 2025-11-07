@@ -75,7 +75,7 @@ class OrderController extends Controller
       'face_swap_result' => ['nullable', 'string'],
       'child_name' => ['required', 'string', 'max:255'],
       'child_age' => ['required', 'integer', 'min:1'],
-      'language' => ['required', 'in:arabic,english'],
+      'language' => ['required', 'in:arabic,english,german'],
       'child_gender' => ['required', 'in:boy,girl'],
       'format' => ['required', 'in:first_plan,second_plan,third_plan'],
       'value' => ['required', 'array', 'min:1'],
@@ -302,7 +302,7 @@ class OrderController extends Controller
         // Handle Paymob payment
         $result = $this->paymobService->sendPayment($order);
 
-        Log::info('Paymob payment result: ' . json_encode($result));  
+        Log::info('Paymob payment result: ' . json_encode($result));
         if (!$result['status']) {
           return redirect()->route('home')
             ->with('title', __('website_response.payment_error_title'))

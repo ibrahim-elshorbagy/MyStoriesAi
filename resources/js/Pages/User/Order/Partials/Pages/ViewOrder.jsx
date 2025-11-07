@@ -20,6 +20,7 @@ export default function ViewOrder({ auth, order }) {
   const languageOptions = {
     arabic: t('language_arabic'),
     english: t('language_english'),
+    german: t('language_german'),
   };
 
   const statusOptions = {
