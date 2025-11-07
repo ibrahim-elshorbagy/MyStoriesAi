@@ -18,7 +18,7 @@ class HomeController extends Controller
     $stories = Story::with('category')
       ->where('status', 'published')
       ->latest()
-      ->take(3)
+      ->take(4)
       ->get();
     $categories = AgeCategory::all();
     $settings = SiteSetting::all()->pluck('value', 'key')->toArray();

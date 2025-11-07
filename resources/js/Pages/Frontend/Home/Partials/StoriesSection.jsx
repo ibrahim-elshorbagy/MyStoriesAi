@@ -30,7 +30,7 @@ export default function StoriesSection({ stories }) {
 
         {/* Stories Grid */}
         <div className="flex flex-col gap-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 justify-items-center">
             {stories.map((story) => (
               <StoryCard key={story.id} story={story} />
             ))}

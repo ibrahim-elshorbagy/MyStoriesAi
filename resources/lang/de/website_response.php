@@ -82,7 +82,7 @@ return [
   /* Admin Impersonation Responses */
   'impersonation_success_title' => 'Als Benutzer angemeldet',
   'impersonation_success_message' => 'Erfolgreich als Benutzer angemeldet: :name',
-  'impersonation_return_title' => 'Zurück zum Administrator',
+  'impersonation_return_title' => 'Administrator',
 
 
   /* Story Management Responses */

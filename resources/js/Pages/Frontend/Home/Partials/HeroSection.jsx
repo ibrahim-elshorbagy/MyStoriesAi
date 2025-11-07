@@ -117,14 +117,14 @@ export default function HeroSection() {
         <div className="flex-[2] lg:py-10 text-center lg:text-start order-1 lg:order-2 gap-4 lg:gap-6 flex flex-col items-center lg:items-start justify-center z-10 px-6 lg:px-12 relative">
 
           {/* Content Wrapper - Moved to compensate for separator overlap */}
-          <div className="ltr:lg:ml-16 rtl:lg:mr-16 w-full max-lg:py-16">
+          <div className="ltr:lg:ml-8 rtl:lg:mr-16 w-full max-lg:py-16">
             {/* Main Heading - Enhanced for Better Visibility */}
             <div className="flex flex-col gap-5 max-lg:pt-10">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold relative w-fit mx-auto lg:mx-0 leading-tight">
                 <span className="block bg-gradient-to-r from-white via-orange-100 to-white bg-clip-text text-transparent font-black mb-3 drop-shadow-2xl">
-                  <span className='text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-none'>{t('your_child')}</span>
+                  <span className='text-5xl sm:text-6xl lg:text-7xl xl:text-8xl '>{t('your_child')}</span>
                 </span>
-                <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl bg-gradient-to-r from-white via-orange-100 to-white bg-clip-text text-transparent font-black drop-shadow-2xl leading-none">
+                <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl bg-gradient-to-r from-white via-orange-100 to-white bg-clip-text text-transparent font-black drop-shadow-2xl ">
                   {t('is_the_hero')}
                 </span>
               </h1>

@@ -140,7 +140,7 @@ $main= [
   // Admin Impersonation
   'login_as' => 'Anmelden als',
   'are_you_sure_login_as' => 'Sind Sie sicher, dass Sie sich anmelden möchten als',
-  'return_to_admin' => 'Zurück zum Administrator',
+  'return_to_admin' => 'Administrator',
 
 
   'select_role_required' => '-- Rolle auswählen --',
