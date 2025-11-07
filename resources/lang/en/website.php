@@ -315,8 +315,14 @@ $main= [
   'cookie_settings_description' => 'Manage cookie consent messages for your website',
   'cookie_message_ar' => 'Cookie Message (Arabic)',
   'cookie_message_en' => 'Cookie Message (English)',
+  'cookie_message_de' => 'Cookie Message (German)',
   'enter_cookie_message_ar' => 'Enter cookie consent message in Arabic',
   'enter_cookie_message_en' => 'Enter cookie consent message in English',
+  'enter_cookie_message_de' => 'Enter cookie consent message in German',
+  'cookie_consent_title' => 'Cookie Consent',
+  'accept' => 'Accept',
+  'decline' => 'Decline',
+  'default_cookie_message' => 'This website uses cookies to enhance your experience. By continuing to use this site, you agree to our use of cookies.',
 
 
 

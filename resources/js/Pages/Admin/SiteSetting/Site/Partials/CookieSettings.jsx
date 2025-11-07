@@ -10,6 +10,7 @@ export default function CookieSettings({ settings }) {
     settings: {
       cookie_message_ar: settings.cookie_message_ar || '',
       cookie_message_en: settings.cookie_message_en || '',
+      cookie_message_de: settings.cookie_message_de || '',
     }
   });
 
@@ -60,6 +61,20 @@ export default function CookieSettings({ settings }) {
             placeholder={t('enter_cookie_message_en')}
           />
           {errors['settings.cookie_message_en'] && <p className="text-red-500 text-sm mt-1">{errors['settings.cookie_message_en']}</p>}
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            {t('cookie_message_de')}
+          </label>
+          <TextArea
+            value={data.settings.cookie_message_de}
+            onChange={(e) => setData('settings', { ...data.settings, cookie_message_de: e.target.value })}
+            rows={6}
+            className="px-3 py-2"
+            placeholder={t('enter_cookie_message_de')}
+          />
+          {errors['settings.cookie_message_de'] && <p className="text-red-500 text-sm mt-1">{errors['settings.cookie_message_de']}</p>}
         </div>
 
         <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center gap-4">

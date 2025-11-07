@@ -18,6 +18,8 @@ export default function CookieModal() {
       // Get the appropriate message based on language
       const message = locale === 'ar'
         ? (cookie_data?.cookie_message_ar || t('default_cookie_message'))
+        : locale === 'de'
+        ? (cookie_data?.cookie_message_de || t('default_cookie_message'))
         : (cookie_data?.cookie_message_en || t('default_cookie_message'));
 
       setCookieMessage(message);

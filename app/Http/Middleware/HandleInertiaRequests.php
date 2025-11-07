@@ -63,6 +63,7 @@ class HandleInertiaRequests extends Middleware
     return \App\Models\Admin\SiteSetting\SiteSetting::whereIn('key', [
       'cookie_message_ar',
       'cookie_message_en',
+      'cookie_message_de',
     ])
       ->pluck('value', 'key')
       ->toArray();

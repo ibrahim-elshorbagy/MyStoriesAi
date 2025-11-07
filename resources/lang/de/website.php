@@ -335,8 +335,14 @@ $main= [
   'cookie_settings_description' => 'Verwalten Sie Cookie-Zustimmungsnachrichten für Ihre Website',
   'cookie_message_ar' => 'Cookie-Nachricht (Arabisch)',
   'cookie_message_en' => 'Cookie-Nachricht (Englisch)',
+  'cookie_message_de' => 'Cookie-Nachricht (Deutsch)',
   'enter_cookie_message_ar' => 'Cookie-Zustimmungsnachricht auf Arabisch eingeben',
   'enter_cookie_message_en' => 'Cookie-Zustimmungsnachricht auf Englisch eingeben',
+  'enter_cookie_message_de' => 'Cookie-Zustimmungsnachricht auf Deutsch eingeben',
+  'cookie_consent_title' => 'Cookie-Zustimmung',
+  'accept' => 'Akzeptieren',
+  'decline' => 'Ablehnen',
+  'default_cookie_message' => 'Diese Website verwendet Cookies, um Ihre Erfahrung zu verbessern. Durch die weitere Nutzung dieser Seite stimmen Sie unserer Verwendung von Cookies zu.',
 
 
 
