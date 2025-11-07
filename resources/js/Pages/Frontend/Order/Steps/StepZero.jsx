@@ -77,16 +77,17 @@ export default function StepZero({
     setProgress(0);
 
     try {
-      // Realistic progress simulation for ~3 minute (180 second) task
+      // Realistic progress simulation for ~6 minute (360 second) task
       const progressStages = [
-        { progress: 5, duration: 3000 },    // Preparing: 0-5% in 3s
-        { progress: 10, duration: 3000 },   // Uploading: 5-10% in 3s
-        { progress: 20, duration: 10000 },  // Detecting faces: 10-20% in 10s
-        { progress: 35, duration: 15000 },  // Face swapping: 20-35% in 15s
-        { progress: 50, duration: 20000 },  // Processing: 35-50% in 20s
-        { progress: 65, duration: 20000 },  // Enhancing (GFPGAN): 50-65% in 20s
-        { progress: 80, duration: 20000 },  // Upscaling (RealESRGAN): 65-80% in 20s
-        { progress: 95, duration: 15000 },  // Finalizing: 80-95% in 15s
+        { progress: 3, duration: 5000 },    // Preparing: 0-3% in 5s
+        { progress: 8, duration: 5000 },    // Uploading: 3-8% in 5s
+        { progress: 15, duration: 15000 },  // Detecting faces: 8-15% in 15s
+        { progress: 25, duration: 20000 },  // Face swapping: 15-25% in 20s
+        { progress: 40, duration: 40000 },  // Processing: 25-40% in 40s
+        { progress: 55, duration: 40000 },  // Enhancing (GFPGAN): 40-55% in 40s
+        { progress: 70, duration: 40000 },  // Upscaling (RealESRGAN): 55-70% in 40s
+        { progress: 85, duration: 40000 },  // Fine-tuning: 70-85% in 40s
+        { progress: 95, duration: 30000 },  // Finalizing: 85-95% in 30s
       ];
 
       let currentStageIndex = 0;
@@ -163,6 +164,7 @@ export default function StepZero({
       setTimeout(() => setProgress(0), 1000);
     }
   };
+
 
 
   const handleConfirmAndNext = () => {
