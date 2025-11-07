@@ -77,18 +77,16 @@ export default function StepZero({
     setProgress(0);
 
     try {
-      // More realistic progress simulation for ~30 second task
+      // Realistic progress simulation for ~3 minute (180 second) task
       const progressStages = [
-        { progress: 8, duration: 1500 },   // Upload images: 0-8% in 1.5s
-        { progress: 15, duration: 2000 },  // Still uploading: 8-15% in 2s
-        { progress: 25, duration: 3000 },  // Analyzing: 15-25% in 3s
-        { progress: 35, duration: 3500 },  // Detecting faces: 25-35% in 3.5s
-        { progress: 48, duration: 4000 },  // Processing: 35-48% in 4s
-        { progress: 58, duration: 3500 },  // Aligning: 48-58% in 3.5s
-        { progress: 68, duration: 3000 },  // Blending: 58-68% in 3s
-        { progress: 78, duration: 2500 },  // Refining: 68-78% in 2.5s
-        { progress: 85, duration: 2000 },  // Finalizing: 78-85% in 2s
-        { progress: 92, duration: 2000 },  // Almost done: 85-92% in 2s
+        { progress: 5, duration: 3000 },    // Preparing: 0-5% in 3s
+        { progress: 10, duration: 3000 },   // Uploading: 5-10% in 3s
+        { progress: 20, duration: 10000 },  // Detecting faces: 10-20% in 10s
+        { progress: 35, duration: 15000 },  // Face swapping: 20-35% in 15s
+        { progress: 50, duration: 20000 },  // Processing: 35-50% in 20s
+        { progress: 65, duration: 20000 },  // Enhancing (GFPGAN): 50-65% in 20s
+        { progress: 80, duration: 20000 },  // Upscaling (RealESRGAN): 65-80% in 20s
+        { progress: 95, duration: 15000 },  // Finalizing: 80-95% in 15s
       ];
 
       let currentStageIndex = 0;
@@ -103,7 +101,7 @@ export default function StepZero({
         const stage = progressStages[currentStageIndex];
         const startProgress = currentStageIndex === 0 ? 0 : progressStages[currentStageIndex - 1].progress;
         const endProgress = stage.progress;
-        const steps = Math.ceil(stage.duration / 200); // Update every 200ms
+        const steps = Math.ceil(stage.duration / 200);
         const increment = (endProgress - startProgress) / steps;
         let stepCount = 0;
 
@@ -165,6 +163,7 @@ export default function StepZero({
       setTimeout(() => setProgress(0), 1000);
     }
   };
+
 
   const handleConfirmAndNext = () => {
     if (!swappedImageUrl) {
