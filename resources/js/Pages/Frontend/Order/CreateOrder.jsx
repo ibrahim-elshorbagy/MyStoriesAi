@@ -244,7 +244,6 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
     <SiteLayout>
       <Head title={t('create_story_title') || 'إنشاء قصة'} />
 
-      {JSON.stringify(errors)}
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-16">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
