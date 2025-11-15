@@ -254,6 +254,7 @@ return [
 
   // Payment Responses
   'payment_already_completed' => 'Die Zahlung für diese Bestellung wurde bereits abgeschlossen.',
+  'payment_already_completed_title' => 'Zahlung bereits abgeschlossen',
   'payment_failed' => 'Zahlung fehlgeschlagen. Bitte versuchen Sie es erneut.',
   'payment_methods_not_configured' => 'Zahlungsmethoden nicht konfiguriert. Bitte kontaktieren Sie den Support.',
   'payment_successful_title' => 'Zahlung erfolgreich',

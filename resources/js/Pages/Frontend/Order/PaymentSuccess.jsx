@@ -40,7 +40,7 @@ export default function PaymentSuccess({ order, payment }) {
                   </div>
                   <div className="flex justify-between">
                     <dt className="text-sm font-medium text-gray-500">{t('payment_method')}:</dt>
-                    <dd className="text-sm text-gray-900">{t('paymob')}</dd>
+                    <dd className="text-sm text-gray-900">Stripe</dd>
                   </div>
                   {payment && (
                     <div className="flex justify-between">
@@ -55,7 +55,7 @@ export default function PaymentSuccess({ order, payment }) {
 
           <div className="mt-6">
             <Link
-              href={route('frontend.dashboard')}
+              href={route('dashboard')}
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               {t('back_to_dashboard')}
@@ -64,7 +64,7 @@ export default function PaymentSuccess({ order, payment }) {
 
           <div className="mt-4 text-center">
             <Link
-              href={route('frontend.orders.index')}
+              href={route('user.orders.index')}
               className="text-sm text-blue-600 hover:text-blue-500"
             >
               {t('view_all_orders')}

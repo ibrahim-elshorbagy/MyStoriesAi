@@ -32,6 +32,7 @@ export default function ViewOrder({ auth, order }) {
 
   const paymentMethodOptions = {
     paymob: 'Paymob',
+    stripe: 'Stripe',
     cod: t('cash_on_delivery'),
   };
 
@@ -333,12 +334,14 @@ export default function ViewOrder({ auth, order }) {
             )}
 
             {/* Payments */}
-            {order.payments && Array.isArray(order.payments) && order.payments.length > 0 && (
-              <div className="bg-white dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6 lg:col-span-2">
-                <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4">{t('payment_details')}</h3>
+            {(() => {
+              const paidPayments = order.payments.filter(payment => payment.status === 'paid');
+              return paidPayments && paidPayments.length > 0 && (
+                <div className="bg-white dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6 lg:col-span-2">
+                  <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4">{t('payment_details')}</h3>
 
-                <div className="space-y-4">
-                  {order.payments.map((payment, index) => (
+                  <div className="space-y-4">
+                    {paidPayments.map((payment, index) => (
                     <div key={index} className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div>
@@ -380,7 +383,8 @@ export default function ViewOrder({ auth, order }) {
                   ))}
                 </div>
               </div>
-            )}
+            );
+            })()}
           </div>
 
 

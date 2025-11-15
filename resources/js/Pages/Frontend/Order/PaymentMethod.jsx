@@ -5,7 +5,7 @@ import { useTrans } from '@/Hooks/useTrans';
 
 export default function PaymentMethod({ order }) {
   const { t } = useTrans();
-  const [paymentMethod, setPaymentMethod] = useState('cod');
+  const [paymentMethod, setPaymentMethod] = useState('stripe');
 
   return (
     <SiteLayout>
@@ -44,7 +44,7 @@ export default function PaymentMethod({ order }) {
 
               {/* Payment Options */}
               <div className="space-y-4">
-                <div
+                {/* <div
                   onClick={() => setPaymentMethod('cod')}
                   className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${paymentMethod === 'cod'
                       ? 'border-orange-500 bg-orange-50 shadow-lg scale-105'
@@ -72,11 +72,11 @@ export default function PaymentMethod({ order }) {
                       </p>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
                 <div
-                  onClick={() => setPaymentMethod('paymob')}
-                  className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${paymentMethod === 'paymob'
+                  onClick={() => setPaymentMethod('stripe')}
+                  className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${paymentMethod === 'stripe'
                       ? 'border-orange-500 bg-orange-50 shadow-lg scale-105'
                       : 'border-neutral-200 hover:border-orange-300 hover:shadow-md'
                     }`}
@@ -85,20 +85,20 @@ export default function PaymentMethod({ order }) {
                     <input
                       type="radio"
                       name="payment_method"
-                      value="paymob"
-                      checked={paymentMethod === 'paymob'}
-                      onChange={() => setPaymentMethod('paymob')}
+                      value="stripe"
+                      checked={paymentMethod === 'stripe'}
+                      onChange={() => setPaymentMethod('stripe')}
                       className="mt-1 mx-3 w-5 h-5 text-orange-500"
                     />
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
                         <i className="fa-solid fa-credit-card text-2xl text-blue-600"></i>
                         <h3 className="text-lg font-bold text-neutral-900">
-                          {t('payment_online')}
+                          {t('payment_stripe')}
                         </h3>
                       </div>
                       <p className="text-neutral-600">
-                        {t('payment_online_desc')}
+                        {t('payment_stripe_desc')}
                       </p>
                     </div>
                   </div>

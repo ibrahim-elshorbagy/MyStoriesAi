@@ -135,7 +135,7 @@ return [
     'pricing_section_title' => 'Wählen Sie Ihren Geschichtenbuchplan – Machen Sie Ihr Kind zum Helden!',
 
     'pricing_first_plan_title' => 'Taschenbuch + Kostenlose PDF-Kopie',
-    'pricing_first_plan_price' => '339 EGP',
+    'pricing_first_plan_price' => '339',
     'pricing_first_plan_desc' => 'Wunderschön gedrucktes Geschichtenbuch mit weichem Einband',
     'pricing_first_plan_btn' => 'Taschenbuch bestellen',
     'plan_1_feature_1' => 'Kostenlose PDF-Version für jedes Gerät',
@@ -144,7 +144,7 @@ return [
     'plan_1_feature_4' => 'Eltern, die tägliche Lesezeit und Gutenachtgeschichten lieben',
 
     'pricing_second_plan_title' => 'Premium-Geschenkausgabe + Kostenlose PDF',
-    'pricing_second_plan_price' => '439 EGP',
+    'pricing_second_plan_price' => '439',
     'pricing_second_plan_desc' => 'Elegante Hardcover-Geschenkausgabe',
     'pricing_second_plan_btn' => 'Premium-Ausgabe bestellen',
     'pricing_most_popular' => 'Am beliebtesten',
@@ -154,7 +154,7 @@ return [
     'plan_2_feature_4' => 'Jeder, der ein bedeutungsvolles, bleibendes Geschenk sucht',
 
     'pricing_third_plan_title' => 'Sammleredition Limitiert (Exklusiv)',
-    'pricing_third_plan_price' => '549 EGP',
+    'pricing_third_plan_price' => '549',
     'pricing_third_plan_desc' => 'Sonderausgabe mit dem Namen Ihres Kindes auf dem Cover gedruckt',
     'pricing_third_plan_btn' => 'Sammleredition reservieren',
     'plan_3_feature_1' => 'Luxus-Geschenkbox mit Schleifenverpackung',
@@ -242,7 +242,7 @@ return [
     'choose_payment_method' => 'Zahlungsmethode wählen',
     'select_payment_method' => 'Wählen Sie Ihre bevorzugte Zahlungsmethode',
     'complete_payment' => 'Zahlung abschließen',
-    'currency' => 'EGP',
+    'currency' => 'USD',
     'years' => 'Jahre',
     'choose_file' => 'Datei auswählen',
     'edit' => 'Bearbeiten',
@@ -307,7 +307,6 @@ return [
     'order_details' => 'Bestelldetails',
     'order_number' => 'Bestellnummer',
     'total_amount' => 'Gesamtbetrag',
-    'currency' => 'EGP',
     'payment_method' => 'Zahlungsmethode',
     'paymob' => 'Paymob',
     'cod' => 'Nachnahme',

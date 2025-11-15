@@ -135,7 +135,7 @@ return [
     'pricing_section_title' => 'Choose Your Storybook Plan – Make Your Child the Hero!',
 
     'pricing_first_plan_title' => 'Paperback Book + Free PDF Copy',
-    'pricing_first_plan_price' => '339 EGP',
+    'pricing_first_plan_price' => '339',
     'pricing_first_plan_desc' => 'Beautifully printed storybook with a soft cover',
     'pricing_first_plan_btn' => 'Order Paperback Book',
     'plan_1_feature_1' => 'Free PDF version for any device',
@@ -144,7 +144,7 @@ return [
     'plan_1_feature_4' => 'Parents who love daily reading time and bedtime stories',
 
     'pricing_second_plan_title' => 'Premium Gift Edition + Free PDF',
-    'pricing_second_plan_price' => '439 EGP',
+    'pricing_second_plan_price' => '439',
     'pricing_second_plan_desc' => 'Elegant hardcover gift edition',
     'pricing_second_plan_btn' => 'Order Premium Edition',
     'pricing_most_popular' => 'Most Popular',
@@ -154,7 +154,7 @@ return [
     'plan_2_feature_4' => 'Anyone looking for a meaningful, lasting gift',
 
     'pricing_third_plan_title' => 'Collector\'s Limited Edition (Exclusive)',
-    'pricing_third_plan_price' => '549 EGP',
+    'pricing_third_plan_price' => '549',
     'pricing_third_plan_desc' => 'Special edition with your child\'s name printed on the cover',
     'pricing_third_plan_btn' => 'Reserve Collector\'s Edition',
     'plan_3_feature_1' => 'Luxury gift box with ribbon wrapping',
@@ -242,7 +242,7 @@ return [
     'choose_payment_method' => 'Choose Payment Method',
     'select_payment_method' => 'Select your preferred payment method',
     'complete_payment' => 'Complete Payment',
-    'currency' => 'EGP',
+    'currency' => 'USD',
     'years' => 'Years',
     'choose_file' => 'Choose File',
     'edit' => 'Edit',
@@ -307,7 +307,6 @@ return [
     'order_details' => 'Order Details',
     'order_number' => 'Order Number',
     'total_amount' => 'Total Amount',
-    'currency' => 'EGP',
     'payment_method' => 'Payment Method',
     'paymob' => 'Paymob',
     'cod' => 'Cash on Delivery',

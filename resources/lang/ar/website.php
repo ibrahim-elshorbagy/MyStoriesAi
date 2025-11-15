@@ -247,6 +247,7 @@ $main = [
   'age_category' => 'فئة العمر',
   'select_age_category' => 'اختر فئة العمر',
   'select_gender' => 'اختر الجنس',
+  'language_german' => 'ألماني',
   'story_title_ar' => 'عنوان القصة (عربي)',
   'story_title_en' => 'عنوان القصة (إنجليزي)',
   'story_content_ar' => 'محتوى القصة (عربي)',
@@ -313,6 +314,7 @@ $main = [
   'orders' => 'الطلبات',
   'orders_management' => 'إدارة الطلبات',
   'order' => 'طلب',
+  'payment' => 'الدفع',
   'order_id' => 'رقم الطلب',
   'customer' => 'العميل',
   'search_orders' => 'البحث في الطلبات...',
@@ -348,6 +350,10 @@ $main = [
   // Payment Methods
   'paymob' => 'باي موب',
   'cash_on_delivery' => 'الدفع عند الاستلام',
+  'payment_cod' => 'الدفع عند الاستلام',
+  'payment_cod_desc' => 'ادفع عند استلام طلبك',
+  'payment_stripe' => 'بطاقة الائتمان/الخصم (Stripe)',
+  'payment_stripe_desc' => 'دفع آمن عبر Stripe',
 
   // Customer Feedback
   'customer_feedbacks' => 'تعليقات العملاء',

@@ -139,7 +139,7 @@ return [
     'pricing_section_title' => 'اختر باقتك – اجعل طفلك البطل!',
 
     'pricing_first_plan_title' => 'غلاف ورقي + نسخة PDF مجانية',
-    'pricing_first_plan_price' => '339 جنيه',
+    'pricing_first_plan_price' => '339',
     'pricing_first_plan_desc' => 'كتاب مطبوع بغلاف ورقي أنيق ومتين',
     'pricing_first_plan_btn' => 'اطلب نسختك الورقية الآن',
     'plan_1_feature_1' => 'نسخة PDF مجانية بعد الشراء',
@@ -148,7 +148,7 @@ return [
     'plan_1_feature_4' => 'للأهالي اللي يحبوا القراءة اليومية ومشاركة القصة مع أطفالهم قبل النوم',
 
     'pricing_second_plan_title' => 'نسخة هدايا فاخرة + PDF مجاني',
-    'pricing_second_plan_price' => '439 جنيه',
+    'pricing_second_plan_price' => '439',
     'pricing_second_plan_desc' => 'غلاف فاخر بتصميم أنيق وجودة عالية',
     'pricing_second_plan_btn' => 'اطلب النسخة الفاخرة',
     'pricing_most_popular' => 'الأكثر شعبية',
@@ -158,7 +158,7 @@ return [
     'plan_2_feature_4' => 'لمن يريد هدية مميزة تبقى ذكرى جميلة',
 
     'pricing_third_plan_title' => 'النسخة التذكارية الخاصة (إصدار محدود)',
-    'pricing_third_plan_price' => '549 جنيه',
+    'pricing_third_plan_price' => '549',
     'pricing_third_plan_desc' => 'طباعة خاصة بتوقيع شخصي باسم الطفل',
     'pricing_third_plan_btn' => 'احجز طبعتك الخاصة الآن',
     'plan_3_feature_1' => 'تغليف فاخر مع شريط هدية',
@@ -246,7 +246,7 @@ return [
     'choose_payment_method' => 'اختر طريقة الدفع',
     'select_payment_method' => 'اختر طريقة الدفع المفضلة لديك',
     'complete_payment' => 'إتمام الدفع',
-    'currency' => 'جنيه مصري',
+    'currency' => 'USD',
     'years' => 'سنوات',
     'choose_file' => 'اختر ملفًا',
     'edit' => 'تعديل',
@@ -343,7 +343,6 @@ return [
     'order_details' => 'تفاصيل الطلب',
     'order_number' => 'رقم الطلب',
     'total_amount' => 'المبلغ الإجمالي',
-    'currency' => 'جنيه مصري',
     'payment_method' => 'طريقة الدفع',
     'paymob' => 'باي موب',
     'cod' => 'الدفع عند الاستلام',

@@ -41,6 +41,7 @@ $main= [
   'age_category' => 'Age Category',
   'select_age_category' => 'Select Age Category',
   'select_gender' => 'Select Gender',
+  'language_german' => 'German',
   'story_title_ar' => 'Story Title (Arabic)',
   'story_title_en' => 'Story Title (English)',
   'story_content_ar' => 'Story Content (Arabic)',
@@ -331,6 +332,7 @@ $main= [
   'orders' => 'Orders',
   'orders_management' => 'Orders Management',
   'order' => 'Order',
+  'payment' => 'Payment',
   'order_id' => 'Order ID',
   'customer' => 'Customer',
   'search_orders' => 'Search orders...',
@@ -366,6 +368,10 @@ $main= [
   // Payment Methods
   'paymob' => 'Paymob',
   'cash_on_delivery' => 'Cash on Delivery',
+  'payment_cod' => 'Cash on Delivery',
+  'payment_cod_desc' => 'Pay when you receive your order',
+  'payment_stripe' => 'Credit/Debit Card (Stripe)',
+  'payment_stripe_desc' => 'Secure payment via Stripe',
 
   // Order Management UI
   'update_payment_status' => 'Update Payment Status',

@@ -16,17 +16,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
-use App\Services\PaymobService;
+use App\Services\StripeService;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class OrderController extends Controller
 {
-  protected $paymobService;
+  protected $stripeService;
 
-  public function __construct(PaymobService $paymobService)
+  public function __construct(StripeService $stripeService)
   {
-    $this->paymobService = $paymobService;
+    $this->stripeService = $stripeService;
   }
 
   // Show the multi-step form`
@@ -249,16 +249,17 @@ class OrderController extends Controller
     if ($order->user_id !== Auth::id()) {
       abort(403);
     }
-    // if ($order->payments()->exists()) {
-    //   return redirect()->route('user.orders.show', $order->id)
-    //     ->with('title', __('website_response.payment_already_initiated_title'))
-    //     ->with('message', __('website_response.payment_already_initiated'))
-    //     ->with('status', 'error');
-    // }
+
+    if ($order->payments()->exists() && $order->payments()->whereIn('status', ['paid'])->exists()) {
+      return redirect()->route('user.orders.show', $order->id)
+        ->with('title', __('website_response.payment_already_completed_title'))
+        ->with('message', __('website_response.payment_already_completed'))
+        ->with('status', 'error');
+    }
 
 
     return Inertia::render('Frontend/Order/PaymentMethod', [
-      'order' => $order->load('shippingAddress'),
+      'order' => $order->load('shippingAddress', 'story'),
     ]);
   }
 
@@ -269,13 +270,16 @@ class OrderController extends Controller
       abort(403);
     }
 
+
     $validated = $request->validate([
-      'payment_method' => ['required', 'in:paymob,cod'],
+      'payment_method' => ['required', 'in:stripe'],
     ]);
+
 
     DB::beginTransaction();
 
     try {
+
 
       // Create payment record
       $payment = Payment::create([
@@ -290,19 +294,20 @@ class OrderController extends Controller
 
       DB::commit();
 
-      if ($validated['payment_method'] === 'cod') {
-        $payment->update(['status' => 'pending']);
-        $order->update(['status' => 'pending']);
+      // if ($validated['payment_method'] === 'cod') {
+      //   $payment->update(['status' => 'pending']);
+      //   $order->update(['status' => 'pending']);
 
-        return redirect()->route('home')
-          ->with('title', __('website_response.order_created_cod_title'))
-          ->with('message', __('website_response.order_created_cod_message'))
-          ->with('status', 'success');
-      } else {
-        // Handle Paymob payment
-        $result = $this->paymobService->sendPayment($order);
+      //   return redirect()->route('home')
+      //     ->with('title', __('website_response.order_created_cod_title'))
+      //     ->with('message', __('website_response.order_created_cod_message'))
+      //     ->with('status', 'success');
+      // } elseif ($validated['payment_method'] === 'stripe') {
+      if ($validated['payment_method'] === 'stripe') {
+        // Handle Stripe payment
+        $result = $this->stripeService->sendPayment($order);
 
-        Log::info('Paymob payment result: ' . json_encode($result));
+        Log::info('Stripe payment result: ' . json_encode($result));
         if (!$result['status']) {
           return redirect()->route('home')
             ->with('title', __('website_response.payment_error_title'))
@@ -311,10 +316,27 @@ class OrderController extends Controller
         }
 
         // Update payment with transaction id
-        $payment->update(['transaction_id' => $result['paymob_order_id']]);
+        $payment->update(['transaction_id' => $result['stripe_session_id']]);
 
         return redirect($result['url']);
       }
+      // elseif ($validated['payment_method'] === 'paymob') {
+      //   // Handle Paymob payment
+      //   $result = $this->paymobService->sendPayment($order);
+
+      //   Log::info('Paymob payment result: ' . json_encode($result));
+      //   if (!$result['status']) {
+      //     return redirect()->route('home')
+      //       ->with('title', __('website_response.payment_error_title'))
+      //       ->with('message', $result['message'])
+      //       ->with('status', 'error');
+      //   }
+
+      //   // Update payment with transaction id
+      //   $payment->update(['transaction_id' => $result['paymob_order_id']]);
+
+      //   return redirect($result['url']);
+      // }
     } catch (\Exception $e) {
       DB::rollBack();
       return redirect()->route('home')

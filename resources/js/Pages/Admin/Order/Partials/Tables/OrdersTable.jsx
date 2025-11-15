@@ -56,14 +56,24 @@ export default function OrdersTable({ orders }) {
         </div>
       </td>
       <td className="px-3 py-4 whitespace-nowrap">
-        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-          order.status === 'completed' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-          order.status === 'processing' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-          order.status === 'pending' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
-          'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-        }`}>
-          {t(`order_status_${order.status}`)}
-        </span>
+        <div className="flex flex-col gap-1">
+          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+            order.status === 'completed' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
+            order.status === 'processing' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
+            order.status === 'pending' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
+            'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+          }`}>
+            {t('order')}: {t(`order_status_${order.status}`)}
+          </span>
+          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+            (order.payments?.[0]?.status || 'pending') === 'paid' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
+            (order.payments?.[0]?.status || 'pending') === 'pending' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
+            (order.payments?.[0]?.status || 'pending') === 'failed' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
+            'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200'
+          }`}>
+            {t('payment')}: {t(`payment_status_${order.payments?.[0]?.status || 'pending'}`)}
+          </span>
+        </div>
       </td>
       <td className="px-3 py-4 whitespace-nowrap text-sm text-neutral-900 dark:text-neutral-100">
         {order.total_price} {t('currency')}

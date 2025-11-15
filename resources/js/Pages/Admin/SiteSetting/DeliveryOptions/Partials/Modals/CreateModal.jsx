@@ -98,7 +98,7 @@ export default function CreateModal({ isOpen, onClose }) {
             className="mt-1 block w-full"
             onChange={(e) => setData('price', e.target.value)}
             icon="fa-coins"
-            placeholder="0.00 EGP"
+            placeholder="0.00"
             step="0.01"
             min="0"
             required

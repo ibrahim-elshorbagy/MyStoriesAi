@@ -111,7 +111,7 @@ export default function EditModal({ isOpen, onClose, deliveryOption }) {
             onChange={(e) => setData('price', e.target.value)}
             required
             icon="fa-coins"
-            placeholder="0.00 EGP"
+            placeholder="0.00 USD"
             step="0.01"
             min="0"
           />

@@ -228,6 +228,11 @@ export default function StepOne({
             <label className="block text-sm font-medium text-neutral-700 mb-2">
               {t('child_image')} *
             </label>
+            <div className='flex justify-center items-center mb-6'>
+              <div className='w-96'>
+                <img className="object-contain w-full h-full" src="/assets/createOrder/conditions.png" alt="" />
+              </div>
+            </div>
             <div className="border-2 border-dashed border-neutral-300 rounded-lg p-6 text-center">
               {imagePreview ? (
                 <div className="space-y-4">

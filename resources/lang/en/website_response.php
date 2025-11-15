@@ -231,6 +231,7 @@ return [
 
   // Payment Responses
   'payment_already_completed' => 'Payment has already been completed for this order.',
+  'payment_already_completed_title' => 'Payment Already Completed',
   'payment_failed' => 'Payment failed. Please try again.',
   'payment_methods_not_configured' => 'Payment methods not configured. Please contact support.',
   'payment_successful_title' => 'Payment Successful',

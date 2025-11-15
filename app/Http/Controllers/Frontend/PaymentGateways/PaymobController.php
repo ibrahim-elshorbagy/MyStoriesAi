@@ -60,9 +60,9 @@ class PaymobController extends Controller
       }
 
       // Update payment and order status
-      if ($payment->status !== 'completed') {
-        $payment->update(['status' => 'completed']);
-        $order->update(['status' => 'confirmed']);
+      if ($payment->status !== 'paid') {
+        $payment->update(['status' => 'paid']);
+        $order->update(['status' => 'completed']);
         Log::info('Payment marked as completed for order: ' . $order->id);
       }
 

@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\Frontend\Order\OrderController;
 use App\Http\Controllers\Frontend\PaymentGateways\PaymobController;
+use App\Http\Controllers\Frontend\PaymentGateways\StripeController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth','role:user'])->group(function () {
+Route::middleware(['auth', 'role:user'])->group(function () {
   // Single route to show the multi-step form
   Route::get('/create-order', [OrderController::class, 'create'])->name('frontend.order.create');
 
@@ -18,4 +19,8 @@ Route::middleware(['auth','role:user'])->group(function () {
   // Paymob Payment Routes
   Route::get('/payment/paymob/success/{order?}', [PaymobController::class, 'success'])->name('frontend.payment.success');
   Route::get('/payment/paymob/failed/{order?}', [PaymobController::class, 'failure'])->name('frontend.payment.failed');
+
+  // Stripe Payment Routes
+  Route::get('/payment/stripe/success/{order}', [StripeController::class, 'success'])->name('frontend.stripe.payment.success');
+  Route::get('/payment/stripe/failed/{order}', [StripeController::class, 'failure'])->name('frontend.stripe.payment.failed');
 });

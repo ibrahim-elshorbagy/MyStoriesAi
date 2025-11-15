@@ -234,6 +234,7 @@ return [
 
   // Payment Responses
   'payment_already_completed' => 'تم إكمال الدفع لهذا الطلب بالفعل.',
+  'payment_already_completed_title' => 'تم إكمال الدفع بالفعل',
   'payment_failed' => 'فشل الدفع. يرجى المحاولة مرة أخرى.',
   'payment_methods_not_configured' => 'طرق الدفع غير مكونة. يرجى التواصل مع الدعم.',
   'payment_successful_title' => 'تم الدفع بنجاح',

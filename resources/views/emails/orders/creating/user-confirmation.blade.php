@@ -72,7 +72,7 @@
           PDF + Hardcover
         @endif
         <br/>
-        <strong style="color:#333;">Gesamtbetrag:</strong> {{ $order->total_price }} EGP<br/>
+        <strong style="color:#333;">Gesamtbetrag:</strong> {{ $order->total_price }} USD<br/>
         <strong style="color:#333;">Zahlungsmethode:</strong> {{ $order->payment_method === 'cod' ? 'Zahlung bei Lieferung' : 'Online-Zahlung' }}
       </div>
 
@@ -115,7 +115,7 @@
           PDF + Hardcover
         @endif
         <br/>
-        <strong style="color:#333;">Total Amount:</strong> {{ $order->total_price }} EGP<br/>
+        <strong style="color:#333;">Total Amount:</strong> {{ $order->total_price }} USD<br/>
         <strong style="color:#333;">Payment Method:</strong> {{ $order->payment_method === 'cod' ? 'Cash on Delivery' : 'Online Payment' }}
       </div>
 
