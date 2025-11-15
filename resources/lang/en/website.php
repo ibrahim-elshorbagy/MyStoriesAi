@@ -398,6 +398,14 @@ $main= [
   'enter_admin_email' => 'Enter admin email address',
   'admin_email_help' => 'This email will automatically receive notifications about new orders and important events',
 
+  // Stripe Settings
+  'stripe_settings' => 'Stripe Settings',
+  'stripe_settings_description' => 'Configure your Stripe payment gateway settings',
+  'stripe_publishable_key' => 'Stripe Publishable Key',
+  'stripe_publishable_key_help' => 'Your Stripe publishable key for client-side operations',
+  'stripe_secret_key' => 'Stripe Secret Key',
+  'stripe_secret_key_help' => 'Your Stripe secret key for server-side operations',
+
   // Customer Feedback
   'customer_feedbacks' => 'Customer Feedbacks',
   'customer_feedbacks_management' => 'Customer Feedbacks Management',

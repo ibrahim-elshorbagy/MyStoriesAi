@@ -397,6 +397,14 @@ $main = [
   "paymob_callback_urls"=>"Paymob Call Back URL",
   "success_url"=>"Success URL",
   "failure_url"=>"Failure URL",
+
+  // Stripe Settings
+  'stripe_settings' => 'إعدادات Stripe',
+  'stripe_settings_description' => 'تكوين إعدادات بوابة الدفع Stripe',
+  'stripe_publishable_key' => 'Stripe-Publishable-Key',
+  'stripe_publishable_key_help' => 'مفتاح Stripe-Publishable-Key العام للعمليات من جانب العميل',
+  'stripe_secret_key' => 'Stripe-Secret-Key',
+  'stripe_secret_key_help' => 'مفتاح Stripe-Secret-Key السري للعمليات من جانب الخادم',
 ];
 
 return array_merge(

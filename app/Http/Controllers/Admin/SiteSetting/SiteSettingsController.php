@@ -61,6 +61,8 @@ class SiteSettingsController extends Controller
       'paymob_api_key' => 'PAYMOB_API_KEY',
       'paymob_mobile_wallet_id' => 'PAYMOB_MOBILE_WALLET_ID',
       'paymob_online_card_id' => 'PAYMOB_ONLINE_CARD_ID',
+      'stripe_publishable_key' => 'STRIPE_PUBLISHABLE_KEY',
+      'stripe_secret_key' => 'STRIPE_SECRET_KEY',
       // Add more mappings as needed
     ];
 
