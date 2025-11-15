@@ -7,6 +7,7 @@ import PricingSettings from './Partials/PricingSettings';
 import CookieSettings from './Partials/CookieSettings';
 import EmailSettings from './Partials/EmailSettings';
 import PaymobSettings from './Partials/PaymobSettings';
+import StripeSettings from './Partials/StripeSettings';
 
 export default function SiteSettings({ settings = {}, timezones = [], paymobUrls = {} }) {
   const { t } = useTrans();
@@ -21,7 +22,8 @@ export default function SiteSettings({ settings = {}, timezones = [], paymobUrls
     { id: 'pricing', icon: 'fa-solid fa-dollar-sign', label: t('pricing_settings') },
     { id: 'email', icon: 'fa-solid fa-envelope', label: t('email_settings') },
     { id: 'cookies', icon: 'fa-solid fa-cookie-bite', label: t('cookie_settings') },
-    { id: 'paymob', icon: 'fa-solid fa-credit-card', label: t('paymob_settings') },
+    { id: 'stripe', icon: 'fa-solid fa-credit-card', label: t('stripe_settings') },
+    // { id: 'paymob', icon: 'fa-solid fa-credit-card', label: t('paymob_settings') },
   ];
 
   return (
@@ -75,9 +77,12 @@ export default function SiteSettings({ settings = {}, timezones = [], paymobUrls
             {activeSection === 'cookies' && (
               <CookieSettings settings={settings} />
             )}
-            {activeSection === 'paymob' && (
-              <PaymobSettings settings={settings} paymobUrls={paymobUrls} />
+            {activeSection === 'stripe' && (
+              <StripeSettings settings={settings} />
             )}
+            {/* {activeSection === 'paymob' && (
+              <PaymobSettings settings={settings} paymobUrls={paymobUrls} />
+            )} */}
           </div>
         </div>
       </div>

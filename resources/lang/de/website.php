@@ -425,6 +425,12 @@ $main= [
   'admin_email_help' => 'Diese E-Mail erhält automatisch Benachrichtigungen über neue Bestellungen und wichtige Ereignisse',
 
 
+  // Stripe Settings
+  'stripe_settings' => 'Stripe-Einstellungen',
+  'stripe_settings_description' => 'Konfigurieren Sie Ihre Stripe-Zahlungsgateway-Einstellungen',
+  'stripe_publishable_key' => 'Stripe-Publishable-Key',
+  'stripe_publishable_key_help' => 'Ihr Stripe-Publishable-Key für clientseitige Operationen',
+
   // Customer Feedback
   'customer_feedbacks' => 'Kundenfeedbacks',
   'customer_feedbacks_management' => 'Kundenfeedback-Verwaltung',
