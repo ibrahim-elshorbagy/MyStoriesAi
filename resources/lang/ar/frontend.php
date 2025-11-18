@@ -62,6 +62,7 @@ return [
     'home' => 'الرئيسية',
     'pricing' => 'الأسعار',
     'get_started' => 'ابدأ الآن',
+    "features"=>"المميزات",
 
     // Hero Section
     'hero_subtitle' => 'أنشئ قصصاً',
