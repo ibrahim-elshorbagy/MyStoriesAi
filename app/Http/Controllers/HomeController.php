@@ -22,14 +22,16 @@ class HomeController extends Controller
       ->get();
     $categories = AgeCategory::all();
     $settings = SiteSetting::all()->pluck('value', 'key')->toArray();
-    $feedbacks = CustomerFeedback::all();
+    $textFeedbacks = CustomerFeedback::whereNotNull('customer_feedback')->whereNull('image')->get();
+    $imageFeedbacks = CustomerFeedback::whereNull('customer_feedback')->whereNotNull('image')->get();
 
     return inertia("Frontend/Home/Home", [
       'faqs' => $faqs,
       'stories' => $stories,
       'categories' => $categories,
       'settings' => $settings,
-      'feedbacks' => $feedbacks,
+      'textFeedbacks' => $textFeedbacks,
+      'imageFeedbacks' => $imageFeedbacks,
     ]);
   }
 

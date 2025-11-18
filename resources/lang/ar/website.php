@@ -368,6 +368,7 @@ $main = [
   'image_optional' => 'الصورة (اختياري)',
   'feedback_text_optional' => 'نص التعليق (اختياري)',
   'at_least_one_required' => 'يجب إدخال نص التعليق أو تحميل صورة على الأقل',
+  'only_one_required' => 'يمكن إدخال نص التعليق أو تحميل صورة فقط، وليس كليهما',
   'confirm_delete_customer_feedback' => 'هل أنت متأكد من حذف تعليق العميل هذا؟',
   'confirm_delete_customer_feedbacks' => 'هل أنت متأكد من حذف تعليقات العملاء المحددة؟',
   'no_feedback_text' => 'لا يوجد نص تعليق',
@@ -411,6 +412,8 @@ $main = [
   'stripe_publishable_key_help' => 'مفتاح Stripe-Publishable-Key العام للعمليات من جانب العميل',
   'stripe_secret_key' => 'Stripe-Secret-Key',
   'stripe_secret_key_help' => 'مفتاح Stripe-Secret-Key السري للعمليات من جانب الخادم',
+  'customer_testimonials' => 'آراء العملاء',
+  'customer_images' => 'صور العملاء',
 ];
 
 return array_merge(

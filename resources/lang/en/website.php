@@ -425,6 +425,7 @@ $main= [
   'image_optional' => 'Image (Optional)',
   'feedback_text_optional' => 'Feedback Text (Optional)',
   'at_least_one_required' => 'At least feedback text or image must be provided',
+  'only_one_required' => 'Only one of feedback text or image can be provided',
   'confirm_delete_customer_feedback' => 'Are you sure you want to delete this customer feedback?',
   'confirm_delete_customer_feedbacks' => 'Are you sure you want to delete the selected customer feedbacks?',
   'no_feedback_text' => 'No feedback text',
@@ -452,6 +453,8 @@ $main= [
   "paymob_callback_urls"=>"Paymob Call Back URL",
   "success_url"=>"Success URL",
   "failure_url"=>"Failure URL",
+  'customer_testimonials' => 'Customer Testimonials',
+  'customer_images' => 'Customer Images',
 
 ];
 

@@ -10,7 +10,7 @@ import FAQs from './Partials/FAQs';
 import CustomerFeedbackSection from './Partials/CustomerFeedbackSection';
 import { useTrans } from '@/Hooks/useTrans';
 
-export default function Home({ stories, faqs, categories, settings, feedbacks }) {
+export default function Home({ stories, faqs, categories, settings, textFeedbacks, imageFeedbacks }) {
   const { t } = useTrans();
   const { locale } = usePage().props;
 
@@ -28,7 +28,7 @@ export default function Home({ stories, faqs, categories, settings, feedbacks })
 
       <AgeCategoriesSection categories={categories} />
       <PricingSection settings={settings} />
-      <CustomerFeedbackSection feedbacks={feedbacks} />
+      <CustomerFeedbackSection textFeedbacks={textFeedbacks} imageFeedbacks={imageFeedbacks} />
       <FAQs faqs={faqs} />
     </SiteLayout>
   );

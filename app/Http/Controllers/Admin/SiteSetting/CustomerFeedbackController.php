@@ -44,6 +44,11 @@ class CustomerFeedbackController extends Controller
       'image' => ['nullable', 'image'],
     ]);
 
+    // Only one can be provided
+    if ($request->filled('customer_feedback') && $request->hasFile('image')) {
+      return back()->withErrors(['general' => __('website.only_one_required')]);
+    }
+
     // At least one must be provided
     if (!$request->filled('customer_feedback') && !$request->hasFile('image')) {
       return back()->withErrors(['general' => __('website.at_least_one_required')]);
@@ -77,6 +82,11 @@ class CustomerFeedbackController extends Controller
     $hasText = $request->filled('customer_feedback');
     $hasNewImage = $request->hasFile('image');
     $hasExistingImage = $customerFeedback->image && !$request->boolean('remove_image');
+
+    // Only one can be provided
+    if ($hasText && ($hasNewImage || $hasExistingImage)) {
+      return back()->withErrors(['general' => __('website.only_one_required')]);
+    }
 
     if (!$hasText && !$hasNewImage && !$hasExistingImage) {
       return back()->withErrors(['general' => __('website.at_least_one_required')]);
