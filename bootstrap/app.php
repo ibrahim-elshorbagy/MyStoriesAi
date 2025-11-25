@@ -30,11 +30,16 @@ return Application::configure(basePath: dirname(__DIR__))
     $middleware->alias([
       'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
       'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
-      'n8n.auth' => \App\Http\Middleware\N8nApiAuth::class,
     ]);
   })
   ->withExceptions(function (Exceptions $exceptions): void {
     $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
+      // Set locale from cookie for all error responses
+      $locale = $request->cookie('locale', 'en');
+      if (in_array($locale, ['en', 'ar'])) {
+        app()->setLocale($locale);
+      }
+
       $status = $response->getStatusCode();
 
       if (app()->environment(['local', 'testing']) && $status === 500) {
@@ -42,12 +47,6 @@ return Application::configure(basePath: dirname(__DIR__))
       }
 
       if (in_array($status, [500, 503, 404, 403, 401, 429, 419])) {
-        // Now this will work - cookie is unencrypted
-        $locale = $request->cookie('locale', 'en');
-        if (in_array($locale, ['en', 'ar'])) {
-          app()->setLocale($locale);
-        }
-
         Inertia::share('translations', trans('website'));
         Inertia::share('locale', app()->getLocale());
 
