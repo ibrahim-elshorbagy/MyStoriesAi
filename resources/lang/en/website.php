@@ -13,6 +13,7 @@ $main= [
 
   /* User Management */
   'customize_now' => 'Customize Now',
+  'story_name_will_change' => 'Note: The story name will be changed to the child\'s name that you will enter in the next step',
   'user' => 'User',
   'created_at' => 'Created At',
   'updated_at' => 'Updated At',

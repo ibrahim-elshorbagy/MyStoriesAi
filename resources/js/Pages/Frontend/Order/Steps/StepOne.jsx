@@ -178,50 +178,53 @@ export default function StepOne({
             <InputError message={errors.format} className="mt-2" />
           </div>
 
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-neutral-700 mb-4">
-              {t('learning_value')} *
-            </label>
-            <div className="space-y-4">
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-100">
-                <p className="text-sm text-neutral-600 mb-4 font-medium">{t('choose_learning_value')}</p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {learningValues.map((value) => (
-                    <label
-                      key={value.key}
-                      className="group relative cursor-pointer"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={(data.value || []).includes(value.key)}
-                        onChange={() => handleLearningValueChange(value.key)}
-                        className="sr-only peer"
-                      />
-                      <div className="p-3 rounded-lg border-2 border-neutral-200 bg-white hover:border-orange-300 hover:bg-orange-50 transition-all duration-200 peer-checked:border-orange-500 peer-checked:bg-gradient-to-r peer-checked:from-orange-500 peer-checked:to-pink-500 peer-checked:text-white group-hover:shadow-md">
-                        <div className="text-center">
-                          <div className="text-sm font-medium">{value.label}</div>
-                          <div className="mt-1 opacity-60 peer-checked:opacity-90">
-                            <i className="fa-solid fa-heart text-xs"></i>
+          {/* Hide learning values section when coming from step zero (customizing story) */}
+          {!cameFromStepZero && (
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-4">
+                {t('learning_value')} *
+              </label>
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-100">
+                  <p className="text-sm text-neutral-600 mb-4 font-medium">{t('choose_learning_value')}</p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {learningValues.map((value) => (
+                      <label
+                        key={value.key}
+                        className="group relative cursor-pointer"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={(data.value || []).includes(value.key)}
+                          onChange={() => handleLearningValueChange(value.key)}
+                          className="sr-only peer"
+                        />
+                        <div className="p-3 rounded-lg border-2 border-neutral-200 bg-white hover:border-orange-300 hover:bg-orange-50 transition-all duration-200 peer-checked:border-orange-500 peer-checked:bg-gradient-to-r peer-checked:from-orange-500 peer-checked:to-pink-500 peer-checked:text-white group-hover:shadow-md">
+                          <div className="text-center">
+                            <div className="text-sm font-medium">{value.label}</div>
+                            <div className="mt-1 opacity-60 peer-checked:opacity-90">
+                              <i className="fa-solid fa-heart text-xs"></i>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </label>
-                  ))}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-green-50 to-teal-50 p-4 rounded-lg border border-green-100">
+                  <TextArea
+                    name="custom_value"
+                    value={data.custom_value}
+                    onChange={(e) => setData('custom_value', e.target.value)}
+                    label={t('custom_learning_value')}
+                    placeholder={t('custom_learning_value')}
+                  />
+                  <InputError message={errors.custom_value} className="mt-2" />
                 </div>
               </div>
-              <div className="bg-gradient-to-r from-green-50 to-teal-50 p-4 rounded-lg border border-green-100">
-                <TextArea
-                  name="custom_value"
-                  value={data.custom_value}
-                  onChange={(e) => setData('custom_value', e.target.value)}
-                  label={t('custom_learning_value')}
-                  placeholder={t('custom_learning_value')}
-                />
-                <InputError message={errors.custom_value} className="mt-2" />
-              </div>
+              <InputError message={errors.value} className="mt-2" />
             </div>
-            <InputError message={errors.value} className="mt-2" />
-          </div>
+          )}
 
           {/* Child Image */}
           <div className="md:col-span-2">

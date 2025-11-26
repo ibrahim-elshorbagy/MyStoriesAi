@@ -78,7 +78,7 @@ class OrderController extends Controller
       'language' => ['required', 'in:arabic,english,german'],
       'child_gender' => ['required', 'in:boy,girl'],
       'format' => ['required', 'in:first_plan,second_plan,third_plan'],
-      'value' => ['required', 'array', 'min:1'],
+      'value' => ['nullable', 'array', 'min:1'],
       'value.*' => ['string', 'in:honesty,kindness,courage,respect,responsibility,friendship,perseverance,creativity'],
       'custom_value' => ['nullable', 'string', 'max:500'],
       'child_image' => ['required', 'file', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],

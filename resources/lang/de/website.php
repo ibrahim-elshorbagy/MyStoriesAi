@@ -15,6 +15,7 @@ $main= [
 
   /* User Management */
   'customize_now' => 'Jetzt anpassen',
+  'story_name_will_change' => 'Hinweis: Der Geschichtenname wird in den Namen des Kindes geändert, den Sie im nächsten Schritt eingeben',
   'user' => 'Benutzer',
   'created_at' => 'Erstellt am',
   'updated_at' => 'Aktualisiert am',

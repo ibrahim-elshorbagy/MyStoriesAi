@@ -97,7 +97,8 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
       newErrors.format = t('required');
     }
 
-    if (!data.value || data.value.length === 0) {
+    // Only validate learning values if NOT coming from step 0 (not customizing a story)
+    if (!cameFromStepZero && (!data.value || data.value.length === 0)) {
       newErrors.value = t('required');
     }
 

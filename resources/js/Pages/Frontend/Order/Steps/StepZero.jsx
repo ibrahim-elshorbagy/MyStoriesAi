@@ -187,6 +187,16 @@ export default function StepZero({
         </div>
       </div>
 
+      {/* Notice about story name change */}
+      <div className="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+        <div className="flex items-center">
+          <i className="fa-solid fa-info-circle text-blue-500 text-xl mt-0.5 mx-2"></i>
+          <p className="text-sm text-blue-800 font-medium">
+            {t('story_name_will_change')}
+          </p>
+        </div>
+      </div>
+      
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         {/* Upload Child Image */}
         <div>

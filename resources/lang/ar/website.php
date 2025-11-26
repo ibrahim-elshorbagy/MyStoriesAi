@@ -14,6 +14,7 @@ $main = [
   'story' => 'القصة',
   'back_to_dashboard' => 'العودة للوحة التحكم',
   'customize_now' => 'خصص الآن',
+  'story_name_will_change' => 'ملاحظة: سيتم تغيير اسم القصة إلى اسم الطفل الذي ستدخله في الخطوة التالية',
 
   /* User Management */
   'user' => 'مستخدم',
