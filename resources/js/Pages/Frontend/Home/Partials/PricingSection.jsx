@@ -107,6 +107,7 @@ export default function PricingSection({ settings = {} }) {
             <Link
               size="large"
               as={Link}
+              href={route('stories')}
               className="px-6 w-fit py-4 mt-4 text-lg sm:text-xl font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
             >
               {t("explore_our_stories")}

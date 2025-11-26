@@ -8,20 +8,22 @@ export default function StoryCard({ story }) {
   return (
     <div className="flex flex-col border-2 border-orange-300 bg-white overflow-hidden shadow-sm hover:shadow-xl duration-300 rounded-xl max-w-[350px] w-full h-full group">
       {/* Cover Image */}
-      <div className="flex !min-w-full min-h-fit overflow-hidden relative aspect-[210/148]">
-        <img
-          src={story.cover_image_value || 'https://placehold.co/595x420.png'}
-          alt={story.title_value}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
+      <Link href={route('story.show', story.id)} >
+        <div className="flex !min-w-full min-h-fit overflow-hidden relative aspect-[210/148]">
+          <img
+            src={story.cover_image_value || 'https://placehold.co/595x420.png'}
+            alt={story.title_value}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
 
-        {/* Gender Badge */}
-        {story.gender !== null && (
-          <div className="absolute top-3 right-3 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-            {story.gender_text}
-          </div>
-        )}
-      </div>
+          {/* Gender Badge */}
+          {story.gender !== null && (
+            <div className="absolute top-3 right-3 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+              {story.gender_text}
+            </div>
+          )}
+        </div>
+      </Link>
 
       {/* Card Content */}
       <div className="flex flex-col gap-2 p-4 !h-full">
@@ -46,7 +48,7 @@ export default function StoryCard({ story }) {
           href={route('story.show', story.id)}
           className="self-end w-fit mt-auto px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors text-sm"
         >
-          {t('more')}
+          {t('customize_now')}
         </Link>
       </div>
     </div>

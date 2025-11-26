@@ -12,6 +12,7 @@ $main= [
 
 
   /* User Management */
+  'customize_now' => 'Customize Now',
   'user' => 'User',
   'created_at' => 'Created At',
   'updated_at' => 'Updated At',

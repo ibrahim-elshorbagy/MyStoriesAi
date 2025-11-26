@@ -1,5 +1,5 @@
 import SiteLayout from '@/Layouts/SiteLayout/SiteLayout';
-import { Head, usePage } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import React from 'react';
 import HeroSection from './Partials/HeroSection';
 import FeaturesSection from './Partials/FeaturesSection';
@@ -22,9 +22,37 @@ export default function Home({ stories, faqs, categories, settings, textFeedback
       <FeaturesSection />
       <StoriesSection stories={stories} />
 
-      {locale === 'en' && (<img className="w-full h-auto object-cover" src="/assets/home/1.png" alt=""  />)}
+      {locale === 'en' && (
+        <div className="relative w-full">
+          <img className="w-full h-auto object-cover" src="/assets/home/1.png" alt="" />
+          <div className="absolute inset-x-0 bottom-12 flex items-center justify-center">
+            <Link
+              size="large"
+              as={Link}
+              href={route('stories')}
+              className="px-6 w-fit py-4 mt-4 text-lg sm:text-xl font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
+            >
+              {t("explore_our_stories")}
+            </Link>
+          </div>
+        </div>
+      )}
 
-      {locale === 'ar' && (<img className="w-full h-auto object-cover" src="/assets/home/2.png" alt=""  />)}
+      {locale === 'ar' && (
+        <div className="relative w-full">
+          <img className="w-full h-auto object-cover" src="/assets/home/2.png" alt="" />
+          <div className="absolute inset-x-0 bottom-12 flex items-center justify-center">
+            <Link
+              size="large"
+              as={Link}
+              href={route('stories')}
+              className="px-6 w-fit py-4 mt-4 text-lg sm:text-xl font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
+            >
+              {t("explore_our_stories")}
+            </Link>
+          </div>
+        </div>
+      )}
 
       <AgeCategoriesSection categories={categories} />
       <PricingSection settings={settings} />

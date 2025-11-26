@@ -173,7 +173,7 @@ return [
 
     // Order Creation
     'create_story_title' => 'Create Your Story',
-    'new_story_now' => 'Create Your Story Now',
+    'new_story_now' => 'Customize Your Story Now',
     'customize_story' => 'Customize Story',
     'child_name' => 'Child Name',
     'child_age' => 'Child Age',

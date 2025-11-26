@@ -173,7 +173,7 @@ return [
 
     // Order Creation
     'create_story_title' => 'Erstellen Sie Ihre Geschichte',
-    'new_story_now' => 'Erstellen Sie jetzt Ihre Geschichte',
+    'new_story_now' => 'Passen Sie Ihre Geschichte jetzt an',
     'customize_story' => 'Geschichte anpassen',
     'child_name' => 'Name des Kindes',
     'child_age' => 'Alter des Kindes',

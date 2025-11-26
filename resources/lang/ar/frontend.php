@@ -90,7 +90,7 @@ return [
 
     // Stories Section
     'stories_title' => 'القصص المميزة',
-    'stories_description' => 'اكتشف قصص رائعة تم إنشاؤها بالذكاء للأطفال.',
+    'stories_description' => 'اكتشف قصص رائعه تم انشاؤها مخصصا لطفلك',
     'stories_more_stories' => 'عرض جميع القصص',
     'browse_stories_by_age' => 'تصفح القصص حسب العمر',
     'age' => 'العمر',
@@ -178,7 +178,7 @@ return [
 
     // Order Creation
     'create_story_title' => 'أنشئ قصتك',
-    'new_story_now' => 'أنشئ قصتك الآن',
+    'new_story_now' => 'خصص قصتك الآن',
     'customize_story' => 'خصص القصة',
     'child_name' => 'اسم الطفل',
     'child_age' => 'عمر الطفل',

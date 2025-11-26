@@ -13,6 +13,7 @@ $main = [
 
   'story' => 'القصة',
   'back_to_dashboard' => 'العودة للوحة التحكم',
+  'customize_now' => 'خصص الآن',
 
   /* User Management */
   'user' => 'مستخدم',

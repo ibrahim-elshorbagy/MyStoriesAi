@@ -14,6 +14,7 @@ $main= [
 
 
   /* User Management */
+  'customize_now' => 'Jetzt anpassen',
   'user' => 'Benutzer',
   'created_at' => 'Erstellt am',
   'updated_at' => 'Aktualisiert am',
