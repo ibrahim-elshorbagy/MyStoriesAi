@@ -32,7 +32,7 @@ export default function ViewOrder({ auth, order }) {
 
   const paymentMethodOptions = {
     stripe: 'Stripe',
-    pending: t('pending_payment'),
+    cod: t('pending_payment'),
   };
 
   return (
