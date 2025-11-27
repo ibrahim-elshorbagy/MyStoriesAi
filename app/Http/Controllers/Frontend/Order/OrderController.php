@@ -149,7 +149,7 @@ class OrderController extends Controller
         'value' => isset($validated['value']) ? json_encode($validated['value']) : null,
         'custom_value' => $validated['custom_value'] ?? null,
         'status' => 'pending',
-        'payment_method' => 'cod',
+        'payment_method' => 'stripe',
 
         'story_price' => $storyPrice,
         'delivery_price' => $deliveryPrice,
