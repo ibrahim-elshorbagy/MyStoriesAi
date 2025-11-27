@@ -194,6 +194,7 @@ $main= [
   'search_categories' => 'Kategorien durchsuchen...',
   'category_name' => 'Kategoriename',
   'category_name_ar' => 'Kategoriename (Arabisch)',
+  'pending_payment' => 'Zahlung ausstehend',
   'category_name_en' => 'Kategoriename (Englisch)',
   'category_name_de' => 'Kategoriename (Deutsch)',
   'enter_arabic_name' => 'Arabischen Namen eingeben',

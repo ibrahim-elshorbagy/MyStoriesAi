@@ -31,9 +31,8 @@ export default function ViewOrder({ auth, order }) {
   };
 
   const paymentMethodOptions = {
-    paymob: 'Paymob',
     stripe: 'Stripe',
-    cod: t('cash_on_delivery'),
+    pending: t('pending_payment'),
   };
 
   return (

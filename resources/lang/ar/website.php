@@ -109,6 +109,7 @@ $main = [
   'search_categories' => 'البحث في الفئات...',
   'category_name' => 'اسم الفئة',
   'category_name_ar' => 'اسم الفئة بالعربية',
+  'pending_payment' => 'في انتظار الدفع',
   'category_name_en' => 'اسم الفئة بالإنجليزية',
   'category_name_de' => 'اسم الفئة بالألمانية',
   'enter_arabic_name' => 'أدخل الاسم بالعربية',

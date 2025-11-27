@@ -182,6 +182,7 @@ $main= [
   'search_categories' => 'Search categories...',
   'category_name' => 'Category Name',
   'category_name_ar' => 'Category Name (Arabic)',
+  'pending_payment' => 'Pending Payment',
   'category_name_en' => 'Category Name (English)',
   'category_name_de' => 'Category Name (German)',
   'enter_arabic_name' => 'Enter Arabic name',
