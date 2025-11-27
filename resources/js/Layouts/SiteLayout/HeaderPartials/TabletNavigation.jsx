@@ -195,7 +195,18 @@ export default function TabletNavigation() {
             />
           </div>
 
-
+          {/* Get Started Button */}
+          <div className="p-4 mt-auto border-t border-neutral-400 bg-orange-50">
+            <PrimaryButton
+              as="a"
+              variant="edit"
+              icon="fa-play"
+              className='ltr:flex-row-reverse gap-3 w-full justify-center'
+              href={route('dashboard')}
+            >
+              {t('get_started')}
+            </PrimaryButton>
+          </div>
 
         </nav>
       </div>

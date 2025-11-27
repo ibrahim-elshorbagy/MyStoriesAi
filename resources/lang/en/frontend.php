@@ -26,6 +26,7 @@ return [
     'home' => 'Home',
     'pricing' => 'Pricing',
     'get_started' => 'Get Started',
+    'try_now' => 'Try Now',
 
     /* Profile Menu */
     'profile' => 'Profile',

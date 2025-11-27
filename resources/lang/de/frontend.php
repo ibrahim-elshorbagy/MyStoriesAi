@@ -26,6 +26,7 @@ return [
     'home' => 'Startseite',
     'pricing' => 'Preise',
     'get_started' => 'Loslegen',
+    'try_now' => 'Jetzt ausprobieren',
 
     /* Profile Menu */
     'profile' => 'Profil',

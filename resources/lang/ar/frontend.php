@@ -26,6 +26,7 @@ return [
     'home' => 'الرئيسية',
     'pricing' => 'التسعير',
     'get_started' => 'البدء',
+    'try_now' => 'جرب الآن',
     /* Profile Menu */
     'profile' => 'الملف الشخصي',
     'theme' => 'السمة',

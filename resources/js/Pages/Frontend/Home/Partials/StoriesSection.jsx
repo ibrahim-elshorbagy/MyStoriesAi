@@ -37,13 +37,15 @@ export default function StoriesSection({ stories }) {
           </div>
 
           {/* View All Button */}
-          <Link
-            href={route('stories')}
-            className="inline-flex rtl:flex-row-reverse items-center gap-2 px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl w-fit mx-auto"
-          >
-            <span>{t('stories_more_stories')}</span>
-            <i className="fa-solid fa-arrow-right"></i>
-          </Link>
+          <div className='flex items-center justify-center'>
+            <Link
+              href={route('stories')}
+              className="flex items-center gap-2 px-6 w-fit py-4 mt-4 text-lg sm:text-xl font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
+            >
+              <span>{t('stories_more_stories')}</span>
+              <i className="fa-solid fa-arrow-right"></i>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
