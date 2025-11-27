@@ -146,7 +146,7 @@ class OrderController extends Controller
         'language' => $validated['language'],
         'child_gender' => $validated['child_gender'],
         'format' => $validated['format'],
-        'value' => json_encode($validated['value']),
+        'value' => isset($validated['value']) ? json_encode($validated['value']) : null,
         'custom_value' => $validated['custom_value'] ?? null,
         'status' => 'pending',
         'payment_method' => 'cod',
