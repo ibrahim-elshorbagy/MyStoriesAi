@@ -22,8 +22,9 @@ class HomeController extends Controller
       ->get();
     $categories = AgeCategory::all();
     $settings = SiteSetting::all()->pluck('value', 'key')->toArray();
-    $textFeedbacks = CustomerFeedback::whereNotNull('customer_feedback')->whereNull('image')->get();
-    $imageFeedbacks = CustomerFeedback::whereNull('customer_feedback')->whereNotNull('image')->get();
+    $textFeedbacks = CustomerFeedback::whereNotNull('customer_feedback')->whereNull('image')->whereNull('video')->get();
+    $imageFeedbacks = CustomerFeedback::whereNull('customer_feedback')->whereNotNull('image')->whereNull('video')->get();
+    $videoFeedbacks = CustomerFeedback::whereNull('customer_feedback')->whereNull('image')->whereNotNull('video')->get();
 
     return inertia("Frontend/Home/Home", [
       'faqs' => $faqs,
@@ -32,6 +33,7 @@ class HomeController extends Controller
       'settings' => $settings,
       'textFeedbacks' => $textFeedbacks,
       'imageFeedbacks' => $imageFeedbacks,
+      'videoFeedbacks' => $videoFeedbacks,
     ]);
   }
 

@@ -494,4 +494,9 @@ return [
     'accept' => 'قبول ',
     'decline' => 'رفض',
 
+    // Customer Feedback
+    'customer_testimonials' => 'آراء العملاء',
+    'customer_images' => 'صور العملاء',
+    'customer_videos' => 'فيديوهات العملاء',
+
 ];

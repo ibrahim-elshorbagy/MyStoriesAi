@@ -57,9 +57,12 @@ export default function DragFileInput({
     } else {
       const file = e.target.files[0];
       if (file) {
-        // Check if file is an image when accept includes image/*
-        if (accept && accept.includes('image/') && !file.type.startsWith('image/')) {
-          return; // Ignore non-image files
+        // Check if file matches accept type
+        if (accept && accept.includes('image/') && !file.type.startsWith('image/') && !file.type.startsWith('video/')) {
+          return; // Ignore non-matching files
+        }
+        if (accept && accept.includes('video/') && !file.type.startsWith('video/') && !file.type.startsWith('image/')) {
+          return; // Ignore non-matching files
         }
         setSelectedFileValue(file.name);
         if (onChange) {
@@ -76,9 +79,12 @@ export default function DragFileInput({
 
     files.forEach(file => {
       if (newFiles.length < maxFiles) {
-        // Check if file is an image when accept includes image/*
-        if (accept && accept.includes('image/') && !file.type.startsWith('image/')) {
-          return; // Skip non-image files
+        // Check if file matches accept type
+        if (accept && accept.includes('image/') && !file.type.startsWith('image/') && !file.type.startsWith('video/')) {
+          return; // Skip non-matching files
+        }
+        if (accept && accept.includes('video/') && !file.type.startsWith('video/') && !file.type.startsWith('image/')) {
+          return; // Skip non-matching files
         }
         newFiles.push(file);
       }
@@ -123,9 +129,12 @@ export default function DragFileInput({
     } else {
       if (files.length > 0) {
         const file = files[0];
-        // Check if file is an image when accept includes image/*
-        if (accept && accept.includes('image/') && !file.type.startsWith('image/')) {
-          return; // Ignore non-image files
+        // Check if file matches accept type
+        if (accept && accept.includes('image/') && !file.type.startsWith('image/') && !file.type.startsWith('video/')) {
+          return; // Ignore non-matching files
+        }
+        if (accept && accept.includes('video/') && !file.type.startsWith('video/') && !file.type.startsWith('image/')) {
+          return; // Ignore non-matching files
         }
         setSelectedFileValue(file.name);
         if (onChange) {

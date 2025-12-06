@@ -32,8 +32,8 @@ export default function AppModal({
     : "bg-neutral-50 dark:bg-neutral-950/30";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-900/70 backdrop-blur-sm">
-      <div className={`transition-all duration-300 ease-in-out transform overflow-hidden bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl sm:w-1/2 w-full ${sizeClasses[size]} animate-fadeIn border ${danger ? 'border-red-200 dark:border-red-900/30' : 'border-neutral-300 dark:border-neutral-700'}`}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-900/70 backdrop-blur-sm ">
+      <div className={`transition-all duration-300 ease-in-out transform overflow-hidden bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl sm:w-1/2 w-full mx-5  ${sizeClasses[size]} animate-fadeIn border ${danger ? 'border-red-200 dark:border-red-900/30' : 'border-neutral-300 dark:border-neutral-700'}`}>
         {/* Modal Header */}
         <div className={`flex items-center justify-between gap-2 p-4 border-b ${headerBorderClass} ${headerBgClass}`}>
           <div className='flex items-center gap-2'>
@@ -50,7 +50,7 @@ export default function AppModal({
         </div>
 
         {/* Modal Content */}
-        <div className="p-6">
+        <div className="p-6 overflow-y-auto max-lg:max-h-[600px] lg:max-h-[750px]">
           {children}
         </div>
       </div>

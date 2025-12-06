@@ -13,6 +13,7 @@ export default function CreateModal({ isOpen, onClose }) {
   const { data, setData, post, errors, reset, processing } = useForm({
     customer_feedback: '',
     image: null,
+    video: null,
   });
 
   const handleSubmit = (e) => {
@@ -73,6 +74,30 @@ export default function CreateModal({ isOpen, onClose }) {
             </div>
           )}
           <InputError message={errors.image} className="mt-2" />
+        </div>
+
+        {/* Video Upload */}
+        <div className="mb-4">
+          <InputLabel value={t('video')} />
+          <DragFileInput
+            id="video"
+            accept="video/*"
+            onChange={(file) => setData('video', file || null)}
+            value={data.video}
+            maxFiles={1}
+            helperText={t('video_optional')}
+          />
+          {/* Video Preview */}
+          {data.video && (
+            <div className="mt-2">
+              <video
+                src={URL.createObjectURL(data.video)}
+                controls
+                className="h-32 w-auto rounded-lg border border-neutral-300 dark:border-neutral-600"
+              />
+            </div>
+          )}
+          <InputError message={errors.video} className="mt-2" />
         </div>
 
         {/* General Error */}

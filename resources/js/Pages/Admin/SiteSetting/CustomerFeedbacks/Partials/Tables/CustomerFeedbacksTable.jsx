@@ -41,7 +41,7 @@ export default function CustomerFeedbacksTable({ feedbacks, onEdit }) {
   const columns = [
     { field: 'row_number', label: t('serial'), icon: 'fa-hashtag' },
     { field: 'customer_feedback', label: t('customer_feedback'), icon: 'fa-comment' },
-    { field: 'image', label: t('image'), icon: 'fa-image' },
+    { field: 'media', label: t('media'), icon: 'fa-image' },
     { field: 'created_at', label: t('created_at'), icon: 'fa-calendar' },
     { field: 'updated_at', label: t('updated_at'), icon: 'fa-calendar' },
     { field: 'actions', label: t('actions'), icon: 'fa-gear', className: 'flex justify-center' }
@@ -67,13 +67,25 @@ export default function CustomerFeedbacksTable({ feedbacks, onEdit }) {
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-500 dark:text-neutral-400">
         {feedback.image ? (
-          <img
-            src={`/storage/${feedback.image}`}
-            alt="Feedback"
-            className="w-16 h-16 object-cover rounded"
-          />
+          <div className="flex flex-col items-center gap-1">
+            <img
+              src={`/storage/${feedback.image}`}
+              alt="Feedback"
+              className="w-16 h-16 object-cover rounded"
+            />
+            <span className="text-xs text-gray-500">{t('image')}</span>
+          </div>
+        ) : feedback.video ? (
+          <div className="flex flex-col items-center gap-1">
+            <video
+              src={`/storage/${feedback.video}`}
+              className="w-16 h-16 object-cover rounded"
+              muted
+            />
+            <span className="text-xs text-gray-500">{t('video')}</span>
+          </div>
         ) : (
-          <span>{t('no_image')}</span>
+          <span>{t('no_media')}</span>
         )}
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-500 dark:text-neutral-400">

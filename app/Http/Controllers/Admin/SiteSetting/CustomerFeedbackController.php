@@ -42,15 +42,22 @@ class CustomerFeedbackController extends Controller
     $request->validate([
       'customer_feedback' => ['nullable', 'string'],
       'image' => ['nullable', 'image'],
+      'video' => ['nullable', 'mimetypes:video/*'],
     ]);
 
+    // Count how many fields are provided
+    $providedCount = 0;
+    if ($request->filled('customer_feedback')) $providedCount++;
+    if ($request->hasFile('image')) $providedCount++;
+    if ($request->hasFile('video')) $providedCount++;
+
     // Only one can be provided
-    if ($request->filled('customer_feedback') && $request->hasFile('image')) {
+    if ($providedCount > 1) {
       return back()->withErrors(['general' => __('website.only_one_required')]);
     }
 
     // At least one must be provided
-    if (!$request->filled('customer_feedback') && !$request->hasFile('image')) {
+    if ($providedCount === 0) {
       return back()->withErrors(['general' => __('website.at_least_one_required')]);
     }
 
@@ -59,9 +66,15 @@ class CustomerFeedbackController extends Controller
       $imagePath = $request->file('image')->store('customer_feedbacks', 'public');
     }
 
+    $videoPath = null;
+    if ($request->hasFile('video')) {
+      $videoPath = $request->file('video')->store('customer_feedbacks', 'public');
+    }
+
     CustomerFeedback::create([
       'customer_feedback' => $request->customer_feedback,
       'image' => $imagePath,
+      'video' => $videoPath,
     ]);
 
     return back()
@@ -75,20 +88,30 @@ class CustomerFeedbackController extends Controller
     $request->validate([
       'customer_feedback' => ['nullable', 'string'],
       'image' => ['nullable', 'image'],
+      'video' => ['nullable', 'mimetypes:video/*'],
       'remove_image' => ['boolean'],
+      'remove_video' => ['boolean'],
     ]);
 
-    // At least one must be provided: either text or image (existing or new)
+    // At least one must be provided: either text, image (existing or new), or video (existing or new)
     $hasText = $request->filled('customer_feedback');
     $hasNewImage = $request->hasFile('image');
     $hasExistingImage = $customerFeedback->image && !$request->boolean('remove_image');
+    $hasNewVideo = $request->hasFile('video');
+    $hasExistingVideo = $customerFeedback->video && !$request->boolean('remove_video');
+
+    // Count how many are provided
+    $providedCount = 0;
+    if ($hasText) $providedCount++;
+    if ($hasNewImage || $hasExistingImage) $providedCount++;
+    if ($hasNewVideo || $hasExistingVideo) $providedCount++;
 
     // Only one can be provided
-    if ($hasText && ($hasNewImage || $hasExistingImage)) {
+    if ($providedCount > 1) {
       return back()->withErrors(['general' => __('website.only_one_required')]);
     }
 
-    if (!$hasText && !$hasNewImage && !$hasExistingImage) {
+    if ($providedCount === 0) {
       return back()->withErrors(['general' => __('website.at_least_one_required')]);
     }
 
@@ -107,9 +130,25 @@ class CustomerFeedbackController extends Controller
       $imagePath = $request->file('image')->store('customer_feedbacks', 'public');
     }
 
+    $videoPath = $customerFeedback->video;
+    if ($request->boolean('remove_video')) {
+      // Delete old video if exists
+      if ($customerFeedback->video) {
+        Storage::disk('public')->delete($customerFeedback->video);
+      }
+      $videoPath = null;
+    } elseif ($request->hasFile('video')) {
+      // Delete old video
+      if ($customerFeedback->video) {
+        Storage::disk('public')->delete($customerFeedback->video);
+      }
+      $videoPath = $request->file('video')->store('customer_feedbacks', 'public');
+    }
+
     $customerFeedback->update([
       'customer_feedback' => $request->customer_feedback,
       'image' => $imagePath,
+      'video' => $videoPath,
     ]);
 
     return back()
@@ -123,6 +162,11 @@ class CustomerFeedbackController extends Controller
     // Delete image if exists
     if ($customerFeedback->image) {
       Storage::disk('public')->delete($customerFeedback->image);
+    }
+
+    // Delete video if exists
+    if ($customerFeedback->video) {
+      Storage::disk('public')->delete($customerFeedback->video);
     }
 
     $customerFeedback->delete();
@@ -142,10 +186,13 @@ class CustomerFeedbackController extends Controller
 
     $feedbacks = CustomerFeedback::whereIn('id', $validated['ids'])->get();
 
-    // Delete images
+    // Delete images and videos
     foreach ($feedbacks as $feedback) {
       if ($feedback->image) {
         Storage::disk('public')->delete($feedback->image);
+      }
+      if ($feedback->video) {
+        Storage::disk('public')->delete($feedback->video);
       }
     }
 

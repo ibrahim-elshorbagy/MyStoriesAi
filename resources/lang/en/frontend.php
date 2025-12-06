@@ -458,4 +458,9 @@ return [
     'accept' => 'Accept',
     'decline' => 'Decline',
 
+    // Customer Feedback
+    'customer_testimonials' => 'Customer Testimonials',
+    'customer_images' => 'Customer Images',
+    'customer_videos' => 'Customer Videos',
+
 ];

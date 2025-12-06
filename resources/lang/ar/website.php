@@ -369,12 +369,19 @@ $main = [
   'search_customer_feedbacks' => 'البحث في تعليقات العملاء',
   'enter_customer_feedback' => 'أدخل نص التعليق',
   'image_optional' => 'الصورة (اختياري)',
+  'video_optional' => 'الفيديو (اختياري)',
   'feedback_text_optional' => 'نص التعليق (اختياري)',
-  'at_least_one_required' => 'يجب إدخال نص التعليق أو تحميل صورة على الأقل',
-  'only_one_required' => 'يمكن إدخال نص التعليق أو تحميل صورة فقط، وليس كليهما',
+  'at_least_one_required' => 'يجب إدخال نص التعليق أو تحميل صورة أو فيديو على الأقل',
+  'only_one_required' => 'يمكن إدخال نص التعليق أو تحميل صورة أو فيديو فقط، وليس أكثر من واحد',
   'confirm_delete_customer_feedback' => 'هل أنت متأكد من حذف تعليق العميل هذا؟',
   'confirm_delete_customer_feedbacks' => 'هل أنت متأكد من حذف تعليقات العملاء المحددة؟',
   'no_feedback_text' => 'لا يوجد نص تعليق',
+  'no_media' => 'لا توجد وسائط',
+  'media' => 'الوسائط',
+  'video' => 'فيديو',
+  'image' => 'صورة',
+  'current_video' => 'الفيديو الحالي',
+  'new_video_preview' => 'معاينة الفيديو الجديد',
 
 
 
@@ -417,6 +424,7 @@ $main = [
   'stripe_secret_key_help' => 'مفتاح Stripe-Secret-Key السري للعمليات من جانب الخادم',
   'customer_testimonials' => 'آراء العملاء',
   'customer_images' => 'صور العملاء',
+  'customer_videos' => 'فيديوهات العملاء',
 ];
 
 return array_merge(

@@ -9,5 +9,6 @@ class CustomerFeedback extends Model
     protected $fillable = [
         'customer_feedback',
         'image',
+        'video',
     ];
 }

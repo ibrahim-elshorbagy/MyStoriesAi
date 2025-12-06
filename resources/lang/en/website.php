@@ -426,12 +426,19 @@ $main= [
   'search_customer_feedbacks' => 'Search Customer Feedbacks',
   'enter_customer_feedback' => 'Enter feedback text',
   'image_optional' => 'Image (Optional)',
+  'video_optional' => 'Video (Optional)',
   'feedback_text_optional' => 'Feedback Text (Optional)',
-  'at_least_one_required' => 'At least feedback text or image must be provided',
-  'only_one_required' => 'Only one of feedback text or image can be provided',
+  'at_least_one_required' => 'At least feedback text, image, or video must be provided',
+  'only_one_required' => 'Only one of feedback text, image, or video can be provided',
   'confirm_delete_customer_feedback' => 'Are you sure you want to delete this customer feedback?',
   'confirm_delete_customer_feedbacks' => 'Are you sure you want to delete the selected customer feedbacks?',
   'no_feedback_text' => 'No feedback text',
+  'no_media' => 'No media',
+  'media' => 'Media',
+  'video' => 'Video',
+  'image' => 'Image',
+  'current_video' => 'Current Video',
+  'new_video_preview' => 'New Video Preview',
 
 
 
