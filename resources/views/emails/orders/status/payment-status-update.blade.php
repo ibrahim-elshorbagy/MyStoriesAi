@@ -1,6 +1,6 @@
 <div style="font-family: Arial, sans-serif; background-color:#f9f9f9; padding:10px; text-align:center;">
   <!-- Logo -->
-  <img src="{{ asset('assets/auth/logo.png') }}" alt="MyStoryAI Logo" width="150" style="margin:0 auto 20px auto; width:100%; max-width:400px;" />
+  <img src="{{ asset('assets/auth/logo.png') }}" alt="MyStoriesAi Logo" width="150" style="margin:0 auto 20px auto; width:100%; max-width:400px;" />
 
   <!-- Card -->
   <div style="max-width:600px; margin:0 auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:{{ $locale === 'ar' ? 'right' : 'left' }};" dir="{{ $locale === 'ar' ? 'rtl' : 'ltr' }}">
@@ -52,7 +52,7 @@
       </p>
 
       <p style="margin-top:30px; font-size:14px; color:#999; direction: rtl;">
-        شكراً لاختيار MyStoryAI!
+        شكراً لاختيار MyStoriesAi!
       </p>
     @elseif($locale === 'de')
       <h2 style="color:#333;">Zahlungsstatus-Aktualisierung - Bestellung #{{ $order->id }} 🎉</h2>
@@ -99,7 +99,7 @@
 
       <p style="color:#777; font-size:14px;">Bei Fragen zu diesem Update kontaktieren Sie uns bitte.</p>
 
-      <p style="margin-top:30px; font-size:14px; color:#999;">Vielen Dank, dass Sie MyStoryAI gewählt haben!</p>
+      <p style="margin-top:30px; font-size:14px; color:#999;">Vielen Dank, dass Sie MyStoriesAi gewählt haben!</p>
     @else
       <h2 style="color:#333;">Payment Status Update - Order #{{ $order->id }} 🎉</h2>
       <p style="color:#555; font-size:16px;">
@@ -148,16 +148,16 @@
       </p>
 
       <p style="margin-top:30px; font-size:14px; color:#999;">
-        Thank you for choosing MyStoryAI!
+        Thank you for choosing MyStoriesAi!
       </p>
     @endif
   </div>
 
   <!-- Footer -->
   <p style="margin-top:20px; font-size:12px; color:#aaa;">
-    © {{ date('Y') }} MyStoryAI. All rights reserved.
+    © {{ date('Y') }} MyStoriesAi. All rights reserved.
     <br/>
     <a href="{{ config('app.url') }}" style="color:#555; text-decoration:none;">{{ $locale === 'ar' ? 'الموقع الرسمي' : 'Official Website' }}</a> |
-    <a href="mailto:mystoryai.webiste@gmail.com" style="color:#555; text-decoration:none;">{{ $locale === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
+    <a href="mailto:MyStoriesAi.webiste@gmail.com" style="color:#555; text-decoration:none;">{{ $locale === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
   </p>
 </div>

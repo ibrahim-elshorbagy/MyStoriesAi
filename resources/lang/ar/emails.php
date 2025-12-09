@@ -11,7 +11,7 @@ return [
     // Email Verification
     'email_verification_subject' => 'التحقق من عنوان البريد الإلكتروني',
     'email_verification_greeting' => 'مرحباً :name!',
-    'email_verification_intro' => 'شكراً لانضمامك إلى MyStoryAI! يرجى النقر على الزر أدناه للتحقق من عنوان بريدك الإلكتروني.',
+    'email_verification_intro' => 'شكراً لانضمامك إلى MyStoriesAi! يرجى النقر على الزر أدناه للتحقق من عنوان بريدك الإلكتروني.',
     'email_verification_button' => 'التحقق من البريد الإلكتروني',
     'email_verification_outro' => 'إذا لم تقم بإنشاء هذا الحساب، يمكنك تجاهل هذا البريد الإلكتروني بأمان.',
 
@@ -24,7 +24,7 @@ return [
 
     // Common
     'regards' => 'أطيب التحيات',
-    'team_name' => 'فريق MyStoryAI',
+    'team_name' => 'فريق MyStoriesAi',
     'official_website' => 'الموقع الرسمي',
     'contact_us' => 'اتصل بنا',
     'all_rights_reserved' => 'جميع الحقوق محفوظة.',

@@ -1,13 +1,13 @@
 <div style="font-family: Arial, sans-serif; background-color:#f9f9f9; padding:10px; text-align:center;">
         <!-- Logo -->
-        <img src="{{ asset('assets/auth/logo.png') }}" alt="MyStoryAI Logo" width="150" style="margin:0 auto 20px auto; width:100%; max-width:400px;" />
+        <img src="{{ asset('assets/auth/logo.png') }}" alt="MyStoriesAi Logo" width="150" style="margin:0 auto 20px auto; width:100%; max-width:400px;" />
 
         <!-- Card -->
         <div style="max-width:600px; margin:0 auto; background:#fff; padding:10px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:{{ app()->getLocale() === 'ar' ? 'right' : 'left' }};" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
           @if(app()->getLocale() === 'ar')
             <h2 style="color:#333; direction: rtl;">مرحباً {{ $notifiable->name }} 👋</h2>
             <p style="color:#555; font-size:16px; direction: rtl;">
-              شكراً لانضمامك إلى <strong>MyStoryAI</strong> 🚀
+              شكراً لانضمامك إلى <strong>MyStoriesAi</strong> 🚀
               يرجى النقر على الزر أدناه للتحقق من عنوان بريدك الإلكتروني:
             </p>
 
@@ -20,11 +20,11 @@
               إذا لم تقم بإنشاء هذا الحساب، يمكنك تجاهل هذا البريد الإلكتروني بأمان.
             </p>
 
-            <p style="margin-top:30px; font-size:14px; color:#999; direction: rtl;">أطيب التحيات ❤️ فريق MyStoryAI</p>
+            <p style="margin-top:30px; font-size:14px; color:#999; direction: rtl;">أطيب التحيات ❤️ فريق MyStoriesAi</p>
           @elseif(app()->getLocale() === 'de')
             <h2 style="color:#333;">Hallo {{ $notifiable->name }} 👋</h2>
             <p style="color:#555; font-size:16px;">
-              Vielen Dank für Ihre Registrierung bei <strong>MyStoryAI</strong> 🚀
+              Vielen Dank für Ihre Registrierung bei <strong>MyStoriesAi</strong> 🚀
               Bitte klicken Sie auf den untenstehenden Button, um Ihre E-Mail-Adresse zu bestätigen:
             </p>
 
@@ -37,11 +37,11 @@
               Wenn Sie dieses Konto nicht erstellt haben, können Sie diese E-Mail ignorieren.
             </p>
 
-            <p style="margin-top:30px; font-size:14px; color:#999;">Mit freundlichen Grüßen ❤️ Das MyStoryAI Team</p>
+            <p style="margin-top:30px; font-size:14px; color:#999;">Mit freundlichen Grüßen ❤️ Das MyStoriesAi Team</p>
           @else
             <h2 style="color:#333;">Hello {{ $notifiable->name }} 👋</h2>
             <p style="color:#555; font-size:16px;">
-              Thank you for joining <strong>MyStoryAI</strong> 🚀
+              Thank you for joining <strong>MyStoriesAi</strong> 🚀
               Please click the button below to verify your email address:
             </p>
 
@@ -54,15 +54,15 @@
               If you did not create this account, you can safely ignore this email.
             </p>
 
-            <p style="margin-top:30px; font-size:14px; color:#999;">Best regards ❤️ The MyStoryAI Team</p>
+            <p style="margin-top:30px; font-size:14px; color:#999;">Best regards ❤️ The MyStoriesAi Team</p>
           @endif
         </div>
 
         <!-- Footer -->
         <p style="margin-top:20px; font-size:12px; color:#aaa;">
-          © {{ date('Y') }} MyStoryAI. All rights reserved.
+          © {{ date('Y') }} MyStoriesAi. All rights reserved.
           <br/>
           <a href="{{ config('app.url') }}" style="color:#555; text-decoration:none;">{{ app()->getLocale() === 'ar' ? 'الموقع الرسمي' : 'Official Website' }}</a> |
-          <a href="mailto:mystoryai.webiste@gmail.com" style="color:#555; text-decoration:none;">{{ app()->getLocale() === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
+          <a href="mailto:MyStoriesAi.webiste@gmail.com" style="color:#555; text-decoration:none;">{{ app()->getLocale() === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
         </p>
       </div>
