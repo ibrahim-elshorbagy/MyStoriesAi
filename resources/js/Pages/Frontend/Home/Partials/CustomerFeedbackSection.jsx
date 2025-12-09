@@ -33,7 +33,7 @@ export default function CustomerFeedbackSection({ textFeedbacks, imageFeedbacks,
                         "{feedback.customer_feedback}"
                       </p>
                     </div>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center py-3">
                       {[...Array(5)].map((_, starIndex) => (
                         <i key={starIndex} className="fa-solid fa-star text-yellow-400 text-lg"></i>
                       ))}
