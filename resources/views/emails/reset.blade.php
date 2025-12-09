@@ -1,6 +1,6 @@
 <div style="font-family: Arial, sans-serif; background-color:#f9f9f9; padding:10px; text-align:center;">
         <!-- Logo -->
-        <img src="{{ asset('assets/auth/logo.webp') }}" alt="MyStoryAI Logo" width="200" style="margin:0 auto 20px auto; width:100%; max-width:600px;" />
+        <img src="{{ asset('assets/auth/logo.png') }}" alt="MyStoryAI Logo" width="200" style="margin:0 auto 20px auto; width:100%; max-width:600px;" />
 
         <!-- Card -->
         <div style="max-width:600px; margin:0 auto; background:#fff; padding:10px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:{{ app()->getLocale() === 'ar' ? 'right' : 'left' }};" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">

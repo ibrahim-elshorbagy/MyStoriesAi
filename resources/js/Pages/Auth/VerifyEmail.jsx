@@ -43,7 +43,7 @@ export default function VerifyEmail({ status }) {
                     <div className="bg-gradient-to-r from-orange-50 to-neutral-50 rounded-xl p-6 border border-orange-200/30">
                         <div className="flex items-center p-4 rounded-lg bg-orange-50 text-sm text-orange-800 border border-orange-200">
                             <i className="fa-solid fa-check-circle mr-3 text-orange-600"></i>
-                            <span className="font-medium">A new verification link has been sent to your email address.</span>
+                            <span className="font-medium">{t('auth_new_verification_link_sent')}</span>
                         </div>
                     </div>
                 )}
