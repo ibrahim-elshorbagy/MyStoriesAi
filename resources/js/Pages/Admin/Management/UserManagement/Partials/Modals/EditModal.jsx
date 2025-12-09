@@ -17,7 +17,7 @@ export default function EditModal({ isOpen, onClose, user, roles }) {
     username: '',
     password: '',
     password_confirmation: '',
-    role: '',
+    role: [],
     _method: 'PUT',
   });
 
@@ -29,7 +29,7 @@ export default function EditModal({ isOpen, onClose, user, roles }) {
         username: user.username || '',
         password: '',
         password_confirmation: '',
-        role: user.roles && user.roles.length > 0 ? user.roles[0].name : '',
+        role: user.roles ? user.roles.map(r => r.name) : [],
         _method: 'PUT',
       });
     } else if (!isOpen) {
@@ -146,10 +146,11 @@ export default function EditModal({ isOpen, onClose, user, roles }) {
           <SelectInput
             name="role"
             value={data.role}
-            onChange={(e) => setData('role', e.target.value)}
+            onChange={(e) => setData('role', Array.from(e.target.selectedOptions, option => option.value))}
             options={roleOptions}
             icon="fa-user-shield"
             error={errors.role}
+            multiple
             required
           />
         </div>

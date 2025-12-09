@@ -76,7 +76,8 @@ class UserManagementController extends Controller
       'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
       'username' => ['required', 'string', 'max:255', 'unique:users'],
       'password' => ['required', 'confirmed', Rules\Password::defaults()],
-      'role' => ['required', 'string', 'exists:roles,name'],
+      'role' => ['required', 'array', 'min:1'],
+      'role.*' => ['string', 'exists:roles,name'],
     ]);
 
     $user = User::create([
@@ -121,7 +122,8 @@ class UserManagementController extends Controller
       'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
       'username' => ['required', 'string', 'max:255', 'unique:users,username,' . $user->id],
       'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
-      'role' => ['required', 'string', 'exists:roles,name'],
+      'role' => ['required', 'array', 'min:1'],
+      'role.*' => ['string', 'exists:roles,name'],
       'blocked' => ['nullable', 'boolean'],
     ]);
 

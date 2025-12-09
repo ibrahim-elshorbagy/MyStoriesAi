@@ -16,7 +16,7 @@ export default function CreateModal({ isOpen, onClose, roles }) {
     username: '',
     password: '',
     password_confirmation: '',
-    role: '',
+    role: [],
   });
 
   const handleSubmit = (e) => {
@@ -31,13 +31,10 @@ export default function CreateModal({ isOpen, onClose, roles }) {
   };
 
   // Prepare roles for dropdown
-  const roleOptions = [
-    { value: '', label: t('select_role_required') },
-    ...roles.map(role => ({
-      value: role.name,
-      label: role.name === 'admin' ? t('admin') : t('user_role'),
-    })),
-  ];
+  const roleOptions = roles.map(role => ({
+    value: role.name,
+    label: role.name === 'admin' ? t('admin') : t('user_role'),
+  }));
 
   return (
     <AppModal
@@ -134,9 +131,10 @@ export default function CreateModal({ isOpen, onClose, roles }) {
           <SelectInput
             name="role"
             value={data.role}
-            onChange={(e) => setData('role', e.target.value)}
+            onChange={(e) => setData('role', Array.from(e.target.selectedOptions, option => option.value))}
             options={roleOptions}
             icon="fa-user-shield"
+            multiple
             required
           />
           <InputError message={errors.role} className="mt-2" />
