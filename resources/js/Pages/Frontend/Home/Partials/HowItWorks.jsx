@@ -67,7 +67,7 @@ export default function HowItWorks() {
               <img
                 src={option.image}
                 alt={option.title}
-                className="w-full h-[300px] sm:h-[450px] xl:h-[600px] object-cover rounded-md shadow-lg mb-6"
+                className="w-full h-[300px] sm:h-[450px] xl:h-[500px] object-cover rounded-md shadow-lg mb-6"
               />
               <h3 className="text-2xl font-semibold text-neutral-800 mb-4 group-hover:text-orange-600 transition-colors">
                 {option.title}
