@@ -36,6 +36,21 @@ export default function HowItWorks() {
           'px-6 py-4 text-lg font-bold bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white shadow-2xl shadow-orange-900/40 hover:shadow-orange-800/50 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30',
       },
     },
+    {
+      key: 'browse-stories',
+      image: '/assets/home/HowItWorks3.png',
+      title: t('how_it_works_option2_title'),
+      features: [
+        { icon: 'fa-book', text: t('how_it_works_option2_feature1') },
+        { icon: 'fa-eye', text: t('how_it_works_option2_feature2') },
+      ],
+      button: {
+        text: t('how_it_works_option2_button'),
+        href: route('stories'),
+        className:
+          'px-6 py-4 text-lg font-bold bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white shadow-2xl shadow-orange-900/40 hover:shadow-orange-800/50 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30',
+      },
+    },
   ];
 
   return (
@@ -58,7 +73,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
           {options.map((option) => (
             <div
               key={option.key}
@@ -67,7 +82,7 @@ export default function HowItWorks() {
               <img
                 src={option.image}
                 alt={option.title}
-                className="w-full h-[300px] sm:h-[450px] xl:h-[500px] object-cover rounded-md shadow-lg mb-6"
+                className="w-full h-[300px] sm:h-[450px] xl:h-[450px] object-cover rounded-md shadow-lg mb-6"
               />
               <h3 className="text-2xl font-semibold text-neutral-800 mb-4 group-hover:text-orange-600 transition-colors">
                 {option.title}

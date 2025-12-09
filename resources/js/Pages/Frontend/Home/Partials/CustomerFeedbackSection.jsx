@@ -14,20 +14,32 @@ export default function CustomerFeedbackSection({ textFeedbacks, imageFeedbacks,
         {textFeedbacks && textFeedbacks.length > 0 && (
           <div>
             <h3 className="text-2xl font-bold text-center mb-6 text-gray-800">{t('customer_testimonials')}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Swiper
+              modules={[Autoplay]}
+              slidesPerView={1}
+              spaceBetween={24}
+              loop
+              autoplay={{ delay: 4000, disableOnInteraction: false }}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+            >
               {textFeedbacks.map((feedback, index) => (
-                <div key={`text-feedback-${feedback.id || index}`} className="bg-white border border-orange-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 text-center">
-                  <p className="text-gray-700 leading-relaxed text-base italic mb-4">
-                    "{feedback.customer_feedback}"
-                  </p>
-                  <div className="flex justify-center">
-                    {[...Array(5)].map((_, starIndex) => (
-                      <i key={starIndex} className="fa-solid fa-star text-yellow-400 text-lg"></i>
-                    ))}
+                <SwiperSlide key={`text-feedback-${feedback.id || index}`}>
+                  <div key={`text-feedback-${feedback.id || index}`} className="bg-white border border-orange-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 text-center">
+                    <p className="text-gray-700 leading-relaxed text-base italic mb-4">
+                      "{feedback.customer_feedback}"
+                    </p>
+                    <div className="flex justify-center">
+                      {[...Array(5)].map((_, starIndex) => (
+                        <i key={starIndex} className="fa-solid fa-star text-yellow-400 text-lg"></i>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </SwiperSlide>
               ))}
-            </div>
+            </Swiper>
           </div>
         )}
 
