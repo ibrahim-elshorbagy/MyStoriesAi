@@ -34,7 +34,6 @@
 
     // Set translations from blade template
     window.translations = @json(__('website'));
-
   </script>
 
   <!-- Scripts -->
@@ -42,6 +41,10 @@
   @viteReactRefresh
   @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
   @inertiaHead
+
+  <script id="cookieyes" type="text/javascript"
+    src="https://cdn-cookieyes.com/client_data/ec0a945423492c2d0b033ab0260af687/script.js"></script>
+
 </head>
 
 <body class="font-sans antialiased">
