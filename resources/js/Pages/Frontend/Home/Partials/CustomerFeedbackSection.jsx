@@ -27,7 +27,7 @@ export default function CustomerFeedbackSection({ textFeedbacks, imageFeedbacks,
             >
               {textFeedbacks.map((feedback, index) => (
                 <SwiperSlide key={`text-feedback-${feedback.id || index}`}>
-                  <div key={`text-feedback-${feedback.id || index}`} className="bg-white border border-orange-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 text-center">
+                  <div key={`text-feedback-${feedback.id || index}`} className="bg-white border border-orange-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 text-center h-64 flex flex-col justify-center">
                     <p className="text-gray-700 leading-relaxed text-base italic mb-4">
                       "{feedback.customer_feedback}"
                     </p>
