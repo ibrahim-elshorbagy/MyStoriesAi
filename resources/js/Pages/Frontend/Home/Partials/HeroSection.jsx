@@ -152,7 +152,7 @@ export default function HeroSection() {
                 href={route('stories')}
                 className="px-12 py-4 text-lg font-bold bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 backdrop-blur-sm shadow-2xl shadow-black/20 hover:shadow-black/30 transform hover:scale-105 transition-all duration-300 rounded-md"
               >
-                {t('explore_our_stories')}
+                {t('try_now')}
               </Link>
             </div>
           </div>

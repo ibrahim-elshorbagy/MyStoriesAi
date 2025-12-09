@@ -10,7 +10,6 @@ $main= [
   */
 
 
-
   /* User Management */
   'customize_now' => 'Personalize Now',
   'story_name_will_change' => 'Note: The story name will be changed to your child\'s name that you will enter in the next step',
@@ -465,6 +464,15 @@ $main= [
   "failure_url"=>"Failure URL",
   'customer_testimonials' => 'Customer Testimonials',
   'customer_images' => 'Customer Images',
+
+  // How It Works Video
+  'how_it_works_video' => 'How It Works Video',
+  'upload_how_it_works_video' => 'Upload How It Works Video',
+  'current_video' => 'Current Video',
+  'remove_video' => 'Remove Video',
+  'watch_how_it_works' => 'Watch How It Works',
+  'video_updated_successfully' => 'Video updated successfully',
+  'video_removed_successfully' => 'Video removed successfully',
 
 ];
 

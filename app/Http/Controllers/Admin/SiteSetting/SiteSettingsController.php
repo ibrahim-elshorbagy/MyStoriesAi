@@ -44,6 +44,7 @@ class SiteSettingsController extends Controller
       'env_settings' => 'array', // Optional array of settings that should go to .env
       'files.site_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
       'files.site_favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,ico',
+      'files.how_it_works_video' => 'nullable|mimetypes:video/mp4,video/mpeg,video/quicktime,video/webm|max:102400',
     ]);
 
     // Define mapping of setting key to environment variable name
@@ -87,7 +88,32 @@ class SiteSettingsController extends Controller
         }
       }
 
-      // Handle environment variables dynamically
+      // Handle file uploads for how_it_works_video
+      if ($key === 'how_it_works_video') {
+        if ($request->hasFile("files.{$key}")) {
+          $file = $request->file("files.{$key}");
+
+          // Delete old file if exists
+          $oldSetting = SiteSetting::where('key', $key)->first();
+          if ($oldSetting && $oldSetting->value && Storage::disk('public')->exists($oldSetting->value)) {
+            Storage::disk('public')->delete($oldSetting->value);
+          }
+
+          // Store new file
+          $path = $file->store('site-assets', 'public');
+          $value = $path;
+        } elseif ($request->boolean('remove_how_it_works_video')) {
+          // Delete existing video if remove flag is set
+          $oldSetting = SiteSetting::where('key', $key)->first();
+          if ($oldSetting && $oldSetting->value && Storage::disk('public')->exists($oldSetting->value)) {
+            Storage::disk('public')->delete($oldSetting->value);
+          }
+          $value = null;
+        } else {
+          // Skip if no file uploaded and not removing, keep existing value
+          continue;
+        }
+      }
       if ($request->has('env_settings') && in_array($key, $request->env_settings) && isset($envMappings[$key])) {
         $this->updateEnvFile($envMappings[$key], $value);
       }

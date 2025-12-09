@@ -94,11 +94,15 @@ export default function CustomerFeedbackSection({ textFeedbacks, imageFeedbacks,
               >
                 {videoFeedbacks.map((feedback, index) => (
                   <SwiperSlide key={`video-feedback-${feedback.id || index}`}>
-                    <div className="flex flex-col h-full bg-white border border-orange-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                    <div className="flex flex-col h-full border border-orange-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
                       <div className="h-auto overflow-hidden flex items-center justify-center">
                         <video
                           src={`/storage/${feedback.video}`}
                           controls
+                          autoPlay  // camelCase in React
+                          muted     // Required for autoplay to work
+                          loop      // Optional: loop the video
+                          playsInline // Required for iOS devices
                           className="w-full h-auto max-h-[600px] rounded-lg"
                           preload="metadata"
                         />

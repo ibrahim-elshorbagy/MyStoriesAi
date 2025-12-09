@@ -425,6 +425,16 @@ $main = [
   'customer_testimonials' => 'آراء العملاء',
   'customer_images' => 'صور العملاء',
   'customer_videos' => 'فيديوهات العملاء',
+
+  // How It Works Video
+  'how_it_works_video' => 'فيديو كيف يعمل',
+  'upload_how_it_works_video' => 'رفع فيديو كيف يعمل',
+  'current_video' => 'الفيديو الحالي',
+  'remove_video' => 'حذف الفيديو',
+  'watch_how_it_works' => 'شاهد كيف يعمل',
+  'video_updated_successfully' => 'تم تحديث الفيديو بنجاح',
+  'video_removed_successfully' => 'تم حذف الفيديو بنجاح',
+
 ];
 
 return array_merge(

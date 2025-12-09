@@ -9,6 +9,8 @@ import PricingSection from './Partials/PricingSection';
 import FAQs from './Partials/FAQs';
 import CustomerFeedbackSection from './Partials/CustomerFeedbackSection';
 import { useTrans } from '@/Hooks/useTrans';
+import HowItWorks from './Partials/HowItWorks';
+import HowItWorksVideoSection from './Partials/HowItWorksVideoSection';
 
 export default function Home({ stories, faqs, categories, settings, textFeedbacks, imageFeedbacks, videoFeedbacks }) {
   const { t } = useTrans();
@@ -19,6 +21,10 @@ export default function Home({ stories, faqs, categories, settings, textFeedback
       <Head title={t('home')} />
 
       <HeroSection />
+      <HowItWorks />
+      {settings.how_it_works_video && (
+        <HowItWorksVideoSection videoUrl={settings.how_it_works_video} />
+      )}
       <FeaturesSection />
       <StoriesSection stories={stories} />
 

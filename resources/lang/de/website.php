@@ -12,8 +12,6 @@ $main= [
 
 
 
-
-  /* User Management */
   'customize_now' => 'Jetzt anpassen',
   'story_name_will_change' => 'Hinweis: Der Geschichtenname wird in den Namen des Kindes geändert, den Sie im nächsten Schritt eingeben',
   'user' => 'Benutzer',
@@ -487,8 +485,18 @@ $main= [
   'customer_testimonials' => 'Kundenbewertungen',
   'customer_images' => 'Kundenbilder',
 
+  // How It Works Video
+  'how_it_works_video' => 'Wie es funktioniert Video',
+  'upload_how_it_works_video' => 'Wie es funktioniert Video hochladen',
+  'current_video' => 'Aktuelles Video',
+  'remove_video' => 'Video entfernen',
+  'watch_how_it_works' => 'Sehen Sie wie es funktioniert',
+  'video_updated_successfully' => 'Video erfolgreich aktualisiert',
+  'video_removed_successfully' => 'Video erfolgreich entfernt',
 
 ];
+
+
 
 
 return array_merge(
