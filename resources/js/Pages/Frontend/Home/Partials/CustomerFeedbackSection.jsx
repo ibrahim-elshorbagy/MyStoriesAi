@@ -10,7 +10,7 @@ export default function CustomerFeedbackSection({ textFeedbacks, imageFeedbacks,
   return (
     <section className="bg-neutral-50 py-14 px-5 sm:px-8 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto space-y-12">
-        {/* Text Feedbacks */}
+        {/* Text Feedbacks Swiper */}
         {textFeedbacks && textFeedbacks.length > 0 && (
           <div>
             <h3 className="text-2xl font-bold text-center mb-6 text-gray-800">{t('customer_testimonials')}</h3>
@@ -27,10 +27,12 @@ export default function CustomerFeedbackSection({ textFeedbacks, imageFeedbacks,
             >
               {textFeedbacks.map((feedback, index) => (
                 <SwiperSlide key={`text-feedback-${feedback.id || index}`}>
-                  <div key={`text-feedback-${feedback.id || index}`} className="bg-white border border-orange-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 text-center h-64 flex flex-col justify-center">
-                    <p className="text-gray-700 leading-relaxed text-base italic mb-4">
-                      "{feedback.customer_feedback}"
-                    </p>
+                  <div className="flex flex-col justify-between h-full bg-white border border-orange-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                    <div className="flex flex-col flex-grow justify-center p-6 text-center min-h-60">
+                      <p className="text-gray-700 leading-relaxed text-base italic">
+                        "{feedback.customer_feedback}"
+                      </p>
+                    </div>
                     <div className="flex justify-center">
                       {[...Array(5)].map((_, starIndex) => (
                         <i key={starIndex} className="fa-solid fa-star text-yellow-400 text-lg"></i>
