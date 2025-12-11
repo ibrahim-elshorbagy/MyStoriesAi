@@ -293,16 +293,6 @@ class OrderController extends Controller
       $order->update(['payment_method' => $validated['payment_method']]);
 
       DB::commit();
-
-      // if ($validated['payment_method'] === 'cod') {
-      //   $payment->update(['status' => 'pending']);
-      //   $order->update(['status' => 'pending']);
-
-      //   return redirect()->route('home')
-      //     ->with('title', __('website_response.order_created_cod_title'))
-      //     ->with('message', __('website_response.order_created_cod_message'))
-      //     ->with('status', 'success');
-      // } elseif ($validated['payment_method'] === 'stripe') {
       if ($validated['payment_method'] === 'stripe') {
         // Handle Stripe payment
         $result = $this->stripeService->sendPayment($order);
@@ -320,23 +310,7 @@ class OrderController extends Controller
 
         return redirect($result['url']);
       }
-      // elseif ($validated['payment_method'] === 'paymob') {
-      //   // Handle Paymob payment
-      //   $result = $this->paymobService->sendPayment($order);
 
-      //   Log::info('Paymob payment result: ' . json_encode($result));
-      //   if (!$result['status']) {
-      //     return redirect()->route('home')
-      //       ->with('title', __('website_response.payment_error_title'))
-      //       ->with('message', $result['message'])
-      //       ->with('status', 'error');
-      //   }
-
-      //   // Update payment with transaction id
-      //   $payment->update(['transaction_id' => $result['paymob_order_id']]);
-
-      //   return redirect($result['url']);
-      // }
     } catch (\Exception $e) {
       DB::rollBack();
       return redirect()->route('home')
