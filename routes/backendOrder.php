@@ -13,6 +13,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('/dashboard')->group(function 
   Route::post('/admin/orders/{order}/notify-payment-status', [OrderController::class, 'notifyPaymentStatus'])->name('admin.orders.notify-payment-status');
   Route::put('/admin/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('admin.orders.update-status');
   Route::post('/admin/orders/{order}/notify-status', [OrderController::class, 'notifyStatus'])->name('admin.orders.notify-status');
-  Route::post('/admin/orders/{order}/upload-pdf', [OrderController::class, 'uploadPDF'])->name('admin.orders.upload-pdf');
-  Route::post('/admin/orders/{order}/notify-pdf', [OrderController::class, 'notifyPDF'])->name('admin.orders.notify-pdf');
+  Route::post('/admin/orders/order-items/{orderItem}/upload-pdf', [OrderController::class, 'uploadPDF'])->name('admin.orders.upload-pdf');
+  Route::post('/admin/orders/order-items/{orderItem}/notify-pdf', [OrderController::class, 'notifyPDF'])->name('admin.orders.notify-pdf');
 });

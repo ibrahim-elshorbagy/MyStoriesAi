@@ -19,6 +19,8 @@ export default function UpdateOrderStatus({ order, t }) {
   const languageOptions = [
     { value: 'en', label: 'English' },
     { value: 'ar', label: 'العربية' },
+    { value: 'de', label: 'Deutsch' },
+
   ]
 
   const handleUpdate = () => {
@@ -45,7 +47,7 @@ export default function UpdateOrderStatus({ order, t }) {
   }
 
   return (
-    <div className="bg-white dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
+    <div className="bg-white dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-700 rounded-lg p-8">
       <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4">{t('update_order_status')}</h3>
 
       <div className="space-y-4">
@@ -80,7 +82,7 @@ export default function UpdateOrderStatus({ order, t }) {
           <button
             onClick={handleUpdate}
             disabled={loadingUpdate || !newStatus}
-            className="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-50"
+            className="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-50 dark:bg-blue-700 dark:hover:bg-blue-600"
           >
             {loadingUpdate ? t('updating') : t('update_status')}
           </button>
@@ -88,7 +90,7 @@ export default function UpdateOrderStatus({ order, t }) {
           <button
             onClick={handleNotify}
             disabled={loadingNotify}
-            className="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-50"
+            className="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-50 dark:bg-green-700 dark:hover:bg-green-600"
           >
             {loadingNotify ? t('sending') : t('notify_user')}
           </button>

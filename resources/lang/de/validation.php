@@ -249,4 +249,12 @@ return [
 
 
     ],
+
+    'attributes' => [
+        'area' => 'Bereich',
+        'street' => 'Straße',
+        'house_number' => 'Hausnummer',
+        'additional_info' => 'Zusätzliche Informationen',
+        'delivery_option_id' => 'Lieferoption',
+    ],
 ];

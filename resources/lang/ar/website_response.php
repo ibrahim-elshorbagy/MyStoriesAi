@@ -194,6 +194,27 @@ return [
   'age_categories_deleted_message' => 'تم حذف :count فئات عمر بنجاح.',
   'age_category_name_exists' => 'اسم فئة العمر موجود بالفعل.',
 
+  /* Discount Responses */
+  'discount_created_title' => 'تم إنشاء الخصم',
+  'discount_created_message' => 'تم إنشاء الخصم بنجاح.',
+  'discount_updated_title' => 'تم تحديث الخصم',
+  'discount_updated_message' => 'تم تحديث الخصم بنجاح.',
+  'discount_deleted_title' => 'تم حذف الخصم',
+  'discount_deleted_message' => 'تم حذف الخصم بنجاح.',
+  'discounts_deleted_title' => 'تم حذف الخصومات',
+  'discounts_deleted_message' => 'تم حذف :count خصومات بنجاح.',
+  'discount_not_found' => 'رمز الخصم غير صحيح',
+  'discount_already_used' => 'لقد استخدمت رمز الخصم هذا بالفعل',
+  'discount_limit_reached' => 'وصل رمز الخصم هذا إلى حد الاستخدام',
+  'discount_applied' => 'تم تطبيق الخصم بنجاح',
+  'discount_code_required' => 'يرجى إدخال رمز الخصم',
+  'discount_validation_error' => 'فشل في التحقق من رمز الخصم. يرجى المحاولة مرة أخرى.',
+  'discount_code' => 'رمز الخصم',
+  'enter_discount_code' => 'أدخل رمز الخصم',
+  'apply' => 'تطبيق',
+  'remove_discount' => 'إزالة الخصم',
+  'discount' => 'خصم',
+
   // Delivery Options Responses
   'delivery_option_created_title' => 'تم إنشاء خيار التوصيل',
   'delivery_option_created_message' => 'تم إنشاء خيار التوصيل بنجاح.',
@@ -244,4 +265,19 @@ return [
   'payment_error_title' => 'خطأ في الدفع',
   'payment_already_initiated_title' => 'تم بدء الدفع بالفعل',
   'payment_already_initiated' => 'تم بدء الدفع لهذا الطلب بالفعل.',
+
+  // Cart Responses
+  'item_added_to_cart_title' => 'تمت إضافة العنصر للسلة',
+  'item_added_to_cart_message' => 'تمت إضافة القصة لسلتك بنجاح.',
+  'failed_to_add_to_cart' => 'فشل في إضافة القصة للسلة. يرجى المحاولة مرة أخرى.',
+  'item_removed_title' => 'تم إزالة العنصر',
+  'item_removed_message' => 'تم إزالة العنصر من سلتك.',
+  'cart_cleared_title' => 'تم إفراغ السلة',
+  'cart_cleared_message' => 'تم إفراغ سلتك بنجاح.',
+  'cart_updated_title' => 'تم تحديث السلة',
+  'cart_updated_message' => 'تم تحديث سلتك بنجاح.',
+  'already_paid_title' => 'مدفوع بالفعل',
+  'already_paid_message' => 'تم دفع هذا الطلب بالفعل.',
+
+
 ];

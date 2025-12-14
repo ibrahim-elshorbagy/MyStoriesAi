@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Inertia\Middleware;
+use App\Models\Order\Cart;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -37,6 +38,7 @@ class HandleInertiaRequests extends Middleware
         'roles' => $request->user()?->getRoleNames(),
         'permissions' => $request->user()?->getAllPermissions()->pluck('name'),
       ],
+      'cart_count' => fn() => $this->getCartCount($request),
       'flash' => [
         'title' => session('title'),
         'message' => session('message'),
@@ -121,5 +123,21 @@ class HandleInertiaRequests extends Middleware
         'categories' => $categories,
       ];
     // });
+  }
+
+  /**
+   * Get cart count for authenticated user
+   */
+  private function getCartCount(Request $request): int
+  {
+    if (!$request->user()) {
+      return 0;
+    }
+
+    $cart = Cart::where('user_id', $request->user()->id)
+      ->withCount('cartItems')
+      ->first();
+
+    return $cart?->cart_items_count ?? 0;
   }
 }

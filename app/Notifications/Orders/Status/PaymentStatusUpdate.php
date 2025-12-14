@@ -12,6 +12,7 @@ class PaymentStatusUpdate extends Notification
 
     protected $order;
     protected $payment;
+    public $locale;
 
     public function __construct(Order $order, Payment $payment, $locale = null)
     {
@@ -27,15 +28,13 @@ class PaymentStatusUpdate extends Notification
 
     public function toMail($notifiable)
     {
-        $locale = $this->locale;
-
         return (new MailMessage)
-            ->subject(__('emails.payment_status_update_subject', ['id' => $this->order->id], $locale))
+            ->subject(__('emails.payment_status_update_subject', ['id' => $this->order->id], $this->locale))
             ->view('emails.orders.status.payment-status-update', [
                 'order' => $this->order,
                 'payment' => $this->payment,
                 'notifiable' => $notifiable,
-                'locale' => $locale
+                'locale' => $this->locale
             ]);
     }
 

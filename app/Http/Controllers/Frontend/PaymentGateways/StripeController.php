@@ -52,10 +52,10 @@ class StripeController extends Controller
       }
 
       // Prevent duplicate processing
-      if ($payment->status === 'completed') {
+      if ($payment->status === 'paid') {
         Log::info('Payment already completed for order: ' . $order->id);
         return Inertia::render('Frontend/Order/PaymentSuccess', [
-          'order' => $order->load('shippingAddress')
+          'order' => $order->load(['orderItems.story', 'shippingAddress.deliveryOption'])
         ]);
       }
 
@@ -98,6 +98,30 @@ class StripeController extends Controller
         'transaction_id' => $verification['payment_intent']
       ]);
 
+      // Update order status to processing
+      $order->update(['status' => 'processing']);
+
+      // Update all order items status to processing
+      $order->orderItems()->update(['status' => 'processing']);
+
+      // ✅ NEW: Record discount usage ONLY on successful payment
+      if ($order->discount_code) {
+        $discount = \App\Models\Admin\SiteSetting\Discount::where('code', $order->discount_code)->first();
+
+        if ($discount) {
+          \App\Models\Admin\SiteSetting\DiscountUsage::firstOrCreate([
+            'discount_id' => $discount->id,
+            'user_id' => $order->user_id,
+          ]);
+
+          Log::info('Discount usage recorded', [
+            'order_id' => $order->id,
+            'discount_code' => $order->discount_code,
+            'user_id' => $order->user_id,
+          ]);
+        }
+      }
+
       // Send payment success notification
       $locale = $validated['lang'] ?: 'en';
       $order->user->notify(new PaymentStatusUpdate($order, $payment, $locale));
@@ -108,7 +132,7 @@ class StripeController extends Controller
       ]);
 
       return Inertia::render('Frontend/Order/PaymentSuccess', [
-        'order' => $order->load('shippingAddress')
+        'order' => $order->load(['orderItems.story', 'shippingAddress.deliveryOption'])
       ]);
     } catch (\Illuminate\Validation\ValidationException $e) {
       // Let Laravel handle validation errors naturally
@@ -151,7 +175,7 @@ class StripeController extends Controller
     }
 
     return Inertia::render('Frontend/Order/PaymentFailed', [
-      'order' => $order->load('shippingAddress')
+      'order' => $order->load(['orderItems.story', 'shippingAddress.deliveryOption'])
     ]);
   }
 }

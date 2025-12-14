@@ -1,6 +1,6 @@
 <?php
 
-$main= [
+$main = [
   /*
   |--------------------------------------------------------------------------
   | All Website Lines
@@ -398,6 +398,11 @@ $main= [
   "update_status" => "Update Status",
   'no_payment' => 'No Payment',
   'select' => "Select",
+
+  // Discount
+  'discount_code' => 'Discount Code',
+  'discount_value' => 'Discount Value',
+  'discount_applied' => 'Discount Applied',
   "selected_file" => "Selected File:",
 
 
@@ -461,9 +466,9 @@ $main= [
   'paymob_online_card_id' => 'Online Card ID',
   'paymob_mobile_wallet_id_help' => 'Your Paymob Mobile Wallet integration ID',
   'paymob_online_card_id_help' => 'Your Paymob Online Card integration ID',
-  "paymob_callback_urls"=>"Paymob Call Back URL",
-  "success_url"=>"Success URL",
-  "failure_url"=>"Failure URL",
+  "paymob_callback_urls" => "Paymob Call Back URL",
+  "success_url" => "Success URL",
+  "failure_url" => "Failure URL",
   'customer_testimonials' => 'Customer Testimonials',
   'customer_images' => 'Customer Images',
 
@@ -476,10 +481,46 @@ $main= [
   'video_updated_successfully' => 'Video updated successfully',
   'video_removed_successfully' => 'Video removed successfully',
 
+  "total_items" => "Total Items",
+  "your_story_pdf" => "Your Story PDF",
+  "your_stories" => "Your Stories",
+
+  // Order Status
+  'select' => 'Select',
+  'order_status_pending' => 'Pending',
+  'order_status_processing' => 'Processing',
+  'order_status_completed' => 'Completed',
+  'order_status_cancelled' => 'Cancelled',
+
+  // Payment Status
+  'payment_status_pending' => 'Pending',
+  'payment_status_paid' => 'Paid',
+  'payment_status_failed' => 'Failed',
+  'payment_status_refunded' => 'Refunded',
+
+  // Discount Management
+  'discount_management' => 'Discount Management',
+  'discounts' => 'Discounts',
+  'create_discount' => 'Create Discount',
+  'edit_discount' => 'Edit Discount',
+  'discount_code' => 'Discount Code',
+  'usage_limit' => 'Usage Limit',
+  'search_discounts_by_code' => 'Search discounts by code',
+  'enter_discount_code' => 'Enter discount code',
+  'enter_usage_limit' => 'Enter usage limit',
+  'confirm_delete_discount' => 'Are you sure you want to delete this discount?',
+  'confirm_delete_discounts' => 'Are you sure you want to delete the selected discounts?',
+  'discount_percent' => 'Discount Percent',
+  'enter_discount_percent' => 'Enter discount percent',
+  'apply' => 'Apply',
+  'discount' => 'Discount',
+  'remove_discount' => 'Remove discount',
+  'discount_code_required' => 'Please enter a discount code',
+  'discount_validation_error' => 'Error validating discount code',
+
 ];
 
 return array_merge(
   $main,
-  require __DIR__.'/frontend.php',
+  require __DIR__ . '/frontend.php',
 );
-

@@ -7,14 +7,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Models\Order\Payment;
-use App\Models\Order\ShippingAddress;
+use App\Models\Order\OrderShippingAddress;
 
 class Order extends Model
 {
   protected $guarded = ['id'];
 
   protected $casts = [
-    'value' => 'array',
+    'discount_value' => 'decimal:2',
+    'subtotal' => 'decimal:2',
+    'delivery_total' => 'decimal:2',
+    'total_price' => 'decimal:2',
   ];
 
   public function user(): BelongsTo
@@ -27,14 +30,13 @@ class Order extends Model
     return $this->hasMany(Payment::class);
   }
 
+  public function orderItems(): HasMany
+  {
+    return $this->hasMany(OrderItem::class);
+  }
+
   public function shippingAddress(): HasOne
   {
-    return $this->hasOne(ShippingAddress::class);
+    return $this->hasOne(OrderShippingAddress::class, 'order_id');
   }
-
-  public function story(): BelongsTo
-  {
-    return $this->belongsTo(\App\Models\Admin\Story\Story::class);
-  }
-
 }

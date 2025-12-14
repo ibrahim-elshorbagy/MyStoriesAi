@@ -238,4 +238,12 @@ return [
         'delivery_option_id' => 'خيار التوصيل',
 
     ],
+
+    'attributes' => [
+        'area' => 'المنطقة',
+        'street' => 'الشارع',
+        'house_number' => 'رقم المنزل',
+        'additional_info' => 'معلومات إضافية',
+        'delivery_option_id' => 'خيار التسليم',
+    ],
 ];

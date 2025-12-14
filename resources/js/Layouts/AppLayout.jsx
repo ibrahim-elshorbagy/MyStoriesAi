@@ -17,6 +17,7 @@ export default function AppLayout({ children, title }) {
   const handleSidebarToggleForMobile = () => {
     setSidebarIsOpen(v => !v);
   };
+  const { cart_count } = usePage().props;
 
   return (
     <div className="font-sans antialiased" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
@@ -32,7 +33,20 @@ export default function AppLayout({ children, title }) {
           >
             <i className="fa-solid fa-bars size-6"></i>
           </button>
-          {/* <div className="w-8" /> */}
+
+          {/* Cart Icon for Mobile */}
+          <Link
+            href={route('cart.index')}
+            className="relative inline-flex items-center justify-center w-12 h-12 text-neutral-700 dark:text-neutral-300"
+          >
+            <i className="fa-solid fa-shopping-cart text-2xl"></i>
+            {cart_count > 0 && (
+              <span className="absolute top-1 right-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold rounded-full h-5 min-w-[20px] px-1 flex items-center justify-center">
+                {cart_count > 99 ? '99+' : cart_count}
+              </span>
+            )}
+          </Link>
+
           {/* Profile menu at the bottom */}
           <ProfileMenu />
         </nav>

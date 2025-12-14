@@ -11,7 +11,7 @@ export default function OrdersTable({ orders }) {
   const columns = [
     { field: 'row_number', label: t('serial'), icon: 'fa-hashtag' },
     { field: 'id', label: t('order_id'), icon: 'fa-shopping-cart' },
-    { field: 'child_name', label: t('child_name'), icon: 'fa-child' },
+    { field: 'items', label: t('items'), icon: 'fa-box-open' },  // ⚠️ CHANGED
     { field: 'user_name', label: t('customer'), icon: 'fa-user' },
     { field: 'status', label: t('status'), icon: 'fa-info-circle' },
     { field: 'total_price', label: t('total_price'), icon: 'fa-dollar-sign' },
@@ -21,7 +21,6 @@ export default function OrdersTable({ orders }) {
 
   const sortOptions = [
     { field: 'id', label: t('order_id') },
-    { field: 'child_name', label: t('child_name') },
     { field: 'created_at', label: t('created_at') },
     { field: 'status', label: t('status') }
   ];
@@ -40,11 +39,33 @@ export default function OrdersTable({ orders }) {
         </div>
       </td>
       <td className="px-3 py-4 whitespace-nowrap">
-        <div className="flex items-center gap-2">
-          <i className="fa-solid fa-child text-green-500"></i>
-          <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
-            {order.child_name}
-          </span>
+        <div className="flex items-start gap-3">
+          {/* Show first item's image */}
+          {order.order_items?.[0]?.child_image_path && (
+            <img
+              src={`/storage/${order.order_items[0].child_image_path}`}
+              alt={order.order_items[0].child_name}
+              className="w-12 h-12 rounded-lg object-cover border-2 border-blue-200"
+            />
+          )}
+
+          {/* Show item names */}
+          <div className="flex flex-col gap-1">
+            {order.order_items?.slice(0, 2).map((item, idx) => (
+              <span key={idx} className="text-xs text-neutral-700 dark:text-neutral-300 font-medium">
+                • {item.child_name}
+              </span>
+            )) || (
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                {t('no_items')}
+              </span>
+            )}
+            {order.order_items?.length > 2 && (
+              <span className="text-xs text-blue-600 font-semibold">
+                +{order.order_items.length - 2}
+              </span>
+            )}
+          </div>
         </div>
       </td>
       <td className="px-3 py-4 whitespace-nowrap">

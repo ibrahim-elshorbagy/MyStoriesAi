@@ -151,6 +151,12 @@ export default function Sidebar({ sidebarIsOpen, setSidebarIsOpen }) {
           route: 'admin.customer-feedbacks.*',
           icon: 'fa-comments'
         },
+        {
+          name: t('discounts'),
+          href: route('admin.discounts.index'),
+          route: 'admin.discounts.*',
+          icon: 'fa-ticket'
+        },
       ],
     },
     // { name: t('settings'), icon: 'fa-gear', href: route('profile.edit'), route: 'profile', role: 'admin' },

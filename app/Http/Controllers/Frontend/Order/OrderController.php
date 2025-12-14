@@ -9,15 +9,15 @@ use App\Models\Admin\Story\Story;
 use App\Models\Order\Order;
 use App\Models\Order\Payment;
 use App\Models\User;
-use App\Notifications\Orders\Creating\NotifyAdmin;
-use App\Notifications\Orders\Creating\OrderConfirmation;
+use App\Http\Controllers\Frontend\Cart\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Notification;
-use App\Services\StripeService;
 use Illuminate\Support\Facades\Log;
+use App\Services\StripeService;
+use App\Http\Resources\Order\OrderResource;
+use App\Models\Admin\SiteSetting\Discount;
+use App\Models\Admin\SiteSetting\DiscountUsage;
 use Inertia\Inertia;
 
 class OrderController extends Controller
@@ -29,7 +29,7 @@ class OrderController extends Controller
     $this->stripeService = $stripeService;
   }
 
-  // Show the multi-step form`
+  // Show the multi-step form
   public function create(Request $request)
   {
     $storyId = $request->query('story_id');
@@ -37,7 +37,6 @@ class OrderController extends Controller
 
     if ($storyId) {
       $story = Story::with('category')->findOrFail($storyId);
-      // Format story data for frontend
       $story = [
         'id' => $story->id,
         'title_value' => $story->title_value,
@@ -70,249 +69,489 @@ class OrderController extends Controller
 
   public function store(Request $request)
   {
-    $validated = $request->validate([
-      'story_id' => ['nullable', 'exists:stories,id'],
-      'face_swap_result' => ['nullable', 'string'],
-      'child_name' => ['required', 'string', 'max:255'],
-      'child_age' => ['required', 'integer', 'min:1'],
-      'language' => ['required', 'in:arabic,english,german'],
-      'child_gender' => ['required', 'in:boy,girl'],
-      'format' => ['required', 'in:first_plan,second_plan,third_plan'],
-      'value' => ['nullable', 'array', 'min:1'],
-      'value.*' => ['string', 'in:honesty,kindness,courage,respect,responsibility,friendship,perseverance,creativity'],
-      'custom_value' => ['nullable', 'string', 'max:500'],
-      'child_image' => ['required', 'file', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
-      'hair_color' => ['nullable', 'string', 'max:255'],
-      'hair_style' => ['nullable', 'string', 'max:255'],
-      'eye_color' => ['nullable', 'string', 'max:255'],
-      'skin_tone' => ['nullable', 'string', 'max:255'],
-      'clothing_description' => ['nullable', 'string', 'max:1000'],
-      'customer_note' => ['nullable', 'string', 'max:1000'],
-      'story_price' => ['required', 'numeric', 'min:0'],
-      'delivery_price' => ['required', 'numeric', 'min:0'],
-      'total_price' => ['required', 'numeric', 'min:0'],
-      'delivery_option_id' => ['nullable', 'required_if:format,second_plan,third_plan', 'exists:delivery_options,id'],
-      'area' => ['required_unless:format,first_plan', 'nullable', 'string', 'max:255'],
-      'street' => ['required_unless:format,first_plan', 'nullable', 'string', 'max:255'],
-      'house_number' => ['required_unless:format,first_plan', 'nullable', 'string', 'max:255'],
-      'additional_info' => ['nullable', 'string', 'max:500'],
+    // No validation here - CartController handles it
+    $cartController = new CartController();
+    $response = $cartController->addToCart($request);
+    $responseData = $response->getData(true);
+
+    if ($responseData['success']) {
+      return redirect()->route('cart.index')
+        ->with('title', __('website_response.item_added_to_cart_title'))
+        ->with('message', __('website_response.item_added_to_cart_message'))
+        ->with('status', 'success');
+    }
+
+    return back()->withErrors([
+      'submit' => $responseData['message'] ?? __('website_response.failed_to_add_to_cart')
+    ])->withInput();
+  }
+
+  // Continue payment for existing order
+  public function continuePayment(Order $order)
+  {
+    // Ensure user owns the order
+    if ($order->user_id !== Auth::id()) {
+      abort(403);
+    }
+
+    // Check if already paid
+    if ($order->payments()->where('status', 'paid')->exists()) {
+      return redirect()->route('user.orders.show', $order->id)
+        ->with('title', __('website_response.already_paid_title'))
+        ->with('message', __('website_response.already_paid_message'))
+        ->with('status', 'info');
+    }
+
+    $order->load(['orderItems.story', 'shippingAddress.deliveryOption', 'payments']);
+
+    return Inertia::render('Frontend/Order/PaymentMethod', [
+      'order' => OrderResource::make($order)->toArray(request()),
+      'deliveryOptions' => \App\Models\Admin\SiteSetting\DeliveryOption::all(),
     ]);
+  }
+
+  /**
+   * Process payment FROM CART (creates new order)
+   * Route: POST /orders/process-payment
+   */
+  public function processPayment(Request $request)
+  {
+    // Get authenticated user's cart first to check if shipping is needed
+    $cart = \App\Models\Order\Cart::where('user_id', Auth::id())
+      ->with(['cartItems'])
+      ->first();
+
+    // Check if cart exists and has items
+    if (!$cart || $cart->cartItems->isEmpty()) {
+      return redirect()->route('cart.index')
+        ->with('title', __('website_response.cart_empty_title'))
+        ->with('message', __('website_response.cart_empty_message'))
+        ->with('status', 'error');
+    }
+
+    // Build validation rules - shipping is always required for all plans
+    $rules = [
+      'payment_method' => ['required', 'in:stripe'],
+      'delivery_option_id' => ['required', 'exists:delivery_options,id'],
+      'area' => ['required', 'string', 'max:255'],
+      'street' => ['required', 'string', 'max:255'],
+      'house_number' => ['required', 'string', 'max:255'],
+      'additional_info' => ['nullable', 'string', 'max:500'],
+      'discount_code' => ['nullable', 'string', 'max:255'], // NEW
+    ];
+
+    $validated = $request->validate($rules);
 
     DB::beginTransaction();
 
     try {
-      $userId = Auth::id();
+      // Calculate totals from cart items
+      $subtotal = $cart->cartItems->sum('story_price');
+      $deliveryTotal = 0;
 
-      // Get pricing from SiteSetting
-      $settings = SiteSetting::whereIn('key', ['first_plan_price', 'second_plan_price', 'third_plan_price'])
-        ->pluck('value', 'key')
-        ->map(function ($value) {
-          return is_numeric($value) ? (float) $value : 0;
-        })
-        ->toArray();
-
-      // Calculate story price based on format
-      $storyPrice = 0;
-      switch ($validated['format']) {
-        case 'first_plan':
-          $storyPrice = $settings['first_plan_price'] ?? 0;
-          break;
-        case 'second_plan':
-          $storyPrice = $settings['second_plan_price'] ?? 0;
-          break;
-        case 'third_plan':
-          $storyPrice = $settings['third_plan_price'] ?? 0;
-          break;
+      if ($validated['delivery_option_id']) {
+        $deliveryOption = DeliveryOption::find($validated['delivery_option_id']);
+        $deliveryTotal = $deliveryOption ? (float) $deliveryOption->price : 0;
       }
 
-      // Calculate delivery price
-      $deliveryPrice = 0;
-      if ($validated['format'] !== 'first_plan' && isset($validated['delivery_option_id'])) {
-        $deliveryOption = DeliveryOption::find($validated['delivery_option_id']);
+      // Handle discount
+      $discountCode = null;
+      $discountValue = 0;
+      $discountId = null;
 
-        if ($deliveryOption) {
-          $deliveryPrice = $deliveryOption->price ?? 0;
+      if (!empty($validated['discount_code'])) {
+        $discount = Discount::where('code', $validated['discount_code'])->first();
+
+        if ($discount) {
+          // Verify user hasn't used it
+          $alreadyUsed = DiscountUsage::where('discount_id', $discount->id)
+            ->where('user_id', Auth::id())
+            ->exists();
+
+          // Verify usage limit
+          $currentUsageCount = DiscountUsage::where('discount_id', $discount->id)->count();
+
+          if (!$alreadyUsed && $currentUsageCount < $discount->usage_limit) {
+            $discountCode = $discount->code;
+            $discountValue = round(($subtotal * $discount->percent) / 100, 2);
+            $discountId = $discount->id;
+          }
         }
       }
 
-      // Calculate total price
-      $totalPrice = $storyPrice + $deliveryPrice;
+      $totalPrice = $subtotal + $deliveryTotal - $discountValue;
 
+      // Create new order
       $order = Order::create([
-        'user_id' => $userId,
-        'story_id' => $validated['story_id'] ?? null,
-        'child_name' => $validated['child_name'],
-        'child_age' => $validated['child_age'],
-        'language' => $validated['language'],
-        'child_gender' => $validated['child_gender'],
-        'format' => $validated['format'],
-        'value' => isset($validated['value']) ? json_encode($validated['value']) : null,
-        'custom_value' => $validated['custom_value'] ?? null,
+        'user_id' => Auth::id(),
         'status' => 'pending',
-        'payment_method' => 'stripe',
-
-        'story_price' => $storyPrice,
-        'delivery_price' => $deliveryPrice,
+        'payment_method' => $validated['payment_method'],
+        'subtotal' => $subtotal,
+        'delivery_total' => $deliveryTotal,
+        'discount_code' => $discountCode,
+        'discount_value' => $discountValue,
         'total_price' => $totalPrice,
-
-        'customer_note' => $validated['customer_note'] ?? null,
-        'hair_color' => $validated['hair_color'] ?? null,
-        'hair_style' => $validated['hair_style'] ?? null,
-        'eye_color' => $validated['eye_color'] ?? null,
-        'skin_tone' => $validated['skin_tone'] ?? null,
-        'clothing_description' => $validated['clothing_description'] ?? null,
       ]);
 
-      // Upload child image
-      if ($request->hasFile('child_image')) {
-        $path = "users/{$userId}/{$order->id}/images";
-        $imagePath = $request->file('child_image')->store($path, 'public');
-        $order->update(['child_image_path' => $imagePath]);
+      // Convert cart items to order items
+      foreach ($cart->cartItems as $cartItem) {
+        // Handle child image path migration
+        $childImagePath = null;
+        $faceSwapImagePath = null;
+
+        if ($cartItem->child_image_path) {
+          $newPath = str_replace('/cart/', "/orders/{$order->id}/", $cartItem->child_image_path);
+          \Illuminate\Support\Facades\Storage::disk('public')->copy($cartItem->child_image_path, $newPath);
+          $childImagePath = $newPath;
+        }
+
+        if ($cartItem->face_swap_image_path) {
+          $newPath = str_replace('/cart/', "/orders/{$order->id}/", $cartItem->face_swap_image_path);
+          \Illuminate\Support\Facades\Storage::disk('public')->copy($cartItem->face_swap_image_path, $newPath);
+          $faceSwapImagePath = $newPath;
+        }
+
+        // Create order item from cart item
+        $orderItem = \App\Models\Order\OrderItem::create([
+          'order_id' => $order->id,
+          'story_id' => $cartItem->story_id,
+          'child_name' => $cartItem->child_name,
+          'child_age' => $cartItem->child_age,
+          'language' => $cartItem->language,
+          'child_gender' => $cartItem->child_gender,
+          'format' => $cartItem->format,
+          'value' => $cartItem->value,
+          'custom_value' => $cartItem->custom_value,
+          'child_image_path' => $childImagePath,
+          'face_swap_image_path' => $faceSwapImagePath,
+          'story_price' => $cartItem->story_price,
+          'hair_color' => $cartItem->hair_color,
+          'hair_style' => $cartItem->hair_style,
+          'eye_color' => $cartItem->eye_color,
+          'skin_tone' => $cartItem->skin_tone,
+          'clothing_description' => $cartItem->clothing_description,
+          'customer_note' => $cartItem->customer_note,
+          'accessory_description' => $cartItem->accessory_description,
+          'personality_traits' => $cartItem->personality_traits,
+          'moral_value' => $cartItem->moral_value,
+          'status' => 'pending',
+        ]);
+
+        // Note: Shipping address is now created at order level, not per item
       }
 
-      // Handle face swap result if exists
-      if (!empty($validated['face_swap_result'])) {
-        // Save the face swap result
-        // The face_swap_result might be a base64 or URL
-        // You'll need to download and save it
-        $faceSwapPath = $this->saveFaceSwapImage($validated['face_swap_result'], $userId, $order->id);
-        $order->update(['face_swap_image_path' => $faceSwapPath]);
-      }
-
-
-      // Create shipping address if needed
-      if ($validated['format'] !== 'first_plan' && !empty($validated['delivery_option_id'])) {
-        $order->shippingAddress()->create([
+      // Create ONE shipping address for the entire order
+      if ($validated['delivery_option_id']) {
+        \App\Models\Order\OrderShippingAddress::create([
+          'order_id' => $order->id,
           'delivery_option_id' => $validated['delivery_option_id'],
           'area' => $validated['area'],
           'street' => $validated['street'],
           'house_number' => $validated['house_number'],
-          'additional_info' => $validated['additional_info'] ?? null,
+          'additional_info' => $validated['additional_info'],
         ]);
       }
-
-      // Send notifications
-      try {
-        if ($order->user) {
-          $order->user->notify(new OrderConfirmation($order));
-        }
-
-        $adminEmailSetting = SiteSetting::where('key', 'admin_notification_email')->first();
-        if ($adminEmailSetting && $adminEmailSetting->value) {
-          $adminUser = new User();
-          $adminUser->email = $adminEmailSetting->value;
-          $adminUser->name = 'Admin';
-          $adminUser->notify(new NotifyAdmin($order));
-        }
-      } catch (\Exception $e) {
-        Log::error('Failed to send order notification emails: ' . $e->getMessage());
-      }
-
-      DB::commit();
-
-      return redirect()->route('frontend.order.payment', $order->id)
-        ->with('title', __('website_response.order_created_title'))
-        ->with('message', __('website_response.order_created_message'))
-        ->with('status', 'success');
-
-    } catch (\Exception $e) {
-      DB::rollBack();
-      return back()->withErrors([
-        'submit' => 'Failed to create order: ' . $e->getMessage()
-      ])->withInput();
-    }
-  }
-
-  private function saveFaceSwapImage($imageData, $userId, $orderId)
-  {
-    // Handle base64 or URL
-    if (filter_var($imageData, FILTER_VALIDATE_URL)) {
-      // It's a URL, download it
-      $contents = file_get_contents($imageData);
-    } else {
-      // It's base64
-      $contents = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData));
-    }
-
-    $path = "users/{$userId}/{$orderId}/face_swap";
-    $filename = 'face_swap_' . time() . '.png';
-    Storage::disk('public')->put("{$path}/{$filename}", $contents);
-
-    return "{$path}/{$filename}";
-  }
-
-
-
-  // Payment Method Selection
-  public function payment(Order $order)
-  {
-    if ($order->user_id !== Auth::id()) {
-      abort(403);
-    }
-
-    if ($order->payments()->exists() && $order->payments()->whereIn('status', ['paid'])->exists()) {
-      return redirect()->route('user.orders.show', $order->id)
-        ->with('title', __('website_response.payment_already_completed_title'))
-        ->with('message', __('website_response.payment_already_completed'))
-        ->with('status', 'error');
-    }
-
-
-    return Inertia::render('Frontend/Order/PaymentMethod', [
-      'order' => $order->load('shippingAddress', 'story'),
-    ]);
-  }
-
-  // Process Payment
-  public function processPayment(Request $request, Order $order)
-  {
-    if ($order->user_id !== Auth::id()) {
-      abort(403);
-    }
-
-
-    $validated = $request->validate([
-      'payment_method' => ['required', 'in:stripe'],
-    ]);
-
-
-    DB::beginTransaction();
-
-    try {
-
 
       // Create payment record
       $payment = Payment::create([
         'order_id' => $order->id,
         'payment_method' => $validated['payment_method'],
         'status' => 'pending',
-        'amount' => $order->total_price,
+        'amount' => $order->total_price, // Uses discounted total
       ]);
 
-      // Update order payment method
-      $order->update(['payment_method' => $validated['payment_method']]);
+      // Clear cart after successful order creation
+      foreach ($cart->cartItems as $item) {
+        if ($item->child_image_path) {
+          \Illuminate\Support\Facades\Storage::disk('public')->delete($item->child_image_path);
+        }
+        if ($item->face_swap_image_path) {
+          \Illuminate\Support\Facades\Storage::disk('public')->delete($item->face_swap_image_path);
+        }
+      }
+      $cart->cartItems()->delete();
 
       DB::commit();
-      if ($validated['payment_method'] === 'stripe') {
-        // Handle Stripe payment
-        $result = $this->stripeService->sendPayment($order);
 
-        Log::info('Stripe payment result: ' . json_encode($result));
-        if (!$result['status']) {
-          return redirect()->route('home')
-            ->with('title', __('website_response.payment_error_title'))
-            ->with('message', $result['message'])
-            ->with('status', 'error');
-        }
+      // Pass discount ID for later usage tracking
+      session(['pending_discount_id' => $discountId]);
 
-        // Update payment with transaction id
-        $payment->update(['transaction_id' => $result['stripe_session_id']]);
-
-        return redirect($result['url']);
-      }
+      // Process payment via Stripe
+      return $this->initiateStripePayment($order, $payment);
 
     } catch (\Exception $e) {
       DB::rollBack();
+      Log::error('Failed to process payment from cart: ' . $e->getMessage(), [
+        'trace' => $e->getTraceAsString()
+      ]);
+
+      return redirect()->route('home')
+        ->with('title', __('website_response.payment_error_title'))
+        ->with('message', __('website_response.payment_failed'))
+        ->with('status', 'error');
+    }
+  }
+
+  /**
+   * Process payment FROM EXISTING ORDER (retry payment)
+   * Route: POST /orders/{order}/process-payment
+   */
+  public function processExistingOrderPayment(Request $request, Order $order)
+  {
+      // Ensure user owns the order
+      if ($order->user_id !== Auth::id()) {
+          abort(403, __('website_response.unauthorized_access'));
+      }
+
+      // Build validation rules - shipping is always required for all plans
+      $rules = [
+          'payment_method' => ['required', 'in:stripe'],
+          'delivery_option_id' => ['required', 'exists:delivery_options,id'],
+          'area' => ['required', 'string', 'max:255'],
+          'street' => ['required', 'string', 'max:255'],
+          'house_number' => ['required', 'string', 'max:255'],
+          'additional_info' => ['nullable', 'string', 'max:500'],
+          'discount_code' => ['nullable', 'string', 'max:255'], // ✅ Removed 'exists' rule - we'll validate manually
+      ];
+
+      $validated = $request->validate($rules);
+
+      // Check if order is already paid
+      $existingPaidPayment = $order->payments()->where('status', 'paid')->first();
+      if ($existingPaidPayment) {
+          return redirect()->route('user.orders.show', $order->id)
+              ->with('title', __('website_response.already_paid_title'))
+              ->with('message', __('website_response.already_paid_message'))
+              ->with('status', 'info');
+      }
+
+      DB::beginTransaction();
+
+      try {
+          // Recalculate delivery total
+          $deliveryTotal = 0;
+          if ($validated['delivery_option_id']) {
+              $deliveryOption = DeliveryOption::find($validated['delivery_option_id']);
+              $deliveryTotal = $deliveryOption ? (float) $deliveryOption->price : 0;
+          }
+
+          // ✅ Handle discount - Three scenarios:
+          // 1. Empty string sent from frontend = User removed discount, don't apply any
+          // 2. New discount code sent = Validate and apply new discount
+          // 3. Null/not provided = Keep existing discount (if any)
+
+          $discountCode = null;
+          $discountValue = 0;
+          $discountId = null;
+
+          // Check if discount_code is provided in the request
+          if (array_key_exists('discount_code', $validated)) {
+              $inputDiscountCode = trim($validated['discount_code'] ?? '');
+
+              // ✅ If empty string sent = User explicitly removed discount
+              if ($inputDiscountCode === '') {
+                  Log::info('Discount removed by user', [
+                      'order_id' => $order->id,
+                      'previous_discount' => $order->discount_code,
+                  ]);
+
+                  $discountCode = null;
+                  $discountValue = 0;
+                  $discountId = null;
+              }
+              // ✅ If discount code provided = Validate and apply
+              else {
+                  $discount = Discount::where('code', $inputDiscountCode)->first();
+
+                  if ($discount) {
+                      // Verify user hasn't used it
+                      $alreadyUsed = DiscountUsage::where('discount_id', $discount->id)
+                          ->where('user_id', Auth::id())
+                          ->exists();
+
+                      // Verify usage limit
+                      $currentUsageCount = DiscountUsage::where('discount_id', $discount->id)->count();
+
+                      if (!$alreadyUsed && $currentUsageCount < $discount->usage_limit) {
+                          $discountCode = $discount->code;
+                          $discountValue = round(($order->subtotal * $discount->percent) / 100, 2);
+                          $discountId = $discount->id;
+
+                          Log::info('New discount applied to existing order', [
+                              'order_id' => $order->id,
+                              'discount_code' => $discountCode,
+                              'discount_value' => $discountValue,
+                              'discount_percent' => $discount->percent,
+                          ]);
+                      } else {
+                          Log::warning('Discount cannot be applied to existing order', [
+                              'order_id' => $order->id,
+                              'code' => $inputDiscountCode,
+                              'already_used' => $alreadyUsed,
+                              'usage_limit_reached' => $currentUsageCount >= $discount->usage_limit,
+                          ]);
+
+                          // ✅ Invalid discount code = Don't apply any discount
+                          $discountCode = null;
+                          $discountValue = 0;
+                          $discountId = null;
+                      }
+                  } else {
+                      Log::warning('Discount code not found', [
+                          'order_id' => $order->id,
+                          'code' => $inputDiscountCode,
+                      ]);
+
+                      // ✅ Discount not found = Don't apply any discount
+                      $discountCode = null;
+                      $discountValue = 0;
+                      $discountId = null;
+                  }
+              }
+          }
+          // ✅ If discount_code not in request at all = Keep existing discount (backward compatibility)
+          else {
+              $discountCode = $order->discount_code;
+              $discountValue = $order->discount_value ?? 0;
+
+              Log::info('Keeping existing discount', [
+                  'order_id' => $order->id,
+                  'discount_code' => $discountCode,
+                  'discount_value' => $discountValue,
+              ]);
+          }
+
+          // Recalculate total price
+          $totalPrice = $order->subtotal + $deliveryTotal - $discountValue;
+
+          Log::info('Recalculated order totals', [
+              'order_id' => $order->id,
+              'subtotal' => $order->subtotal,
+              'delivery_total' => $deliveryTotal,
+              'discount_code' => $discountCode,
+              'discount_value' => $discountValue,
+              'total_price' => $totalPrice,
+          ]);
+
+          // Update order with new values
+          $order->update([
+              'payment_method' => $validated['payment_method'],
+              'delivery_total' => $deliveryTotal,
+              'discount_code' => $discountCode,
+              'discount_value' => $discountValue,
+              'total_price' => $totalPrice,
+          ]);
+
+          // Update or create shipping address
+          if ($validated['delivery_option_id']) {
+              $shippingData = [
+                  'delivery_option_id' => $validated['delivery_option_id'],
+                  'area' => $validated['area'],
+                  'street' => $validated['street'],
+                  'house_number' => $validated['house_number'],
+                  'additional_info' => $validated['additional_info'],
+              ];
+
+              $order->shippingAddress()->updateOrCreate(
+                  ['order_id' => $order->id],
+                  $shippingData
+              );
+          }
+
+          // Find or create pending payment
+          $payment = $order->payments()
+              ->where('status', 'pending')
+              ->latest()
+              ->first();
+
+          if (!$payment) {
+              $payment = Payment::create([
+                  'order_id' => $order->id,
+                  'payment_method' => $validated['payment_method'],
+                  'status' => 'pending',
+                  'amount' => $order->total_price,
+              ]);
+          } else {
+              // Update existing pending payment
+              $payment->update([
+                  'payment_method' => $validated['payment_method'],
+                  'amount' => $order->total_price,
+              ]);
+          }
+
+          DB::commit();
+
+          // ✅ Refresh order to ensure all fields are loaded fresh
+          $order->refresh();
+
+          Log::info('Existing order prepared for payment', [
+              'order_id' => $order->id,
+              'subtotal' => $order->subtotal,
+              'delivery_total' => $order->delivery_total,
+              'discount_code' => $order->discount_code,
+              'discount_value' => $order->discount_value,
+              'total_price' => $order->total_price,
+          ]);
+
+          // Pass discount ID for later usage tracking if new discount applied
+          if ($discountId) {
+              session(['pending_discount_id' => $discountId]);
+          } else {
+              // ✅ Clear any existing pending discount session if no discount applied
+              session()->forget('pending_discount_id');
+          }
+
+          // Process payment via Stripe
+          return $this->initiateStripePayment($order, $payment);
+
+      } catch (\Exception $e) {
+          DB::rollBack();
+          Log::error('Failed to process payment for existing order: ' . $e->getMessage(), [
+              'order_id' => $order->id,
+              'trace' => $e->getTraceAsString()
+          ]);
+
+          return redirect()->route('user.orders.show', $order->id)
+              ->with('title', __('website_response.payment_error_title'))
+              ->with('message', __('website_response.payment_failed'))
+              ->with('status', 'error');
+      }
+  }
+
+
+  /**
+   * Helper method to initiate Stripe payment
+   * Used by both processPayment and processExistingOrderPayment
+   */
+  private function initiateStripePayment(Order $order, Payment $payment)
+  {
+    try {
+      $result = $this->stripeService->sendPayment($order);
+
+      Log::info('Stripe payment initiated', [
+        'order_id' => $order->id,
+        'result' => $result
+      ]);
+
+      if (!$result['status']) {
+        return redirect()->route('home')
+          ->with('title', __('website_response.payment_error_title'))
+          ->with('message', $result['message'])
+          ->with('status', 'error');
+      }
+
+      // Update payment with Stripe session ID
+      $payment->update(['transaction_id' => $result['stripe_session_id']]);
+
+      // Redirect to Stripe checkout
+      return redirect($result['url']);
+
+    } catch (\Exception $e) {
+      Log::error('Stripe payment initiation failed: ' . $e->getMessage(), [
+        'order_id' => $order->id,
+        'trace' => $e->getTraceAsString()
+      ]);
+
       return redirect()->route('home')
         ->with('title', __('website_response.payment_error_title'))
         ->with('message', __('website_response.payment_failed'))

@@ -437,6 +437,45 @@ $main = [
   'video_updated_successfully' => 'تم تحديث الفيديو بنجاح',
   'video_removed_successfully' => 'تم حذف الفيديو بنجاح',
 
+  "total_items"=>"إجمالي العناصر",
+  "your_story_pdf"=>"ملف PDF لقصتك",
+  "your_stories"=>"قصصك",
+
+  // Order Status
+  'select' => 'اختر',
+  'order_status_pending' => 'في الانتظار',
+  'order_status_processing' => 'قيد المعالجة',
+  'order_status_completed' => 'مكتمل',
+  'order_status_cancelled' => 'ملغي',
+
+  // Payment Status
+  'payment_status_pending' => 'في الانتظار',
+  'payment_status_paid' => 'مدفوع',
+  'payment_status_failed' => 'فاشل',
+  'payment_status_refunded' => 'مسترد',
+
+  // إدارة الخصومات
+  'discount_management' => 'إدارة الخصومات',
+  'discounts' => 'الخصومات',
+  'create_discount' => 'إنشاء خصم',
+  'edit_discount' => 'تعديل خصم',
+  'discount_code' => 'رمز الخصم',
+  'usage_limit' => 'حد الاستخدام',
+  'search_discounts_by_code' => 'البحث في الخصومات بالرمز',
+  'enter_discount_code' => 'أدخل رمز الخصم',
+  'enter_usage_limit' => 'أدخل حد الاستخدام',
+  'confirm_delete_discount' => 'هل أنت متأكد من حذف هذا الخصم؟',
+  'confirm_delete_discounts' => 'هل أنت متأكد من حذف الخصومات المحددة؟',
+  'discount_percent' => 'نسبة الخصم',
+  'enter_discount_percent' => 'أدخل نسبة الخصم',
+  'apply' => 'تطبيق',
+  'discount' => 'خصم',
+  'remove_discount' => 'إزالة الخصم',
+  'discount_code_required' => 'يرجى إدخال رمز الخصم',
+  'discount_validation_error' => 'خطأ في التحقق من رمز الخصم',
+  'discount_value' => 'قيمة الخصم',
+  'discount_applied' => 'تم تطبيق الخصم',
+
 ];
 
 return array_merge(

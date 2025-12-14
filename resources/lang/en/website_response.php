@@ -191,6 +191,27 @@ return [
   'age_categories_deleted_message' => ':count age categories have been deleted successfully.',
   'age_category_name_exists' => 'Age category name already exists.',
 
+  /* Discount Responses */
+  'discount_created_title' => 'Discount Created',
+  'discount_created_message' => 'Discount has been created successfully.',
+  'discount_updated_title' => 'Discount Updated',
+  'discount_updated_message' => 'Discount has been updated successfully.',
+  'discount_deleted_title' => 'Discount Deleted',
+  'discount_deleted_message' => 'Discount has been deleted successfully.',
+  'discounts_deleted_title' => 'Discounts Deleted',
+  'discounts_deleted_message' => ':count discounts have been deleted successfully.',
+  'discount_not_found' => 'Invalid discount code',
+  'discount_already_used' => 'You have already used this discount code',
+  'discount_limit_reached' => 'This discount code has reached its usage limit',
+  'discount_applied' => 'Discount applied successfully',
+  'discount_code_required' => 'Please enter a discount code',
+  'discount_validation_error' => 'Failed to validate discount code. Please try again.',
+  'discount_code' => 'Discount Code',
+  'enter_discount_code' => 'Enter discount code',
+  'apply' => 'Apply',
+  'remove_discount' => 'Remove discount',
+  'discount' => 'Discount',
+
   // Delivery Options Responses
   'delivery_option_created_title' => 'Delivery Option Created',
   'delivery_option_created_message' => 'Delivery option has been created successfully.',
@@ -241,4 +262,34 @@ return [
   'payment_error_title' => 'Payment Error',
   'payment_already_initiated_title' => 'Payment Already Initiated',
   'payment_already_initiated' => 'Payment for this order has already been initiated.',
+
+  // Cart Responses
+  'item_added_to_cart_title' => 'Item Added to Cart',
+  'item_added_to_cart_message' => 'Story has been added to your cart successfully.',
+  'failed_to_add_to_cart' => 'Failed to add story to cart. Please try again.',
+  'item_removed_title' => 'Item Removed',
+  'item_removed_message' => 'Item has been removed from your cart.',
+  'cart_cleared_title' => 'Cart Cleared',
+  'cart_cleared_message' => 'Your cart has been cleared successfully.',
+  'cart_updated_title' => 'Cart Updated',
+  'cart_updated_message' => 'Your cart has been updated successfully.',
+  'cart_empty_title' => 'Cart is Empty',
+  'cart_empty_message' => 'Please add items to your cart',
+  'order_creation_failed_title' => 'Order Creation Failed',
+  'order_creation_failed' => 'Failed to create order. Please try again.',
+  'payment_error_title' => 'Payment Error',
+  'payment_failed' => 'Payment failed. Please try again.',
+  'already_paid_title' => 'Already Paid',
+  'already_paid_message' => 'This order has already been paid.',
+
+  // Discount Management
+  'discount_created_title' => 'Discount Created',
+  'discount_created_message' => 'Discount has been created successfully.',
+  'discount_updated_title' => 'Discount Updated',
+  'discount_updated_message' => 'Discount has been updated successfully.',
+  'discount_deleted_title' => 'Discount Deleted',
+  'discount_deleted_message' => 'Discount has been deleted successfully.',
+  'discounts_deleted_title' => 'Discounts Deleted',
+  'discounts_deleted_message' => ':count discounts have been deleted successfully.',
+
 ];

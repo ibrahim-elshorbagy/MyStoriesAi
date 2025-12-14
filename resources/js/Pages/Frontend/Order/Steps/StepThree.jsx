@@ -37,7 +37,7 @@ export default function StepThree({
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="">
           {/* Child Information */}
           <div>
             <div className="flex justify-between items-center mb-4">
@@ -105,59 +105,6 @@ export default function StepThree({
             )}
           </div>
 
-          {/* Shipping Information */}
-          {data.format !== 'first_plan' && data.delivery_option_id && (
-            <div>
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-semibold text-neutral-900 flex items-center">
-                  <i className="fa-solid fa-truck text-blue-500 mx-2"></i>
-                  {t('shipping_address')}
-                </h3>
-                <button
-                  type="button"
-                  onClick={() => onEdit(2)}
-                  className="text-orange-600 hover:text-orange-700 font-semibold text-sm flex items-center gap-2"
-                >
-                  <i className="fa-solid fa-pen"></i>
-                  {t('edit') || 'Edit'}
-                </button>
-              </div>
-              <div className="space-y-3">
-                <div className="flex">
-                  <span className="font-medium text-neutral-700 w-32">{t('area')}:</span>
-                  <span className="text-neutral-900">{data.area}</span>
-                </div>
-                <div className="flex">
-                  <span className="font-medium text-neutral-700 w-32">{t('street')}:</span>
-                  <span className="text-neutral-900">{data.street}</span>
-                </div>
-                <div className="flex">
-                  <span className="font-medium text-neutral-700 w-32">{t('house_number')}:</span>
-                  <span className="text-neutral-900">{data.house_number}</span>
-                </div>
-                {data.additional_info && (
-                  <div>
-                    <span className="font-medium text-neutral-700">{t('additional_info')}:</span>
-                    <p className="text-neutral-900 mt-1">{data.additional_info}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Digital Delivery for First Plan */}
-          {data.format === 'first_plan' && (
-            <div>
-              <h3 className="text-lg font-semibold text-neutral-900 flex items-center mb-4">
-                <i className="fa-solid fa-cloud text-green-500 mx-2"></i>
-                {t('delivery_method')}
-              </h3>
-              <div className="bg-green-50 p-4 rounded-lg">
-                <span className="text-green-800 font-medium">{t('digital_delivery')}</span>
-                <p className="text-green-700 text-sm mt-1">{t('no_shipping_required')}</p>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Customizations */}
@@ -285,7 +232,7 @@ export default function StepThree({
           ) : (
             <span className="flex items-center gap-3">
               <i className="fa-solid fa-check-circle"></i>
-              {t('confirm_order')}
+              {t('confirm')}
             </span>
           )}
         </button>

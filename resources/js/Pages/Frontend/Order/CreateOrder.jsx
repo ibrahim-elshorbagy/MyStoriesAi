@@ -5,7 +5,6 @@ import { Head } from '@inertiajs/react';
 import { useTrans } from '@/Hooks/useTrans';
 import StepZero from './Steps/StepZero';
 import StepOne from './Steps/StepOne';
-import StepTwo from './Steps/StepTwo';
 import StepThree from './Steps/StepThree';
 
 export default function CreateOrder({ pricing, deliveryOptions, story = null }) {
@@ -34,31 +33,20 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
     customer_note: '',
     child_image: null,
     story_price: 0,
-    delivery_price: 0,
-    total_price: 0,
-    delivery_option_id: '',
-    area: '',
-    street: '',
-    house_number: '',
-    additional_info: '',
   });
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       const step0Fields = ['story_id', 'face_swap_result', 'child_image'];
       const step1Fields = ['child_name', 'child_age', 'language', 'child_gender', 'format', 'value', 'custom_value', 'hair_color', 'hair_style', 'eye_color', 'skin_tone', 'clothing_description', 'customer_note', 'story_price'];
-      const step2Fields = ['delivery_option_id', 'area', 'street', 'house_number', 'additional_info', 'delivery_price'];
 
       const hasStep0Errors = Object.keys(errors).some(key => step0Fields.includes(key));
       const hasStep1Errors = Object.keys(errors).some(key => step1Fields.includes(key));
-      const hasStep2Errors = Object.keys(errors).some(key => step2Fields.includes(key));
 
       if (hasStep0Errors && story) {
         setCurrentStep(0);
       } else if (hasStep1Errors) {
         setCurrentStep(1);
-      } else if (hasStep2Errors) {
-        setCurrentStep(2);
       }
 
       setTimeout(() => {
@@ -119,40 +107,6 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
     return Object.keys(newErrors).length === 0;
   };
 
-  const validateStep2 = () => {
-    if (data.format === 'first_plan') {
-      setClientErrors({});
-      return true;
-    }
-
-    const newErrors = {};
-
-    if (!data.delivery_option_id || data.delivery_option_id === 'custom') {
-      newErrors.delivery_option_id = t('required');
-    }
-
-    if (!data.area || data.area.trim() === '') {
-      newErrors.area = t('required');
-    } else if (data.area.length > 255) {
-      newErrors.area = t('validation_max_string');
-    }
-
-    if (!data.street || data.street.trim() === '') {
-      newErrors.street = t('required');
-    } else if (data.street.length > 255) {
-      newErrors.street = t('validation_max_string');
-    }
-
-    if (!data.house_number || data.house_number.trim() === '') {
-      newErrors.house_number = t('required');
-    } else if (data.house_number.length > 255) {
-      newErrors.house_number = t('validation_max_string');
-    }
-
-    setClientErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const goToStep = (step) => {
     if (step === 1 && currentStep === 0) {
       setClientErrors({});
@@ -161,29 +115,9 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
       return;
     }
 
-    if (step === 2 && !validateStep1()) {
-      setTimeout(() => {
-        const firstError = document.querySelector('.text-red-600');
-        if (firstError) {
-          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }, 100);
-      return;
-    }
-
     if (step === 3) {
       if (!validateStep1()) {
         setCurrentStep(1);
-        setTimeout(() => {
-          const firstError = document.querySelector('.text-red-600');
-          if (firstError) {
-            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        }, 100);
-        return;
-      }
-      if (!validateStep2()) {
-        setCurrentStep(2);
         setTimeout(() => {
           const firstError = document.querySelector('.text-red-600');
           if (firstError) {
@@ -201,14 +135,8 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!validateStep1() || !validateStep2()) {
-      if (Object.keys(clientErrors).some(key =>
-        ['child_name', 'child_age', 'language', 'child_gender', 'format', 'value', 'child_image'].includes(key)
-      )) {
-        setCurrentStep(1);
-      } else {
-        setCurrentStep(2);
-      }
+    if (!validateStep1()) {
+      setCurrentStep(1);
 
       setTimeout(() => {
         const firstError = document.querySelector('.text-red-600');
@@ -226,10 +154,10 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
       forceFormData: true,
       preserveScroll: true,
       onError: (errors) => {
-        console.log('Validation errors:', errors);
+        // Handle validation errors
       },
       onSuccess: () => {
-        console.log('Order submitted successfully');
+        // Order submitted successfully
       }
     });
   };
@@ -237,7 +165,6 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
   const getStepTitle = () => {
     if (currentStep === 0) return t('customize_story') || 'تخصيص القصة';
     if (currentStep === 1) return t('step_1') || 'الخطوة 1';
-    if (currentStep === 2) return data.format === 'first_plan' ? t('step_3') || 'الخطوة 3' : t('step_2') || 'الخطوة 2';
     if (currentStep === 3) return t('step_3') || 'الخطوة 3';
   };
 
@@ -265,7 +192,6 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
                   <div className={`${currentStep === 0 ? 'w-12 h-2 bg-gradient-to-r from-orange-400 to-pink-500' : currentStep > 0 ? 'w-2 h-2 bg-green-500' : 'w-2 h-2 bg-neutral-300'} rounded-full transition-all duration-300`}></div>
                 )}
                 <div className={`${currentStep === 1 ? 'w-12 h-2 bg-gradient-to-r from-orange-400 to-pink-500' : currentStep > 1 ? 'w-2 h-2 bg-green-500' : 'w-2 h-2 bg-neutral-300'} rounded-full transition-all duration-300`}></div>
-                <div className={`${currentStep === 2 ? 'w-12 h-2 bg-gradient-to-r from-orange-400 to-pink-500' : currentStep > 2 ? 'w-2 h-2 bg-green-500' : 'w-2 h-2 bg-neutral-300'} rounded-full transition-all duration-300`}></div>
                 <div className={`${currentStep === 3 ? 'w-12 h-2 bg-gradient-to-r from-orange-400 to-pink-500' : 'w-2 h-2 bg-neutral-300'} rounded-full transition-all duration-300`}></div>
               </div>
             </div>
@@ -297,21 +223,9 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
                 setImagePreview={setImagePreview}
                 imageFile={imageFile}
                 setImageFile={setImageFile}
-                onNext={() => goToStep(data.format === 'first_plan' ? 3 : 2)}
+                onNext={() => goToStep(3)}
                 onBack={cameFromStepZero ? () => setCurrentStep(0) : null}
                 cameFromStepZero={cameFromStepZero}
-                t={t}
-              />
-            )}
-
-            {currentStep === 2 && data.format !== 'first_plan' && (
-              <StepTwo
-                data={data}
-                setData={setData}
-                errors={allErrors}
-                deliveryOptions={deliveryOptions}
-                onNext={() => goToStep(3)}
-                onBack={() => setCurrentStep(1)}
                 t={t}
               />
             )}
@@ -320,7 +234,7 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
               <StepThree
                 data={data}
                 imagePreview={imagePreview}
-                onBack={() => setCurrentStep(data.format === 'first_plan' ? 1 : 2)}
+                onBack={() => setCurrentStep(1)}
                 onEdit={(step) => setCurrentStep(step)}
                 processing={processing}
                 errors={allErrors}

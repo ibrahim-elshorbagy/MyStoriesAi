@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\Order\OrderResource;
 
 class UserOrderController extends Controller
 {
@@ -22,38 +23,38 @@ class UserOrderController extends Controller
     $sortDirection = $request->input('direction', 'desc');
     $perPage = $request->input('per_page', 15);
 
-    $query = Order::with(['user', 'payments', 'shippingAddress', 'story'])
-      ->where('user_id', Auth::id()); // Only show user's own orders
+    $query = Order::with(['user', 'payments', 'orderItems.story', 'shippingAddress.deliveryOption'])
+      ->where('user_id', Auth::id());
 
     // Filter by child name
     if ($request->filled('name')) {
-      $query->where('child_name', 'like', '%' . $request->name . '%');
+      $query->whereHas('orderItems', function ($itemQuery) use ($request) {
+        $itemQuery->where('child_name', 'like', '%' . $request->name . '%');
+      });
     }
 
     $orders = $query->orderBy($sortField, $sortDirection)
       ->paginate($perPage)
       ->withQueryString();
 
-    // Add row numbers
     $orders = $this->addRowNumbers($orders);
 
     return inertia('User/Order/Orders', [
-      'orders' => $orders,
+      'orders' => $orders->through(fn($order) => OrderResource::make($order)->toArray(request())),
       'queryParams' => $request->query() ?: null,
     ]);
   }
 
   public function show(Order $order)
   {
-    // Ensure user can only view their own orders
     if ($order->user_id !== Auth::id()) {
       abort(403, 'Unauthorized');
     }
 
-    $order->load(['user', 'payments', 'shippingAddress.deliveryOption', 'story']);
+    $order->load(['user', 'payments', 'orderItems.story', 'shippingAddress.deliveryOption']);
 
     return inertia('User/Order/Partials/Pages/ViewOrder', [
-      'order' => $order,
+      'order' => OrderResource::make($order)->toArray(request()),
     ]);
   }
 }

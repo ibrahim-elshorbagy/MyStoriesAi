@@ -46,23 +46,26 @@ class StripeService
 
       $lineItems = [];
 
-      // Add story item
-      if ($order->story_price > 0) {
+      // Calculate discounted subtotal (ensure it doesn't go negative)
+      $discountedSubtotal = max(0, $order->subtotal - $order->discount_value);
+
+      // Add discounted subtotal (stories combined)
+      if ($discountedSubtotal > 0) {
         $lineItems[] = [
           'price_data' => [
             'currency' => 'usd',
             'product_data' => [
-              'name' => $order->story ? $order->story->title_value : 'Custom Story',
-              'description' => 'Personalized story for ' . $order->child_name,
+              'name' => 'Personalized Stories' . ($order->discount_code ? ' (Discount: ' . $order->discount_code . ')' : ''),
+              'description' => 'Custom stories for order #' . $order->id,
             ],
-            'unit_amount' => $order->story_price * 100,
+            'unit_amount' => $discountedSubtotal * 100, // Convert to cents
           ],
           'quantity' => 1,
         ];
       }
 
-      // Add delivery item
-      if ($order->delivery_price > 0) {
+      // Add delivery total (all deliveries combined)
+      if ($order->delivery_total > 0) {
         $lineItems[] = [
           'price_data' => [
             'currency' => 'usd',
@@ -70,7 +73,7 @@ class StripeService
               'name' => 'Delivery',
               'description' => 'Shipping and delivery costs',
             ],
-            'unit_amount' => $order->delivery_price * 100,
+            'unit_amount' => $order->delivery_total * 100, // Convert to cents
           ],
           'quantity' => 1,
         ];
@@ -100,7 +103,6 @@ class StripeService
           'user_id' => $order->user->id,
         ],
       ]);
-
 
       Log::info('Stripe checkout session created successfully, URL: ' . $session->url);
 

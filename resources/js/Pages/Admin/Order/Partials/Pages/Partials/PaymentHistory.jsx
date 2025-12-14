@@ -5,7 +5,7 @@ export default function PaymentHistory({ order, t, paymentMethodOptions }) {
   if (!paidPayments || paidPayments.length === 0) return null;
 
   return (
-    <div className="bg-white dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6 lg:col-span-2">
+    <div className="bg-white dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-700 rounded-lg p-8 lg:col-span-2">
       <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4">{t('payment_details')}</h3>
 
       <div className="space-y-4">

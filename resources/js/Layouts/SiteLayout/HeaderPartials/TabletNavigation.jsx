@@ -11,7 +11,8 @@ export default function TabletNavigation() {
 
   const {
     auth: { user },
-  } = usePage().props;
+    cart_count
+  } = usePage().props; // Add cart_count
   const { t } = useTrans();
   const { activeSection, scrollToSection } = useSmoothScroll();
 
@@ -49,13 +50,34 @@ export default function TabletNavigation() {
           </Link>
         </div>
 
-        {/* Header toggles and menu button */}
+        {/* Header Icons: Toggles, Cart, Menu Button */}
         <div className="flex items-center gap-3">
-                    <NavigationToggles
+          {/* Language/Theme Toggles (hidden on very small screens) */}
+          <NavigationToggles
             variant="compact"
             showLabels={false}
             className="hidden sm:flex"
           />
+
+          {/* Cart Icon with Badge (only for logged in users) */}
+          {user && (
+            <Link
+              href={route('cart.index')}
+              className="relative inline-flex items-center justify-center w-10 h-10 text-neutral-700"
+            >
+              <i className="fa-solid fa-shopping-cart text-xl"></i>
+              {cart_count > 0 && (
+                <span className="absolute -top-1 ltr:-right-1 rtl:-left-1
+                bg-gradient-to-r from-orange-500 to-orange-600 text-white
+                text-[10px] font-bold rounded-full h-5 w-5 flex items-center
+                justify-center shadow-lg animate-pulse">
+                {cart_count > 99 ? '99+' : cart_count}
+              </span>
+              )}
+            </Link>
+          )}
+
+          {/* Menu Button */}
           <button
             onClick={toggleMobileMenu}
             className="px-3 py-2 rounded-full bg-orange-500 text-white shadow-md"
@@ -153,15 +175,32 @@ export default function TabletNavigation() {
             </li> */}
 
             {user ? (
-              <li>
-                <MenuNavLink
-                  href="#"
-                  icon="fa-right-from-bracket"
-                  className="text-red-600 hover:text-red-700"
-                >
-                  <button onClick={handleLogout}>{t('logout')}</button>
-                </MenuNavLink>
-              </li>
+              <>
+                <li>
+                  <MenuNavLink
+                    href={route("cart.index")}
+                    active={route().current("cart.index")}
+                    icon="fa-shopping-cart"
+                    className="relative"
+                  >
+                    {t('cart')}
+                    {cart_count > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+                        {cart_count > 99 ? '99+' : cart_count}
+                      </span>
+                    )}
+                  </MenuNavLink>
+                </li>
+                <li>
+                  <MenuNavLink
+                    href="#"
+                    icon="fa-right-from-bracket"
+                    className="text-red-600 hover:text-red-700"
+                  >
+                    <button onClick={handleLogout}>{t('logout')}</button>
+                  </MenuNavLink>
+                </li>
+              </>
             ) : (
               <>
                 <li>

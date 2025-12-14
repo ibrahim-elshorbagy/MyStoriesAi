@@ -496,6 +496,45 @@ $main= [
   'video_updated_successfully' => 'Video erfolgreich aktualisiert',
   'video_removed_successfully' => 'Video erfolgreich entfernt',
 
+  "total_items"=>"Gesamtanzahl der Artikel",
+  "your_story_pdf"=>"Ihr Geschichten-PDF",
+  "your_stories"=>"Ihre Geschichten",
+
+  // Order Status
+  'select' => 'Auswählen',
+  'order_status_pending' => 'Ausstehend',
+  'order_status_processing' => 'In Bearbeitung',
+  'order_status_completed' => 'Abgeschlossen',
+  'order_status_cancelled' => 'Storniert',
+
+  // Payment Status
+  'payment_status_pending' => 'Ausstehend',
+  'payment_status_paid' => 'Bezahlt',
+  'payment_status_failed' => 'Fehlgeschlagen',
+  'payment_status_refunded' => 'Erstattet',
+
+  // Rabattverwaltung
+  'discount_management' => 'Rabattverwaltung',
+  'discounts' => 'Rabatte',
+  'create_discount' => 'Rabatt erstellen',
+  'edit_discount' => 'Rabatt bearbeiten',
+  'discount_code' => 'Rabattcode',
+  'usage_limit' => 'Nutzungslimit',
+  'search_discounts_by_code' => 'Rabatte nach Code suchen',
+  'enter_discount_code' => 'Rabattcode eingeben',
+  'enter_usage_limit' => 'Nutzungslimit eingeben',
+  'confirm_delete_discount' => 'Sind Sie sicher, dass Sie diesen Rabatt löschen möchten?',
+  'confirm_delete_discounts' => 'Sind Sie sicher, dass Sie die ausgewählten Rabatte löschen möchten?',
+  'discount_percent' => 'Rabattprozentsatz',
+  'enter_discount_percent' => 'Rabattprozentsatz eingeben',
+  'apply' => 'Anwenden',
+  'discount' => 'Rabatt',
+  'remove_discount' => 'Rabatt entfernen',
+  'discount_code_required' => 'Bitte geben Sie einen Rabattcode ein',
+  'discount_validation_error' => 'Fehler bei der Validierung des Rabattcodes',
+  'discount_value' => 'Rabattwert',
+  'discount_applied' => 'Rabatt angewendet',
+
 ];
 
 

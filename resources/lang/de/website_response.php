@@ -209,6 +209,26 @@ return [
   'age_categories_deleted_message' => ':count Alterskategorien wurden erfolgreich gelöscht.',
   'age_category_name_exists' => 'Alterskategoriename existiert bereits.',
 
+  /* Discount Responses */
+  'discount_created_title' => 'Rabatt erstellt',
+  'discount_created_message' => 'Rabatt wurde erfolgreich erstellt.',
+  'discount_updated_title' => 'Rabatt aktualisiert',
+  'discount_updated_message' => 'Rabatt wurde erfolgreich aktualisiert.',
+  'discount_deleted_title' => 'Rabatt gelöscht',
+  'discount_deleted_message' => 'Rabatt wurde erfolgreich gelöscht.',
+  'discounts_deleted_title' => 'Rabatte gelöscht',
+  'discounts_deleted_message' => ':count Rabatte wurden erfolgreich gelöscht.',
+  'discount_not_found' => 'Ungültiger Rabattcode',
+  'discount_already_used' => 'Sie haben diesen Rabattcode bereits verwendet',
+  'discount_limit_reached' => 'Dieser Rabattcode hat das Nutzungslimit erreicht',
+  'discount_applied' => 'Rabatt erfolgreich angewendet',
+  'discount_code_required' => 'Bitte geben Sie einen Rabattcode ein',
+  'discount_validation_error' => 'Rabattcode-Validierung fehlgeschlagen. Bitte versuchen Sie es erneut.',
+  'discount_code' => 'Rabattcode',
+  'enter_discount_code' => 'Rabattcode eingeben',
+  'apply' => 'Anwenden',
+  'remove_discount' => 'Rabatt entfernen',
+  'discount' => 'Rabatt',
 
   // Delivery Options Responses
   'delivery_option_created_title' => 'Lieferoption erstellt',
@@ -264,4 +284,19 @@ return [
   'payment_error_title' => 'Zahlungsfehler',
   'payment_already_initiated_title' => 'Zahlung bereits eingeleitet',
   'payment_already_initiated' => 'Die Zahlung für diese Bestellung wurde bereits eingeleitet.',
+
+  // Cart Responses
+  'item_added_to_cart_title' => 'Artikel zum Warenkorb hinzugefügt',
+  'item_added_to_cart_message' => 'Geschichte wurde erfolgreich zu Ihrem Warenkorb hinzugefügt.',
+  'failed_to_add_to_cart' => 'Fehler beim Hinzufügen der Geschichte zum Warenkorb. Bitte versuchen Sie es erneut.',
+  'item_removed_title' => 'Artikel entfernt',
+  'item_removed_message' => 'Artikel wurde aus Ihrem Warenkorb entfernt.',
+  'cart_cleared_title' => 'Warenkorb geleert',
+  'cart_cleared_message' => 'Ihr Warenkorb wurde erfolgreich geleert.',
+  'cart_updated_title' => 'Warenkorb aktualisiert',
+  'cart_updated_message' => 'Ihr Warenkorb wurde erfolgreich aktualisiert.',
+  'already_paid_title' => 'Bereits bezahlt',
+  'already_paid_message' => 'Diese Bestellung wurde bereits bezahlt.',
+
+
 ];

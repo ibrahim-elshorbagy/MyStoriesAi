@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SiteSetting\SiteSettingsController;
 use App\Http\Controllers\Admin\Story\Category\AgeCategoryController;
 use App\Http\Controllers\Admin\SiteSetting\DeliveryOptionController;
 use App\Http\Controllers\Admin\SiteSetting\CustomerFeedbackController;
+use App\Http\Controllers\Admin\SiteSetting\DiscountController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
@@ -52,5 +53,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('/dashboard')->group(function 
   Route::put('/admin/customer-feedbacks/{customerFeedback}', [CustomerFeedbackController::class, 'update'])->name('admin.customer-feedbacks.update');
   Route::delete('/admin/customer-feedbacks/{customerFeedback}', [CustomerFeedbackController::class, 'destroy'])->name('admin.customer-feedbacks.destroy');
   Route::delete('/admin/customer-feedbacks/bulk/delete', [CustomerFeedbackController::class, 'bulkDelete'])->name('admin.customer-feedbacks.bulk.delete');
+
+  // Discount routes
+  Route::get('/admin/discounts', [DiscountController::class, 'index'])->name('admin.discounts.index');
+  Route::post('/admin/discounts', [DiscountController::class, 'store'])->name('admin.discounts.store');
+  Route::put('/admin/discounts/{discount}', [DiscountController::class, 'update'])->name('admin.discounts.update');
+  Route::delete('/admin/discounts/{discount}', [DiscountController::class, 'destroy'])->name('admin.discounts.destroy');
+  Route::delete('/admin/discounts/bulk/delete', [DiscountController::class, 'bulkDelete'])->name('admin.discounts.bulk.delete');
 
 });

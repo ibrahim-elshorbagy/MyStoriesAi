@@ -238,4 +238,12 @@ return [
         'delivery_option_id' => 'Delivery Option',
 
     ],
+
+    'attributes' => [
+        'area' => 'Area',
+        'street' => 'Street',
+        'house_number' => 'House Number',
+        'additional_info' => 'Additional Information',
+        'delivery_option_id' => 'Delivery Option',
+    ],
 ];

@@ -8,9 +8,8 @@ import { Link, usePage } from '@inertiajs/react'
 import React from 'react'
 
 export default function WebNavigation() {
-  const { locale } = usePage().props;
+  const { locale, auth, cart_count } = usePage().props; // Add cart_count
   const { t } = useTrans();
-  const { auth } = usePage().props;
   const { activeSection, scrollToSection } = useSmoothScroll();
 
   // Check if we're on the home page
@@ -96,21 +95,43 @@ export default function WebNavigation() {
             </li> */}
           </ul>
 
-          {/* Right Side - Toggles and CTA */}
+          {/* Right Side - Toggles, Cart, and CTA */}
           <div className="flex items-center gap-4">
+            {/* Language/Theme Toggles */}
             <NavigationToggles
               variant="compact"
               showLabels={false}
               className="hidden lg:flex"
             />
+
+            {/* Cart Icon with Badge */}
+            {auth?.user && (
+              <Link
+                href={route('cart.index')}
+                className="relative inline-flex items-center px-3 py-2 text-neutral-700 hover:text-orange-600 transition-colors"
+              >
+                <i className="fa-solid fa-shopping-cart text-xl"></i>
+                {cart_count > 0 && (
+                  <span className="absolute -top-1 ltr:-right-1 rtl:-left-1
+                  bg-gradient-to-r from-orange-500 to-orange-600 text-white
+                  text-[10px] font-bold rounded-full h-5 w-5 flex items-center
+                  justify-center shadow-lg animate-pulse">
+                  {cart_count > 99 ? '99+' : cart_count}
+                </span>
+
+                )}
+              </Link>
+            )}
+
+            {/* Get Started Button */}
             <PrimaryButton
               as="a"
               variant="edit"
               icon="fa-play"
               className='ltr:flex-row-reverse gap-3'
-              href={route('dashboard')}
+              href={auth?.user ? route('dashboard') : route('login')}
             >
-              {t('get_started')}
+              {auth?.user ? t('dashboard') : t('get_started')}
             </PrimaryButton>
           </div>
         </div>

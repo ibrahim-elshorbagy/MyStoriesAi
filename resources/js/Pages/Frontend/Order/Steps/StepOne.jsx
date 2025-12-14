@@ -165,7 +165,7 @@ export default function StepOne({
             <InputError message={errors.child_gender} className="mt-2" />
           </div>
 
-          <div>
+          <div className='md:col-span-2'>
             <SelectInput
               id="format"
               name="format"
