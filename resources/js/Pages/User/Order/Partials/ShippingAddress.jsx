@@ -36,7 +36,7 @@ export default function ShippingAddress({ order, t }) {
           <div className="border-t border-neutral-200 dark:border-neutral-600 pt-3">
             <span className="text-sm text-neutral-600 dark:text-neutral-400">{t('delivery_option')}:</span>
             <p className="font-medium text-neutral-900 dark:text-neutral-100">
-              {order.shipping_address.delivery_option.city_value} - ${order.shipping_address.delivery_option.price}
+              {order.shipping_address.delivery_option.city_value} - {order.shipping_address.delivery_option.price} {t('currency')}
             </p>
           </div>
         )}

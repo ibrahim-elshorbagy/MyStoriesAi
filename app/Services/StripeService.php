@@ -53,7 +53,7 @@ class StripeService
       if ($discountedSubtotal > 0) {
         $lineItems[] = [
           'price_data' => [
-            'currency' => 'usd',
+            'currency' => 'eur',
             'product_data' => [
               'name' => 'Personalized Stories' . ($order->discount_code ? ' (Discount: ' . $order->discount_code . ')' : ''),
               'description' => 'Custom stories for order #' . $order->id,
@@ -68,7 +68,7 @@ class StripeService
       if ($order->delivery_total > 0) {
         $lineItems[] = [
           'price_data' => [
-            'currency' => 'usd',
+            'currency' => 'eur',
             'product_data' => [
               'name' => 'Delivery',
               'description' => 'Shipping and delivery costs',

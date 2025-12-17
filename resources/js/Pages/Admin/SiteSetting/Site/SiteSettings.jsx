@@ -20,7 +20,7 @@ export default function SiteSettings({ settings = {}, timezones = [], paymobUrls
 
   const menuItems = [
     { id: 'contact', icon: 'fa-solid fa-phone', label: t('contact_info') },
-    { id: 'pricing', icon: 'fa-solid fa-dollar-sign', label: t('pricing_settings') },
+    { id: 'pricing', icon: 'fa-solid fa-euro-sign', label: t('pricing_settings') },
     { id: 'email', icon: 'fa-solid fa-envelope', label: t('email_settings') },
     { id: 'cookies', icon: 'fa-solid fa-cookie-bite', label: t('cookie_settings') },
     { id: 'stripe', icon: 'fa-solid fa-credit-card', label: t('stripe_settings') },

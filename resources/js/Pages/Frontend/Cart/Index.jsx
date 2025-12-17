@@ -100,7 +100,7 @@ export default function Index({ cart }) {
 
           {totalItems > 0 && (
             <div className="text-xl md:text-2xl mb-6">
-              <p>{totalItems} {t('items')} • {t('total_price')}: ${grandTotal.toFixed(2)}</p>
+              <p>{totalItems} {t('items')} • {t('total_price')}: {grandTotal.toFixed(2)} {t('currency')}</p>
             </div>
           )}
 
@@ -231,7 +231,7 @@ export default function Index({ cart }) {
                       <div className="border-t pt-3">
                         <div className="flex justify-between items-center mb-1">
                           <span className="text-sm text-neutral-600">{t('story_price')}:</span>
-                          <span className="font-medium">${item.story_price}</span>
+                          <span className="font-medium">{item.story_price} {t('currency')}</span>
                         </div>
                       </div>
 
@@ -265,18 +265,18 @@ export default function Index({ cart }) {
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between">
                     <span>{t('items')} ({totalItems}):</span>
-                    <span className="font-medium">${subtotal.toFixed(2)}</span>
+                    <span className="font-medium">{subtotal.toFixed(2)} {t('currency')}</span>
                   </div>
                   {deliveryTotal > 0 && (
                     <div className="flex justify-between">
                       <span>{t('delivery_total')}:</span>
-                      <span className="font-medium">${deliveryTotal.toFixed(2)}</span>
+                      <span className="font-medium">{deliveryTotal.toFixed(2)} {t('currency')}</span>
                     </div>
                   )}
                   <div className="border-t pt-3">
                     <div className="flex justify-between text-xl font-bold text-orange-600">
                       <span>{t('grand_total')}:</span>
-                      <span>${grandTotal.toFixed(2)}</span>
+                      <span>{grandTotal.toFixed(2)} {t('currency')}</span>
                     </div>
                   </div>
                 </div>

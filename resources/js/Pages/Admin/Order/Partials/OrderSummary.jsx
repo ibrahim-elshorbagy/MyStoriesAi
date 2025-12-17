@@ -12,12 +12,12 @@ export default function OrderSummary({ order, t }) {
         </div>
         <div className="flex justify-between">
           <span className="text-neutral-700 dark:text-neutral-300">{t('subtotal')}:</span>
-          <span className="font-semibold dark:text-white">${order.subtotal}</span>
+          <span className="font-semibold dark:text-white">{order.subtotal} {t('currency')}</span>
         </div>
         {order.delivery_total > 0 && (
           <div className="flex justify-between">
             <span className="text-neutral-700 dark:text-neutral-300">{t('delivery_total')}:</span>
-            <span className="font-semibold dark:text-white">${order.delivery_total}</span>
+            <span className="font-semibold dark:text-white">{order.delivery_total} {t('currency')}</span>
           </div>
         )}
         {order.payments?.some(p => p.status === 'paid') && order.discount_code && (
@@ -28,13 +28,13 @@ export default function OrderSummary({ order, t }) {
             </div>
             <div className="flex justify-between">
               <span className="text-neutral-700 dark:text-neutral-300">{t('discount_value')}:</span>
-              <span className="font-semibold dark:text-white">${order.discount_value}</span>
+              <span className="font-semibold dark:text-white">{order.discount_value} {t('currency')}</span>
             </div>
           </>
         )}
         <div className="border-t-2 border-orange-200 pt-2 flex justify-between items-center">
           <span className="text-lg font-bold text-neutral-900 dark:text-neutral-100">{t('total_price')}:</span>
-          <span className="text-2xl font-bold text-orange-600">${order.total_price}</span>
+          <span className="text-2xl font-bold text-orange-600">{order.total_price} {t('currency')}</span>
         </div>
       </div>
     </div>

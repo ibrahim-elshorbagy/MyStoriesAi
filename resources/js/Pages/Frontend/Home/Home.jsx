@@ -30,7 +30,7 @@ export default function Home({ stories, faqs, categories, settings, textFeedback
 
       {locale === 'en' && (
         <div className="relative w-full">
-          <img className="w-full h-auto object-cover" src="/assets/home/1.png" alt="" />
+          <img className="w-full h-auto object-cover" src="/assets/home/en.png" alt="" />
           <div className="absolute inset-x-0 bottom-12 flex items-center justify-center">
             <Link
               size="large"
@@ -46,7 +46,7 @@ export default function Home({ stories, faqs, categories, settings, textFeedback
 
       {locale === 'ar' && (
         <div className="relative w-full">
-          <img className="w-full h-auto object-cover" src="/assets/home/2.png" alt="" />
+          <img className="w-full h-auto object-cover" src="/assets/home/ar.png" alt="" />
           <div className="absolute inset-x-0 bottom-12 flex items-center justify-center">
             <Link
               size="large"
@@ -59,6 +59,23 @@ export default function Home({ stories, faqs, categories, settings, textFeedback
           </div>
         </div>
       )}
+
+      {locale === 'de' && (
+        <div className="relative w-full">
+          <img className="w-full h-auto object-cover" src="/assets/home/de.png" alt="" />
+          <div className="absolute inset-x-0 bottom-12 flex items-center justify-center">
+            <Link
+              size="large"
+              as={Link}
+              href={route('stories')}
+              className="px-6 w-fit py-4 mt-4 text-lg sm:text-xl font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
+            >
+              {t("try_now")}
+            </Link>
+          </div>
+        </div>
+      )}
+
 
       <AgeCategoriesSection categories={categories} />
       <PricingSection settings={settings} />

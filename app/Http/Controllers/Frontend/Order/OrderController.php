@@ -18,6 +18,7 @@ use App\Services\StripeService;
 use App\Http\Resources\Order\OrderResource;
 use App\Models\Admin\SiteSetting\Discount;
 use App\Models\Admin\SiteSetting\DiscountUsage;
+use App\Models\Order\Cart;
 use Inertia\Inertia;
 
 class OrderController extends Controller
@@ -106,7 +107,7 @@ class OrderController extends Controller
 
     return Inertia::render('Frontend/Order/PaymentMethod', [
       'order' => OrderResource::make($order)->toArray(request()),
-      'deliveryOptions' => \App\Models\Admin\SiteSetting\DeliveryOption::all(),
+      'deliveryOptions' => DeliveryOption::all(),
     ]);
   }
 
@@ -117,7 +118,7 @@ class OrderController extends Controller
   public function processPayment(Request $request)
   {
     // Get authenticated user's cart first to check if shipping is needed
-    $cart = \App\Models\Order\Cart::where('user_id', Auth::id())
+    $cart = Cart::where('user_id', Auth::id())
       ->with(['cartItems'])
       ->first();
 

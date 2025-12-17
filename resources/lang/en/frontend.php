@@ -264,7 +264,7 @@ return [
   'choose_payment_method' => 'Choose Payment Method',
   'select_payment_method' => 'Select your preferred payment method',
   'complete_payment' => 'Complete Payment',
-  'currency' => 'USD',
+  'currency' => 'EUR',
   'years' => 'Years',
   'choose_file' => 'Choose File',
   'edit' => 'Edit',

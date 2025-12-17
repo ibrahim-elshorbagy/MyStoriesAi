@@ -25,7 +25,7 @@
           PDF + غلاف صلب
         @endif
         <br/>
-        <strong style="color:#333;">المبلغ الإجمالي:</strong> {{ $order->total_price }} جنيه<br/>
+        <strong style="color:#333;">المبلغ الإجمالي:</strong> {{ $order->total_price }} EUR<br/>
         <strong style="color:#333;">طريقة الدفع:</strong> {{ $order->payment_method === 'cod' ? __('website.cod') : __('website.online_payment') }}<br/>
         <strong style="color:#333;">حالة الطلب:</strong>
         @if($order->status === 'pending')
@@ -69,7 +69,7 @@
           PDF + Hardcover
         @endif
         <br/>
-        <strong style="color:#333;">Gesamtbetrag:</strong> {{ $order->total_price }} USD<br/>
+        <strong style="color:#333;">Gesamtbetrag:</strong> {{ $order->total_price }} EUR<br/>
         <strong style="color:#333;">Zahlungsmethode:</strong> {{ $order->payment_method === 'cod' ? __('website.cod') : __('website.online_payment') }}<br/>
         <strong style="color:#333;">Bestellstatus:</strong>
         @if($order->status === 'pending')
@@ -111,7 +111,7 @@
           PDF + Hardcover
         @endif
         <br/>
-        <strong style="color:#333;">Total Amount:</strong> {{ $order->total_price }} USD<br/>
+        <strong style="color:#333;">Total Amount:</strong> {{ $order->total_price }} EUR<br/>
         <strong style="color:#333;">Payment Method:</strong> {{ $order->payment_method === 'cod' ? 'Cash on Delivery' : 'Online Payment' }}<br/>
         <strong style="color:#333;">Order Status:</strong>
         @if($order->status === 'pending')

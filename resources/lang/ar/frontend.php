@@ -266,7 +266,7 @@ return [
   'choose_payment_method' => 'اختر طريقة الدفع',
   'select_payment_method' => 'اختر طريقة الدفع المفضلة لديك',
   'complete_payment' => 'إتمام الدفع',
-  'currency' => 'USD',
+  'currency' => 'EUR',
   'years' => 'سنوات',
   'choose_file' => 'اختر ملفًا',
   'edit' => 'تعديل',

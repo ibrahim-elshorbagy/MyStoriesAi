@@ -259,7 +259,7 @@ return [
   'choose_payment_method' => 'Zahlungsmethode wählen',
   'select_payment_method' => 'Wählen Sie Ihre bevorzugte Zahlungsmethode',
   'complete_payment' => 'Zahlung abschließen',
-  'currency' => 'USD',
+  'currency' => 'EUR',
   'years' => 'Jahre',
   'choose_file' => 'Datei auswählen',
   'edit' => 'Bearbeiten',

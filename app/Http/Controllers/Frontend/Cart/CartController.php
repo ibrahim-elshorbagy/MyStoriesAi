@@ -8,6 +8,8 @@ use App\Http\Resources\Cart\CartItemResource;
 use App\Models\Order\Cart;
 use App\Models\Order\CartItem;
 use App\Models\Admin\SiteSetting\DeliveryOption;
+use App\Models\Admin\SiteSetting\Discount;
+use App\Models\Admin\SiteSetting\DiscountUsage;
 use App\Models\Admin\SiteSetting\SiteSetting;
 use App\Models\Admin\Story\Story;
 use Illuminate\Http\Request;
@@ -194,7 +196,7 @@ class CartController extends Controller
         // DON'T create order yet - just pass cart to payment page
         return Inertia::render('Frontend/Order/PaymentMethod', [
             'cart' => CartResource::make($cart)->toArray(request()),
-            'deliveryOptions' => \App\Models\Admin\SiteSetting\DeliveryOption::all(),
+            'deliveryOptions' => DeliveryOption::all(),
         ]);
     }
 
@@ -214,7 +216,7 @@ class CartController extends Controller
             'code' => $validated['code'],
         ]);
 
-        $discount = \App\Models\Admin\SiteSetting\Discount::where('code', $validated['code'])->first();
+        $discount = Discount::where('code', $validated['code'])->first();
 
         Log::info('Discount lookup result', [
             'user_id' => Auth::id(),
@@ -236,7 +238,7 @@ class CartController extends Controller
         }
 
         // Check if user already used this discount
-        $alreadyUsed = \App\Models\Admin\SiteSetting\DiscountUsage::where('discount_id', $discount->id)
+        $alreadyUsed = DiscountUsage::where('discount_id', $discount->id)
             ->where('user_id', Auth::id())
             ->exists();
 
@@ -258,7 +260,7 @@ class CartController extends Controller
         }
 
         // Check usage limit
-        $currentUsageCount = \App\Models\Admin\SiteSetting\DiscountUsage::where('discount_id', $discount->id)->count();
+        $currentUsageCount = DiscountUsage::where('discount_id', $discount->id)->count();
 
         Log::info('Usage limit check', [
             'discount_id' => $discount->id,

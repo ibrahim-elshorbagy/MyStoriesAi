@@ -14,7 +14,7 @@ export default function PaymentHistory({ order, t, paymentMethodOptions }) {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div>
                 <span className="font-medium text-neutral-700 dark:text-neutral-300 block">{t('amount')}:</span>
-                <span className="text-neutral-900 dark:text-neutral-100">{payment.amount} {payment.currency}</span>
+                <span className="text-neutral-900 dark:text-neutral-100">{payment.amount} {t('currency')}</span>
               </div>
               <div>
                 <span className="font-medium text-neutral-700 dark:text-neutral-300 block">{t('payment_method')}:</span>

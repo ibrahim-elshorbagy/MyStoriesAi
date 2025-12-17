@@ -15,7 +15,7 @@
         <strong style="color:#333;">رقم الطلب:</strong> #{{ $order->id }}<br/>
         <strong style="color:#333;">اسم الطفل:</strong> {{ $order->child_name }}<br/>
         <strong style="color:#333;">طريقة الدفع:</strong> {{ $payment->payment_method === 'cod' ? 'الدفع عند الاستلام' : 'دفع إلكتروني' }}<br/>
-        <strong style="color:#333;">المبلغ:</strong> {{ $payment->amount }} {{ $payment->currency }}<br/>
+        <strong style="color:#333;">المبلغ:</strong> {{ $payment->amount }} EUR<br/>
         <strong style="color:#333;">الحالة الجديدة:</strong>
         @if($payment->status === 'paid')
           <span style="color:#28a745;">تم الدفع</span>
@@ -65,7 +65,7 @@
         <strong style="color:#333;">Bestellnummer:</strong> #{{ $order->id }}<br/>
         <strong style="color:#333;">Name des Kindes:</strong> {{ $order->child_name }}<br/>
         <strong style="color:#333;">Zahlungsmethode:</strong> {{ $payment->payment_method === 'cod' ? 'Zahlung bei Lieferung' : 'Online-Zahlung' }}<br/>
-        <strong style="color:#333;">Betrag:</strong> {{ $payment->amount }} {{ $payment->currency }}<br/>
+        <strong style="color:#333;">Betrag:</strong> {{ $payment->amount }} EUR<br/>
         <strong style="color:#333;">Neuer Status:</strong>
         @if($payment->status === 'paid')
           <span style="color:#28a745;">Bezahlt</span>
@@ -111,7 +111,7 @@
         <strong style="color:#333;">Order ID:</strong> #{{ $order->id }}<br/>
         <strong style="color:#333;">Child Name:</strong> {{ $order->child_name }}<br/>
         <strong style="color:#333;">Payment Method:</strong> {{ $payment->payment_method === 'cod' ? 'Cash on Delivery' : 'Online Payment' }}<br/>
-        <strong style="color:#333;">Amount:</strong> {{ $payment->amount }} {{ $payment->currency }}<br/>
+        <strong style="color:#333;">Amount:</strong> {{ $payment->amount }} EUR<br/>
         <strong style="color:#333;">New Status:</strong>
         @if($payment->status === 'paid')
           <span style="color:#28a745;">Paid</span>

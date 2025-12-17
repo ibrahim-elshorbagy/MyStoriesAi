@@ -229,7 +229,7 @@ export default function PaymentMethod({ cart, order, deliveryOptions = [] }) {
                               </div>
                             </div>
                             <div className="text-right">
-                              <div className="text-2xl font-bold text-orange-600">${item.story_price}</div>
+                              <div className="text-2xl font-bold text-orange-600">{item.story_price} {t('currency')}</div>
                             </div>
                           </div>
 
@@ -395,13 +395,13 @@ export default function PaymentMethod({ cart, order, deliveryOptions = [] }) {
                     <div className="space-y-3">
                       <div className="flex justify-between text-neutral-700">
                         <span>{t('subtotal')}:</span>
-                        <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                        <span className="font-semibold">{subtotal.toFixed(2)} {t('currency')}</span>
                       </div>
 
                       {deliveryTotal > 0 && (
                         <div className="flex justify-between text-neutral-700">
                           <span>{t('delivery_total')}:</span>
-                          <span className="font-semibold">${deliveryTotal.toFixed(2)}</span>
+                          <span className="font-semibold">{deliveryTotal.toFixed(2)} {t('currency')}</span>
                         </div>
                       )}
 
@@ -412,13 +412,13 @@ export default function PaymentMethod({ cart, order, deliveryOptions = [] }) {
                             <i className="fa-solid fa-tag"></i>
                             {t('discount')} ({appliedDiscount.percent}%)
                           </span>
-                          <span className="font-semibold">-${discountValue.toFixed(2)}</span>
+                          <span className="font-semibold">-{discountValue.toFixed(2)} {t('currency')}</span>
                         </div>
                       )}
 
                       <div className="border-t-2 border-orange-200 pt-3 flex justify-between items-center">
                         <span className="text-lg font-bold text-neutral-900">{t('total_price')}:</span>
-                        <span className="text-2xl font-bold text-orange-600">${grandTotal.toFixed(2)}</span>
+                        <span className="text-2xl font-bold text-orange-600">{grandTotal.toFixed(2)} {t('currency')}</span>
                       </div>
                     </div>
                   </div>
