@@ -601,5 +601,6 @@ return [
 
   'pdf_processing' => 'PDF wird verarbeitet...',
   'order_items' => 'Bestellartikel',
+  'child_story' => ':names Geschichte',
 
 ];

@@ -607,5 +607,6 @@ return [
 
   'pdf_processing' => 'PDF is being processed...',
   'order_items' => 'Order Items',
+  'child_story' => ':name\'s story',
 
 ];

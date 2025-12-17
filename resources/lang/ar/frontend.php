@@ -646,5 +646,6 @@ return [
 
   'pdf_processing' => 'جاري معالجة ملف PDF...',
   'order_items' => 'عناصر الطلب',
+  'child_story' => 'قصة :name',
 
 ];

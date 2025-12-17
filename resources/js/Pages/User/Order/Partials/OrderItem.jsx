@@ -10,7 +10,7 @@ export default function OrderItem({ item, index, t }) {
           <span className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-orange-400 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">
             {index + 1}
           </span>
-          {item.child_name}'s {t('story')}
+          {t('child_story', {name: item.child_name})}
         </h3>
       </div>
 
