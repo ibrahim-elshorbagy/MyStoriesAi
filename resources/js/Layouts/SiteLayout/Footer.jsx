@@ -221,7 +221,7 @@ export default function Footer() {
                     <div className="p-2 rounded-lg bg-white text-neutral-600 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
                       <i className="fa-solid fa-envelope p-2"></i>
                     </div>
-                    <div className="flex-1 space-y-1">
+                    <div className={`flex-1 space-y-1 rtl:text-right`}>
                       <div className="font-medium text-neutral-900">{t('footer_contact_email_title')}</div>
                       <a
                         href={`mailto:${settings.support_email}`}
@@ -238,7 +238,7 @@ export default function Footer() {
                     <div className="p-2 rounded-lg bg-white text-neutral-600 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
                       <i className="fa-solid fa-phone p-2"></i>
                     </div>
-                    <div className="flex-1 space-y-1">
+                    <div className={`flex-1 space-y-1 rtl:text-right`}>
                       <div className="font-medium text-neutral-900">{t('footer_contact_phone_title')}</div>
                       <a
                         href={`tel:${settings.support_mobile}`}
@@ -255,7 +255,7 @@ export default function Footer() {
                     <div className="p-2 rounded-lg bg-green-100 underline decoration-green-600 underline-offset-4 text-green-600 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
                       <i className="fab fa-whatsapp p-2"></i>
                     </div>
-                    <div className="flex-1 space-y-1">
+                    <div className={`flex-1 space-y-1 rtl:text-right`}>
                       <div className="font-medium text-neutral-900">WhatsApp</div>
                       <a
                         href={`https://wa.me/${settings.support_whatsapp.replace(/\D/g, '')}`}
