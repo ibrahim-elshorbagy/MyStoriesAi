@@ -50,6 +50,22 @@ export default function Show({ cartItem }) {
 
       {/* Header Section */}
       <section className="relative min-h-[300px] bg-gradient-to-r from-orange-400 to-orange-600 flex items-center justify-center">
+        {/* Floating Decorative Icons */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-10 text-white/20 text-6xl ">
+            <i className="fa-solid fa-shopping-cart"></i>
+          </div>
+          <div className="absolute top-32 right-20 text-white/20 text-5xl ">
+            <i className="fa-solid fa-heart"></i>
+          </div>
+          <div className="absolute bottom-20 left-20 text-white/20 text-4xl ">
+            <i className="fa-solid fa-star"></i>
+          </div>
+          <div className="absolute bottom-32 right-10 text-white/20 text-5xl ">
+            <i className="fa-solid fa-sparkles"></i>
+          </div>
+        </div>
+
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-2">{cartItem.child_name}</h1>
           <div className="flex items-center justify-center gap-4 mb-4">

@@ -72,9 +72,7 @@ export default function Index({ cart }) {
       <section className="relative min-h-[400px] bg-gradient-to-r from-orange-400 to-orange-600 flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('/assets/home/banner.png')"
-          }}
+          
         />
 
         {/* Floating Decorative Icons */}
