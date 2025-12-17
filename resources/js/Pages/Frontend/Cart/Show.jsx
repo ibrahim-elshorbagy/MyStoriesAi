@@ -63,7 +63,7 @@ export default function Show({ cartItem }) {
               href={route('cart.index')}
               className="px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-lg font-bold border-2 border-white/30"
             >
-              <i className="fa-solid fa-arrow-left ltr:mr-2 rtl:ml-2"></i>
+              <i className="fa-solid fa-arrow-left rtl:rotate-180 ltr:mr-2 rtl:ml-2"></i>
               {t('back_to_cart')}
             </Link>
             <button
@@ -289,7 +289,7 @@ export default function Show({ cartItem }) {
                 href={route('cart.index')}
                 className="flex-1 text-center px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-bold transition-colors"
               >
-                <i className="fa-solid fa-arrow-left ltr:mr-2 rtl:ml-2"></i>
+                <i className="fa-solid fa-arrow-left rtl:rotate-180 ltr:mr-2 rtl:ml-2"></i>
                 {t('back_to_cart')}
               </Link>
 
