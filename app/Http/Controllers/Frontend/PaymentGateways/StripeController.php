@@ -109,15 +109,19 @@ class StripeController extends Controller
         $discount = \App\Models\Admin\SiteSetting\Discount::where('code', $order->discount_code)->first();
 
         if ($discount) {
+          // Decrement usage limit
+          $discount->decrement('usage_limit');
+
           \App\Models\Admin\SiteSetting\DiscountUsage::firstOrCreate([
             'discount_id' => $discount->id,
             'user_id' => $order->user_id,
           ]);
 
-          Log::info('Discount usage recorded', [
+          Log::info('Discount usage recorded and limit decremented', [
             'order_id' => $order->id,
             'discount_code' => $order->discount_code,
             'user_id' => $order->user_id,
+            'remaining_usage' => $discount->usage_limit - 1,
           ]);
         }
       }
