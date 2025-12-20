@@ -16,7 +16,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use App\Models\Order\Order;
 use App\Models\Order\OrderItem;
@@ -99,7 +98,7 @@ class CartController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Failed to add to cart: ' . $e->getMessage());
+
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to add story to cart',
@@ -202,35 +201,14 @@ class CartController extends Controller
 
     public function validateDiscount(Request $request)
     {
-        Log::info('Validating discount code', [
-            'user_id' => Auth::id(),
-            'request_data' => $request->all(),
-        ]);
-
         $validated = $request->validate([
             'code' => ['required', 'string', 'max:255'],
         ]);
 
-        Log::info('Discount code validation passed', [
-            'user_id' => Auth::id(),
-            'code' => $validated['code'],
-        ]);
-
         $discount = Discount::where('code', $validated['code'])->first();
-
-        Log::info('Discount lookup result', [
-            'user_id' => Auth::id(),
-            'code' => $validated['code'],
-            'discount_found' => $discount ? true : false,
-            'discount_id' => $discount?->id,
-        ]);
 
         // Validation checks
         if (!$discount) {
-            Log::info('Discount not found', [
-                'user_id' => Auth::id(),
-                'code' => $validated['code'],
-            ]);
             return response()->json([
                 'success' => false,
                 'message' => __('website_response.discount_not_found'),
@@ -242,17 +220,7 @@ class CartController extends Controller
             ->where('user_id', Auth::id())
             ->exists();
 
-        Log::info('User usage check', [
-            'user_id' => Auth::id(),
-            'discount_id' => $discount->id,
-            'already_used' => $alreadyUsed,
-        ]);
-
         if ($alreadyUsed) {
-            Log::info('Discount already used by user', [
-                'user_id' => Auth::id(),
-                'discount_id' => $discount->id,
-            ]);
             return response()->json([
                 'success' => false,
                 'message' => __('website_response.discount_already_used'),
@@ -262,31 +230,12 @@ class CartController extends Controller
         // Check usage limit
         $currentUsageCount = DiscountUsage::where('discount_id', $discount->id)->count();
 
-        Log::info('Usage limit check', [
-            'discount_id' => $discount->id,
-            'current_usage_count' => $currentUsageCount,
-            'usage_limit' => $discount->usage_limit,
-            'limit_reached' => $currentUsageCount >= $discount->usage_limit,
-        ]);
-
         if ($currentUsageCount >= $discount->usage_limit) {
-            Log::info('Discount usage limit reached', [
-                'discount_id' => $discount->id,
-                'current_usage_count' => $currentUsageCount,
-                'usage_limit' => $discount->usage_limit,
-            ]);
             return response()->json([
                 'success' => false,
                 'message' => __('website_response.discount_limit_reached'),
             ], 422);
         }
-
-        Log::info('Discount validation successful', [
-            'user_id' => Auth::id(),
-            'discount_id' => $discount->id,
-            'code' => $discount->code,
-            'percent' => $discount->percent,
-        ]);
 
         return response()->json([
             'success' => true,

@@ -13,13 +13,16 @@ use App\Http\Controllers\Frontend\Cart\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use App\Services\StripeService;
 use App\Http\Resources\Order\OrderResource;
 use App\Models\Admin\SiteSetting\Discount;
 use App\Models\Admin\SiteSetting\DiscountUsage;
 use App\Models\Order\Cart;
 use Inertia\Inertia;
+use App\Notifications\Orders\Creating\NotifyAdmin;
+use App\Notifications\Orders\Creating\OrderConfirmation;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 
 class OrderController extends Controller
 {
@@ -117,6 +120,8 @@ class OrderController extends Controller
    */
   public function processPayment(Request $request)
   {
+
+
     // Get authenticated user's cart first to check if shipping is needed
     $cart = Cart::where('user_id', Auth::id())
       ->with(['cartItems'])
@@ -274,17 +279,37 @@ class OrderController extends Controller
 
       DB::commit();
 
+      $order->load(['orderItems.story', 'shippingAddress']);
+      $user = Auth::user();
+
+
+      // Send emails to admin and user
+      try {
+        if ($order->user) {
+          $order->user->notify(new OrderConfirmation($order));
+        }
+
+        $adminEmailSetting = SiteSetting::where('key', 'admin_notification_email')->first();
+        if ($adminEmailSetting && $adminEmailSetting->value) {
+          Notification::route('mail', $adminEmailSetting->value)
+            ->notify(new NotifyAdmin($order));
+        }
+
+      } catch (\Exception $e) {
+        Log::error('Failed to send order notifications', [
+          'order_id' => $order->id,
+          'error' => $e->getMessage(),
+          'trace' => $e->getTraceAsString()
+        ]);
+      }
+
       // Pass discount ID for later usage tracking
       session(['pending_discount_id' => $discountId]);
 
       // Process payment via Stripe
       return $this->initiateStripePayment($order, $payment);
-
     } catch (\Exception $e) {
       DB::rollBack();
-      Log::error('Failed to process payment from cart: ' . $e->getMessage(), [
-        'trace' => $e->getTraceAsString()
-      ]);
 
       return redirect()->route('home')
         ->with('title', __('website_response.payment_error_title'))
@@ -299,224 +324,171 @@ class OrderController extends Controller
    */
   public function processExistingOrderPayment(Request $request, Order $order)
   {
-      // Ensure user owns the order
-      if ($order->user_id !== Auth::id()) {
-          abort(403, __('website_response.unauthorized_access'));
+    // Ensure user owns the order
+    if ($order->user_id !== Auth::id()) {
+      abort(403, __('website_response.unauthorized_access'));
+    }
+
+    // Build validation rules - shipping is always required for all plans
+    $rules = [
+      'payment_method' => ['required', 'in:stripe'],
+      'delivery_option_id' => ['required', 'exists:delivery_options,id'],
+      'area' => ['required', 'string', 'max:255'],
+      'street' => ['required', 'string', 'max:255'],
+      'house_number' => ['required', 'string', 'max:255'],
+      'additional_info' => ['nullable', 'string', 'max:500'],
+      'discount_code' => ['nullable', 'string', 'max:255'], // ✅ Removed 'exists' rule - we'll validate manually
+    ];
+
+    $validated = $request->validate($rules);
+
+    // Check if order is already paid
+    $existingPaidPayment = $order->payments()->where('status', 'paid')->first();
+    if ($existingPaidPayment) {
+      return redirect()->route('user.orders.show', $order->id)
+        ->with('title', __('website_response.already_paid_title'))
+        ->with('message', __('website_response.already_paid_message'))
+        ->with('status', 'info');
+    }
+
+    DB::beginTransaction();
+
+    try {
+      // Recalculate delivery total
+      $deliveryTotal = 0;
+      if ($validated['delivery_option_id']) {
+        $deliveryOption = DeliveryOption::find($validated['delivery_option_id']);
+        $deliveryTotal = $deliveryOption ? (float) $deliveryOption->price : 0;
       }
 
-      // Build validation rules - shipping is always required for all plans
-      $rules = [
-          'payment_method' => ['required', 'in:stripe'],
-          'delivery_option_id' => ['required', 'exists:delivery_options,id'],
-          'area' => ['required', 'string', 'max:255'],
-          'street' => ['required', 'string', 'max:255'],
-          'house_number' => ['required', 'string', 'max:255'],
-          'additional_info' => ['nullable', 'string', 'max:500'],
-          'discount_code' => ['nullable', 'string', 'max:255'], // ✅ Removed 'exists' rule - we'll validate manually
-      ];
+      // ✅ Handle discount - Three scenarios:
+      // 1. Empty string sent from frontend = User removed discount, don't apply any
+      // 2. New discount code sent = Validate and apply new discount
+      // 3. Null/not provided = Keep existing discount (if any)
 
-      $validated = $request->validate($rules);
+      $discountCode = null;
+      $discountValue = 0;
+      $discountId = null;
 
-      // Check if order is already paid
-      $existingPaidPayment = $order->payments()->where('status', 'paid')->first();
-      if ($existingPaidPayment) {
-          return redirect()->route('user.orders.show', $order->id)
-              ->with('title', __('website_response.already_paid_title'))
-              ->with('message', __('website_response.already_paid_message'))
-              ->with('status', 'info');
-      }
+      // Check if discount_code is provided in the request
+      if (array_key_exists('discount_code', $validated)) {
+        $inputDiscountCode = trim($validated['discount_code'] ?? '');
 
-      DB::beginTransaction();
-
-      try {
-          // Recalculate delivery total
-          $deliveryTotal = 0;
-          if ($validated['delivery_option_id']) {
-              $deliveryOption = DeliveryOption::find($validated['delivery_option_id']);
-              $deliveryTotal = $deliveryOption ? (float) $deliveryOption->price : 0;
-          }
-
-          // ✅ Handle discount - Three scenarios:
-          // 1. Empty string sent from frontend = User removed discount, don't apply any
-          // 2. New discount code sent = Validate and apply new discount
-          // 3. Null/not provided = Keep existing discount (if any)
-
+        // ✅ If empty string sent = User explicitly removed discount
+        if ($inputDiscountCode === '') {
           $discountCode = null;
           $discountValue = 0;
           $discountId = null;
+        }
+        // ✅ If discount code provided = Validate and apply
+        else {
+          $discount = Discount::where('code', $inputDiscountCode)->first();
 
-          // Check if discount_code is provided in the request
-          if (array_key_exists('discount_code', $validated)) {
-              $inputDiscountCode = trim($validated['discount_code'] ?? '');
+          if ($discount) {
+            // Verify user hasn't used it
+            $alreadyUsed = DiscountUsage::where('discount_id', $discount->id)
+              ->where('user_id', Auth::id())
+              ->exists();
 
-              // ✅ If empty string sent = User explicitly removed discount
-              if ($inputDiscountCode === '') {
-                  Log::info('Discount removed by user', [
-                      'order_id' => $order->id,
-                      'previous_discount' => $order->discount_code,
-                  ]);
+            // Verify usage limit
+            $currentUsageCount = DiscountUsage::where('discount_id', $discount->id)->count();
 
-                  $discountCode = null;
-                  $discountValue = 0;
-                  $discountId = null;
-              }
-              // ✅ If discount code provided = Validate and apply
-              else {
-                  $discount = Discount::where('code', $inputDiscountCode)->first();
-
-                  if ($discount) {
-                      // Verify user hasn't used it
-                      $alreadyUsed = DiscountUsage::where('discount_id', $discount->id)
-                          ->where('user_id', Auth::id())
-                          ->exists();
-
-                      // Verify usage limit
-                      $currentUsageCount = DiscountUsage::where('discount_id', $discount->id)->count();
-
-                      if (!$alreadyUsed && $currentUsageCount < $discount->usage_limit) {
-                          $discountCode = $discount->code;
-                          $discountValue = round(($order->subtotal * $discount->percent) / 100, 2);
-                          $discountId = $discount->id;
-
-                          Log::info('New discount applied to existing order', [
-                              'order_id' => $order->id,
-                              'discount_code' => $discountCode,
-                              'discount_value' => $discountValue,
-                              'discount_percent' => $discount->percent,
-                          ]);
-                      } else {
-                          Log::warning('Discount cannot be applied to existing order', [
-                              'order_id' => $order->id,
-                              'code' => $inputDiscountCode,
-                              'already_used' => $alreadyUsed,
-                              'usage_limit_reached' => $currentUsageCount >= $discount->usage_limit,
-                          ]);
-
-                          // ✅ Invalid discount code = Don't apply any discount
-                          $discountCode = null;
-                          $discountValue = 0;
-                          $discountId = null;
-                      }
-                  } else {
-                      Log::warning('Discount code not found', [
-                          'order_id' => $order->id,
-                          'code' => $inputDiscountCode,
-                      ]);
-
-                      // ✅ Discount not found = Don't apply any discount
-                      $discountCode = null;
-                      $discountValue = 0;
-                      $discountId = null;
-                  }
-              }
-          }
-          // ✅ If discount_code not in request at all = Keep existing discount (backward compatibility)
-          else {
-              $discountCode = $order->discount_code;
-              $discountValue = $order->discount_value ?? 0;
-
-              Log::info('Keeping existing discount', [
-                  'order_id' => $order->id,
-                  'discount_code' => $discountCode,
-                  'discount_value' => $discountValue,
-              ]);
-          }
-
-          // Recalculate total price
-          $totalPrice = $order->subtotal + $deliveryTotal - $discountValue;
-
-          Log::info('Recalculated order totals', [
-              'order_id' => $order->id,
-              'subtotal' => $order->subtotal,
-              'delivery_total' => $deliveryTotal,
-              'discount_code' => $discountCode,
-              'discount_value' => $discountValue,
-              'total_price' => $totalPrice,
-          ]);
-
-          // Update order with new values
-          $order->update([
-              'payment_method' => $validated['payment_method'],
-              'delivery_total' => $deliveryTotal,
-              'discount_code' => $discountCode,
-              'discount_value' => $discountValue,
-              'total_price' => $totalPrice,
-          ]);
-
-          // Update or create shipping address
-          if ($validated['delivery_option_id']) {
-              $shippingData = [
-                  'delivery_option_id' => $validated['delivery_option_id'],
-                  'area' => $validated['area'],
-                  'street' => $validated['street'],
-                  'house_number' => $validated['house_number'],
-                  'additional_info' => $validated['additional_info'],
-              ];
-
-              $order->shippingAddress()->updateOrCreate(
-                  ['order_id' => $order->id],
-                  $shippingData
-              );
-          }
-
-          // Find or create pending payment
-          $payment = $order->payments()
-              ->where('status', 'pending')
-              ->latest()
-              ->first();
-
-          if (!$payment) {
-              $payment = Payment::create([
-                  'order_id' => $order->id,
-                  'payment_method' => $validated['payment_method'],
-                  'status' => 'pending',
-                  'amount' => $order->total_price,
-              ]);
+            if (!$alreadyUsed && $currentUsageCount < $discount->usage_limit) {
+              $discountCode = $discount->code;
+              $discountValue = round(($order->subtotal * $discount->percent) / 100, 2);
+              $discountId = $discount->id;
+            } else {
+              // ✅ Invalid discount code = Don't apply any discount
+              $discountCode = null;
+              $discountValue = 0;
+              $discountId = null;
+            }
           } else {
-              // Update existing pending payment
-              $payment->update([
-                  'payment_method' => $validated['payment_method'],
-                  'amount' => $order->total_price,
-              ]);
+            // ✅ Discount not found = Don't apply any discount
+            $discountCode = null;
+            $discountValue = 0;
+            $discountId = null;
           }
-
-          DB::commit();
-
-          // ✅ Refresh order to ensure all fields are loaded fresh
-          $order->refresh();
-
-          Log::info('Existing order prepared for payment', [
-              'order_id' => $order->id,
-              'subtotal' => $order->subtotal,
-              'delivery_total' => $order->delivery_total,
-              'discount_code' => $order->discount_code,
-              'discount_value' => $order->discount_value,
-              'total_price' => $order->total_price,
-          ]);
-
-          // Pass discount ID for later usage tracking if new discount applied
-          if ($discountId) {
-              session(['pending_discount_id' => $discountId]);
-          } else {
-              // ✅ Clear any existing pending discount session if no discount applied
-              session()->forget('pending_discount_id');
-          }
-
-          // Process payment via Stripe
-          return $this->initiateStripePayment($order, $payment);
-
-      } catch (\Exception $e) {
-          DB::rollBack();
-          Log::error('Failed to process payment for existing order: ' . $e->getMessage(), [
-              'order_id' => $order->id,
-              'trace' => $e->getTraceAsString()
-          ]);
-
-          return redirect()->route('user.orders.show', $order->id)
-              ->with('title', __('website_response.payment_error_title'))
-              ->with('message', __('website_response.payment_failed'))
-              ->with('status', 'error');
+        }
       }
+      // ✅ If discount_code not in request at all = Keep existing discount (backward compatibility)
+      else {
+        $discountCode = $order->discount_code;
+        $discountValue = $order->discount_value ?? 0;
+      }
+
+      // Recalculate total price
+      $totalPrice = $order->subtotal + $deliveryTotal - $discountValue;
+
+      // Update order with new values
+      $order->update([
+        'payment_method' => $validated['payment_method'],
+        'delivery_total' => $deliveryTotal,
+        'discount_code' => $discountCode,
+        'discount_value' => $discountValue,
+        'total_price' => $totalPrice,
+      ]);
+
+      // Update or create shipping address
+      if ($validated['delivery_option_id']) {
+        $shippingData = [
+          'delivery_option_id' => $validated['delivery_option_id'],
+          'area' => $validated['area'],
+          'street' => $validated['street'],
+          'house_number' => $validated['house_number'],
+          'additional_info' => $validated['additional_info'],
+        ];
+
+        $order->shippingAddress()->updateOrCreate(
+          ['order_id' => $order->id],
+          $shippingData
+        );
+      }
+
+      // Find or create pending payment
+      $payment = $order->payments()
+        ->where('status', 'pending')
+        ->latest()
+        ->first();
+
+      if (!$payment) {
+        $payment = Payment::create([
+          'order_id' => $order->id,
+          'payment_method' => $validated['payment_method'],
+          'status' => 'pending',
+          'amount' => $order->total_price,
+        ]);
+      } else {
+        // Update existing pending payment
+        $payment->update([
+          'payment_method' => $validated['payment_method'],
+          'amount' => $order->total_price,
+        ]);
+      }
+
+      DB::commit();
+
+      // ✅ Refresh order to ensure all fields are loaded fresh
+      $order->refresh();
+
+      // Pass discount ID for later usage tracking if new discount applied
+      if ($discountId) {
+        session(['pending_discount_id' => $discountId]);
+      } else {
+        // ✅ Clear any existing pending discount session if no discount applied
+        session()->forget('pending_discount_id');
+      }
+
+      // Process payment via Stripe
+      return $this->initiateStripePayment($order, $payment);
+    } catch (\Exception $e) {
+      DB::rollBack();
+
+      return redirect()->route('user.orders.show', $order->id)
+        ->with('title', __('website_response.payment_error_title'))
+        ->with('message', __('website_response.payment_failed'))
+        ->with('status', 'error');
+    }
   }
 
 
@@ -528,11 +500,6 @@ class OrderController extends Controller
   {
     try {
       $result = $this->stripeService->sendPayment($order);
-
-      Log::info('Stripe payment initiated', [
-        'order_id' => $order->id,
-        'result' => $result
-      ]);
 
       if (!$result['status']) {
         return redirect()->route('home')
@@ -546,12 +513,7 @@ class OrderController extends Controller
 
       // Redirect to Stripe checkout
       return redirect($result['url']);
-
     } catch (\Exception $e) {
-      Log::error('Stripe payment initiation failed: ' . $e->getMessage(), [
-        'order_id' => $order->id,
-        'trace' => $e->getTraceAsString()
-      ]);
 
       return redirect()->route('home')
         ->with('title', __('website_response.payment_error_title'))

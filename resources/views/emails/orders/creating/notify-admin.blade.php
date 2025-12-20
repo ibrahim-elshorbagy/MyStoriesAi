@@ -13,18 +13,7 @@
       <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0; direction: rtl;">
         <strong style="color:#333;">معرف الطلب:</strong> #{{ $order->id }}<br/>
         <strong style="color:#333;">اسم العميل:</strong> {{ $order->user ? $order->user->name : 'غير معروف' }}<br/>
-        <strong style="color:#333;">اسم الطفل:</strong> {{ $order->child_name }}<br/>
-        <strong style="color:#333;">عمر الطفل:</strong> {{ $order->child_age }} سنوات<br/>
-        <strong style="color:#333;">اللغة:</strong> {{ $order->language === 'arabic' ? 'العربية' : 'الإنجليزية' }}<br/>
-        <strong style="color:#333;">التنسيق:</strong>
-        @if($order->format === 'pdf')
-          PDF فقط
-        @elseif($order->format === 'soft')
-          PDF + غلاف ناعم
-        @else
-          PDF + غلاف صلب
-        @endif
-        <br/>
+        <strong style="color:#333;">عدد القصص:</strong> {{ $order->orderItems->count() }} قصة<br/>
         <strong style="color:#333;">المبلغ الإجمالي:</strong> {{ $order->total_price }} EUR<br/>
         <strong style="color:#333;">طريقة الدفع:</strong> {{ $order->payment_method === 'cod' ? __('website.cod') : __('website.online_payment') }}<br/>
         <strong style="color:#333;">حالة الطلب:</strong>
@@ -37,6 +26,24 @@
         @else
           ملغي
         @endif
+        <br/><br/>
+        <strong style="color:#333;">تفاصيل القصص:</strong><br/>
+        @foreach($order->orderItems as $item)
+          <div style="background:#fff; padding:10px; margin:5px 0; border-radius:5px; border-left:3px solid #fa7508;">
+            <strong>الطفل:</strong> {{ $item->child_name }} ({{ $item->child_age }} سنوات)<br/>
+            <strong>اللغة:</strong> {{ $item->language === 'arabic' ? 'العربية' : ($item->language === 'english' ? 'الإنجليزية' : 'الألمانية') }}<br/>
+            <strong>التنسيق:</strong>
+            @if($item->format === 'first_plan')
+              الخطة الأولى
+            @elseif($item->format === 'second_plan')
+              الخطة الثانية
+            @else
+              الخطة الثالثة
+            @endif
+            <br/>
+            <strong>السعر:</strong> {{ $item->story_price }} EUR
+          </div>
+        @endforeach
       </div>
 
       <div style="text-align:center; margin:20px 0;">
@@ -57,18 +64,7 @@
       <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
         <strong style="color:#333;">Bestellnummer:</strong> #{{ $order->id }}<br/>
         <strong style="color:#333;">Kundenname:</strong> {{ $order->user ? $order->user->name : 'Unbekannt' }}<br/>
-        <strong style="color:#333;">Name des Kindes:</strong> {{ $order->child_name }}<br/>
-        <strong style="color:#333;">Alter des Kindes:</strong> {{ $order->child_age }} Jahre<br/>
-        <strong style="color:#333;">Sprache:</strong> {{ $order->language === 'arabic' ? 'Arabisch' : 'Englisch' }}<br/>
-        <strong style="color:#333;">Format:</strong>
-        @if($order->format === 'pdf')
-          Nur PDF
-        @elseif($order->format === 'soft')
-          PDF + Softcover
-        @else
-          PDF + Hardcover
-        @endif
-        <br/>
+        <strong style="color:#333;">Anzahl Geschichten:</strong> {{ $order->orderItems->count() }} Geschichte(n)<br/>
         <strong style="color:#333;">Gesamtbetrag:</strong> {{ $order->total_price }} EUR<br/>
         <strong style="color:#333;">Zahlungsmethode:</strong> {{ $order->payment_method === 'cod' ? __('website.cod') : __('website.online_payment') }}<br/>
         <strong style="color:#333;">Bestellstatus:</strong>
@@ -81,6 +77,24 @@
         @else
           Storniert
         @endif
+        <br/><br/>
+        <strong style="color:#333;">Geschichtsdetails:</strong><br/>
+        @foreach($order->orderItems as $item)
+          <div style="background:#fff; padding:10px; margin:5px 0; border-radius:5px; border-left:3px solid #fa7508;">
+            <strong>Kind:</strong> {{ $item->child_name }} ({{ $item->child_age }} Jahre)<br/>
+            <strong>Sprache:</strong> {{ $item->language === 'arabic' ? 'Arabisch' : ($item->language === 'english' ? 'Englisch' : 'Deutsch') }}<br/>
+            <strong>Format:</strong>
+            @if($item->format === 'first_plan')
+              Erster Plan
+            @elseif($item->format === 'second_plan')
+              Zweiter Plan
+            @else
+              Dritter Plan
+            @endif
+            <br/>
+            <strong>Preis:</strong> {{ $item->story_price }} EUR
+          </div>
+        @endforeach
       </div>
 
       <div style="text-align:center; margin:20px 0;">
@@ -99,18 +113,7 @@
       <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
         <strong style="color:#333;">Order ID:</strong> #{{ $order->id }}<br/>
         <strong style="color:#333;">Customer Name:</strong> {{ $order->user ? $order->user->name : 'Unknown' }}<br/>
-        <strong style="color:#333;">Child Name:</strong> {{ $order->child_name }}<br/>
-        <strong style="color:#333;">Child Age:</strong> {{ $order->child_age }} years<br/>
-        <strong style="color:#333;">Language:</strong> {{ $order->language === 'arabic' ? 'Arabic' : 'English' }}<br/>
-        <strong style="color:#333;">Format:</strong>
-        @if($order->format === 'pdf')
-          PDF Only
-        @elseif($order->format === 'soft')
-          PDF + Softcover
-        @else
-          PDF + Hardcover
-        @endif
-        <br/>
+        <strong style="color:#333;">Number of Stories:</strong> {{ $order->orderItems->count() }} story/stories<br/>
         <strong style="color:#333;">Total Amount:</strong> {{ $order->total_price }} EUR<br/>
         <strong style="color:#333;">Payment Method:</strong> {{ $order->payment_method === 'cod' ? 'Cash on Delivery' : 'Online Payment' }}<br/>
         <strong style="color:#333;">Order Status:</strong>
@@ -123,6 +126,24 @@
         @else
           Cancelled
         @endif
+        <br/><br/>
+        <strong style="color:#333;">Story Details:</strong><br/>
+        @foreach($order->orderItems as $item)
+          <div style="background:#fff; padding:10px; margin:5px 0; border-radius:5px; border-left:3px solid #fa7508;">
+            <strong>Child:</strong> {{ $item->child_name }} ({{ $item->child_age }} years)<br/>
+            <strong>Language:</strong> {{ $item->language === 'arabic' ? 'Arabic' : ($item->language === 'english' ? 'English' : 'German') }}<br/>
+            <strong>Format:</strong>
+            @if($item->format === 'first_plan')
+              First Plan
+            @elseif($item->format === 'second_plan')
+              Second Plan
+            @else
+              Third Plan
+            @endif
+            <br/>
+            <strong>Price:</strong> {{ $item->story_price }} EUR
+          </div>
+        @endforeach
       </div>
 
       <div style="text-align:center; margin:20px 0;">

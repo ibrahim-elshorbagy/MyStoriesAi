@@ -9,37 +9,37 @@ use App\Models\Order\Order;
 class NotifyAdmin extends Notification
 {
 
-    protected $order;
+  protected $order;
 
-    public function __construct(Order $order)
-    {
-        $this->order = $order;
-    }
+  public function __construct(Order $order)
+  {
+    $this->order = $order;
+  }
 
-    public function via($notifiable)
-    {
-        return ['mail'];
-    }
+  public function via($notifiable)
+  {
+    return ['mail'];
+  }
 
-    public function toMail($notifiable)
-    {
-        $locale = app()->getLocale();
+  public function toMail($notifiable)
+  {
+    $locale = app()->getLocale();
 
-        return (new MailMessage)
-            ->subject(__('emails.new_order_admin_subject', ['id' => $this->order->id], $locale))
-            ->view('emails.orders.creating.notify-admin', [
-                'order' => $this->order,
-                'notifiable' => $notifiable,
-                'locale' => $locale
-            ]);
-    }
+    return (new MailMessage)
+      ->subject(__('emails.new_order_admin_subject', ['id' => $this->order->id], $locale))
+      ->view('emails.orders.creating.notify-admin', [
+        'order' => $this->order,
+        'notifiable' => $notifiable,
+        'locale' => $locale
+      ]);
+  }
 
-    public function toArray($notifiable)
-    {
-        return [
-            'order_id' => $this->order->id,
-            'customer_name' => $this->order->user->name,
-            'total_price' => $this->order->total_price,
-        ];
-    }
+  public function toArray($notifiable)
+  {
+    return [
+      'order_id' => $this->order->id,
+      'customer_name' => $this->order->user->name,
+      'total_price' => $this->order->total_price,
+    ];
+  }
 }
