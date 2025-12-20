@@ -58,9 +58,9 @@ export default function PricingSection({ settings = {} }) {
     <>
       <section
         id="pricing"
-        className="relative flex flex-col md:flex-row flex-wrap items-center justify-between px-8 pt-20 pb-20 bg-gradient-to-r from-emerald-100 to-amber-50"
+        className="relative flex flex-col lg:flex-row items-center justify-center lg:justify-between px-4 sm:px-6 lg:px-8 pt-20 pb-20 bg-gradient-to-r from-emerald-100 to-amber-50 w-full"
       >
-        {/* Separator line horizontally rotated at the top of pricing */}
+        {/* Separator line */}
         <div className="absolute -top-8 left-0 w-full h-16 pointer-events-none z-40">
           <div
             className="w-full h-full bg-gradient-to-r from-emerald-100 to-amber-50"
@@ -77,52 +77,54 @@ export default function PricingSection({ settings = {} }) {
           />
         </div>
 
-        <div className="max-w-lg flex flex-col space-y-8 flex-1 relative">
-          {/* Floating particles */}
-          <div className="absolute top-0 ltr:left-0 rtl:right-0 animate-float opacity-80">
-            <i className="fa-solid fa-star text-yellow-300 text-3xl drop-shadow-lg"></i>
+        <div className="w-full lg:max-w-lg flex flex-col space-y-8 flex-1 relative px-4 sm:px-6">
+          {/* Floating particles - mobile responsive */}
+          <div className="absolute top-0 ltr:left-2 rtl:right-2 sm:ltr:left-0 sm:rtl:right-0 animate-float opacity-80">
+            <i className="fa-solid fa-star text-yellow-300 text-2xl sm:text-3xl drop-shadow-lg"></i>
           </div>
 
-          <div className="absolute -top-6 ltr:right-8 rtl:left-8 animate-float-delay-1 opacity-85">
-            <i className="fa-solid fa-crown ltr:text-white rtl:text-green-500 text-2xl drop-shadow-lg"></i>
+          <div className="absolute -top-4 ltr:right-4 rtl:left-4 sm:ltr:right-8 sm:rtl:left-8 animate-float-delay-1 opacity-85">
+            <i className="fa-solid fa-crown ltr:text-white rtl:text-green-500 text-xl sm:text-2xl drop-shadow-lg"></i>
           </div>
 
-          <div className="absolute top-16 ltr:left-10 rtl:right-10 animate-float-delay-2 opacity-90">
-            <i className="fa-solid fa-gem text-blue-200 text-3xl drop-shadow-lg"></i>
+          <div className="absolute top-12 ltr:left-4 rtl:right-4 sm:ltr:left-10 sm:rtl:right-10 animate-float-delay-2 opacity-90">
+            <i className="fa-solid fa-gem text-blue-200 text-2xl sm:text-3xl drop-shadow-lg"></i>
           </div>
 
-          <div className="absolute bottom-0 ltr:right-16 rtl:left-16 animate-float opacity-80">
-            <i className="fa-solid fa-lightbulb text-yellow-200 text-2xl drop-shadow-lg"></i>
+          <div className="absolute bottom-0 ltr:right-6 rtl:left-6 sm:ltr:right-16 sm:rtl:left-16 animate-float opacity-80">
+            <i className="fa-solid fa-lightbulb text-yellow-200 text-xl sm:text-2xl drop-shadow-lg"></i>
           </div>
 
           {/* Heading */}
-          <h2 className="text-2xl sm:text-3xl md:text-6xl font-extrabold text-gray-900 leading-snug relative z-10 text-center rtl:text-right ltr:text-left">
-            {t("personalize_your_story_now")} <br />
-            <span className="text-emerald-600 text-base sm:text-lg md:text-3xl">
-              {t("make_your_child_the_hero")}
-            </span>
-          </h2>
+          <div className="text-center lg:ltr:text-left lg:rtl:text-right">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-extrabold text-gray-900 leading-snug relative z-10">
+              {t("personalize_your_story_now")} <br />
+              <span className="text-emerald-600 text-base sm:text-lg md:text-xl lg:text-3xl">
+                {t("make_your_child_the_hero")}
+              </span>
+            </h2>
+          </div>
 
-          <div className="flex max-md:items-center max-md:justify-center">
+          <div className="flex justify-center lg:justify-start">
             <Link
               size="large"
-              as={Link}
               href={route('stories')}
-              className="px-6 w-fit py-4 mt-4 text-lg sm:text-xl font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
+              className="px-4 sm:px-6    py-3 sm:py-4 text-base sm:text-lg font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm"
             >
               {t("explore_our_stories")}
             </Link>
           </div>
         </div>
 
-        <div className="mt-10 md:mt-0">
+        <div className="mt-8 lg:mt-0 w-full lg:w-auto flex justify-center lg:justify-end">
           <img
             src="assets/auth/logo.png"
             alt="Storybook Preview"
-            className="w-48 sm:w-64 lg:w-[400px] drop-shadow-2xl rounded-xl"
+            className="w-40 sm:w-48 lg:w-64 xl:w-[400px] drop-shadow-2xl rounded-xl max-w-full h-auto"
           />
         </div>
       </section>
+
 
       <section className="py-20 px-4 bg-neutral-50">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">

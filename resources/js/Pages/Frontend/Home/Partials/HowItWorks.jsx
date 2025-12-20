@@ -10,52 +10,90 @@ export default function HowItWorks() {
       key: 'create-story',
       image: '/assets/home/HowItWorks1.png',
       title: t('how_it_works_option1_title'),
+      badge: t('how_it_works_option1_badge'),
       features: [
-        { icon: 'fa-magic', text: t('how_it_works_option1_feature1') },
-        { icon: 'fa-wrench', text: t('how_it_works_option1_feature2') },
+        { text: t('how_it_works_option1_feature1') },
+        { text: t('how_it_works_option1_feature2') },
+        { text: t('how_it_works_option1_feature3') },
+        { text: t('how_it_works_option1_feature4') },
+        { text: t('how_it_works_option1_feature5') },
       ],
       button: {
         text: t('how_it_works_option1_button'),
         href: route('frontend.order.create'),
-        className:
-          'px-6 py-4 text-lg font-bold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white shadow-2xl shadow-orange-900/50 hover:shadow-orange-800/60 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30 backdrop-blur-sm',
       },
+
+      // styling
+      wrapperGradient: 'bg-gradient-to-r from-green-400/90 to-green-200/90',
+      cardShadow:
+        'shadow-[0_35px_60px_rgba(34,197,94,0.45)] shadow-green-400/60 hover:shadow-[0_45px_80px_rgba(34,197,94,0.4)] hover:shadow-green-500/70',
+      contentBox:
+        'bg-green-50/95 shadow-[0_20px_40px_rgba(34,197,94,0.25)] shadow-green-300/40',
+      badgeBg: 'bg-gradient-to-r from-green-500 to-emerald-500 text-white',
+      buttonBg:
+        'bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 shadow-green-500/50',
+      isFeatured: true, // for the 102% scale
     },
     {
-      key: 'browse-stories',
+      key: 'quick-customize',
       image: '/assets/home/HowItWorks2.png',
       title: t('how_it_works_option2_title'),
+      badge: t('how_it_works_option2_badge'),
       features: [
-        { icon: 'fa-book', text: t('how_it_works_option2_feature1') },
-        { icon: 'fa-eye', text: t('how_it_works_option2_feature2') },
+        { text: t('how_it_works_option2_feature1') },
+        { text: t('how_it_works_option2_feature2') },
+        { text: t('how_it_works_option2_feature3') },
+        { text: t('how_it_works_option2_feature4') },
+        { text: t('how_it_works_option2_feature5') },
       ],
       button: {
         text: t('how_it_works_option2_button'),
         href: route('stories'),
-        className:
-          'px-6 py-4 text-lg font-bold bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white shadow-2xl shadow-orange-900/40 hover:shadow-orange-800/50 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30',
       },
+
+      wrapperGradient: 'bg-gradient-to-r from-amber-400/90 to-yellow-200/90',
+      cardShadow:
+        'shadow-[0_35px_60px_rgba(251,191,36,0.45)] shadow-amber-400/60 hover:shadow-[0_45px_80px_rgba(251,191,36,0.4)] hover:shadow-amber-500/70',
+      contentBox:
+        'bg-yellow-50/95 shadow-[0_20px_40px_rgba(251,191,36,0.25)] shadow-amber-300/40',
+      badgeBg:
+        'bg-gradient-to-r from-amber-500 to-orange-400 text-orange-900',
+      buttonBg:
+        'bg-gradient-to-r from-amber-500 to-orange-400 hover:from-amber-400 hover:to-orange-400 shadow-amber-500/50',
+      isFeatured: false,
     },
     {
-      key: 'browse-stories',
+      key: 'free-name-story',
       image: '/assets/home/HowItWorks3.png',
-      title: t('how_it_works_option2_title'),
+      title: t('how_it_works_option3_title'),
+      badge: t('how_it_works_option3_badge'),
       features: [
-        { icon: 'fa-book', text: t('how_it_works_option2_feature1') },
-        { icon: 'fa-eye', text: t('how_it_works_option2_feature2') },
+        { text: t('how_it_works_option3_feature1') },
+        { text: t('how_it_works_option3_feature2') },
+        { text: t('how_it_works_option3_feature3') },
+        { text: t('how_it_works_option3_feature4') },
+        { text: t('how_it_works_option3_feature5') },
       ],
       button: {
-        text: t('how_it_works_option2_button'),
+        text: t('how_it_works_option3_button'),
         href: route('stories'),
-        className:
-          'px-6 py-4 text-lg font-bold bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white shadow-2xl shadow-orange-900/40 hover:shadow-orange-800/50 transform hover:scale-105 transition-all duration-300 rounded-md border-2 border-orange-300/30',
       },
+
+      wrapperGradient: 'bg-gradient-to-r from-orange-400/90 to-amber-200/90',
+      cardShadow:
+        'shadow-[0_35px_60px_rgba(251,146,60,0.45)] shadow-orange-400/60 hover:shadow-[0_45px_80px_rgba(251,146,60,0.4)] hover:shadow-orange-500/70',
+      contentBox:
+        'bg-orange-50/95 shadow-[0_20px_40px_rgba(251,146,60,0.25)] shadow-orange-300/40',
+      badgeBg: 'bg-gradient-to-r from-orange-500 to-red-400 text-white',
+      buttonBg:
+        'bg-gradient-to-r from-orange-500 to-red-400 hover:from-orange-400 hover:to-red-400 shadow-orange-500/50',
+      isFeatured: false,
     },
   ];
 
   return (
     <section
-      className="relative py-16  bg-neutral-50"
+      className="relative py-16 pb-32 bg-neutral-50"
       id="how-it-works"
     >
       <div className="container mx-auto flex flex-col gap-14 md:gap-16">
@@ -68,46 +106,109 @@ export default function HowItWorks() {
               {t('how_it_works_subtitle')}
             </h3>
           </div>
-          <p className="text-lg text-neutral-600 leading-relaxed">
-            {t('how_it_works_description')}
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 md:gap-10 mx-5">
           {options.map((option) => (
             <div
               key={option.key}
-              className="group bg-white border border-neutral-200 rounded-md p-8 flex flex-col items-center text-center hover:shadow-2xl hover:scale-105 transition-all duration-300"
+              className={`
+                lg:col-span-1
+                ${option.isFeatured ? 'scale-[102%]' : ''}
+                transition-all duration-500
+                hover:scale-105 hover:shadow-2xl
+              `}
             >
-              <img
-                src={option.image}
-                alt={option.title}
-                className="w-full h-[300px] sm:h-[450px] xl:h-[450px] object-cover rounded-md shadow-lg mb-6"
-              />
-              <h3 className="text-2xl font-semibold text-neutral-800 mb-4 group-hover:text-orange-600 transition-colors">
-                {option.title}
-              </h3>
-              <ul className="w-full text-left rtl:text-right space-y-3 mb-6">
-                {option.features.map((feature) => (
-                  <li
-                    key={`${option.key}-${feature.icon}`}
-                    className="flex items-start gap-3 rtl:flex-row-reverse"
-                  >
-                    <span className="mt-1 text-orange-500 flex-shrink-0">
-                      <i className={`fa-solid ${feature.icon} text-xl`}></i>
-                    </span>
-                    <span className="text-neutral-600 leading-relaxed">
-                      {feature.text}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={option.button.href}
-                className={`${option.button.className} w-full sm:w-auto`}
+              {/* colored border per card */}
+              <div
+                className={`
+                  relative rounded-[28px]
+                  ${option.wrapperGradient}
+                `}
               >
-                {option.button.text}
-              </Link>
+                {/* white card WITH DEEP COLORED SHADOW + MIN HEIGHT */}
+                <div
+                  className={`
+                    relative rounded-[26px] bg-white/98 border border-white/80
+                    shadow-2xl shadow-black/20
+                    ${option.cardShadow}
+                    min-h-[720px] sm:min-h-[760px] lg:min-h-[730px]
+                  `}
+                >
+                  {/* image + top badge */}
+                  <div className="relative">
+                    <div className="overflow-hidden rounded-t-[24px]">
+                      <img
+                        src={option.image}
+                        alt={option.title}
+                        className="w-full h-[260px] sm:h-[450px] lg:h-[500px] xl:h-[450px] object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                    </div>
+
+                    {option.badge && (
+                      <span
+                        className={`
+                          absolute -top-4 left-1/2 -translate-x-1/2 z-10
+                          inline-flex items-center justify-center
+                          px-5 py-2 rounded-full text-sm font-semibold shadow-lg shadow-black/30
+                          ${option.badgeBg}
+                        `}
+                      >
+                        {option.badge}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* content box OVERLAYING image */}
+                  <div className="relative -mt-6">
+                    <div
+                      className={`
+                        rounded-[24px]
+                        ${option.contentBox}
+                        shadow-2xl shadow-black/15
+                        border border-white/80
+                        pt-8 pb-6 px-6
+                        flex flex-col items-center text-center
+                        hover:shadow-[0_25px_50px_rgba(0,0,0,0.2)]
+                      `}
+                    >
+                      <h3 className="text-2xl font-semibold text-neutral-800 mb-4 drop-shadow-md">
+                        {option.title}
+                      </h3>
+
+                      <ul className="w-full text-left rtl:text-right space-y-2 mb-6 text-neutral-700">
+                        {option.features.map((feature, idx) => (
+                          <li
+                            key={`${option.key}-${idx}`}
+                            className="flex gap-2"
+                          >
+                            <span className="text-orange-500 flex-shrink-0 drop-shadow-sm">
+                              <i className="fa-solid fa-check text-lg"></i>
+                            </span>
+                            <span className="leading-relaxed">
+                              {feature.text}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <Link
+                        href={option.button.href}
+                        className={`
+                          px-8 py-3 text-lg font-bold rounded-lg min-w-60
+                          text-white shadow-2xl shadow-black/25
+                          transform hover:scale-105 hover:shadow-[0_15px_35px_rgba(0,0,0,0.3)]
+                          transition-all duration-300
+                          w-full sm:w-auto
+                          ${option.buttonBg}
+                        `}
+                      >
+                        {option.button.text}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
