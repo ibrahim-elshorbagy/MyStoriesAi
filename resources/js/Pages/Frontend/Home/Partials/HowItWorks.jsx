@@ -14,9 +14,6 @@ export default function HowItWorks() {
       features: [
         { text: t('how_it_works_option1_feature1') },
         { text: t('how_it_works_option1_feature2') },
-        { text: t('how_it_works_option1_feature3') },
-        { text: t('how_it_works_option1_feature4') },
-        { text: t('how_it_works_option1_feature5') },
       ],
       button: {
         text: t('how_it_works_option1_button'),
@@ -44,7 +41,6 @@ export default function HowItWorks() {
         { text: t('how_it_works_option2_feature2') },
         { text: t('how_it_works_option2_feature3') },
         { text: t('how_it_works_option2_feature4') },
-        { text: t('how_it_works_option2_feature5') },
       ],
       button: {
         text: t('how_it_works_option2_button'),
@@ -71,8 +67,6 @@ export default function HowItWorks() {
         { text: t('how_it_works_option3_feature1') },
         { text: t('how_it_works_option3_feature2') },
         { text: t('how_it_works_option3_feature3') },
-        { text: t('how_it_works_option3_feature4') },
-        { text: t('how_it_works_option3_feature5') },
       ],
       button: {
         text: t('how_it_works_option3_button'),
@@ -116,7 +110,7 @@ export default function HowItWorks() {
                 lg:col-span-1
                 ${option.isFeatured ? 'scale-[102%]' : ''}
                 transition-all duration-500
-                hover:scale-105 hover:shadow-2xl
+                hover:scale-105 
               `}
             >
               {/* colored border per card */}
@@ -133,10 +127,11 @@ export default function HowItWorks() {
                     shadow-2xl shadow-black/20
                     ${option.cardShadow}
                     min-h-[720px] sm:min-h-[760px] lg:min-h-[730px]
+                    flex flex-col
                   `}
                 >
                   {/* image + top badge */}
-                  <div className="relative">
+                  <div className="relative flex-shrink-0">
                     <div className="overflow-hidden rounded-t-[24px]">
                       <img
                         src={option.image}
@@ -160,7 +155,7 @@ export default function HowItWorks() {
                   </div>
 
                   {/* content box OVERLAYING image */}
-                  <div className="relative -mt-6">
+                  <div className="relative -mt-6 flex-1 flex flex-col">
                     <div
                       className={`
                         rounded-[24px]
@@ -170,6 +165,7 @@ export default function HowItWorks() {
                         pt-8 pb-6 px-6
                         flex flex-col items-center text-center
                         hover:shadow-[0_25px_50px_rgba(0,0,0,0.2)]
+                        flex-1
                       `}
                     >
                       <h3 className="text-2xl font-semibold text-neutral-800 mb-4 drop-shadow-md">
