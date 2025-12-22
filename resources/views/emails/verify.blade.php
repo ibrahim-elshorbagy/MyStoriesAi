@@ -63,6 +63,6 @@
           © {{ date('Y') }} MyStoriesAi. All rights reserved.
           <br/>
           <a href="{{ config('app.url') }}" style="color:#555; text-decoration:none;">{{ app()->getLocale() === 'ar' ? 'الموقع الرسمي' : 'Official Website' }}</a> |
-          <a href="mailto:MyStoriesAi.webiste@gmail.com" style="color:#555; text-decoration:none;">{{ app()->getLocale() === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
+          <a href="mailto:support@mystoriesai.com" style="color:#555; text-decoration:none;">{{ app()->getLocale() === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
         </p>
       </div>
