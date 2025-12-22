@@ -61,24 +61,32 @@ class FaqController extends Controller
     $validated = $request->validate([
       'question_ar' => ['required', 'string', 'max:255'],
       'question_en' => ['required', 'string', 'max:255'],
-      'question_de' => ['required', 'string', 'max:255'],
+      'question_de' => ['nullable', 'string', 'max:255'],
       'answer_ar' => ['required', 'string'],
       'answer_en' => ['required', 'string'],
-      'answer_de' => ['required', 'string'],
+      'answer_de' => ['nullable', 'string'],
       'category_id' => ['required', 'exists:faq_categories,id'],
     ]);
 
+    $questionData = [
+      'ar' => $validated['question_ar'],
+      'en' => $validated['question_en'],
+    ];
+    if (!empty($validated['question_de'])) {
+      $questionData['de'] = $validated['question_de'];
+    }
+
+    $answerData = [
+      'ar' => $validated['answer_ar'],
+      'en' => $validated['answer_en'],
+    ];
+    if (!empty($validated['answer_de'])) {
+      $answerData['de'] = $validated['answer_de'];
+    }
+
     Faq::create([
-      'question' => [
-        'ar' => $validated['question_ar'],
-        'en' => $validated['question_en'],
-        'de' => $validated['question_de'],
-      ],
-      'answer' => [
-        'ar' => $validated['answer_ar'],
-        'en' => $validated['answer_en'],
-        'de' => $validated['answer_de'],
-      ],
+      'question' => $questionData,
+      'answer' => $answerData,
       'category_id' => $validated['category_id'],
     ]);
 
@@ -103,23 +111,32 @@ class FaqController extends Controller
     $validated = $request->validate([
       'question_ar' => ['required', 'string', 'max:255'],
       'question_en' => ['required', 'string', 'max:255'],
+      'question_de' => ['nullable', 'string', 'max:255'],
       'answer_ar' => ['required', 'string'],
       'answer_en' => ['required', 'string'],
-      'answer_de' => ['required', 'string'],
+      'answer_de' => ['nullable', 'string'],
       'category_id' => ['required', 'exists:faq_categories,id'],
     ]);
 
+    $questionData = [
+      'ar' => $validated['question_ar'],
+      'en' => $validated['question_en'],
+    ];
+    if (!empty($validated['question_de'])) {
+      $questionData['de'] = $validated['question_de'];
+    }
+
+    $answerData = [
+      'ar' => $validated['answer_ar'],
+      'en' => $validated['answer_en'],
+    ];
+    if (!empty($validated['answer_de'])) {
+      $answerData['de'] = $validated['answer_de'];
+    }
+
     $faq->update([
-      'question' => [
-        'ar' => $validated['question_ar'],
-        'en' => $validated['question_en'],
-        'de' => $validated['question_de'],
-      ],
-      'answer' => [
-        'ar' => $validated['answer_ar'],
-        'en' => $validated['answer_en'],
-        'de' => $validated['answer_de'],
-      ],
+      'question' => $questionData,
+      'answer' => $answerData,
       'category_id' => $validated['category_id'],
     ]);
 
