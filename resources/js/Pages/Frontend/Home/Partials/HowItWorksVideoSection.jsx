@@ -38,7 +38,7 @@ export default function HowItWorksVideoSection({ videoUrl }) {
         loop
         playsInline
         preload="metadata"
-        className="w-full h-auto"
+        className="w-full h-auto max-h-screen object-contain"
       />
 
       {/* Custom Play/Pause Control */}

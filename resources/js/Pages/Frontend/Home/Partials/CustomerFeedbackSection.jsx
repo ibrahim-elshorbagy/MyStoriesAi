@@ -104,11 +104,9 @@ export default function CustomerFeedbackSection({ textFeedbacks, imageFeedbacks,
       {/* Video Feedbacks - Full Screen Section */}
       {videoFeedbacks && videoFeedbacks.length > 0 && (
         <section
-          className="relative w-screen overflow-hidden bg-neutral-900"
+          className="relative w-screen overflow-hidden  md:h-screen"
           style={{
-            marginLeft: 'calc(-50vw + 50%)',
-            height: '100vh',
-            minHeight: '100vh'
+            marginLeft: 'calc(-50vw + 50%)'
           }}
         >
           {/* Title overlay */}
@@ -127,8 +125,7 @@ export default function CustomerFeedbackSection({ textFeedbacks, imageFeedbacks,
               nextEl: '.video-swiper-button-next',
               prevEl: '.video-swiper-button-prev',
             }}
-            className="w-full h-full"
-            style={{ height: '100vh' }}
+            className="!w-full !h-auto md:!h-screen"
             onSlideChange={(swiper) => {
               const currentIndex = swiper.realIndex;
               if (playingStates[currentIndex] === undefined) {
@@ -137,9 +134,9 @@ export default function CustomerFeedbackSection({ textFeedbacks, imageFeedbacks,
             }}
           >
             {videoFeedbacks.map((feedback, index) => (
-              <SwiperSlide key={`video-feedback-${feedback.id || index}`}>
+              <SwiperSlide key={`video-feedback-${feedback.id || index}`} className="!w-full">
                 <div
-                  className="relative w-full h-full cursor-pointer"
+                  className="relative !w-full cursor-pointer"
                   onClick={(e) => toggleVideoPlayPause(index, e)}
                 >
                   <video
@@ -150,7 +147,7 @@ export default function CustomerFeedbackSection({ textFeedbacks, imageFeedbacks,
                     loop
                     playsInline
                     preload="metadata"
-                    className="w-full h-full object-cover"
+                    className="!w-full h-auto max-h-[80vh] object-contain md:h-screen md:max-h-screen md:object-cover"
                     onPlay={() => setPlayingStates(prev => ({ ...prev, [index]: true }))}
                   />
 
