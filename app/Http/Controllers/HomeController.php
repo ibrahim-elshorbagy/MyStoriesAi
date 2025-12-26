@@ -21,7 +21,16 @@ class HomeController extends Controller
       ->take(12)
       ->get();
     $categories = AgeCategory::all();
-    $settings = SiteSetting::all()->pluck('value', 'key')->toArray();
+
+    // Only expose non-sensitive settings to frontend
+    $settings = SiteSetting::whereIn('key', [
+      'first_plan_price',
+      'second_plan_price',
+      'third_plan_price',
+      'how_it_works_video', // Only publishable key, NEVER secret key
+      // Add other non-sensitive settings as needed
+    ])->pluck('value', 'key')->toArray();
+
     $textFeedbacks = CustomerFeedback::whereNotNull('customer_feedback')->whereNull('image')->whereNull('video')->get();
     $imageFeedbacks = CustomerFeedback::whereNull('customer_feedback')->whereNotNull('image')->whereNull('video')->get();
     $videoFeedbacks = CustomerFeedback::whereNull('customer_feedback')->whereNull('image')->whereNotNull('video')->get();

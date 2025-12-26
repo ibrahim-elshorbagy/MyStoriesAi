@@ -22,6 +22,7 @@ export default function Home({ stories, faqs, categories, settings, textFeedback
 
       <HeroSection />
       <HowItWorks />
+      
       {settings.how_it_works_video && (
         <HowItWorksVideoSection videoUrl={settings.how_it_works_video} />
       )}

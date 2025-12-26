@@ -2,13 +2,16 @@
 import React, { useRef, useState } from 'react';
 import { useTrans } from '@/Hooks/useTrans';
 
+
 export default function HowItWorksVideoSection({ videoUrl }) {
   const { t } = useTrans();
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
 
+
   // Detect RTL from document
   const isRtl = document.documentElement.dir === 'rtl';
+
 
   const togglePlayPause = (e) => {
     e.stopPropagation();
@@ -22,12 +25,10 @@ export default function HowItWorksVideoSection({ videoUrl }) {
     }
   };
 
+
   return (
     <section
-      className="relative w-screen bg-neutral-900 cursor-pointer"
-      style={{
-        marginLeft: 'calc(-50vw + 50%)',
-      }}
+      className="relative w-screen -mx-[50vw] left-[50%] right-[50%] cursor-pointer bg-black"
       onClick={togglePlayPause}
     >
       <video
@@ -38,8 +39,9 @@ export default function HowItWorksVideoSection({ videoUrl }) {
         loop
         playsInline
         preload="metadata"
-        className="w-full h-auto max-h-screen object-contain"
+        className="w-full h-auto object-contain"
       />
+
 
       {/* Custom Play/Pause Control */}
       <button
