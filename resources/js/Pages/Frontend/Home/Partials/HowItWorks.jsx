@@ -134,6 +134,8 @@ export default function HowItWorks() {
                         src={option.image}
                         alt={option.title}
                         className="w-full h-[380px] sm:h-[650px] lg:h-[500px] xl:h-[450px] object-cover transition-transform duration-500 hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
 

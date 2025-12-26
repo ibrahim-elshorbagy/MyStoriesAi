@@ -1,17 +1,36 @@
 // HowItWorksVideoSection.jsx
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useTrans } from '@/Hooks/useTrans';
 
 
 export default function HowItWorksVideoSection({ videoUrl }) {
   const { t } = useTrans();
   const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false); // Start paused
+  const [isVisible, setIsVisible] = useState(false);
 
 
   // Detect RTL from document
   const isRtl = document.documentElement.dir === 'rtl';
 
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const togglePlayPause = (e) => {
     e.stopPropagation();
@@ -31,16 +50,25 @@ export default function HowItWorksVideoSection({ videoUrl }) {
       className="relative w-screen -mx-[50vw] left-[50%] right-[50%] cursor-pointer bg-black"
       onClick={togglePlayPause}
     >
-      <video
-        ref={videoRef}
-        src={`/storage/${videoUrl}`}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="w-full h-auto object-contain"
-      />
+      {isVisible && (
+        <video
+          ref={videoRef}
+          src={`/storage/${videoUrl}`}
+          autoPlay={false} // Don't autoplay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="w-full h-auto object-contain"
+        />
+      )}
+
+      {/* Loading placeholder */}
+      {!isVisible && (
+        <div className="w-full h-64 bg-gray-800 flex items-center justify-center">
+          <div className="text-white text-lg">Loading video...</div>
+        </div>
+      )}
 
 
       {/* Custom Play/Pause Control */}

@@ -24,6 +24,8 @@ export default function AgeCategoriesSection({ categories }) {
                 src={category.image_value || 'https://placehold.co/300x400.png'}
                 alt={category.name_value}
                 className="w-full h-auto object-cover rounded-md shadow-md"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute top-3 md:top-10 left-1/2 transform -translate-x-1/2 text-white flex flex-col items-center">
                 <span className="text-lg md:text-[22px] font-marcellus">{t('age')}</span>

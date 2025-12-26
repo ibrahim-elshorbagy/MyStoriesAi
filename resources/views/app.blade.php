@@ -19,8 +19,9 @@
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Font Awesome - Load asynchronously to prevent render blocking -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
   <!-- Dark mode script - must be in head -->
   <script>
@@ -42,12 +43,14 @@
   @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
   @inertiaHead
 
-  <script id="cookieyes" type="text/javascript"
-    src="https://cdn-cookieyes.com/client_data/ec0a945423492c2d0b033ab0260af687/script.js"></script>
-
 </head>
 
 <body class="font-sans antialiased">
+  @inertia
+
+  <!-- CookieYes script - moved to body and made async -->
+  <script async id="cookieyes" type="text/javascript"
+    src="https://cdn-cookieyes.com/client_data/ec0a945423492c2d0b033ab0260af687/script.js"></script>
   @inertia
 </body>
 

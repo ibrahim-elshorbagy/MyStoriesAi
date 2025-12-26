@@ -34,6 +34,8 @@ export default function Home({ stories, faqs, categories, settings, textFeedback
           className="w-full h-auto object-cover"
           src={`/assets/home/${locale}.png`}
           alt=""
+          loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-x-0 bottom-2 lg:bottom-8 flex items-center justify-center px-4">
           <Link

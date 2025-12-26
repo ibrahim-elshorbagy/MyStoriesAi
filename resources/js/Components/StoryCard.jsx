@@ -14,6 +14,8 @@ export default function StoryCard({ story }) {
             src={story.cover_image_value || 'https://placehold.co/595x420.png'}
             alt={story.title_value}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+            decoding="async"
           />
 
           {/* Gender Badge */}
