@@ -39,8 +39,6 @@ export default function HowItWorks() {
       features: [
         { text: t('how_it_works_option2_feature1') },
         { text: t('how_it_works_option2_feature2') },
-        { text: t('how_it_works_option2_feature3') },
-        { text: t('how_it_works_option2_feature4') },
       ],
       button: {
         text: t('how_it_works_option2_button'),
@@ -66,11 +64,10 @@ export default function HowItWorks() {
       features: [
         { text: t('how_it_works_option3_feature1') },
         { text: t('how_it_works_option3_feature2') },
-        { text: t('how_it_works_option3_feature3') },
       ],
       button: {
         text: t('how_it_works_option3_button'),
-        href: route('stories'),
+        href: route('frontend.order.create'),
       },
 
       wrapperGradient: 'bg-gradient-to-r from-orange-400/90 to-amber-200/90',
@@ -110,7 +107,7 @@ export default function HowItWorks() {
                 lg:col-span-1
                 ${option.isFeatured ? 'scale-[102%]' : ''}
                 transition-all duration-500
-                hover:scale-105 
+                hover:scale-105
               `}
             >
               {/* colored border per card */}
@@ -126,7 +123,7 @@ export default function HowItWorks() {
                     relative rounded-[26px] bg-white/98 border border-white/80
                     shadow-2xl shadow-black/20
                     ${option.cardShadow}
-                    min-h-[720px] sm:min-h-[760px] lg:min-h-[730px]
+                    min-h-[450px] sm:min-h-[450px] lg:min-h-[730px]
                     flex flex-col
                   `}
                 >
@@ -136,7 +133,7 @@ export default function HowItWorks() {
                       <img
                         src={option.image}
                         alt={option.title}
-                        className="w-full h-[260px] sm:h-[450px] lg:h-[500px] xl:h-[450px] object-cover transition-transform duration-500 hover:scale-105"
+                        className="w-full h-[380px] sm:h-[650px] lg:h-[500px] xl:h-[450px] object-cover transition-transform duration-500 hover:scale-105"
                       />
                     </div>
 
@@ -166,27 +163,30 @@ export default function HowItWorks() {
                         flex flex-col items-center text-center
                         hover:shadow-[0_25px_50px_rgba(0,0,0,0.2)]
                         flex-1
+                        justify-between
                       `}
                     >
-                      <h3 className="text-2xl font-semibold text-neutral-800 mb-4 drop-shadow-md">
-                        {option.title}
-                      </h3>
+                      <div>
+                        <h3 className="text-2xl font-semibold text-neutral-800 mb-4 drop-shadow-md">
+                          {option.title}
+                        </h3>
 
-                      <ul className="w-full text-left rtl:text-right space-y-2 mb-6 text-neutral-700">
-                        {option.features.map((feature, idx) => (
-                          <li
-                            key={`${option.key}-${idx}`}
-                            className="flex gap-2"
-                          >
-                            <span className="text-orange-500 flex-shrink-0 drop-shadow-sm">
-                              <i className="fa-solid fa-check text-lg"></i>
-                            </span>
-                            <span className="leading-relaxed">
-                              {feature.text}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
+                        <ul className="w-full text-left rtl:text-right space-y-2 mb-6 text-neutral-700">
+                          {option.features.map((feature, idx) => (
+                            <li
+                              key={`${option.key}-${idx}`}
+                              className="flex gap-2"
+                            >
+                              <span className="text-orange-500 flex-shrink-0 drop-shadow-sm">
+                                <i className="fa-solid fa-check text-lg"></i>
+                              </span>
+                              <span className="leading-relaxed">
+                                {feature.text}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
                       <Link
                         href={option.button.href}

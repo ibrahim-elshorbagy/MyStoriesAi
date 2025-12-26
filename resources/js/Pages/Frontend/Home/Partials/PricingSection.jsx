@@ -37,21 +37,21 @@ export default function PricingSection({ settings = {} }) {
       btnClass: "bg-gradient-to-r from-teal-400 to-purple-500 hover:from-teal-500 hover:to-purple-600 text-white font-bold shadow-lg",
       badge: true,
     },
-    {
-      key: "third_plan",
-      title: "pricing_third_plan_title",
-      price: settings.third_plan_price || t("pricing_third_plan_price"),
-      desc: "pricing_third_plan_desc",
-      btn: "pricing_third_plan_btn",
-      features: [
-        "plan_3_feature_1",
-        "plan_3_feature_2",
-        "plan_3_feature_3",
-        "plan_3_feature_4",
-      ],
-      cardClass: "border border-yellow-200 bg-gradient-to-b from-yellow-50 to-white",
-      btnClass: "bg-gradient-to-r from-yellow-400 to-blue-700 hover:from-yellow-500 hover:to-blue-800 text-white",
-    },
+    // {
+    //   key: "third_plan",
+    //   title: "pricing_third_plan_title",
+    //   price: settings.third_plan_price || t("pricing_third_plan_price"),
+    //   desc: "pricing_third_plan_desc",
+    //   btn: "pricing_third_plan_btn",
+    //   features: [
+    //     "plan_3_feature_1",
+    //     "plan_3_feature_2",
+    //     "plan_3_feature_3",
+    //     "plan_3_feature_4",
+    //   ],
+    //   cardClass: "border border-yellow-200 bg-gradient-to-b from-yellow-50 to-white",
+    //   btnClass: "bg-gradient-to-r from-yellow-400 to-blue-700 hover:from-yellow-500 hover:to-blue-800 text-white",
+    // },
   ];
 
   return (
@@ -130,7 +130,7 @@ export default function PricingSection({ settings = {} }) {
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
           {t("pricing_section_title")}
         </h2>
-        <div className="grid lg:grid-cols-3 sm:p-8 gap-8 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 sm:p-8 gap-8 max-w-7xl mx-auto">
           {PRICING.map((pkg) => (
             <div
               key={pkg.key}

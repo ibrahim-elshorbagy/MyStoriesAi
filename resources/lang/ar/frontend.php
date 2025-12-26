@@ -12,18 +12,15 @@ return [
   'how_it_works_option1_badge' => '⭐ الأكثر اختيارًا',
   'how_it_works_option1_button' => 'ابدأ الآن',
   'how_it_works_option2_title' => 'اختر قصة جاهزة أو أنشئ قصة من الصفر',
-  'how_it_works_option2_feature1' => 'مغامرات',
-  'how_it_works_option2_feature2' => 'مهن',
-  'how_it_works_option2_feature3' => 'خيال',
-  'how_it_works_option2_feature4' => 'قصص مصممة حسب اهتمامات طفلك وقيمك التعليمية',
+  'how_it_works_option2_feature1' => 'مغامرات و مهن وخيال',
+  'how_it_works_option2_feature2' => 'قصص مصممة حسب اهتمام طفلك وقيمك التعليمية',
   'how_it_works_option2_badge' => '⚡ الأسرع',
   'how_it_works_option2_button' => 'خصّص الآن',
   'how_it_works_option3_title' => 'قصة مطبوعة تُصبح ذكرى',
   'how_it_works_option3_feature1' => 'كتاب عالي الجودة يحمل اسم وصورة طفلك',
-  'how_it_works_option3_feature2' => 'جاهز للقراءة والمشاركة',
-  'how_it_works_option3_feature3' => 'وذكرى تبقى لسنوات',
-  'how_it_works_option3_badge' => '🎁 مجاني',
-  'how_it_works_option3_button' => 'ابدأ مجانًا',
+  'how_it_works_option3_feature2' => 'جاهز للقراءة والمشاركة وذكرى تبقى لسنوات',
+  'how_it_works_option3_badge' => 'النتيجة النهائية',
+  'how_it_works_option3_button' => 'انشئ قصة طفلك',
 
 
   // Dashboard translations
