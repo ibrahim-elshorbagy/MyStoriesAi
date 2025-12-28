@@ -6,6 +6,7 @@ import { useTrans } from '@/Hooks/useTrans';
 export default function HowItWorksVideoSection({ videoUrl }) {
   const { t } = useTrans();
   const videoRef = useRef(null);
+  const sectionRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false); // Start paused
   const [isVisible, setIsVisible] = useState(false);
 
@@ -25,8 +26,8 @@ export default function HowItWorksVideoSection({ videoUrl }) {
       { threshold: 0.1 }
     );
 
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
     }
 
     return () => observer.disconnect();
@@ -47,6 +48,7 @@ export default function HowItWorksVideoSection({ videoUrl }) {
 
   return (
     <section
+      ref={sectionRef}
       className="relative w-screen -mx-[50vw] left-[50%] right-[50%] cursor-pointer bg-black"
       onClick={togglePlayPause}
     >

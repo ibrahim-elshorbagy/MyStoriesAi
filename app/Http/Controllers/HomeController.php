@@ -27,13 +27,13 @@ class HomeController extends Controller
       'first_plan_price',
       'second_plan_price',
       'third_plan_price',
-      'how_it_works_video', // Only publishable key, NEVER secret key
-      // Add other non-sensitive settings as needed
+      'how_it_works_video',
     ])->pluck('value', 'key')->toArray();
 
     $textFeedbacks = CustomerFeedback::whereNotNull('customer_feedback')->whereNull('image')->whereNull('video')->get();
     $imageFeedbacks = CustomerFeedback::whereNull('customer_feedback')->whereNotNull('image')->whereNull('video')->get();
     $videoFeedbacks = CustomerFeedback::whereNull('customer_feedback')->whereNull('image')->whereNotNull('video')->get();
+
 
     return inertia("Frontend/Home/Home", [
       'faqs' => $faqs,

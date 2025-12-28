@@ -36,6 +36,7 @@ return [
   'change_language' => 'Sprache ändern',
   'language_changed' => 'Sprache geändert',
   'current_language' => 'Aktuelle Sprache',
+  'book_type' => 'Buchtyp',
 
   // Delivery options - German
   'city_name_de' => 'Stadtname (Deutsch)',
@@ -155,35 +156,34 @@ return [
   'choose_your_storybook_plan' => 'Wählen Sie Ihren Geschichtenbuchplan',
   'make_your_child_the_hero' => 'Machen Sie Ihr Kind zum Helden!',
 
-  'pricing_section_title' => 'Wählen Sie Ihren Geschichtenbuchplan – Machen Sie Ihr Kind zum Helden!',
+  'pricing_section_title' => 'Wählen Sie Ihr Kinderbuch – Machen Sie Ihr Kind zum Helden!',
 
-  'pricing_first_plan_title' => 'Taschenbuch + Kostenlose PDF-Kopie',
-  'pricing_first_plan_price' => '339',
-  'pricing_first_plan_desc' => 'Wunderschön gedrucktes Geschichtenbuch mit weichem Einband',
-  'pricing_first_plan_btn' => 'Taschenbuch bestellen',
-  'plan_1_feature_1' => 'Kostenlose PDF-Version für jedes Gerät',
-  'plan_1_feature_2' => 'Name und Foto Ihres Kindes erscheinen auf jeder Seite',
-  'plan_1_feature_3' => 'Farbenfrohe Illustrationen und fröhliches Geschichtenerzählen',
-  'plan_1_feature_4' => 'Eltern, die tägliche Lesezeit und Gutenachtgeschichten lieben',
+  'pricing_first_plan_title' => '📕 Gebundenes Buch (Hardcover)',
+  'pricing_first_plan_price' => '44.99',
+  'pricing_first_plan_desc' => 'Robustes gebundenes Buch, das jahrelang hält',
+  'pricing_first_plan_btn' => 'Starten Sie die Geschichte Ihres Kindes',
+  'plan_1_feature_1' => '✔ Robust und hält jahrelang',
+  'plan_1_feature_2' => '✔ Vorleseerlebnis vor dem Schlafengehen',
+  'plan_1_feature_3' => '✔ Vollständig personalisierte Geschichte für Ihr Kind',
+  'plan_1_feature_4' => '✔77 Seiten',
+  'plan_1_feature_5' => '✔ Perfektes Geschenk für Anlässe',
 
-  'pricing_second_plan_title' => 'Premium-Geschenkausgabe + Kostenlose PDF',
-  'pricing_second_plan_price' => '439',
-  'pricing_second_plan_desc' => 'Elegante Hardcover-Geschenkausgabe',
-  'pricing_second_plan_btn' => 'Premium-Ausgabe bestellen',
+  'pricing_second_plan_title' => '📘 Taschenbuch (Paperback)',
+  'pricing_second_plan_price' => '29.99',
+  'pricing_second_plan_desc' => 'Leichtes und einfach zu handhabendes Taschenbuch',
+  'pricing_second_plan_btn' => 'Bestellen Sie Ihre gedruckte Kopie jetzt',
   'pricing_most_popular' => 'Am beliebtesten',
-  'plan_2_feature_1' => 'Dickes, hochwertiges Papier und lebendige Farben',
-  'plan_2_feature_2' => 'Kostenlose digitale Version',
-  'plan_2_feature_3' => 'Perfekt für Geburtstage, Feiertage und besondere Anlässe',
-  'plan_2_feature_4' => 'Jeder, der ein bedeutungsvolles, bleibendes Geschenk sucht',
+  'plan_2_feature_1' => '✔ Leicht und einfach zu handhaben',
+  'plan_2_feature_2' => '✔ Dieselbe personalisierte Geschichte',
+  'plan_2_feature_3' => '✔ Geeignet für tägliches Lesen',
+  'plan_2_feature_4' => '✔40 Seiten',
+  'plan_2_feature_5' => '✔Ideal für erste Erfahrungen und junge Kinder',
 
-  'pricing_third_plan_title' => 'Sammleredition Limitiert (Exklusiv)',
-  'pricing_third_plan_price' => '549',
-  'pricing_third_plan_desc' => 'Sonderausgabe mit dem Namen Ihres Kindes auf dem Cover gedruckt',
-  'pricing_third_plan_btn' => 'Sammleredition reservieren',
-  'plan_3_feature_1' => 'Luxus-Geschenkbox mit Schleifenverpackung',
-  'plan_3_feature_2' => 'Personalisierte "Heldenurkunde" mit dem Namen Ihres Kindes',
-  'plan_3_feature_3' => 'Beinhaltet kostenlose PDF-Version',
-  'plan_3_feature_4' => 'Für unvergessliche Geschenke und lebenslange Erinnerungsstücke',
+  'pricing_additional_text' => '📘 Ein Buch, das kombiniert
+                                Eine personalisierte Geschichte für Ihr Kind
+                                Und interaktive Bildungsaktivitäten
+                                Ohne Bildschirme
+                                Verfügbar mit Launch-Bestellungen für begrenzte Zeit',
   // End Pricing
 
   // FAQs Section
@@ -207,9 +207,8 @@ return [
   'gender_boy' => 'Junge',
   'gender_girl' => 'Mädchen',
   'format' => 'Format',
-  'format_first_plan' => 'Taschenbuch + Kostenlose PDF',
-  'format_second_plan' => 'Premium-Geschenkausgabe + Kostenlose PDF',
-  'format_third_plan' => 'Sammleredition Limitiert',
+  'format_first_plan' => '📕 Gebundenes Buch (Hardcover)',
+  'format_second_plan' => '📘 Taschenbuch (Paperback)',
   'learning_value' => 'Lernwert',
   'select_learning_value' => 'Lernwert auswählen',
   'custom_learning_value' => 'Oder schreiben Sie Ihren eigenen Lernwert',
@@ -227,7 +226,7 @@ return [
   'back' => 'Zurück',
   'submit_order' => 'Bestellung absenden',
   'confirm_order' => 'Bestellung bestätigen',
-  "confirm"=>"Bestätigen",
+  "confirm" => "Bestätigen",
   'payment_method' => 'Zahlungsmethode',
   'payment_cod' => 'Nachnahme',
   'payment_online' => 'Online-Zahlung',
@@ -266,7 +265,7 @@ return [
   'choose_payment_method' => 'Zahlungsmethode wählen',
   'select_payment_method' => 'Wählen Sie Ihre bevorzugte Zahlungsmethode',
   'complete_payment' => 'Zahlung abschließen',
-  'currency' => 'EUR',
+  'currency' => '€',
   'years' => 'Jahre',
   'choose_file' => 'Datei auswählen',
   'edit' => 'Bearbeiten',
@@ -318,7 +317,7 @@ return [
   'delivery_method' => 'Liefermethode',
   'digital_delivery' => 'Digitale Lieferung',
   'no_shipping_required' => 'Kein Versand erforderlich',
-
+  'image_usage_agreement' => 'Durch die Verwendung dieses Tools und das Hochladen des Fotos Ihres Kindes stimmen Sie zu, es nur für die Erstellung einer personalisierten Geschichte für Ihr Kind zu verwenden.',
   // Start Payment
   'payment_details' => 'Zahlungsdetails',
   'continue_payment' => 'Zahlung fortsetzen',
@@ -493,7 +492,7 @@ return [
   'cart_total' => 'Warenkorb-Gesamt',
   'back_to_cart' => 'Zurück zum Warenkorb',
   'view_cart' => 'Warenkorb anzeigen',
-  'checkout' => 'Zur Kasse',
+  'checkout' => 'Bestellung überprüfen und abschließen',
   'are_you_sure_remove' => 'Sind Sie sicher, dass Sie entfernen möchten',
   'item_removed' => 'Artikel aus Warenkorb entfernt',
   'cart_cleared' => 'Warenkorb erfolgreich geleert',
@@ -509,7 +508,7 @@ return [
   'delivery_option' => 'Lieferoption',
 
   // Additional Cart translations
-  'my_cart' => 'Mein Warenkorb',
+  'my_cart' => 'Warenkorb',
   'items' => 'Artikel',
   'empty_cart_message' => 'Ihr Warenkorb ist leer',
   'start_creating_stories' => 'Beginne Geschichten zu erstellen',
@@ -520,12 +519,12 @@ return [
   'order_summary' => 'Bestellübersicht',
   'delivery_total' => 'Lieferkosten gesamt',
   'grand_total' => 'Gesamtsumme',
-  'proceed_to_checkout' => 'Zur Kasse gehen',
+  'proceed_to_checkout' => 'Mit der Bestellung fortfahren',
   'are_you_sure_clear_cart' => 'Sind Sie sicher, dass Sie den Warenkorb leeren möchten?',
   'learning_values' => 'Lernwerte',
 
   // Cart Page
-  'my_cart' => 'Mein Warenkorb',
+  'my_cart' => 'Warenkorb',
   'items' => 'Artikel',
   'total_price' => 'Gesamtpreis',
   'clear_cart' => 'Warenkorb leeren',
@@ -575,7 +574,7 @@ return [
   'delivery_price' => 'Lieferpreis',
   'cart_details' => 'Warenkorbdetails',
   'checkout' => 'Kasse',
-  'review_and_complete_payment' => 'Überprüfen und Zahlung abschließen',
+  'review_and_complete_payment' => 'Letzter Schritt, dann beginnen wir mit der Erstellung Ihrer Kinder-Geschichte.',
   'your_order' => 'Ihre Bestellung',
   'item' => 'Artikel',
   'items' => 'Artikel',

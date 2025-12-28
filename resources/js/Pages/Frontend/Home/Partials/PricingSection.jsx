@@ -17,9 +17,11 @@ export default function PricingSection({ settings = {} }) {
         "plan_1_feature_2",
         "plan_1_feature_3",
         "plan_1_feature_4",
+        "plan_1_feature_5",
       ],
-      cardClass: "border border-gray-200 bg-white",
-      btnClass: "bg-gray-400 hover:bg-gray-500 text-white",
+      cardClass: "border-2 border-teal-300 bg-gradient-to-b from-blue-50 via-purple-50 to-white relative shadow-2xl scale-105 z-10",
+      btnClass: "bg-gradient-to-r from-teal-400 to-purple-500 hover:from-teal-500 hover:to-purple-600 text-white font-bold shadow-lg",
+      badge: true,
     },
     {
       key: "second_plan",
@@ -32,10 +34,10 @@ export default function PricingSection({ settings = {} }) {
         "plan_2_feature_2",
         "plan_2_feature_3",
         "plan_2_feature_4",
+        "plan_2_feature_5",
       ],
-      cardClass: "border-2 border-teal-300 bg-gradient-to-b from-blue-50 via-purple-50 to-white relative shadow-2xl scale-105 z-10",
-      btnClass: "bg-gradient-to-r from-teal-400 to-purple-500 hover:from-teal-500 hover:to-purple-600 text-white font-bold shadow-lg",
-      badge: true,
+      cardClass: "border border-gray-200 bg-white",
+      btnClass: "bg-gray-400 hover:bg-gray-500 text-white",
     },
     // {
     //   key: "third_plan",
@@ -154,6 +156,7 @@ export default function PricingSection({ settings = {} }) {
                   </ul>
                 </div>
                 <Link
+                  href={route('frontend.order.create')}
                   className={`rounded-full px-6 py-2 font-semibold transition ${pkg.btnClass} w-full mt-auto text-sm sm:text-base`}
                 >
                   {t(pkg.btn)}
@@ -161,6 +164,11 @@ export default function PricingSection({ settings = {} }) {
               </div>
             </div>
           ))}
+        </div>
+        <div className="mt-12 text-center">
+          <p className="text-lg font-semibold text-gray-800 whitespace-pre-line">
+            {t("pricing_additional_text")}
+          </p>
         </div>
       </section>
     </>

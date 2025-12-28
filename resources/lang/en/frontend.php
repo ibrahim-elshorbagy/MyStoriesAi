@@ -36,6 +36,7 @@ return [
   'change_language' => 'Change Language',
   'language_changed' => 'Language Changed',
   'current_language' => 'Current Language',
+  'book_type' => 'Book Type',
 
   // Delivery options - German
   'city_name_de' => 'City Name (German)',
@@ -155,35 +156,34 @@ return [
   'choose_your_storybook_plan' => 'Choose Your Storybook Plan',
   'make_your_child_the_hero' => 'Make Your Child the Hero!',
 
-  'pricing_section_title' => 'Choose Your Storybook Plan – Make Your Child the Hero!',
+  'pricing_section_title' => 'Choose Your Child\'s Book – Make Your Child the Hero!',
 
-  'pricing_first_plan_title' => 'Paperback Book + Free PDF Copy',
-  'pricing_first_plan_price' => '339',
-  'pricing_first_plan_desc' => 'Beautifully printed storybook with a soft cover',
-  'pricing_first_plan_btn' => 'Order Paperback Book',
-  'plan_1_feature_1' => 'Free PDF version for any device',
-  'plan_1_feature_2' => 'Your child\'s name and photo appear on every page',
-  'plan_1_feature_3' => 'Colorful illustrations and joyful storytelling',
-  'plan_1_feature_4' => 'Parents who love daily reading time and bedtime stories',
+  'pricing_first_plan_title' => '📕 Hardcover Book (Hardcover)',
+  'pricing_first_plan_price' => '44.99',
+  'pricing_first_plan_desc' => 'Durable hardcover book that lasts for years',
+  'pricing_first_plan_btn' => 'Start Your Child\'s Story',
+  'plan_1_feature_1' => '✔ Durable and lasts for years',
+  'plan_1_feature_2' => '✔ Bedtime reading experience',
+  'plan_1_feature_3' => '✔ Fully customized story for your child',
+  'plan_1_feature_4' => '✔77 pages',
+  'plan_1_feature_5' => '✔ Perfect gift for occasions',
 
-  'pricing_second_plan_title' => 'Premium Gift Edition + Free PDF',
-  'pricing_second_plan_price' => '439',
-  'pricing_second_plan_desc' => 'Elegant hardcover gift edition',
-  'pricing_second_plan_btn' => 'Order Premium Edition',
+  'pricing_second_plan_title' => '📘 Paperback Book (Paperback)',
+  'pricing_second_plan_price' => '29.99',
+  'pricing_second_plan_desc' => 'Light and easy-to-use paperback book',
+  'pricing_second_plan_btn' => 'Order Your Paper Copy Now',
   'pricing_most_popular' => 'Most Popular',
-  'plan_2_feature_1' => 'Thick, high-quality paper and vibrant colors',
-  'plan_2_feature_2' => 'Free digital version',
-  'plan_2_feature_3' => 'Perfect for birthdays, holidays, and special occasions',
-  'plan_2_feature_4' => 'Anyone looking for a meaningful, lasting gift',
+  'plan_2_feature_1' => '✔ Light and easy to use',
+  'plan_2_feature_2' => '✔ Same customized story',
+  'plan_2_feature_3' => '✔ Suitable for daily reading',
+  'plan_2_feature_4' => '✔40 pages',
+  'plan_2_feature_5' => '✔Ideal for first experience and young ages',
 
-  'pricing_third_plan_title' => 'Collector\'s Limited Edition (Exclusive)',
-  'pricing_third_plan_price' => '549',
-  'pricing_third_plan_desc' => 'Special edition with your child\'s name printed on the cover',
-  'pricing_third_plan_btn' => 'Reserve Collector\'s Edition',
-  'plan_3_feature_1' => 'Luxury gift box with ribbon wrapping',
-  'plan_3_feature_2' => 'Personalized "Hero Certificate" with your child\'s name',
-  'plan_3_feature_3' => 'Includes free PDF version',
-  'plan_3_feature_4' => 'For unforgettable gifts and lifelong keepsakes',
+  'pricing_additional_text' => '📘 One book that combines
+        A customized story for your child
+        And interactive educational activities
+        Without any screens
+        Available with launch orders for a limited time',
   // End Pricing
 
   // FAQs Section
@@ -207,9 +207,8 @@ return [
   'gender_boy' => 'Boy',
   'gender_girl' => 'Girl',
   'format' => 'Format',
-  'format_first_plan' => 'Paperback Book + Free PDF',
-  'format_second_plan' => 'Premium Gift Edition + Free PDF',
-  'format_third_plan' => 'Collector\'s Limited Edition',
+  'format_first_plan' => '📕 Hardcover Book (Hardcover)',
+  'format_second_plan' => '📘 Paperback Book (Paperback)',
   'learning_value' => 'Learning Value',
   'select_learning_value' => 'Select Learning Value',
   'custom_learning_value' => 'Or write your custom learning value',
@@ -227,7 +226,7 @@ return [
   'back' => 'Back',
   'submit_order' => 'Submit Order',
   'confirm_order' => 'Confirm Order',
-  "confirm"=>"Confirm",
+  "confirm" => "Confirm",
   'payment_method' => 'Payment Method',
   'payment_cod' => 'Cash on Delivery',
   'payment_online' => 'Online Payment',
@@ -271,7 +270,7 @@ return [
   'choose_payment_method' => 'Choose Payment Method',
   'select_payment_method' => 'Select your preferred payment method',
   'complete_payment' => 'Complete Payment',
-  'currency' => 'EUR',
+  'currency' => '€',
   'years' => 'Years',
   'choose_file' => 'Choose File',
   'edit' => 'Edit',
@@ -323,6 +322,8 @@ return [
   'delivery_method' => 'Delivery Method',
   'digital_delivery' => 'Digital Delivery',
   'no_shipping_required' => 'No shipping required',
+
+  'image_usage_agreement' => 'By using this tool and uploading your child\'s photo, you agree to use it only for creating a customized story for them.',
 
   // Start Payment
   'payment_details' => 'Payment Details',
@@ -522,7 +523,7 @@ return [
   'delivery_option' => 'Delivery Option',
 
   // Additional Cart translations
-  'my_cart' => 'My Cart',
+  'my_cart' => 'Cart',
   'items' => 'Items',
   'empty_cart_message' => 'Your cart is empty',
   'start_creating_stories' => 'Start Creating Stories',
@@ -533,12 +534,12 @@ return [
   'order_summary' => 'Order Summary',
   'delivery_total' => 'Delivery Total',
   'grand_total' => 'Grand Total',
-  'proceed_to_checkout' => 'Proceed to Checkout',
+  'proceed_to_checkout' => 'Continue to Complete Order',
   'are_you_sure_clear_cart' => 'Are you sure you want to clear cart?',
   'learning_values' => 'Learning Values',
 
   // Cart Page
-  'my_cart' => 'My Cart',
+  'my_cart' => 'Cart',
   'items' => 'Items',
   'total_price' => 'Total Price',
   'clear_cart' => 'Clear Cart',
@@ -586,8 +587,8 @@ return [
   'story_price' => 'Story Price',
   'delivery_price' => 'Delivery Price',
   'cart_details' => 'Cart Details',
-  'checkout' => 'Checkout',
-  'review_and_complete_payment' => 'Review and Complete Payment',
+  'checkout' => 'Review Order and Complete',
+  'review_and_complete_payment' => 'Final step, then we start creating your child\'s story.',
   'your_order' => 'Your Order',
   'item' => 'Item',
   'items' => 'Items',

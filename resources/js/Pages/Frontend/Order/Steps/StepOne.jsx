@@ -54,10 +54,10 @@ export default function StepOne({
         storyPrice = pricing.second_plan_price || 0;
         deliveryPrice = 0;
         break;
-      case 'third_plan':
-        storyPrice = pricing.third_plan_price || 0;
-        deliveryPrice = 0;
-        break;
+      // case 'third_plan':
+      //   storyPrice = pricing.third_plan_price || 0;
+      //   deliveryPrice = 0;
+      //   break;
     }
 
     setData(prevData => ({
@@ -87,7 +87,7 @@ export default function StepOne({
     { value: '', label: t('select') },
     { value: 'first_plan', label: `${t('format_first_plan')} - ${(pricing?.first_plan_price || 0)} ${t('currency')}` },
     { value: 'second_plan', label: `${t('format_second_plan')} - ${(pricing?.second_plan_price || 0)} ${t('currency')}` },
-    { value: 'third_plan', label: `${t('format_third_plan')} - ${(pricing?.third_plan_price || 0)} ${t('currency')}` },
+    // { value: 'third_plan', label: `${t('format_third_plan')} - ${(pricing?.third_plan_price || 0)} ${t('currency')}` },
   ];
 
   const learningValues = [
@@ -172,7 +172,7 @@ export default function StepOne({
               value={data.format}
               onChange={(e) => handleFormatChange(e.target.value)}
               options={formatOptions}
-              label={t('format')}
+              label={t('book_type')}
               required
             />
             <InputError message={errors.format} className="mt-2" />
@@ -275,6 +275,7 @@ export default function StepOne({
                     <i className="fa-solid fa-plus mx-2"></i>
                     {t('choose_file')}
                   </label>
+                  <p className="text-sm text-neutral-600 mt-2">{t('image_usage_agreement')}</p>
                 </div>
               )}
             </div>
