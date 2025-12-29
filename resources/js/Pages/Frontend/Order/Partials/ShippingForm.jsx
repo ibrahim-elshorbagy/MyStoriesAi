@@ -29,26 +29,42 @@ export default function ShippingForm({
           value={shippingData.delivery_option_id}
           onChange={(e) => setShippingData({ ...shippingData, delivery_option_id: e.target.value })}
           options={deliveryOptionChoices}
-          label={t('delivery_option')}
-          placeholder={t('select_delivery_option')}
+          label={t('country')}
+          placeholder={t('select_country')}
           required={needsShipping}
           error={errors.delivery_option_id}
         />
 
         <div>
           <label className="block text-sm font-medium text-neutral-700 mb-2">
-            {t('area')} *
+            {t('first_name')} *
           </label>
           <input
             type="text"
-            name="area"
-            value={shippingData.area}
-            onChange={(e) => setShippingData({ ...shippingData, area: e.target.value })}
+            name="first_name"
+            value={shippingData.first_name}
+            onChange={(e) => setShippingData({ ...shippingData, first_name: e.target.value })}
             className="w-full px-4 py-3 border-2 border-neutral-300 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-200"
-            placeholder={t('area_placeholder') || t('area')}
+            placeholder={t('first_name_placeholder') || t('first_name')}
             required={needsShipping}
           />
-          {errors.area && <span className="text-red-500 text-sm mt-1 block">{errors.area}</span>}
+          {errors.first_name && <span className="text-red-500 text-sm mt-1 block">{errors.first_name}</span>}
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
+            {t('last_name')} *
+          </label>
+          <input
+            type="text"
+            name="last_name"
+            value={shippingData.last_name}
+            onChange={(e) => setShippingData({ ...shippingData, last_name: e.target.value })}
+            className="w-full px-4 py-3 border-2 border-neutral-300 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-200"
+            placeholder={t('last_name_placeholder') || t('last_name')}
+            required={needsShipping}
+          />
+          {errors.last_name && <span className="text-red-500 text-sm mt-1 block">{errors.last_name}</span>}
         </div>
 
         <div>
@@ -69,7 +85,7 @@ export default function ShippingForm({
 
         <div>
           <label className="block text-sm font-medium text-neutral-700 mb-2">
-            {t('house_number')} *
+            {t('house_number')}
           </label>
           <input
             type="text"
@@ -78,9 +94,56 @@ export default function ShippingForm({
             onChange={(e) => setShippingData({ ...shippingData, house_number: e.target.value })}
             className="w-full px-4 py-3 border-2 border-neutral-300 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-200"
             placeholder={t('house_number_placeholder') || t('house_number')}
-            required={needsShipping}
           />
           {errors.house_number && <span className="text-red-500 text-sm mt-1 block">{errors.house_number}</span>}
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
+            {t('postal_code')} *
+          </label>
+          <input
+            type="text"
+            name="postal_code"
+            value={shippingData.postal_code}
+            onChange={(e) => setShippingData({ ...shippingData, postal_code: e.target.value })}
+            className="w-full px-4 py-3 border-2 border-neutral-300 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-200"
+            placeholder={t('postal_code_placeholder') || t('postal_code')}
+            required={needsShipping}
+          />
+          {errors.postal_code && <span className="text-red-500 text-sm mt-1 block">{errors.postal_code}</span>}
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
+            {t('city')} *
+          </label>
+          <input
+            type="text"
+            name="city"
+            value={shippingData.city}
+            onChange={(e) => setShippingData({ ...shippingData, city: e.target.value })}
+            className="w-full px-4 py-3 border-2 border-neutral-300 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-200"
+            placeholder={t('city_placeholder') || t('city')}
+            required={needsShipping}
+          />
+          {errors.city && <span className="text-red-500 text-sm mt-1 block">{errors.city}</span>}
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
+            {t('phone')} *
+          </label>
+          <input
+            type="text"
+            name="phone"
+            value={shippingData.phone}
+            onChange={(e) => setShippingData({ ...shippingData, phone: e.target.value })}
+            className="w-full px-4 py-3 border-2 border-neutral-300 rounded-xl focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all duration-200"
+            placeholder={t('phone_placeholder') || t('phone')}
+            required={needsShipping}
+          />
+          {errors.phone && <span className="text-red-500 text-sm mt-1 block">{errors.phone}</span>}
         </div>
 
         <div>

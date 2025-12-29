@@ -139,10 +139,14 @@ class OrderController extends Controller
     $rules = [
       'payment_method' => ['required', 'in:stripe'],
       'delivery_option_id' => ['required', 'exists:delivery_options,id'],
-      'area' => ['required', 'string', 'max:255'],
+      'first_name' => ['required', 'string', 'max:255'],
+      'last_name' => ['required', 'string', 'max:255'],
       'street' => ['required', 'string', 'max:255'],
-      'house_number' => ['required', 'string', 'max:255'],
+      'house_number' => ['nullable', 'string', 'max:255'],
       'additional_info' => ['nullable', 'string', 'max:500'],
+      'postal_code' => ['required', 'string', 'max:255'],
+      'city' => ['required', 'string', 'max:255'],
+      'phone' => ['required', 'string', 'max:255'],
       'discount_code' => ['nullable', 'string', 'max:255'], // NEW
     ];
 
@@ -251,10 +255,14 @@ class OrderController extends Controller
         \App\Models\Order\OrderShippingAddress::create([
           'order_id' => $order->id,
           'delivery_option_id' => $validated['delivery_option_id'],
-          'area' => $validated['area'],
+          'first_name' => $validated['first_name'],
+          'last_name' => $validated['last_name'],
           'street' => $validated['street'],
           'house_number' => $validated['house_number'],
           'additional_info' => $validated['additional_info'],
+          'postal_code' => $validated['postal_code'],
+          'city' => $validated['city'],
+          'phone' => $validated['phone'],
         ]);
       }
 
@@ -333,10 +341,14 @@ class OrderController extends Controller
     $rules = [
       'payment_method' => ['required', 'in:stripe'],
       'delivery_option_id' => ['required', 'exists:delivery_options,id'],
-      'area' => ['required', 'string', 'max:255'],
+      'first_name' => ['required', 'string', 'max:255'],
+      'last_name' => ['required', 'string', 'max:255'],
       'street' => ['required', 'string', 'max:255'],
-      'house_number' => ['required', 'string', 'max:255'],
+      'house_number' => ['nullable', 'string', 'max:255'],
       'additional_info' => ['nullable', 'string', 'max:500'],
+      'postal_code' => ['required', 'string', 'max:255'],
+      'city' => ['required', 'string', 'max:255'],
+      'phone' => ['required', 'string', 'max:255'],
       'discount_code' => ['nullable', 'string', 'max:255'], // ✅ Removed 'exists' rule - we'll validate manually
     ];
 
@@ -433,10 +445,14 @@ class OrderController extends Controller
       if ($validated['delivery_option_id']) {
         $shippingData = [
           'delivery_option_id' => $validated['delivery_option_id'],
-          'area' => $validated['area'],
+          'first_name' => $validated['first_name'],
+          'last_name' => $validated['last_name'],
           'street' => $validated['street'],
           'house_number' => $validated['house_number'],
           'additional_info' => $validated['additional_info'],
+          'postal_code' => $validated['postal_code'],
+          'city' => $validated['city'],
+          'phone' => $validated['phone'],
         ];
 
         $order->shippingAddress()->updateOrCreate(

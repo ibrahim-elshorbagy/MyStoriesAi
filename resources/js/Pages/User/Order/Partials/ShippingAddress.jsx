@@ -13,8 +13,12 @@ export default function ShippingAddress({ order, t }) {
       <div className="space-y-3">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <span className="text-sm text-neutral-600 dark:text-neutral-400">{t('area')}:</span>
-            <p className="font-medium text-neutral-900 dark:text-neutral-100">{order.shipping_address.area}</p>
+            <span className="text-sm text-neutral-600 dark:text-neutral-400">{t('first_name')}:</span>
+            <p className="font-medium text-neutral-900 dark:text-neutral-100">{order.shipping_address.first_name}</p>
+          </div>
+          <div>
+            <span className="text-sm text-neutral-600 dark:text-neutral-400">{t('last_name')}:</span>
+            <p className="font-medium text-neutral-900 dark:text-neutral-100">{order.shipping_address.last_name}</p>
           </div>
           <div>
             <span className="text-sm text-neutral-600 dark:text-neutral-400">{t('street')}:</span>
@@ -23,6 +27,18 @@ export default function ShippingAddress({ order, t }) {
           <div>
             <span className="text-sm text-neutral-600 dark:text-neutral-400">{t('house_number')}:</span>
             <p className="font-medium text-neutral-900 dark:text-neutral-100">{order.shipping_address.house_number}</p>
+          </div>
+          <div>
+            <span className="text-sm text-neutral-600 dark:text-neutral-400">{t('postal_code')}:</span>
+            <p className="font-medium text-neutral-900 dark:text-neutral-100">{order.shipping_address.postal_code}</p>
+          </div>
+          <div>
+            <span className="text-sm text-neutral-600 dark:text-neutral-400">{t('city')}:</span>
+            <p className="font-medium text-neutral-900 dark:text-neutral-100">{order.shipping_address.city}</p>
+          </div>
+          <div>
+            <span className="text-sm text-neutral-600 dark:text-neutral-400">{t('phone')}:</span>
+            <p className="font-medium text-neutral-900 dark:text-neutral-100">{order.shipping_address.phone}</p>
           </div>
           {order.shipping_address.additional_info && (
             <div>

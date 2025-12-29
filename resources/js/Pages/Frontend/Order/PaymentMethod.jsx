@@ -14,18 +14,26 @@ export default function PaymentMethod({ cart, order, deliveryOptions = [] }) {
     if (order?.shipping_address) {
       return {
         delivery_option_id: order.shipping_address.delivery_option_id || '',
-        area: order.shipping_address.area || '',
+        first_name: order.shipping_address.first_name || '',
+        last_name: order.shipping_address.last_name || '',
         street: order.shipping_address.street || '',
         house_number: order.shipping_address.house_number || '',
         additional_info: order.shipping_address.additional_info || '',
+        postal_code: order.shipping_address.postal_code || '',
+        city: order.shipping_address.city || '',
+        phone: order.shipping_address.phone || '',
       };
     }
     return {
       delivery_option_id: '',
-      area: '',
+      first_name: '',
+      last_name: '',
       street: '',
       house_number: '',
       additional_info: '',
+      postal_code: '',
+      city: '',
+      phone: '',
     };
   });
 
