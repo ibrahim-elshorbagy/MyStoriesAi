@@ -7,31 +7,6 @@ export default function HowItWorks() {
 
   const options = [
     {
-      key: 'create-story',
-      image: '/assets/home/HowItWorks1.png',
-      title: t('how_it_works_option1_title'),
-      badge: t('how_it_works_option1_badge'),
-      features: [
-        { text: t('how_it_works_option1_feature1') },
-        { text: t('how_it_works_option1_feature2') },
-      ],
-      button: {
-        text: t('how_it_works_option1_button'),
-        href: route('frontend.order.create'),
-      },
-
-      // styling
-      wrapperGradient: 'bg-gradient-to-r from-green-400/90 to-green-200/90',
-      cardShadow:
-        'shadow-[0_35px_60px_rgba(34,197,94,0.45)] shadow-green-400/60 hover:shadow-[0_45px_80px_rgba(34,197,94,0.4)] hover:shadow-green-500/70',
-      contentBox:
-        'bg-green-50/95 shadow-[0_20px_40px_rgba(34,197,94,0.25)] shadow-green-300/40',
-      badgeBg: 'bg-gradient-to-r from-green-500 to-emerald-500 text-white',
-      buttonBg:
-        'bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 shadow-green-500/50',
-      isFeatured: true, // for the 102% scale
-    },
-    {
       key: 'quick-customize',
       image: '/assets/home/HowItWorks2.png',
       title: t('how_it_works_option2_title'),
@@ -56,6 +31,32 @@ export default function HowItWorks() {
         'bg-gradient-to-r from-amber-500 to-orange-400 hover:from-amber-400 hover:to-orange-400 shadow-amber-500/50',
       isFeatured: false,
     },
+    {
+      key: 'create-story',
+      image: '/assets/home/HowItWorks1.png',
+      title: t('how_it_works_option1_title'),
+      badge: t('how_it_works_option1_badge'),
+      features: [
+        { text: t('how_it_works_option1_feature1') },
+        { text: t('how_it_works_option1_feature2') },
+      ],
+      button: {
+        text: t('how_it_works_option1_button'),
+        href: route('frontend.order.create'),
+      },
+
+      // styling
+      wrapperGradient: 'bg-gradient-to-r from-green-400/90 to-green-200/90',
+      cardShadow:
+        'shadow-[0_35px_60px_rgba(34,197,94,0.45)] shadow-green-400/60 hover:shadow-[0_45px_80px_rgba(34,197,94,0.4)] hover:shadow-green-500/70',
+      contentBox:
+        'bg-green-50/95 shadow-[0_20px_40px_rgba(34,197,94,0.25)] shadow-green-300/40',
+      badgeBg: 'bg-gradient-to-r from-green-500 to-emerald-500 text-white',
+      buttonBg:
+        'bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 shadow-green-500/50',
+      isFeatured: true, // for the 102% scale
+    },
+
     {
       key: 'free-name-story',
       image: '/assets/home/HowItWorks3.png',

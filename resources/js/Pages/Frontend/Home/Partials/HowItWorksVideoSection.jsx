@@ -56,7 +56,7 @@ export default function HowItWorksVideoSection({ videoUrl }) {
         <video
           ref={videoRef}
           src={`/storage/${videoUrl}`}
-          autoPlay={false} // Don't autoplay
+          autoPlay={true}
           muted
           loop
           playsInline

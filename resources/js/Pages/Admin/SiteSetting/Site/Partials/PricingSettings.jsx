@@ -35,7 +35,7 @@ export default function PricingSettings({ settings }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              {t('first_plan_price')}
+              Paperback
             </label>
             <TextInput
               type="number"
@@ -49,7 +49,7 @@ export default function PricingSettings({ settings }) {
 
           <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-              {t('second_plan_price')}
+              Hardcover
             </label>
             <TextInput
               type="number"
@@ -61,7 +61,7 @@ export default function PricingSettings({ settings }) {
             {errors['settings.second_plan_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.second_plan_price']}</p>}
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
               {t('third_plan_price')}
             </label>
@@ -73,7 +73,7 @@ export default function PricingSettings({ settings }) {
               placeholder="549"
             />
             {errors['settings.third_plan_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.third_plan_price']}</p>}
-          </div>
+          </div> */}
         </div>
 
         <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center gap-4">

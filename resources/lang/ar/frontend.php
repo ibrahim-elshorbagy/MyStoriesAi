@@ -33,7 +33,7 @@ return [
   'language' => 'اللغة',
   'english' => 'الإنجليزية',
   'arabic' => 'العربية',
-  'german' => 'ألماني',
+  'german' => 'الألمانية',
   'deutsche' => 'الألمانية',
   'change_language' => 'تغيير اللغة',
   'language_changed' => 'تم تغيير اللغة',
