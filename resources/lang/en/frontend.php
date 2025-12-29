@@ -2,8 +2,8 @@
 
 return [
 
-  'how_it_works_title' => 'How to Turn Your Child into the Hero of Their Own Story? 🌟',
-  'how_it_works_subtitle' => 'Choose the method that suits you best — free or with a fully customized experience',
+  'how_it_works_title' => 'How to Turn Your Child into the Hero of Their Own Story? ',
+  'how_it_works_subtitle' => 'Choose the method that suits you best — and start a personalized story for your child',
   'how_it_works_description' => 'Choose the method that works best for you',
   'how_it_works_option1_title' => 'Turn Your Child\'s Photo into the Story\'s Hero',
   'how_it_works_option1_feature1' => 'Upload your child\'s photo',

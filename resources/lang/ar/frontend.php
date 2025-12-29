@@ -4,7 +4,7 @@ return [
 
 
   'how_it_works_title' => 'كيف تحوّل طفلك إلى بطل قصته الخاصة؟',
-  'how_it_works_subtitle' => 'اختر الطريقة الأنسب لك — مجانًا أو بتجربة مخصصة بالكامل',
+  'how_it_works_subtitle' => 'اختر الطريقة الأنسب لك — وابدأ قصة مخصصة لطفلك',
   'how_it_works_description' => 'اختر الطريقة المناسبة لك',
   'how_it_works_option1_title' => 'حوّل صورة طفلك إلى بطل القصة',
   'how_it_works_option1_feature1' => 'ارفع صورة طفلك',

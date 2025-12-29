@@ -2,8 +2,8 @@
 
 return [
 
-  'how_it_works_title' => 'Wie verwandeln Sie Ihr Kind in den Helden seiner eigenen Geschichte? 🌟',
-  'how_it_works_subtitle' => 'Wählen Sie die Methode, die am besten zu Ihnen passt — kostenlos oder mit einer vollständig personalisierten Erfahrung',
+  'how_it_works_title' => 'Wie verwandeln Sie Ihr Kind in den Helden seiner eigenen Geschichte? ',
+  'how_it_works_subtitle' => 'Wählen Sie die Methode, die am besten zu Ihnen passt — und starten Sie eine personalisierte Geschichte für Ihr Kind',
   'how_it_works_description' => 'Wählen Sie die Methode, die am besten zu Ihnen passt',
   'how_it_works_option1_title' => 'Verwandeln Sie das Foto Ihres Kindes in den Helden der Geschichte',
   'how_it_works_option1_feature1' => 'Laden Sie das Foto Ihres Kindes hoch',
