@@ -34,9 +34,13 @@ return Application::configure(basePath: dirname(__DIR__))
   })
   ->withExceptions(function (Exceptions $exceptions): void {
     $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
-      // Set locale from cookie for all error responses
-      $locale = $request->cookie('locale', 'en');
-      if (in_array($locale, ['en', 'ar'])) {
+      // Set locale from cookie or browser language
+      $locale = $request->cookie('locale');
+      if (!$locale) {
+        // Detect browser language, default to 'de' if not supported
+        $locale = $request->getPreferredLanguage(['en', 'ar', 'de']) ?: 'de';
+      }
+      if (in_array($locale, ['en', 'ar', 'de'])) {
         app()->setLocale($locale);
       }
 
