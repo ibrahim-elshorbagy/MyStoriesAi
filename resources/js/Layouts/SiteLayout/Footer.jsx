@@ -289,14 +289,14 @@ export default function Footer() {
                 const maxAttempts = 50; // 5 seconds max
                 const checkCookieYes = () => {
                   attempts++;
-                  // console.log(`Checking for CookieYes... attempt ${attempts}`);
+                  console.log(`Checking for CookieYes... attempt ${attempts}`);
                   if (window.CookieYes && typeof window.CookieYes.openPreferences === 'function') {
-                    // console.log('CookieYes found, opening preferences');
+                    console.log('CookieYes found, opening preferences');
                     window.CookieYes.openPreferences();
                   } else if (attempts < maxAttempts) {
                     setTimeout(checkCookieYes, 100);
                   } else {
-                    // console.error('CookieYes not loaded after 5 seconds');
+                    console.error('CookieYes not loaded after 5 seconds');
                   }
                 };
                 checkCookieYes();
