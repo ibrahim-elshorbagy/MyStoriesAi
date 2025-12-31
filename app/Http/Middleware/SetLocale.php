@@ -15,7 +15,8 @@ class SetLocale
             // Detect browser language, default to 'de' if not supported
             $locale = $request->getPreferredLanguage(['en', 'ar', 'de']) ?: 'de';
             // Set cookie for future visits
-            cookie()->queue('locale', $locale, 60 * 24 * 365); // 1 year
+            $response = $next($request);
+            return $response->withCookie(cookie('locale', $locale, 60 * 24 * 365)); // 1 year
         }
 
         if (in_array($locale, ['en', 'ar', 'de'])) {

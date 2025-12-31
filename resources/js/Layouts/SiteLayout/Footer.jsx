@@ -283,7 +283,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <a
               href="#"
-              onClick={(e) => { e.preventDefault(); if (window.CookieYes) window.CookieYes.openPreferences(); }}
+              onClick={(e) => { e.preventDefault(); if (window.CookieYes && window.CookieYes.openPreferencesCenter) window.CookieYes.openPreferencesCenter(); }}
               className="text-sm text-neutral-600 hover:text-orange-600 transition-colors duration-300 underline decoration-orange-600 underline-offset-4"
             >
               {t('cookie_settings')}
