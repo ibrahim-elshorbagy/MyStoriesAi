@@ -285,19 +285,29 @@ export default function Footer() {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                const checkCookieYes = () => {
-                  if (window.CookieYes && typeof window.CookieYes.openPreferences === 'function') {
-                    window.CookieYes.openPreferences();
+                // CookieYes creates a revisit consent button with specific class
+                const checkAndOpen = () => {
+                  // Try to find and click the CookieYes settings button
+                  const cookieSettingsBtn = document.querySelector('.cky-banner-element, [data-cky-tag="revisit-consent"], .cky-revisit-bottom-left');
+
+                  if (cookieSettingsBtn) {
+                    cookieSettingsBtn.click();
                   } else {
-                    setTimeout(checkCookieYes, 100);
+                    // If the script hasn't loaded yet, wait and retry
+                    if (window.CookieYes) {
+                      console.warn('CookieYes loaded but settings button not found');
+                    } else {
+                      setTimeout(checkAndOpen, 100);
+                    }
                   }
                 };
-                checkCookieYes();
+                checkAndOpen();
               }}
               className="text-sm text-neutral-600 hover:text-orange-600 transition-colors duration-300 underline decoration-orange-600 underline-offset-4"
             >
               {t('cookie_settings')}
             </a>
+
 
             <p className="text-neutral-600 flex items-center gap-2 text-sm">
               <span>{t('footer_copyright_text', { year })}</span>

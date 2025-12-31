@@ -51,7 +51,6 @@
   <!-- CookieYes script - moved to body and made async -->
   <script async id="cookieyes" type="text/javascript"
     src="https://cdn-cookieyes.com/client_data/ec0a945423492c2d0b033ab0260af687/script.js"></script>
-  @inertia
 </body>
 
 </html>
