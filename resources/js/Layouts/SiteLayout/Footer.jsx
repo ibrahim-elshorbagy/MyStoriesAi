@@ -285,18 +285,11 @@ export default function Footer() {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                let attempts = 0;
-                const maxAttempts = 50; // 5 seconds max
                 const checkCookieYes = () => {
-                  attempts++;
-                  console.log(`Checking for CookieYes... attempt ${attempts}`);
                   if (window.CookieYes && typeof window.CookieYes.openPreferences === 'function') {
-                    console.log('CookieYes found, opening preferences');
                     window.CookieYes.openPreferences();
-                  } else if (attempts < maxAttempts) {
-                    setTimeout(checkCookieYes, 100);
                   } else {
-                    console.error('CookieYes not loaded after 5 seconds');
+                    setTimeout(checkCookieYes, 100);
                   }
                 };
                 checkCookieYes();
