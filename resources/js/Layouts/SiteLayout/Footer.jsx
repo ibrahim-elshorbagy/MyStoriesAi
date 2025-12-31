@@ -285,16 +285,27 @@ export default function Footer() {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                if (window.CookieYes && typeof window.CookieYes.openPreferencesCenter === 'function') {
-                  window.CookieYes.openPreferencesCenter();
-                } else {
-                  console.warn('CookieYes not loaded yet');
-                }
+                let attempts = 0;
+                const maxAttempts = 50; // 5 seconds max
+                const checkCookieYes = () => {
+                  attempts++;
+                  // console.log(`Checking for CookieYes... attempt ${attempts}`);
+                  if (window.CookieYes && typeof window.CookieYes.openPreferences === 'function') {
+                    // console.log('CookieYes found, opening preferences');
+                    window.CookieYes.openPreferences();
+                  } else if (attempts < maxAttempts) {
+                    setTimeout(checkCookieYes, 100);
+                  } else {
+                    // console.error('CookieYes not loaded after 5 seconds');
+                  }
+                };
+                checkCookieYes();
               }}
               className="text-sm text-neutral-600 hover:text-orange-600 transition-colors duration-300 underline decoration-orange-600 underline-offset-4"
             >
               {t('cookie_settings')}
             </a>
+
             <p className="text-neutral-600 flex items-center gap-2 text-sm">
               <span>{t('footer_copyright_text', { year })}</span>
             </p>
