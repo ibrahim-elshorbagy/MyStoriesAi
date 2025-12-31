@@ -280,9 +280,18 @@ export default function Footer() {
       <div className="relative border-t border-neutral-200 bg-white backdrop-blur-sm">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-4 gap-4">
           <p className="text-xs text-neutral-600">{t('footer_rights_reserved')}</p>
-          <p className="text-neutral-600 flex items-center gap-2 text-sm">
-            <span>{t('footer_copyright_text', { year })}</span>
-          </p>
+          <div className="flex items-center gap-4">
+            <a
+              href="#"
+              onClick={(e) => { e.preventDefault(); if (window.CookieYes) window.CookieYes.openPreferences(); }}
+              className="text-sm text-neutral-600 hover:text-orange-600 transition-colors duration-300 underline decoration-orange-600 underline-offset-4"
+            >
+              {t('cookie_settings')}
+            </a>
+            <p className="text-neutral-600 flex items-center gap-2 text-sm">
+              <span>{t('footer_copyright_text', { year })}</span>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

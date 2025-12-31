@@ -367,6 +367,7 @@ return [
   'footer_contact_phone_title' => 'Phone Support',
   'footer_rights_reserved' => 'All rights reserved',
   'footer_copyright_text' => 'MyStoriesAi :year',
+  'cookie_settings' => 'Cookie Settings',
 
   /* Error Pages */
   'error' => 'Error',

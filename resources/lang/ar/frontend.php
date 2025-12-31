@@ -406,6 +406,7 @@ return [
   'footer_contact_phone_title' => 'دعم الهاتف',
   'footer_rights_reserved' => 'جميع الحقوق محفوظة',
   'footer_copyright_text' => 'ماي ستوريز آي :year',
+  'cookie_settings' => 'إعدادات الكوكيز',
 
   /* Error Pages */
   'error' => 'خطأ',
