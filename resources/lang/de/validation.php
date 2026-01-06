@@ -1,18 +1,11 @@
 <?php
 
-
 return [
     /*
     |--------------------------------------------------------------------------
     | Validation Language Lines
     |--------------------------------------------------------------------------
-    |
-    | The following language lines contain the default error messages used by
-    | the validator class. Some of these rules have multiple versions such
-    | as the size rules. Feel free to tweak each of these messages here.
-    |
     */
-
 
     'accepted' => ':attribute muss akzeptiert werden.',
     'active_url' => ':attribute ist keine gültige URL.',
@@ -30,8 +23,8 @@ return [
         'string' => ':attribute muss zwischen :min und :max Zeichen lang sein.',
         'array' => ':attribute muss zwischen :min und :max Elemente haben.',
     ],
-    'boolean' => ':attribute Feld muss wahr oder falsch sein.',
-    'confirmed' => ':attribute Bestätigung stimmt nicht überein.',
+    'boolean' => 'Das Feld :attribute muss wahr oder falsch sein.',
+    'confirmed' => 'Die Bestätigung von :attribute stimmt nicht überein.',
     'date' => ':attribute ist kein gültiges Datum.',
     'date_equals' => ':attribute muss ein Datum gleich dem :date sein.',
     'date_format' => ':attribute entspricht nicht dem Format :format.',
@@ -39,12 +32,12 @@ return [
     'digits' => ':attribute muss :digits Ziffern haben.',
     'digits_between' => ':attribute muss zwischen :min und :max Ziffern haben.',
     'dimensions' => ':attribute hat ungültige Bildabmessungen.',
-    'distinct' => ':attribute Feld hat einen doppelten Wert.',
+    'distinct' => 'Das Feld :attribute enthält einen doppelten Wert.',
     'email' => ':attribute muss eine gültige E-Mail-Adresse sein.',
     'ends_with' => ':attribute muss mit einem der folgenden Werte enden: :values',
     'exists' => 'Das ausgewählte :attribute ist ungültig.',
     'file' => ':attribute muss eine Datei sein.',
-    'filled' => ':attribute Feld muss einen Wert haben.',
+    'filled' => 'Das Feld :attribute muss ausgefüllt sein.',
     'gt' => [
         'numeric' => ':attribute muss größer als :value sein.',
         'file' => ':attribute muss größer als :value Kilobyte sein.',
@@ -59,7 +52,7 @@ return [
     ],
     'image' => ':attribute muss ein Bild sein.',
     'in' => 'Das ausgewählte :attribute ist ungültig.',
-    'in_array' => ':attribute Feld existiert nicht in :other.',
+    'in_array' => 'Das Feld :attribute existiert nicht in :other.',
     'integer' => ':attribute muss eine Ganzzahl sein.',
     'ip' => ':attribute muss eine gültige IP-Adresse sein.',
     'ipv4' => ':attribute muss eine gültige IPv4-Adresse sein.',
@@ -92,18 +85,18 @@ return [
         'array' => ':attribute muss mindestens :min Elemente haben.',
     ],
     'not_in' => 'Das ausgewählte :attribute ist ungültig.',
-    'not_regex' => 'Das :attribute Format ist ungültig.',
+    'not_regex' => 'Das Format von :attribute ist ungültig.',
     'numeric' => ':attribute muss eine Zahl sein.',
     'password' => 'Das Passwort ist falsch.',
-    'present' => ':attribute Feld muss vorhanden sein.',
-    'regex' => 'Das :attribute Format ist ungültig.',
-    'required' => ':attribute Feld ist erforderlich.',
-    'required_if' => ':attribute Feld ist erforderlich, wenn :other :value ist.',
-    'required_unless' => ':attribute Feld ist erforderlich, es sei denn, :other ist in :values.',
-    'required_with' => ':attribute Feld ist erforderlich, wenn :values vorhanden ist.',
-    'required_with_all' => ':attribute Feld ist erforderlich, wenn :values vorhanden sind.',
-    'required_without' => ':attribute Feld ist erforderlich, wenn :values nicht vorhanden ist.',
-    'required_without_all' => ':attribute Feld ist erforderlich, wenn keiner der :values vorhanden ist.',
+    'present' => 'Das Feld :attribute muss vorhanden sein.',
+    'regex' => 'Das Format von :attribute ist ungültig.',
+    'required' => 'Das Feld :attribute ist erforderlich.',
+    'required_if' => 'Das Feld :attribute ist erforderlich, wenn :other :value ist.',
+    'required_unless' => 'Das Feld :attribute ist erforderlich, es sei denn, :other ist in :values.',
+    'required_with' => 'Das Feld :attribute ist erforderlich, wenn :values vorhanden ist.',
+    'required_with_all' => 'Das Feld :attribute ist erforderlich, wenn :values vorhanden sind.',
+    'required_without' => 'Das Feld :attribute ist erforderlich, wenn :values nicht vorhanden ist.',
+    'required_without_all' => 'Das Feld :attribute ist erforderlich, wenn keiner der :values vorhanden ist.',
     'same' => ':attribute und :other müssen übereinstimmen.',
     'size' => [
         'numeric' => ':attribute muss :size sein.',
@@ -119,18 +112,11 @@ return [
     'url' => ':attribute muss eine gültige URL sein.',
     'uuid' => ':attribute muss eine gültige UUID sein.',
 
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
     |--------------------------------------------------------------------------
-    |
-    | Here you may specify custom validation messages for attributes using the
-    | convention "attribute.rule" to name the lines. This makes it quick to
-    | specify a specific custom language line for a given attribute rule.
-    |
     */
-
 
     'custom' => [
         'attribute-name' => [
@@ -138,22 +124,12 @@ return [
         ],
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
     |--------------------------------------------------------------------------
-    |
-    | The following language lines are used to swap attribute place-holders
-    | with something more reader friendly such as E-Mail Address instead
-    | of "email". This simply helps us make messages a little cleaner.
-    |
     */
-
-
     'current_password' => 'Das Passwort ist falsch.',
-
-
     'attributes' => [
         'name' => 'Name',
         'username' => 'Benutzername',
@@ -188,7 +164,6 @@ return [
         'user_name' => 'Benutzername',
         'current_password' => 'Aktuelles Passwort',
 
-
         // Plan validation attributes
         'price' => 'Preis',
         'features' => 'Funktionen',
@@ -200,31 +175,32 @@ return [
         'enabled' => 'Aktiviert',
         'disabled' => 'Deaktiviert',
 
+        // Content (multi-language)
+        'content_en' => 'Inhalt (Englisch)',
+        'content_de' => 'Inhalt (Deutsch)',
+        'content_ar' => 'Inhalt (Arabisch)',
+        'excerpt_ar' => 'Auszug (Arabisch)',
+        'excerpt_en' => 'Auszug (Englisch)',
+        'excerpt_de' => 'Auszug (Deutsch)',
+        'title_ar' => 'Titel (Arabisch)',
+        'title_en' => 'Titel (Englisch)',
+        'title_de' => 'Titel (Deutsch)',
 
-        'content_en' => 'Inhalt auf Englisch',
-        'content_de' => 'Inhalt auf Deutsch',
-        'content_ar' => 'Inhalt auf Arabisch',
-        'excerpt_ar' => 'Auszug auf Arabisch',
-        'excerpt_en' => 'Auszug auf Englisch',
-        'title_ar' => 'Titel auf Arabisch',
-        'title_en' => 'Titel auf Englisch',
-        'title_de' => 'Titel auf Deutsch',
-    'excerpt_de' => 'Auszug auf Deutsch',
-    'content_de' => 'Inhalt auf Deutsch',
+        // FAQ fields
         'question_ar' => 'Frage (Arabisch)',
         'question_en' => 'Frage (Englisch)',
         'question_de' => 'Frage (Deutsch)',
         'answer_ar' => 'Antwort (Arabisch)',
         'answer_en' => 'Antwort (Englisch)',
         'answer_de' => 'Antwort (Deutsch)',
+
         'category_id' => 'Kategorie',
         'image' => 'Bild',
-    'cover_image_de' => 'Titelbild (Deutsch)',
-    'gallery_images_de' => 'Galeriebilder (Deutsch)',
-    'pdf_de' => 'PDF (Deutsch)',
-    'name_de' => 'Kategoriename Deutsch',
-    'city_de' => 'Stadt (Deutsch)',
-
+        'cover_image_de' => 'Coverbild (Deutsch)',
+        'gallery_images_de' => 'Galeriebilder (Deutsch)',
+        'pdf_de' => 'PDF (Deutsch)',
+        'name_de' => 'Kategoriename (Deutsch)',
+        'city_de' => 'Stadt (Deutsch)',
 
         // Order validation attributes
         'child_name' => 'Name des Kindes',
