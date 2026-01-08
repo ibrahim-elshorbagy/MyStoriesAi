@@ -84,9 +84,9 @@ class StoryController extends Controller
       'title_ar' => ['required', 'string', 'max:255'],
       'title_en' => ['required', 'string', 'max:255'],
       'title_de' => ['required', 'string', 'max:255'],
-      'excerpt_ar' => ['required', 'string',"max:350"],
-      'excerpt_en' => ['required', 'string',"max:350"],
-      'excerpt_de' => ['required', 'string',"max:350"],
+      'excerpt_ar' => ['required', 'string', "max:350"],
+      'excerpt_en' => ['required', 'string', "max:350"],
+      'excerpt_de' => ['required', 'string', "max:350"],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
       'content_de' => ['required', 'string'],
@@ -100,12 +100,20 @@ class StoryController extends Controller
       'cover_image_de' => ['nullable', 'image'],
 
       // Gallery images
-  'gallery_images_ar' => ['nullable', 'array', 'max:10'],
-  'gallery_images_ar.*' => ['image'],
-  'gallery_images_en' => ['nullable', 'array', 'max:10'],
-  'gallery_images_en.*' => ['image'],
-  'gallery_images_de' => ['nullable', 'array', 'max:10'],
-  'gallery_images_de.*' => ['image'],
+      'gallery_images_ar' => ['nullable', 'array', 'max:10'],
+      'gallery_images_ar.*' => ['image'],
+      'gallery_images_en' => ['nullable', 'array', 'max:10'],
+      'gallery_images_en.*' => ['image'],
+      'gallery_images_de' => ['nullable', 'array', 'max:10'],
+      'gallery_images_de.*' => ['image'],
+
+      // Gallery videos
+      'gallery_videos_ar' => ['nullable', 'array', 'max:10'],
+      'gallery_videos_ar.*' => ['file', 'mimes:mp4,avi,mov,wmv,flv,mkv,webm'],
+      'gallery_videos_en' => ['nullable', 'array', 'max:10'],
+      'gallery_videos_en.*' => ['file', 'mimes:mp4,avi,mov,wmv,flv,mkv,webm'],
+      'gallery_videos_de' => ['nullable', 'array', 'max:10'],
+      'gallery_videos_de.*' => ['file', 'mimes:mp4,avi,mov,wmv,flv,mkv,webm'],
 
       // PDFs
       'pdf_ar' => ['nullable', 'file', 'mimes:pdf'],
@@ -159,9 +167,9 @@ class StoryController extends Controller
       'title_ar' => ['required', 'string', 'max:255'],
       'title_en' => ['required', 'string', 'max:255'],
       'title_de' => ['required', 'string', 'max:255'],
-      'excerpt_ar' => ['required', 'string',"max:350"],
-      'excerpt_en' => ['required', 'string',"max:350"],
-      'excerpt_de' => ['required', 'string',"max:350"],
+      'excerpt_ar' => ['required', 'string', "max:350"],
+      'excerpt_en' => ['required', 'string', "max:350"],
+      'excerpt_de' => ['required', 'string', "max:350"],
       'content_ar' => ['required', 'string'],
       'content_en' => ['required', 'string'],
       'content_de' => ['required', 'string'],
@@ -175,20 +183,36 @@ class StoryController extends Controller
       'cover_image_de' => ['nullable', 'image'],
 
       // Gallery images - new uploads
-  'gallery_images_ar' => ['nullable', 'array', 'max:10'],
-  'gallery_images_ar.*' => ['image'],
-  'gallery_images_en' => ['nullable', 'array', 'max:10'],
-  'gallery_images_en.*' => ['image'],
-  'gallery_images_de' => ['nullable', 'array', 'max:10'],
-  'gallery_images_de.*' => ['image'],
+      'gallery_images_ar' => ['nullable', 'array', 'max:10'],
+      'gallery_images_ar.*' => ['image'],
+      'gallery_images_en' => ['nullable', 'array', 'max:10'],
+      'gallery_images_en.*' => ['image'],
+      'gallery_images_de' => ['nullable', 'array', 'max:10'],
+      'gallery_images_de.*' => ['image'],
 
       // Existing gallery images to keep
-  'existing_gallery_images_ar' => ['nullable', 'array'],
-  'existing_gallery_images_ar.*' => ['string'],
-  'existing_gallery_images_en' => ['nullable', 'array'],
-  'existing_gallery_images_en.*' => ['string'],
-  'existing_gallery_images_de' => ['nullable', 'array'],
-  'existing_gallery_images_de.*' => ['string'],
+      'existing_gallery_images_ar' => ['nullable', 'array'],
+      'existing_gallery_images_ar.*' => ['string'],
+      'existing_gallery_images_en' => ['nullable', 'array'],
+      'existing_gallery_images_en.*' => ['string'],
+      'existing_gallery_images_de' => ['nullable', 'array'],
+      'existing_gallery_images_de.*' => ['string'],
+
+      // Gallery videos - new uploads
+      'gallery_videos_ar' => ['nullable', 'array', 'max:10'],
+      'gallery_videos_ar.*' => ['file', 'mimes:mp4,avi,mov,wmv,flv,mkv,webm'],
+      'gallery_videos_en' => ['nullable', 'array', 'max:10'],
+      'gallery_videos_en.*' => ['file', 'mimes:mp4,avi,mov,wmv,flv,mkv,webm'],
+      'gallery_videos_de' => ['nullable', 'array', 'max:10'],
+      'gallery_videos_de.*' => ['file', 'mimes:mp4,avi,mov,wmv,flv,mkv,webm'],
+
+      // Existing gallery videos to keep
+      'existing_gallery_videos_ar' => ['nullable', 'array'],
+      'existing_gallery_videos_ar.*' => ['string'],
+      'existing_gallery_videos_en' => ['nullable', 'array'],
+      'existing_gallery_videos_en.*' => ['string'],
+      'existing_gallery_videos_de' => ['nullable', 'array'],
+      'existing_gallery_videos_de.*' => ['string'],
 
       // PDFs
       'pdf_ar' => ['nullable', 'file', 'mimes:pdf'],
@@ -345,9 +369,16 @@ class StoryController extends Controller
     // Handle gallery images for English
     $this->handleGalleryImages($request, $story, 'en');
 
-  // Handle gallery images for German
-  $this->handleGalleryImages($request, $story, 'de');
+    // Handle gallery images for German
+    $this->handleGalleryImages($request, $story, 'de');
+    // Handle gallery videos for Arabic
+    $this->handleGalleryVideos($request, $story, 'ar');
 
+    // Handle gallery videos for English
+    $this->handleGalleryVideos($request, $story, 'en');
+
+    // Handle gallery videos for German
+    $this->handleGalleryVideos($request, $story, 'de');
     // Handle PDFs
     if ($request->hasFile('pdf_ar')) {
       // Delete old PDF if exists
@@ -432,6 +463,48 @@ class StoryController extends Controller
   }
 
   /**
+   * Handle gallery videos for a specific language
+   */
+  private function handleGalleryVideos(Request $request, Story $story, string $locale)
+  {
+    $storyId = $story->id;
+    $galleryField = "gallery_videos_{$locale}";
+    $existingField = "existing_gallery_videos_{$locale}";
+
+    // Get existing videos from database
+    $existingVideosInDb = $story->{$galleryField} ?? [];
+
+    // Get videos that frontend wants to keep
+    $videosToKeep = $request->input($existingField, []);
+
+    // Find videos to delete (in DB but not in keep list)
+    $videosToDelete = array_diff($existingVideosInDb, $videosToKeep);
+
+    // Delete removed videos from storage
+    foreach ($videosToDelete as $videoPath) {
+      if ($videoPath && Storage::disk('public')->exists($videoPath)) {
+        Storage::disk('public')->delete($videoPath);
+      }
+    }
+
+    // Start with videos to keep
+    $finalGallery = $videosToKeep;
+
+    // Add new uploaded videos
+    if ($request->hasFile($galleryField)) {
+      $newVideos = [];
+      foreach ($request->file($galleryField) as $file) {
+        $path = $file->store("admin/story/{$storyId}/{$locale}/videos", 'public');
+        $newVideos[] = $path;
+      }
+      $finalGallery = array_merge($finalGallery, $newVideos);
+    }
+
+    // Update story with final gallery
+    $story->update([$galleryField => array_values($finalGallery)]);
+  }
+
+  /**
    * Delete all files associated with a story
    */
   private function deleteStoryFiles(Story $story)
@@ -459,6 +532,23 @@ class StoryController extends Controller
     if ($story->gallery_images_de) {
       foreach ($story->gallery_images_de as $imagePath) {
         Storage::disk('public')->delete($imagePath);
+      }
+    }
+
+    // Delete gallery videos
+    if ($story->gallery_videos_ar && is_array($story->gallery_videos_ar)) {
+      foreach ($story->gallery_videos_ar as $videoPath) {
+        Storage::disk('public')->delete($videoPath);
+      }
+    }
+    if ($story->gallery_videos_en && is_array($story->gallery_videos_en)) {
+      foreach ($story->gallery_videos_en as $videoPath) {
+        Storage::disk('public')->delete($videoPath);
+      }
+    }
+    if ($story->gallery_videos_de && is_array($story->gallery_videos_de)) {
+      foreach ($story->gallery_videos_de as $videoPath) {
+        Storage::disk('public')->delete($videoPath);
       }
     }
 

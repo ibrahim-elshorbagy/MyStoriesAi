@@ -5,13 +5,19 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-export default function StoryGallerySwiper({ images, title }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+export default function StoryGallerySwiper({ images, videos, title }) {
+  const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [showZoomModal, setShowZoomModal] = useState(false);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
-  if (!images || images.length === 0) return null;
+  // Combine images and videos into a single media array
+  const mediaItems = [
+    ...(images || []).map(src => ({ type: 'image', src })),
+    ...(videos || []).map(src => ({ type: 'video', src }))
+  ];
+
+  if (!mediaItems || mediaItems.length === 0) return null;
 
   const handleCloseModal = () => {
     setShowZoomModal(false);
@@ -20,6 +26,8 @@ export default function StoryGallerySwiper({ images, title }) {
   // Zoom Modal Component
   const ZoomModal = () => {
     if (!showZoomModal) return null;
+
+    const currentMedia = mediaItems[currentMediaIndex];
 
     return createPortal(
       <div
@@ -40,9 +48,9 @@ export default function StoryGallerySwiper({ images, title }) {
       >
         {/* Top Bar with Counter and Close Button */}
         <div className="fixed top-0 left-0 right-0 flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 z-[10001]">
-          {/* Image Counter - Left Side */}
+          {/* Media Counter - Left Side */}
           <div className="bg-white/20 backdrop-blur-sm text-white px-3 sm:px-6 py-1.5 sm:py-3 rounded-full text-sm sm:text-base font-bold shadow-lg">
-            {currentImageIndex + 1} / {images.length}
+            {currentMediaIndex + 1} / {mediaItems.length}
           </div>
 
           {/* Close Button - Right Side */}
@@ -64,15 +72,15 @@ export default function StoryGallerySwiper({ images, title }) {
         </div>
 
         {/* Previous Button */}
-        {currentImageIndex > 0 && (
+        {currentMediaIndex > 0 && (
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setCurrentImageIndex(prev => prev - 1);
+              setCurrentMediaIndex(prev => prev - 1);
             }}
             onTouchEnd={(e) => {
               e.stopPropagation();
-              setCurrentImageIndex(prev => prev - 1);
+              setCurrentMediaIndex(prev => prev - 1);
             }}
             className="fixed left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 bg-white/20 hover:bg-white/30 active:bg-white/40 text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 z-[10001] shadow-lg"
             title="Previous"
@@ -83,15 +91,15 @@ export default function StoryGallerySwiper({ images, title }) {
         )}
 
         {/* Next Button */}
-        {currentImageIndex < images.length - 1 && (
+        {currentMediaIndex < mediaItems.length - 1 && (
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setCurrentImageIndex(prev => prev + 1);
+              setCurrentMediaIndex(prev => prev + 1);
             }}
             onTouchEnd={(e) => {
               e.stopPropagation();
-              setCurrentImageIndex(prev => prev + 1);
+              setCurrentMediaIndex(prev => prev + 1);
             }}
             className="fixed right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 bg-white/20 hover:bg-white/30 active:bg-white/40 text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 z-[10001] shadow-lg"
             title="Next"
@@ -101,25 +109,35 @@ export default function StoryGallerySwiper({ images, title }) {
           </button>
         )}
 
-        {/* Zoomed Image Container */}
+        {/* Zoomed Media Container */}
         <div
           className="max-w-7xl max-h-full w-full h-full flex items-center justify-center px-2 sm:px-4 pt-16 pb-16"
           onClick={(e) => e.stopPropagation()}
           onTouchEnd={(e) => e.stopPropagation()}
         >
-          <img
-            src={images[currentImageIndex]}
-            alt={`${title} - ${currentImageIndex + 1}`}
-            className="max-w-full max-h-[80vh] sm:max-h-[85vh] object-contain rounded-lg shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-            onTouchEnd={(e) => e.stopPropagation()}
-          />
+          {currentMedia.type === 'image' ? (
+            <img
+              src={currentMedia.src}
+              alt={`${title} - ${currentMediaIndex + 1}`}
+              className="max-w-full max-h-[80vh] sm:max-h-[85vh] object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+              onTouchEnd={(e) => e.stopPropagation()}
+            />
+          ) : (
+            <video
+              src={currentMedia.src}
+              controls
+              className="max-w-full max-h-[80vh] sm:max-h-[85vh] object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+              onTouchEnd={(e) => e.stopPropagation()}
+            />
+          )}
         </div>
 
         {/* Download Button - Bottom Center */}
         <div className="fixed bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 z-[10001]">
           <a
-            href={images[currentImageIndex]}
+            href={currentMedia.src}
             download
             onClick={(e) => {
               e.stopPropagation();
@@ -156,10 +174,9 @@ export default function StoryGallerySwiper({ images, title }) {
                 swiper.params.navigation.prevEl = prevRef.current;
                 swiper.params.navigation.nextEl = nextRef.current;
               }}
-              onSlideChange={(swiper) => setCurrentImageIndex(swiper.activeIndex)}
+              onSlideChange={(swiper) => setCurrentMediaIndex(swiper.activeIndex)}
               direction="vertical"
               spaceBetween={6}
-              slidesPerView="auto"
               className="h-full"
               breakpoints={{
                 0: { slidesPerView: 5, spaceBetween: 6 },
@@ -168,21 +185,33 @@ export default function StoryGallerySwiper({ images, title }) {
                 1024: { slidesPerView: 5, spaceBetween: 12 },
               }}
             >
-              {images.map((image, index) => (
+              {mediaItems.map((media, index) => (
                 <SwiperSlide key={index} style={{ height: 'auto' }}>
                   <div
                     className={`rounded-md sm:rounded-lg cursor-pointer overflow-hidden border transition-all duration-300 shadow-md hover:shadow-xl ${
-                      index === currentImageIndex
+                      index === currentMediaIndex
                         ? 'border-2 sm:border-3 border-orange-500 ring-1 sm:ring-2 ring-orange-200 scale-105'
                         : 'border border-white hover:border-orange-300'
                     }`}
-                    onClick={() => setCurrentImageIndex(index)}
+                    onClick={() => setCurrentMediaIndex(index)}
                   >
-                    <img
-                      src={image}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-10 sm:h-12 md:h-16 lg:h-20 object-cover"
-                    />
+                    {media.type === 'image' ? (
+                      <img
+                        src={media.src}
+                        alt={`Thumbnail ${index + 1}`}
+                        className="w-full h-10 sm:h-12 md:h-16 lg:h-20 object-cover"
+                      />
+                    ) : (
+                      <div className="relative w-full h-10 sm:h-12 md:h-16 lg:h-20">
+                        <video
+                          src={media.src}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                          <i className="fa-solid fa-play text-white text-xs sm:text-sm"></i>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </SwiperSlide>
               ))}
@@ -206,20 +235,28 @@ export default function StoryGallerySwiper({ images, title }) {
           </div>
         </div>
 
-        {/* Main Image Display */}
+        {/* Main Media Display */}
         <div className="relative flex-1 min-w-0">
           <div className="rounded-lg sm:rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-orange-100 to-green-100 p-1 sm:p-2 h-full flex items-center justify-center">
-            <img
-              src={images[currentImageIndex]}
-              alt={`${title} - ${currentImageIndex + 1}`}
-              className="max-w-full max-h-full object-contain rounded-md sm:rounded-lg"
-            />
+            {mediaItems[currentMediaIndex].type === 'image' ? (
+              <img
+                src={mediaItems[currentMediaIndex].src}
+                alt={`${title} - ${currentMediaIndex + 1}`}
+                className="max-w-full max-h-full object-contain rounded-md sm:rounded-lg"
+              />
+            ) : (
+              <video
+                src={mediaItems[currentMediaIndex].src}
+                controls
+                className="max-w-full max-h-full object-contain rounded-md sm:rounded-lg"
+              />
+            )}
           </div>
 
-          {/* Image Counter & Zoom - Bottom Right */}
+          {/* Media Counter & Zoom - Bottom Right */}
           <div className="absolute bottom-1.5 sm:bottom-2 md:bottom-4 ltr:right-1.5 ltr:sm:right-2 ltr:md:right-4 rtl:left-1.5 rtl:sm:left-2 rtl:md:left-4 flex items-center gap-1 sm:gap-2 z-20">
             <span className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg">
-              {currentImageIndex + 1} / {images.length}
+              {currentMediaIndex + 1} / {mediaItems.length}
             </span>
             <button
               onClick={() => setShowZoomModal(true)}

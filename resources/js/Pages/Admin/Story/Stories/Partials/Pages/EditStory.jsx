@@ -19,6 +19,11 @@ export default function EditStory({ story, categories = [] }) {
   const [existingGalleryEn, setExistingGalleryEn] = useState(story.gallery_images_en || []);
   const [existingGalleryDe, setExistingGalleryDe] = useState(story.gallery_images_de || []);
 
+  // State for existing gallery videos
+  const [existingVideosAr, setExistingVideosAr] = useState(story.gallery_videos_ar || []);
+  const [existingVideosEn, setExistingVideosEn] = useState(story.gallery_videos_en || []);
+  const [existingVideosDe, setExistingVideosDe] = useState(story.gallery_videos_de || []);
+
   const { data, setData, post, errors, processing } = useForm({
     title_ar: story.title?.ar || '',
     title_en: story.title?.en || '',
@@ -38,9 +43,15 @@ export default function EditStory({ story, categories = [] }) {
     gallery_images_ar: [],
     gallery_images_en: [],
     gallery_images_de: [],
-  existing_gallery_images_ar: story.gallery_images_ar || [],
-  existing_gallery_images_en: story.gallery_images_en || [],
-  existing_gallery_images_de: story.gallery_images_de || [],
+    existing_gallery_images_ar: story.gallery_images_ar || [],
+    existing_gallery_images_en: story.gallery_images_en || [],
+    existing_gallery_images_de: story.gallery_images_de || [],
+    gallery_videos_ar: [],
+    gallery_videos_en: [],
+    gallery_videos_de: [],
+    existing_gallery_videos_ar: story.gallery_videos_ar || [],
+    existing_gallery_videos_en: story.gallery_videos_en || [],
+    existing_gallery_videos_de: story.gallery_videos_de || [],
     pdf_ar: null,
     pdf_en: null,
     pdf_de: null,
@@ -161,6 +172,23 @@ export default function EditStory({ story, categories = [] }) {
     }
   };
 
+  // Delete existing gallery video
+  const deleteExistingGalleryVideo = (videoPath, locale) => {
+    if (locale === 'ar') {
+      const updatedVideos = existingVideosAr.filter(vid => vid !== videoPath);
+      setExistingVideosAr(updatedVideos);
+      setData('existing_gallery_videos_ar', updatedVideos);
+    } else if (locale === 'en') {
+      const updatedVideos = existingVideosEn.filter(vid => vid !== videoPath);
+      setExistingVideosEn(updatedVideos);
+      setData('existing_gallery_videos_en', updatedVideos);
+    } else if (locale === 'de') {
+      const updatedVideos = existingVideosDe.filter(vid => vid !== videoPath);
+      setExistingVideosDe(updatedVideos);
+      setData('existing_gallery_videos_de', updatedVideos);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -187,19 +215,25 @@ export default function EditStory({ story, categories = [] }) {
       existing_gallery_images_ar: existingGalleryAr,
       existing_gallery_images_en: existingGalleryEn,
       existing_gallery_images_de: existingGalleryDe,
+      existing_gallery_videos_ar: existingVideosAr,
+      existing_gallery_videos_en: existingVideosEn,
+      existing_gallery_videos_de: existingVideosDe,
       _method: 'PUT',
     };
 
     // Only include files if they were changed
-  if (data.cover_image_ar) formData.cover_image_ar = data.cover_image_ar;
-  if (data.cover_image_en) formData.cover_image_en = data.cover_image_en;
-  if (data.cover_image_de) formData.cover_image_de = data.cover_image_de;
+    if (data.cover_image_ar) formData.cover_image_ar = data.cover_image_ar;
+    if (data.cover_image_en) formData.cover_image_en = data.cover_image_en;
+    if (data.cover_image_de) formData.cover_image_de = data.cover_image_de;
     if (data.gallery_images_ar?.length > 0) formData.gallery_images_ar = data.gallery_images_ar;
     if (data.gallery_images_en?.length > 0) formData.gallery_images_en = data.gallery_images_en;
-  if (data.gallery_images_de?.length > 0) formData.gallery_images_de = data.gallery_images_de;
+    if (data.gallery_images_de?.length > 0) formData.gallery_images_de = data.gallery_images_de;
+    if (data.gallery_videos_ar?.length > 0) formData.gallery_videos_ar = data.gallery_videos_ar;
+    if (data.gallery_videos_en?.length > 0) formData.gallery_videos_en = data.gallery_videos_en;
+    if (data.gallery_videos_de?.length > 0) formData.gallery_videos_de = data.gallery_videos_de;
     if (data.pdf_ar) formData.pdf_ar = data.pdf_ar;
     if (data.pdf_en) formData.pdf_en = data.pdf_en;
-  if (data.pdf_de) formData.pdf_de = data.pdf_de;
+    if (data.pdf_de) formData.pdf_de = data.pdf_de;
 
     post(route('admin.stories.update', story.id), {
       data: formData,
@@ -337,7 +371,7 @@ export default function EditStory({ story, categories = [] }) {
                   <InputError message={errors.excerpt_de} className="mt-2" />
                 </div>
 
-              {/* Category */}
+                {/* Category */}
                 <div>
                   <SelectInput
                     name="category_id"
@@ -632,6 +666,144 @@ export default function EditStory({ story, categories = [] }) {
                                     <button
                                       type="button"
                                       onClick={() => deleteExistingGalleryImage(image, 'de')}
+                                      className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                      title={t('delete')}
+                                    >
+                                      <i className="fa-solid fa-times text-xs"></i>
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
+                </div>
+
+                {/* Gallery Videos */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Arabic Gallery Videos */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_videos_ar"
+                      label={t('gallery_videos_ar')}
+                      accept="video/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_videos_ar', files)}
+                      error={errors.gallery_videos_ar}
+                      value={data.gallery_videos_ar}
+                      helperText={
+                        <div className="space-y-2">
+                          {existingVideosAr && existingVideosAr.length > 0 && (
+                            <div className="space-y-2">
+                              <span className="text-sm text-blue-600 dark:text-blue-400">
+                                <i className="fa-solid fa-video me-1"></i>
+                                {t('current_gallery_videos')} ({existingVideosAr.length})
+                              </span>
+                              <div className="grid grid-cols-4 gap-2">
+                                {existingVideosAr.map((video, index) => (
+                                  <div key={index} className="relative group">
+                                    <video
+                                      src={`/storage/${video}`}
+                                      className="w-full h-24 object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
+                                      controls
+                                    />
+                                    <button
+                                      type="button"
+                                      onClick={() => deleteExistingGalleryVideo(video, 'ar')}
+                                      className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                      title={t('delete')}
+                                    >
+                                      <i className="fa-solid fa-times text-xs"></i>
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
+
+                  {/* English Gallery Videos */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_videos_en"
+                      label={t('gallery_videos_en')}
+                      accept="video/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_videos_en', files)}
+                      error={errors.gallery_videos_en}
+                      value={data.gallery_videos_en}
+                      helperText={
+                        <div className="space-y-2">
+                          {existingVideosEn && existingVideosEn.length > 0 && (
+                            <div className="space-y-2">
+                              <span className="text-sm text-blue-600 dark:text-blue-400">
+                                <i className="fa-solid fa-video me-1"></i>
+                                {t('current_gallery_videos')} ({existingVideosEn.length})
+                              </span>
+                              <div className="grid grid-cols-4 gap-2">
+                                {existingVideosEn.map((video, index) => (
+                                  <div key={index} className="relative group">
+                                    <video
+                                      src={`/storage/${video}`}
+                                      className="w-full h-24 object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
+                                      controls
+                                    />
+                                    <button
+                                      type="button"
+                                      onClick={() => deleteExistingGalleryVideo(video, 'en')}
+                                      className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                      title={t('delete')}
+                                    >
+                                      <i className="fa-solid fa-times text-xs"></i>
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      }
+                    />
+                  </div>
+
+                  {/* German Gallery Videos */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_videos_de"
+                      label={t('gallery_videos_de')}
+                      accept="video/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_videos_de', files)}
+                      error={errors.gallery_videos_de}
+                      value={data.gallery_videos_de}
+                      helperText={
+                        <div className="space-y-2">
+                          {existingVideosDe && existingVideosDe.length > 0 && (
+                            <div className="space-y-2">
+                              <span className="text-sm text-blue-600 dark:text-blue-400">
+                                <i className="fa-solid fa-video me-1"></i>
+                                {t('current_gallery_videos')} ({existingVideosDe.length})
+                              </span>
+                              <div className="grid grid-cols-4 gap-2">
+                                {existingVideosDe.map((video, index) => (
+                                  <div key={index} className="relative group">
+                                    <video
+                                      src={`/storage/${video}`}
+                                      className="w-full h-24 object-cover rounded-md border border-neutral-300 dark:border-neutral-600"
+                                      controls
+                                    />
+                                    <button
+                                      type="button"
+                                      onClick={() => deleteExistingGalleryVideo(video, 'de')}
                                       className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                                       title={t('delete')}
                                     >

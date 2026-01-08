@@ -117,6 +117,7 @@ export default function SingleStory({ story }) {
                     <div className="h-[400px] sm:h-[500px] md:h-[550px] lg:h-[600px] xl:h-[700px]">
                       <StoryGallerySwiper
                         images={story.gallery_images_value}
+                        videos={story.gallery_videos_value}
                         title={story.title_value}
                       />
                     </div>

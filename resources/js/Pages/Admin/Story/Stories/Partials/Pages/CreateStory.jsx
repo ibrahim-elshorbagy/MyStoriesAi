@@ -32,6 +32,9 @@ export default function CreateStory({ categories = [] }) {
     gallery_images_ar: [],
     gallery_images_en: [],
     gallery_images_de: [],
+    gallery_videos_ar: [],
+    gallery_videos_en: [],
+    gallery_videos_de: [],
     pdf_ar: null,
     pdf_en: null,
     pdf_de: null,
@@ -450,6 +453,51 @@ export default function CreateStory({ categories = [] }) {
                       onChange={(files) => setData('gallery_images_de', files)}
                       error={errors.gallery_images_de}
                       value={data.gallery_images_de}
+                    />
+                  </div>
+                </div>
+
+                {/* Gallery Videos */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Arabic Gallery Videos */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_videos_ar"
+                      label={t('gallery_videos_ar')}
+                      accept="video/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_videos_ar', files)}
+                      error={errors.gallery_videos_ar}
+                      value={data.gallery_videos_ar}
+                    />
+                  </div>
+
+                  {/* English Gallery Videos */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_videos_en"
+                      label={t('gallery_videos_en')}
+                      accept="video/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_videos_en', files)}
+                      error={errors.gallery_videos_en}
+                      value={data.gallery_videos_en}
+                    />
+                  </div>
+
+                  {/* German Gallery Videos */}
+                  <div>
+                    <DragFileInput
+                      id="gallery_videos_de"
+                      label={t('gallery_videos_de')}
+                      accept="video/*"
+                      multiple={true}
+                      showMaxFiles={false}
+                      onChange={(files) => setData('gallery_videos_de', files)}
+                      error={errors.gallery_videos_de}
+                      value={data.gallery_videos_de}
                     />
                   </div>
                 </div>

@@ -269,6 +269,7 @@ $main = [
   'enter_german_excerpt' => 'أدخل الملخص بالألمانية',
   'cover_image_de' => 'صورة الغلاف (بالألمانية)',
   'gallery_images_de' => 'صور المعرض (بالألمانية)',
+  'gallery_videos_de' => 'فيديوهات المعرض (بالألمانية)',
   'pdf_de' => 'PDF (بالألمانية)',
 
   // Story Files
@@ -278,6 +279,9 @@ $main = [
   'gallery_images' => 'صور المعرض',
   'gallery_images_ar' => 'صور المعرض (عربي)',
   'gallery_images_en' => 'صور المعرض (إنجليزي)',
+  'gallery_videos' => 'فيديوهات المعرض',
+  'gallery_videos_ar' => 'فيديوهات المعرض (عربي)',
+  'gallery_videos_en' => 'فيديوهات المعرض (إنجليزي)',
   'pdf_file' => 'ملف PDF',
   'pdf_ar' => 'ملف PDF (عربي)',
   'pdf_en' => 'ملف PDF (إنجليزي)',

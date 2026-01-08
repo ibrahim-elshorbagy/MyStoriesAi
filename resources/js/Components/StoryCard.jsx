@@ -9,7 +9,7 @@ export default function StoryCard({ story }) {
     <div className="flex flex-col border-2 border-orange-300 bg-white overflow-hidden shadow-sm hover:shadow-xl duration-300 rounded-xl max-w-[350px] w-full h-full group">
       {/* Cover Image */}
       <Link href={route('story.show', story.id)} >
-        <div className="flex !min-w-full min-h-fit overflow-hidden relative aspect-[210/148]">
+        <div className="flex !min-w-full min-h-fit overflow-hidden relative aspect-[193/260]">
           <img
             src={story.cover_image_value || 'https://placehold.co/595x420.png'}
             alt={story.title_value}

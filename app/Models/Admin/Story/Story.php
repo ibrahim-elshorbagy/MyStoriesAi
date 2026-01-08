@@ -17,6 +17,9 @@ class Story extends Model
     'gallery_images_ar' => 'array',
     'gallery_images_en' => 'array',
     'gallery_images_de' => 'array',
+    'gallery_videos_ar' => 'array',
+    'gallery_videos_en' => 'array',
+    'gallery_videos_de' => 'array',
   ];
 
   protected function getTranslatedValue(array $translations): string
@@ -25,7 +28,7 @@ class Story extends Model
     return $translations[$locale] ?? $translations['en'] ?? '';
   }
 
-  protected $appends = ['title_value', 'content_value', 'excerpt_value', 'cover_image_value', 'pdf_value', 'gallery_images_value', 'gender_text'];
+  protected $appends = ['title_value', 'content_value', 'excerpt_value', 'cover_image_value', 'pdf_value', 'gallery_images_value', 'gallery_videos_value', 'gender_text'];
 
   public function getTitleValueAttribute(): string
   {
@@ -105,6 +108,23 @@ class Story extends Model
     return array_map(function ($image) {
       return str_starts_with($image, 'http') ? $image : asset('storage/' . $image);
     }, $images);
+  }
+
+  public function getGalleryVideosValueAttribute(): array
+  {
+    $locale = app()->getLocale();
+    if ($locale === 'ar') {
+      $videos = $this->gallery_videos_ar ?? [];
+    } elseif ($locale === 'de') {
+      $videos = $this->gallery_videos_de ?? $this->gallery_videos_en ?? [];
+    } else {
+      $videos = $this->gallery_videos_en ?? [];
+    }
+
+    // If videos are relative paths, prepend storage URL
+    return array_map(function ($video) {
+      return str_starts_with($video, 'http') ? $video : asset('storage/' . $video);
+    }, $videos);
   }
 
   public function category()
