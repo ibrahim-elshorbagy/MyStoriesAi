@@ -62,15 +62,15 @@
         تحياتنا ❤️ فريق MyStoriesAi
       </p>
     @elseif($locale === 'de')
-      <h2 style="color:#333;">Neue Bestellung erstellt 🎉</h2>
+      <h2 style="color:#333;">Neue Bestellung eingegangen 🎉</h2>
       <p style="color:#555; font-size:16px;">
-        Eine neue Bestellung wurde auf Ihrer Website erstellt. Bestelldetails:
+        Auf Ihrer Website wurde eine neue Bestellung erstellt. Hier sind die Details:
       </p>
 
       <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
         <strong style="color:#333;">Bestellnummer:</strong> #{{ $order->id }}<br />
         <strong style="color:#333;">Kundenname:</strong> {{ $order->user ? $order->user->name : 'Unbekannt' }}<br />
-        <strong style="color:#333;">Anzahl Geschichten:</strong> {{ $order->orderItems->count() }} Geschichte(n)<br />
+        <strong style="color:#333;">Anzahl der Geschichten:</strong> {{ $order->orderItems->count() }} Geschichte(n)<br />
         <strong style="color:#333;">Gesamtbetrag:</strong> {{ $order->total_price }} EUR<br />
         <strong style="color:#333;">Zahlungsmethode:</strong>
         {{ $order->payment_method === 'cod' ? __('website.cod') : __('website.online_payment') }}<br />
@@ -85,7 +85,7 @@
           Storniert
         @endif
         <br /><br />
-        <strong style="color:#333;">Geschichtsdetails:</strong><br />
+        <strong style="color:#333;">Details zu den Geschichten:</strong><br />
         @foreach ($order->orderItems as $item)
           <div style="background:#fff; padding:10px; margin:5px 0; border-radius:5px; border-left:3px solid #fa7508;">
             <strong>Kind:</strong> {{ $item->child_name }} ({{ $item->child_age }} Jahre)<br />
@@ -93,11 +93,11 @@
             {{ $item->language === 'arabic' ? 'Arabisch' : ($item->language === 'english' ? 'Englisch' : 'Deutsch') }}<br />
             <strong>Format:</strong>
             @if ($item->format === 'first_plan')
-              Erster Plan
+              Plan 1
             @elseif($item->format === 'second_plan')
-              Zweiter Plan
+              Plan 2
             @else
-              Dritter Plan
+              Plan 3
             @endif
             <br />
             <strong>Preis:</strong> {{ $item->story_price }} EUR
@@ -108,15 +108,15 @@
       <div style="text-align:center; margin:20px 0;">
         <a href="{{ route('admin.orders.show', $order->id) }}"
           style="background:#fa7508; color:#fff; padding:15px 30px; text-decoration:none; border-radius:8px; display:inline-block;">
-          Bestelldetails anzeigen
+          Bestelldetails ansehen
         </a>
       </div>
 
-      <p style="margin-top:30px; font-size:14px; color:#999;">Mit freundlichen Grüßen ❤️ Das MyStoriesAi Team</p>
+      <p style="margin-top:30px; font-size:14px; color:#999;">Mit freundlichen Grüßen ❤️ Ihr MyStoriesAi Team</p>
     @else
-      <h2 style="color:#333;">New Order Created 🎉</h2>
+      <h2 style="color:#333;">New Order Received 🎉</h2>
       <p style="color:#555; font-size:16px;">
-        A new order has been created on your website. Order details:
+        A new order has been placed on your website. Here are the details:
       </p>
 
       <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
@@ -145,11 +145,11 @@
             {{ $item->language === 'arabic' ? 'Arabic' : ($item->language === 'english' ? 'English' : 'German') }}<br />
             <strong>Format:</strong>
             @if ($item->format === 'first_plan')
-              First Plan
+              Plan 1
             @elseif($item->format === 'second_plan')
-              Second Plan
+              Plan 2
             @else
-              Third Plan
+              Plan 3
             @endif
             <br />
             <strong>Price:</strong> {{ $item->story_price }} EUR
@@ -174,9 +174,11 @@
   <p style="margin-top:20px; font-size:12px; color:#aaa;">
     © {{ date('Y') }} MyStoriesAi. All rights reserved.
     <br />
-    <a href="{{ config('app.url') }}"
-      style="color:#555; text-decoration:none;">{{ $locale === 'ar' ? 'الموقع الرسمي' : 'Official Website' }}</a> |
-    <a href="mailto:support@mystoriesai.com"
-      style="color:#555; text-decoration:none;">{{ $locale === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
+    <a href="{{ config('app.url') }}" style="color:#555; text-decoration:none;">
+      {{ $locale === 'ar' ? 'الموقع الرسمي' : ($locale === 'de' ? 'Offizielle Website' : 'Official Website') }}
+    </a> |
+    <a href="mailto:support@mystoriesai.com" style="color:#555; text-decoration:none;">
+      {{ $locale === 'ar' ? 'اتصل بنا' : ($locale === 'de' ? 'Kontakt' : 'Contact Us') }}
+    </a>
   </p>
 </div>

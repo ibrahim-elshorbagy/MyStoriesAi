@@ -31,9 +31,9 @@
           <span style="color:#6c757d;">تم الاسترداد</span>
         @endif
         <br />
-        @if ($payment->transaction_id)
+        {{-- @if ($payment->transaction_id)
           <strong style="color:#333;">رقم المعاملة:</strong> {{ $payment->transaction_id }}<br />
-        @endif
+        @endif --}}
       </div>
 
       <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0; direction: rtl;">
@@ -59,7 +59,7 @@
         شكراً لاختيار MyStoriesAi!
       </p>
     @elseif($locale === 'de')
-      <h2 style="color:#333;">Zahlungsstatus-Aktualisierung - Bestellung #{{ $order->id }} 🎉</h2>
+      <h2 style="color:#333;">Zahlungsstatus-Update – Bestellung #{{ $order->id }} 🎉</h2>
       <p style="color:#555; font-size:16px;">
         Hallo {{ $notifiable->name }},
       </p>
@@ -82,31 +82,35 @@
           <span style="color:#6c757d;">Erstattet</span>
         @endif
         <br />
-        @if ($payment->transaction_id)
+        {{-- @if ($payment->transaction_id)
           <strong style="color:#333;">Transaktions-ID:</strong> {{ $payment->transaction_id }}<br />
-        @endif
+        @endif --}}
       </div>
 
       <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
         <h4 style="color:#2d5a2d; margin-top:0;">Was bedeutet das?</h4>
         <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
           @if ($payment->status === 'paid')
-            Ihre Zahlung wurde erfolgreich bestätigt. Wir beginnen bald mit der Bearbeitung Ihrer Bestellung.
+            Ihre Zahlung wurde erfolgreich bestätigt. Wir beginnen in Kürze mit der Bearbeitung Ihrer Bestellung.
           @elseif($payment->status === 'pending')
-            Ihre Zahlung wird noch geprüft. Wir informieren Sie, sobald sie bestätigt wurde.
+            Ihre Zahlung wird derzeit geprüft. Wir informieren Sie, sobald sie bestätigt wurde.
           @elseif($payment->status === 'failed')
-            Wir konnten Ihre Zahlung nicht verarbeiten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns.
+            Wir konnten Ihre Zahlung leider nicht verarbeiten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns.
           @else
-            Ihre Zahlung wurde erstattet. Bei Fragen kontaktieren Sie uns bitte.
+            Ihre Zahlung wurde erstattet. Wenn Sie Fragen haben, kontaktieren Sie uns bitte.
           @endif
         </p>
       </div>
 
-      <p style="color:#777; font-size:14px;">Bei Fragen zu diesem Update kontaktieren Sie uns bitte.</p>
+      <p style="color:#777; font-size:14px;">
+        Wenn Sie Fragen zu diesem Update haben, kontaktieren Sie uns bitte jederzeit.
+      </p>
 
-      <p style="margin-top:30px; font-size:14px; color:#999;">Vielen Dank, dass Sie MyStoriesAi gewählt haben!</p>
+      <p style="margin-top:30px; font-size:14px; color:#999;">
+        Vielen Dank, dass Sie MyStoriesAi gewählt haben!
+      </p>
     @else
-      <h2 style="color:#333;">Payment Status Update - Order #{{ $order->id }} 🎉</h2>
+      <h2 style="color:#333;">Payment Status Update – Order #{{ $order->id }} 🎉</h2>
       <p style="color:#555; font-size:16px;">
         Hello {{ $notifiable->name }},
       </p>
@@ -129,20 +133,20 @@
           <span style="color:#6c757d;">Refunded</span>
         @endif
         <br />
-        @if ($payment->transaction_id)
+        {{-- @if ($payment->transaction_id)
           <strong style="color:#333;">Transaction ID:</strong> {{ $payment->transaction_id }}<br />
-        @endif
+        @endif --}}
       </div>
 
       <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
         <h4 style="color:#2d5a2d; margin-top:0;">What does this mean?</h4>
         <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
           @if ($payment->status === 'paid')
-            Your payment has been confirmed successfully. We'll start processing your order soon.
+            Your payment has been confirmed successfully. We’ll start processing your order shortly.
           @elseif($payment->status === 'pending')
-            Your payment is still under review. We'll update you once payment is confirmed.
+            Your payment is currently under review. We’ll notify you once it has been confirmed.
           @elseif($payment->status === 'failed')
-            We were unable to process your payment. Please try again or contact us.
+            We were unable to process your payment. Please try again or contact us for assistance.
           @else
             Your payment has been refunded. If you have any questions, please contact us.
           @endif
@@ -150,7 +154,7 @@
       </div>
 
       <p style="color:#777; font-size:14px;">
-        If you have any questions about this update, please contact us.
+        If you have any questions about this update, please feel free to contact us.
       </p>
 
       <p style="margin-top:30px; font-size:14px; color:#999;">
@@ -163,9 +167,11 @@
   <p style="margin-top:20px; font-size:12px; color:#aaa;">
     © {{ date('Y') }} MyStoriesAi. All rights reserved.
     <br />
-    <a href="{{ config('app.url') }}"
-      style="color:#555; text-decoration:none;">{{ $locale === 'ar' ? 'الموقع الرسمي' : 'Official Website' }}</a> |
-    <a href="mailto:support@mystoriesai.com"
-      style="color:#555; text-decoration:none;">{{ $locale === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
+    <a href="{{ config('app.url') }}" style="color:#555; text-decoration:none;">
+      {{ $locale === 'ar' ? 'الموقع الرسمي' : ($locale === 'de' ? 'Offizielle Website' : 'Official Website') }}
+    </a> |
+    <a href="mailto:support@mystoriesai.com" style="color:#555; text-decoration:none;">
+      {{ $locale === 'ar' ? 'اتصل بنا' : ($locale === 'de' ? 'Kontakt' : 'Contact Us') }}
+    </a>
   </p>
 </div>

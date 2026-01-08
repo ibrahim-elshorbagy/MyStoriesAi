@@ -29,8 +29,8 @@
     @elseif(app()->getLocale() === 'de')
       <h2 style="color:#333;">Hallo {{ $notifiable->name }} 👋</h2>
       <p style="color:#555; font-size:16px;">
-        Sie erhalten diese E-Mail, weil wir eine Anfrage zum Zurücksetzen des Passworts für Ihr Konto erhalten haben. 🚀
-        Klicken Sie auf den untenstehenden Button, um Ihr Passwort zurückzusetzen:
+        Sie erhalten diese E-Mail, weil wir eine Anfrage zum Zurücksetzen des Passworts für Ihr MyStoriesAi-Konto erhalten haben. 🚀
+        Klicken Sie auf die Schaltfläche unten, um Ihr Passwort zurückzusetzen:
       </p>
 
       <!-- Button -->
@@ -41,14 +41,14 @@
       </div>
 
       <p style="color:#777; font-size:14px;">
-        Wenn Sie das Zurücksetzen des Passworts nicht angefordert haben, ist keine weitere Aktion erforderlich.
+        Falls Sie keine Passwort-Zurücksetzung angefordert haben, ist keine weitere Aktion erforderlich.
       </p>
 
-      <p style="margin-top:30px; font-size:14px; color:#999;">Mit freundlichen Grüßen ❤️ Das MyStoriesAi Team</p>
+      <p style="margin-top:30px; font-size:14px; color:#999;">Mit freundlichen Grüßen ❤️ Ihr MyStoriesAi-Team</p>
     @else
       <h2 style="color:#333;">Hello {{ $notifiable->name }} 👋</h2>
       <p style="color:#555; font-size:16px;">
-        You are receiving this email because we received a password reset request for your account. 🚀
+        You’re receiving this email because we received a request to reset the password for your MyStoriesAi account. 🚀
         Click the button below to reset your password:
       </p>
 
@@ -60,7 +60,7 @@
       </div>
 
       <p style="color:#777; font-size:14px;">
-        If you did not request a password reset, no further action is required.
+        If you didn’t request a password reset, no further action is required.
       </p>
 
       <p style="margin-top:30px; font-size:14px; color:#999;">Best regards ❤️ The MyStoriesAi Team</p>
@@ -72,9 +72,25 @@
     © {{ date('Y') }} MyStoriesAi. All rights reserved.
     <br />
     <a href="{{ config('app.url') }}"
-      style="color:#555; text-decoration:none;">{{ app()->getLocale() === 'ar' ? 'الموقع الرسمي' : 'Official Website' }}</a>
+      style="color:#555; text-decoration:none;">
+      @if(app()->getLocale() === 'ar')
+        الموقع الرسمي
+      @elseif(app()->getLocale() === 'de')
+        Offizielle Website
+      @else
+        Official Website
+      @endif
+    </a>
     |
     <a href="mailto:support@mystoriesai.com"
-      style="color:#555; text-decoration:none;">{{ app()->getLocale() === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
+      style="color:#555; text-decoration:none;">
+      @if(app()->getLocale() === 'ar')
+        اتصل بنا
+      @elseif(app()->getLocale() === 'de')
+        Kontakt
+      @else
+        Contact Us
+      @endif
+    </a>
   </p>
 </div>

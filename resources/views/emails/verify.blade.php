@@ -30,25 +30,25 @@
       <h2 style="color:#333;">Hallo {{ $notifiable->name }} 👋</h2>
       <p style="color:#555; font-size:16px;">
         Vielen Dank für Ihre Registrierung bei <strong>MyStoriesAi</strong> 🚀
-        Bitte klicken Sie auf den untenstehenden Button, um Ihre E-Mail-Adresse zu bestätigen:
+        Bitte klicken Sie auf den untenstehenden Button, um Ihre E-Mail-Adresse zu verifizieren:
       </p>
 
       <!-- Button -->
       <div style="text-align:center; margin:20px 0;">
         <a href="{{ $verificationUrl }}"
-          style="background:#fa7508; color:#fff; padding:15px 30px; text-decoration:none; border-radius:8px; display:inline-block;">E-Mail
-          bestätigen</a>
+          style="background:#fa7508; color:#fff; padding:15px 30px; text-decoration:none; border-radius:8px; display:inline-block;">E-Mail-Adresse
+          verifizieren</a>
       </div>
 
       <p style="color:#777; font-size:14px;">
-        Wenn Sie dieses Konto nicht erstellt haben, können Sie diese E-Mail ignorieren.
+        Wenn Sie dieses Konto nicht erstellt haben, können Sie diese E-Mail einfach ignorieren.
       </p>
 
-      <p style="margin-top:30px; font-size:14px; color:#999;">Mit freundlichen Grüßen ❤️ Das MyStoriesAi Team</p>
+      <p style="margin-top:30px; font-size:14px; color:#999;">Mit freundlichen Grüßen ❤️ Ihr MyStoriesAi Team</p>
     @else
       <h2 style="color:#333;">Hello {{ $notifiable->name }} 👋</h2>
       <p style="color:#555; font-size:16px;">
-        Thank you for joining <strong>MyStoriesAi</strong> 🚀
+        Thanks for joining <strong>MyStoriesAi</strong> 🚀
         Please click the button below to verify your email address:
       </p>
 
@@ -56,11 +56,11 @@
       <div style="text-align:center; margin:20px 0;">
         <a href="{{ $verificationUrl }}"
           style="background:#fa7508; color:#fff; padding:15px 30px; text-decoration:none; border-radius:8px; display:inline-block;">Verify
-          Email</a>
+          Email Address</a>
       </div>
 
       <p style="color:#777; font-size:14px;">
-        If you did not create this account, you can safely ignore this email.
+        If you didn’t create this account, you can safely ignore this email.
       </p>
 
       <p style="margin-top:30px; font-size:14px; color:#999;">Best regards ❤️ The MyStoriesAi Team</p>
@@ -71,10 +71,12 @@
   <p style="margin-top:20px; font-size:12px; color:#aaa;">
     © {{ date('Y') }} MyStoriesAi. All rights reserved.
     <br />
-    <a href="{{ config('app.url') }}"
-      style="color:#555; text-decoration:none;">{{ app()->getLocale() === 'ar' ? 'الموقع الرسمي' : 'Official Website' }}</a>
+    <a href="{{ config('app.url') }}" style="color:#555; text-decoration:none;">
+      {{ app()->getLocale() === 'ar' ? 'الموقع الرسمي' : (app()->getLocale() === 'de' ? 'Offizielle Website' : 'Official Website') }}
+    </a>
     |
-    <a href="mailto:support@mystoriesai.com"
-      style="color:#555; text-decoration:none;">{{ app()->getLocale() === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
+    <a href="mailto:support@mystoriesai.com" style="color:#555; text-decoration:none;">
+      {{ app()->getLocale() === 'ar' ? 'اتصل بنا' : (app()->getLocale() === 'de' ? 'Kontakt' : 'Contact Us') }}
+    </a>
   </p>
 </div>

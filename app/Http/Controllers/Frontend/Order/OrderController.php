@@ -23,6 +23,7 @@ use App\Notifications\Orders\Creating\NotifyAdmin;
 use App\Notifications\Orders\Creating\OrderConfirmation;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\Orders\Status\PaymentStatusUpdate;
 
 class OrderController extends Controller
 {
@@ -314,6 +315,43 @@ class OrderController extends Controller
       // Pass discount ID for later usage tracking
       session(['pending_discount_id' => $discountId]);
 
+      // Check if total is zero or negative - no payment needed
+      if ($totalPrice <= 0) {
+        // Mark payment as paid
+        $payment->update(['status' => 'paid']);
+
+        // Update order status to processing
+        $order->update(['status' => 'processing']);
+
+        // Update all order items status to processing
+        $order->orderItems()->update(['status' => 'processing']);
+
+        // Record discount usage immediately since no Stripe payment
+        if ($discountId) {
+          $discount = Discount::find($discountId);
+          if ($discount) {
+            $discount->decrement('usage_limit');
+            DiscountUsage::firstOrCreate([
+              'discount_id' => $discount->id,
+              'user_id' => Auth::id(),
+            ]);
+            Log::info('Discount usage recorded for zero total order', [
+              'order_id' => $order->id,
+              'discount_code' => $discountCode,
+              'user_id' => Auth::id(),
+            ]);
+          }
+        }
+
+        // Send payment success notification
+        $order->user->notify(new PaymentStatusUpdate($order, $payment, app()->getLocale()));
+
+        // Redirect to success page
+        return Inertia::render('Frontend/Order/PaymentSuccess', [
+          'order' => $order->load(['orderItems.story', 'shippingAddress.deliveryOption'])
+        ]);
+      }
+
       // Process payment via Stripe
       return $this->initiateStripePayment($order, $payment);
     } catch (\Exception $e) {
@@ -493,6 +531,43 @@ class OrderController extends Controller
       } else {
         // ✅ Clear any existing pending discount session if no discount applied
         session()->forget('pending_discount_id');
+      }
+
+      // Check if total is zero or negative - no payment needed
+      if ($totalPrice <= 0) {
+        // Mark payment as paid
+        $payment->update(['status' => 'paid']);
+
+        // Update order status to processing
+        $order->update(['status' => 'processing']);
+
+        // Update all order items status to processing
+        $order->orderItems()->update(['status' => 'processing']);
+
+        // Record discount usage immediately since no Stripe payment
+        if ($discountId) {
+          $discount = Discount::find($discountId);
+          if ($discount) {
+            $discount->decrement('usage_limit');
+            DiscountUsage::firstOrCreate([
+              'discount_id' => $discount->id,
+              'user_id' => Auth::id(),
+            ]);
+            Log::info('Discount usage recorded for zero total existing order', [
+              'order_id' => $order->id,
+              'discount_code' => $discountCode,
+              'user_id' => Auth::id(),
+            ]);
+          }
+        }
+
+        // Send payment success notification
+        $order->user->notify(new PaymentStatusUpdate($order, $payment, app()->getLocale()));
+
+        // Redirect to success page
+        return Inertia::render('Frontend/Order/PaymentSuccess', [
+          'order' => $order->load(['orderItems.story', 'shippingAddress.deliveryOption'])
+        ]);
       }
 
       // Process payment via Stripe

@@ -61,14 +61,14 @@
       </div>
 
       <p style="color:#777; font-size:14px; direction: rtl;">
-        نأمل أن تستمتع طفلك بقراءة قصته المخصصة! إذا كان لديك أي ملاحظات أو اقتراحات، يرجى التواصل معنا.
+        نأمل أن يستمتع طفلك بقراءة قصته المخصصة! إذا كان لديك أي ملاحظات أو اقتراحات، يرجى التواصل معنا.
       </p>
 
       <p style="margin-top:30px; font-size:14px; color:#999; direction: rtl;">
         شكراً لاختيار MyStoriesAi - حيث يصبح كل طفل بطلاً في قصته!
       </p>
     @elseif($locale === 'de')
-      <h2 style="color:#333;">Die Geschichte Ihres Kindes ist fertig! - Bestellung #{{ $order->id }} 📖✨</h2>
+      <h2 style="color:#333;">Die Geschichte Ihres Kindes ist bereit! – Bestellung #{{ $order->id }} 📖✨</h2>
       <p style="color:#555; font-size:16px;">
         Hallo {{ $notifiable->name }},
       </p>
@@ -91,17 +91,17 @@
       </div>
 
       <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
-        <h4 style="color:#2d5a2d; margin-top:0;">🎉 Herzlichen Glückwunsch! Die Geschichte Ihres Kindes ist fertig 🎉
-        </h4>
-        <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">Die personalisierte Geschichte Ihres Kindes wurde
-          erstellt und ist jetzt bereit zum Herunterladen.</p>
+        <h4 style="color:#2d5a2d; margin-top:0;">🎉 Herzlichen Glückwunsch! Die Geschichte ist jetzt fertig 🎉</h4>
+        <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
+          Wir haben die personalisierte Geschichte für Ihr Kind fertiggestellt. Sie ist jetzt bereit zum Herunterladen und Lesen.
+        </p>
         <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">Sie können jetzt:</p>
         <ul style="color:#2d5a2d; font-size:14px; margin:5px 0; padding-left:20px;">
           <li>Die Geschichte herunterladen und ausdrucken</li>
-          <li>Sie auf Ihrem Tablet oder Handy lesen</li>
+          <li>Sie auf Ihrem Tablet oder Smartphone lesen</li>
           <li>Sie mit Familie und Freunden teilen</li>
           @if ($order->format !== 'pdf')
-            <li>Auf Ihre gedruckte Kopie warten</li>
+            <li>Auf Ihre gedruckte Kopie warten (sie kommt bald an)</li>
           @endif
         </ul>
       </div>
@@ -118,19 +118,21 @@
         </a>
       </div>
 
-      <p style="color:#777; font-size:14px;">Wir hoffen, Ihr Kind genießt seine personalisierte Geschichte! Bei Feedback
-        kontaktieren Sie uns bitte.</p>
+      <p style="color:#777; font-size:14px;">
+        Wir hoffen, Ihr Kind hat viel Freude an der personalisierten Geschichte! Wenn Sie Feedback oder Vorschläge haben, kontaktieren Sie uns gern.
+      </p>
 
-      <p style="margin-top:30px; font-size:14px; color:#999;">Vielen Dank, dass Sie MyStoriesAi gewählt haben - wo jedes
-        Kind der Held seiner eigenen Geschichte wird!</p>
+      <p style="margin-top:30px; font-size:14px; color:#999;">
+        Vielen Dank, dass Sie MyStoriesAi gewählt haben – wo jedes Kind zum Helden seiner eigenen Geschichte wird!
+      </p>
     @else
-      <h2 style="color:#333;">Your Child's Story is Ready! - Order #{{ $order->id }} 📖✨</h2>
+      <h2 style="color:#333;">Your Child’s Story Is Ready! – Order #{{ $order->id }} 📖✨</h2>
       <p style="color:#555; font-size:16px;">
         Hello {{ $notifiable->name }},
       </p>
 
       <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
-        <h3 style="color:#fa7508; margin-top:0;">Completed Story Details:</h3>
+        <h3 style="color:#fa7508; margin-top:0;">Your Story Details:</h3>
         <strong style="color:#333;">Order ID:</strong> #{{ $order->id }}<br />
         <strong style="color:#333;">Child Name:</strong> {{ $order->child_name }}<br />
         <strong style="color:#333;">Child Age:</strong> {{ $order->child_age }} years<br />
@@ -147,9 +149,9 @@
       </div>
 
       <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
-        <h4 style="color:#2d5a2d; margin-top:0;">🎉 Congratulations! Your Child's Story is Ready 🎉</h4>
+        <h4 style="color:#2d5a2d; margin-top:0;">🎉 Congratulations! Your Child’s Story Is Ready 🎉</h4>
         <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
-          We've completed creating your child's personalized story! The story is now ready for download and reading.
+          We’ve completed your child’s personalized story. It’s now ready to download and enjoy.
         </p>
         <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
           You can now:
@@ -177,12 +179,11 @@
       </div>
 
       <p style="color:#777; font-size:14px;">
-        We hope your child enjoys reading their personalized story! If you have any feedback or suggestions, please
-        contact us.
+        We hope your child enjoys their personalized story! If you have any feedback or suggestions, please feel free to contact us.
       </p>
 
       <p style="margin-top:30px; font-size:14px; color:#999;">
-        Thank you for choosing MyStoriesAi - where every child becomes the hero of their story!
+        Thank you for choosing MyStoriesAi – where every child becomes the hero of their own story!
       </p>
     @endif
   </div>
@@ -191,9 +192,11 @@
   <p style="margin-top:20px; font-size:12px; color:#aaa;">
     © {{ date('Y') }} MyStoriesAi. All rights reserved.
     <br />
-    <a href="{{ config('app.url') }}"
-      style="color:#555; text-decoration:none;">{{ $locale === 'ar' ? 'الموقع الرسمي' : 'Official Website' }}</a> |
-    <a href="mailto:support@mystoriesai.com"
-      style="color:#555; text-decoration:none;">{{ $locale === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
+    <a href="{{ config('app.url') }}" style="color:#555; text-decoration:none;">
+      {{ $locale === 'ar' ? 'الموقع الرسمي' : ($locale === 'de' ? 'Offizielle Website' : 'Official Website') }}
+    </a> |
+    <a href="mailto:support@mystoriesai.com" style="color:#555; text-decoration:none;">
+      {{ $locale === 'ar' ? 'اتصل بنا' : ($locale === 'de' ? 'Kontakt' : 'Contact Us') }}
+    </a>
   </p>
 </div>

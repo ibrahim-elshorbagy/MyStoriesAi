@@ -63,7 +63,7 @@
         شكراً لاختيار MyStoriesAi!
       </p>
     @elseif($locale === 'de')
-      <h2 style="color:#333;">Aktualisierung des Bestellstatus - Bestellung #{{ $order->id }} 🎉</h2>
+      <h2 style="color:#333;">Bestellstatus-Update – Bestellung #{{ $order->id }} 🎉</h2>
       <p style="color:#555; font-size:16px;">
         Hallo {{ $notifiable->name }},
       </p>
@@ -83,22 +83,20 @@
           <span style="color:#6c757d;">Ausstehend</span>
         @endif
         <br />
-        <strong style="color:#333;">Aktualisierungsdatum:</strong> {{ $order->updated_at->format('Y-m-d H:i') }}
+        <strong style="color:#333;">Aktualisiert am:</strong> {{ $order->updated_at->format('Y-m-d H:i') }}
       </div>
 
       <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
         <h4 style="color:#2d5a2d; margin-top:0;">Was bedeutet das?</h4>
         <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
           @if ($order->status === 'processing')
-            Wir haben mit der Bearbeitung Ihrer Geschichte begonnen! Wir erstellen die personalisierte Geschichte und
-            bereiten sie für den Versand oder digitalen Download vor.
+            Wir haben mit der Erstellung der Geschichte Ihres Kindes begonnen. Wir bereiten alles für den Druck oder die digitale Lieferung vor.
           @elseif($order->status === 'completed')
-            Die Geschichte Ihres Kindes wurde erfolgreich fertiggestellt! Sie erhalten die Geschichte bald entsprechend
-            Ihrer gewählten Liefermethode.
+            Die Geschichte Ihres Kindes ist fertig! Sie erhalten sie in Kürze – je nach gewählter Liefermethode.
           @elseif($order->status === 'cancelled')
-            Ihre Bestellung wurde storniert. Wenn dies ein Fehler ist, kontaktieren Sie uns bitte umgehend.
+            Ihre Bestellung wurde storniert. Falls dies ein Fehler ist oder Sie Fragen haben, kontaktieren Sie uns bitte umgehend.
           @else
-            Ihre Bestellung steht noch aus. Wir werden mit der Bearbeitung bald beginnen.
+            Ihre Bestellung ist noch ausstehend. Wir starten die Bearbeitung in Kürze.
           @endif
         </p>
       </div>
@@ -112,11 +110,15 @@
         </div>
       @endif
 
-      <p style="color:#777; font-size:14px;">Wenn Sie Fragen zu diesem Update haben, kontaktieren Sie uns bitte.</p>
+      <p style="color:#777; font-size:14px;">
+        Wenn Sie Fragen zu diesem Update haben, kontaktieren Sie uns bitte jederzeit.
+      </p>
 
-      <p style="margin-top:30px; font-size:14px; color:#999;">Vielen Dank, dass Sie MyStoriesAi gewählt haben!</p>
+      <p style="margin-top:30px; font-size:14px; color:#999;">
+        Vielen Dank, dass Sie MyStoriesAi gewählt haben!
+      </p>
     @else
-      <h2 style="color:#333;">Order Status Update - #{{ $order->id }} 🎉</h2>
+      <h2 style="color:#333;">Order Status Update – #{{ $order->id }} 🎉</h2>
       <p style="color:#555; font-size:16px;">
         Hello {{ $notifiable->name }},
       </p>
@@ -136,23 +138,20 @@
           <span style="color:#6c757d;">Pending</span>
         @endif
         <br />
-        <strong style="color:#333;">Update Date:</strong> {{ $order->updated_at->format('Y-m-d H:i') }}
+        <strong style="color:#333;">Updated On:</strong> {{ $order->updated_at->format('Y-m-d H:i') }}
       </div>
 
       <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
         <h4 style="color:#2d5a2d; margin-top:0;">What does this mean?</h4>
         <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
           @if ($order->status === 'processing')
-            We've started working on your child's story! We'll create the personalized story and prepare it for printing
-            or digital delivery.
+            We’ve started working on your child’s story. We’ll create the personalized story and prepare it for printing or digital delivery.
           @elseif($order->status === 'completed')
-            Your child's story has been completed successfully! You'll receive the story soon according to your chosen
-            delivery method.
+            Your child’s story is ready! You’ll receive it soon, based on your selected delivery method.
           @elseif($order->status === 'cancelled')
-            Your order has been cancelled. If this was a mistake or you have any questions, please contact us
-            immediately.
+            Your order has been cancelled. If this was a mistake or you have any questions, please contact us immediately.
           @else
-            Your order is pending. We'll start processing it soon.
+            Your order is currently pending. We’ll start processing it shortly.
           @endif
         </p>
       </div>
@@ -167,7 +166,7 @@
       @endif
 
       <p style="color:#777; font-size:14px;">
-        If you have any questions about your order status, please contact us.
+        If you have any questions about this update, please feel free to contact us.
       </p>
 
       <p style="margin-top:30px; font-size:14px; color:#999;">
@@ -180,9 +179,11 @@
   <p style="margin-top:20px; font-size:12px; color:#aaa;">
     © {{ date('Y') }} MyStoriesAi. All rights reserved.
     <br />
-    <a href="{{ config('app.url') }}"
-      style="color:#555; text-decoration:none;">{{ $locale === 'ar' ? 'الموقع الرسمي' : 'Official Website' }}</a> |
-    <a href="mailto:support@mystoriesai.com"
-      style="color:#555; text-decoration:none;">{{ $locale === 'ar' ? 'اتصل بنا' : 'Contact Us' }}</a>
+    <a href="{{ config('app.url') }}" style="color:#555; text-decoration:none;">
+      {{ $locale === 'ar' ? 'الموقع الرسمي' : ($locale === 'de' ? 'Offizielle Website' : 'Official Website') }}
+    </a> |
+    <a href="mailto:support@mystoriesai.com" style="color:#555; text-decoration:none;">
+      {{ $locale === 'ar' ? 'اتصل بنا' : ($locale === 'de' ? 'Kontakt' : 'Contact Us') }}
+    </a>
   </p>
 </div>
