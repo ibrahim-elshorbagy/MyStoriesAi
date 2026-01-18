@@ -238,19 +238,24 @@ export default function StoryGallerySwiper({ images, videos, title }) {
         {/* Main Media Display */}
         <div className="relative flex-1 min-w-0">
           <div className="rounded-lg sm:rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-orange-100 to-green-100 p-1 sm:p-2 h-full flex items-center justify-center">
-            {mediaItems[currentMediaIndex].type === 'image' ? (
-              <img
-                src={mediaItems[currentMediaIndex].src}
-                alt={`${title} - ${currentMediaIndex + 1}`}
-                className="max-w-full max-h-full object-contain rounded-md sm:rounded-lg"
-              />
-            ) : (
-              <video
-                src={mediaItems[currentMediaIndex].src}
-                controls
-                className="max-w-full max-h-full object-contain rounded-md sm:rounded-lg"
-              />
-            )}
+            <div className="aspect-[193/260] w-full h-full">
+              {mediaItems[currentMediaIndex].type === 'image' ? (
+                <img
+                  src={mediaItems[currentMediaIndex].src}
+                  alt={`${title} - ${currentMediaIndex + 1}`}
+                  className="w-full h-full object-cover rounded-md sm:rounded-lg"
+                />
+              ) : (
+                <video
+                  src={mediaItems[currentMediaIndex].src}
+                  controls
+                  autoPlay
+                  muted
+                  loop
+                  className="w-full h-full object-cover rounded-md sm:rounded-lg"
+                />
+              )}
+            </div>
           </div>
 
           {/* Media Counter & Zoom - Bottom Right */}
