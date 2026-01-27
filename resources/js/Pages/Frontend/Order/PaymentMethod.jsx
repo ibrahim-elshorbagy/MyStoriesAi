@@ -184,7 +184,7 @@ export default function PaymentMethod({ cart, order, deliveryOptions = [] }) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* ITEMS DISPLAY - LEFT SIDE */}
             <div className="lg:col-span-2 space-y-6">
-              <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/40">
+              <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-3 max-sm:py-8 sm:p-8 border border-white/40">
                 <h2 className="text-2xl font-bold text-neutral-900 mb-6 flex items-center gap-3">
                   <i className="fa-solid fa-box-open text-orange-500"></i>
                   {t('your_order')} ({totalItems} {totalItems === 1 ? t('item') : t('items')})
@@ -192,8 +192,8 @@ export default function PaymentMethod({ cart, order, deliveryOptions = [] }) {
 
                 <div className="space-y-6">
                   {items?.map((item, index) => (
-                    <div key={item.id} className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100 hover:shadow-xl transition-all duration-300">
-                      <div className="flex items-start gap-6">
+                    <div key={item.id} className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-3 sm:p-6 border border-blue-100 hover:shadow-xl transition-all duration-300">
+                      <div className="flex max-sm:flex-col items-start gap-6">
                         {/* Item Number & Child Image */}
                         <div className="flex-shrink-0">
                           {item.child_image_path ? (
@@ -392,7 +392,7 @@ export default function PaymentMethod({ cart, order, deliveryOptions = [] }) {
                   value={appliedDiscount ? discountCode : ''}
                 />
 
-                <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/40 space-y-6">
+                <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-4 sm:p-8 border border-white/40 space-y-6">
                   {/* Order Summary */}
                   <div>
                     <h2 className="text-2xl font-bold text-neutral-900 mb-4 flex items-center gap-2">
@@ -441,7 +441,7 @@ export default function PaymentMethod({ cart, order, deliveryOptions = [] }) {
                     {!appliedDiscount ? (
                       // Show discount input when no discount applied
                       <div className="space-y-3">
-                        <div className="flex gap-2">
+                        <div className="flex max-sm:flex-col gap-2">
                           <input
                             type="text"
                             value={discountCode}
