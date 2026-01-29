@@ -172,7 +172,6 @@ return [
   'plan_1_feature_1' => '✔ متين ويدوم لسنوات',
   'plan_1_feature_2' => '✔ تجربة قراءة قبل النوم',
   'plan_1_feature_3' => '✔ قصة مخصصة بالكامل لطفلك',
-  'plan_1_feature_4' => '✔77 صفحة',
   'plan_1_feature_5' => '✔ هدية مثالية للمناسبات',
 
   'pricing_second_plan_title' => '📘 كتاب بغلاف ورقي (Paperback)',
@@ -183,8 +182,9 @@ return [
   'plan_2_feature_1' => '✔ خفيف وسهل الاستخدام',
   'plan_2_feature_2' => '✔ نفس القصة المخصصة',
   'plan_2_feature_3' => '✔ مناسب للقراءة اليومية',
-  'plan_2_feature_4' => '✔40 صفحة',
   'plan_2_feature_5' => '✔مثالي للتجربه الاولي ولصغار السن',
+
+  'pricing_vat_shipping' => 'شامل الضريبه وتوصيل مجاني',
 
   'pricing_additional_text' => '📘 كتاب واحد يجمع بين
 قصة مخصصة لطفلك

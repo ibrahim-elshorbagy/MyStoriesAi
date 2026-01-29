@@ -16,7 +16,6 @@ export default function PricingSection({ settings = {} }) {
         "plan_1_feature_1",
         "plan_1_feature_2",
         "plan_1_feature_3",
-        "plan_1_feature_4",
         "plan_1_feature_5",
       ],
       cardClass: "border-2 border-teal-300 bg-gradient-to-b from-blue-50 via-purple-50 to-white relative shadow-2xl scale-105 z-10",
@@ -33,7 +32,6 @@ export default function PricingSection({ settings = {} }) {
         "plan_2_feature_1",
         "plan_2_feature_2",
         "plan_2_feature_3",
-        "plan_2_feature_4",
         "plan_2_feature_5",
       ],
       cardClass: "border border-gray-200 bg-white",
@@ -148,6 +146,7 @@ export default function PricingSection({ settings = {} }) {
                 <div className="flex-1 flex flex-col justify-start w-full min-h-[280px] pt-8">
                   <h4 className="text-lg sm:text-xl font-bold text-emerald-600">{t(pkg.title)}</h4>
                   <p className="text-2xl sm:text-2xl font-extrabold text-gray-900">{t(pkg.price)} {t('currency')}</p>
+                  <p className="text-xs sm:text-sm text-gray-500">{t('pricing_vat_shipping')}</p>
                   <p className="text-sm sm:text-base text-gray-600">{t(pkg.desc)}</p>
                   <ul className="mt-4 text-gray-700 list-disc list-inside space-y-1 ltr:text-left rtl:text-right text-xs sm:text-sm">
                     {pkg.features.map((featKey) => (

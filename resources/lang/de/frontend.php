@@ -165,7 +165,6 @@ return [
   'plan_1_feature_1' => '✔ Robust und langlebig',
   'plan_1_feature_2' => '✔ Perfekt zum Vorlesen am Abend',
   'plan_1_feature_3' => '✔ Vollständig personalisierte Geschichte für Ihr Kind',
-  'plan_1_feature_4' => '✔ 77 Seiten',
   'plan_1_feature_5' => '✔ Ein besonderes Geschenk für jeden Anlass',
 
   'pricing_second_plan_title' => '📘 Taschenbuch',
@@ -176,8 +175,9 @@ return [
   'plan_2_feature_1' => '✔ Leicht und einfach zu halten',
   'plan_2_feature_2' => '✔ Dieselbe personalisierte Geschichte',
   'plan_2_feature_3' => '✔ Ideal fürs tägliche Vorlesen',
-  'plan_2_feature_4' => '✔ 40 Seiten',
   'plan_2_feature_5' => '✔ Perfekt für erste Erfahrungen und jüngere Kinder',
+
+  'pricing_vat_shipping' => 'Inkl. Mwst. | Gratis Versand',
 
   'pricing_additional_text' => '📘 Ein Buch, das kombiniert
                                 Eine personalisierte Geschichte für Ihr Kind

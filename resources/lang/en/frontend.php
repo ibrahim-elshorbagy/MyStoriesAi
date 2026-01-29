@@ -165,7 +165,6 @@ return [
   'plan_1_feature_1' => '✔ Durable hardcover for long-term keeps',
   'plan_1_feature_2' => '✔ Perfect for bedtime reading',
   'plan_1_feature_3' => '✔ Fully personalized story for your child',
-  'plan_1_feature_4' => '✔ 77 pages',
   'plan_1_feature_5' => '✔ A memorable gift for special occasions',
 
   'pricing_second_plan_title' => '📘 Paperback Storybook',
@@ -176,8 +175,9 @@ return [
   'plan_2_feature_1' => '✔ Easy for kids to hold and read',
   'plan_2_feature_2' => '✔ Same personalized story content',
   'plan_2_feature_3' => '✔ Great for daily storytime',
-  'plan_2_feature_4' => '✔ 40 pages',
   'plan_2_feature_5' => '✔ Ideal for younger children and first-time readers',
+
+  'pricing_vat_shipping' => 'Including VAT | Free shipping',
 
   'pricing_additional_text' => '📘 One book that combines
         A personalized story for your child
