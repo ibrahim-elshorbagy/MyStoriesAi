@@ -145,13 +145,7 @@ class HandleInertiaRequests extends Middleware
   {
     $response = parent::handle($request, $next);
 
-    if (
-      $request->header('X-Inertia') &&
-      $response->getStatusCode() === 200 &&
-      $request->route() &&
-      str_starts_with($request->route()->getName() ?? '', 'react.')
-    ) {
-
+    if ($request->header('X-Inertia')) {
       $response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate, private');
       $response->headers->set('Pragma', 'no-cache');
       $response->headers->set('Expires', '0');
