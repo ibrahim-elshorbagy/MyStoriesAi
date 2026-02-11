@@ -75,21 +75,23 @@ export default function StepThree({
                 <span className="font-medium text-neutral-700 w-32">{t('format')}:</span>
                 <span className="text-neutral-900">{formatOptions[data.format]}</span>
               </div>
-              <div className="flex">
-                <span className="font-medium text-neutral-700 w-32">{t('learning_value')}:</span>
-                <div className="flex-1">
-                  {data.value && data.value.map((val, idx) => (
-                    <span key={idx} className="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full mx-1 mb-1">
-                      {t(`learning_value_${val}`)}
-                    </span>
-                  ))}
-                  {data.custom_value && (
-                    <span className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mx-1 mb-1">
-                      {data.custom_value}
-                    </span>
-                  )}
+              {((data.value && data.value.length > 0) || data.custom_value) && (
+                <div className="flex">
+                  <span className="font-medium text-neutral-700 w-32">{t('learning_value')}:</span>
+                  <div className="flex-1">
+                    {data.value && data.value.map((val, idx) => (
+                      <span key={idx} className="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full mx-1 mb-1">
+                        {t(`learning_value_${val}`)}
+                      </span>
+                    ))}
+                    {data.custom_value && (
+                      <span className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mx-1 mb-1">
+                        {data.custom_value}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Child Image Preview */}

@@ -85,11 +85,6 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
       newErrors.format = t('required');
     }
 
-    // Only validate learning values if NOT coming from step 0 (not customizing a story)
-    if (!cameFromStepZero && (!data.value || data.value.length === 0)) {
-      newErrors.value = t('required');
-    }
-
     // Only validate image if NOT coming from step 0
     if (!imageFile && !cameFromStepZero) {
       newErrors.child_image = t('required');
