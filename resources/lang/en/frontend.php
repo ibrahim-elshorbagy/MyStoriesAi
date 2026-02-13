@@ -211,7 +211,7 @@ return [
   'format_second_plan' => '📘 Paperback Storybook',
   'learning_value' => 'Learning Value',
   'select_learning_value' => 'Select a Learning Value',
-  'custom_learning_value' => 'Or write your own learning value',
+  'custom_learning_value' => 'Write any details you\'d like us to include in the story, or a simple situation/challenge you want the story to address — we\'ll try to include as much as possible in a way that fits the story (optional)…',
   'child_image' => 'Child’s Photo',
   'upload_child_image' => 'Click to upload your child’s photo',
   'view_full_image' => 'View Full Image',

@@ -211,7 +211,7 @@ return [
   'format_second_plan' => '📘 Taschenbuch',
   'learning_value' => 'Lernwert',
   'select_learning_value' => 'Lernwert auswählen',
-  'custom_learning_value' => 'Oder eigenen Lernwert eingeben',
+  'custom_learning_value' => 'Schreibe alle Details, die wir in die Geschichte einbauen sollen, oder eine kurze Situation/Herausforderung, die die Geschichte aufgreifen soll — wir versuchen, so viel wie möglich passend zum Story-Kontext zu integrieren (optional)…',
   'child_image' => 'Foto des Kindes',
   'upload_child_image' => 'Klicken, um das Foto hochzuladen',
   'view_full_image' => 'Vollbild anzeigen',

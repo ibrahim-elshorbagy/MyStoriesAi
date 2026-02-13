@@ -218,7 +218,7 @@ return [
   'format_second_plan' => '📘 كتاب بغلاف ورقي (Paperback)',
   'learning_value' => 'القيمة التعليمية',
   'select_learning_value' => 'اختر القيمة التعليمية',
-  'custom_learning_value' => 'أو اكتب قيمة تعليمية مخصصة',
+  'custom_learning_value' => 'اكتب أي تفاصيل تحب نضيفها للقصة أو موقف/تحدّي بسيط تحب القصة تعلّق عليه — هنحاول نضيف أكبر قدر ممكن بما يناسب سياق القصة (اختياري)…',
   'child_image' => 'صورة الطفل',
   'upload_child_image' => 'اضغط لتحميل صورة الطفل',
   'view_full_image' => 'عرض الصورة الكاملة',

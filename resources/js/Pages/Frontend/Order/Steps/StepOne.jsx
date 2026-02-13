@@ -218,6 +218,7 @@ export default function StepOne({
                     onChange={(e) => setData('custom_value', e.target.value)}
                     label={t('custom_learning_value')}
                     placeholder={t('custom_learning_value')}
+                    rows={4}
                   />
                   <InputError message={errors.custom_value} className="mt-2" />
                 </div>
