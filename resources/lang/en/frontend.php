@@ -631,15 +631,15 @@ return [
 
   // SEO Meta Tags
   'seo_site_name' => 'MyStoriesAi',
-  'seo_home_title' => 'MyStoriesAi | Children\'s Storybooks',
+  'seo_home_title' => ' Children\'s Storybooks',
   'seo_home_description' => 'Create personalized children\'s storybooks with AI. Your child becomes the hero — with their name, photo, and values. Start creating today!',
   'seo_home_keywords' => 'personalized children\'s storybooks, custom kids books, AI storybook, children\'s stories, personalized stories, kids book gifts',
-  'seo_stories_title' => 'Featured Children\'s Stories | MyStoriesAi',
+  'seo_stories_title' => 'Featured Children\'s Stories',
   'seo_stories_description' => 'Browse our collection of personalized children\'s storybooks. Filter by age, gender, and category to find the perfect story for your child.',
   'seo_stories_keywords' => 'children\'s stories, kids books, personalized storybooks, custom children\'s stories, bedtime stories, kids story ideas',
   'seo_story_description' => 'Discover this personalized children\'s storybook — and make your child the hero. Customize it with their name, photo, and values.',
   'seo_story_keywords' => 'personalized storybook, children\'s book, custom story for kids, personalized kids book',
-  'seo_cart_title' => 'My Cart | MyStoriesAi',
-  'seo_cart_details_title' => 'Cart Details | MyStoriesAi',
+  'seo_cart_title' => 'My Cart',
+  'seo_cart_details_title' => 'Cart Details',
 
 ];
