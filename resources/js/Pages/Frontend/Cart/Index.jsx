@@ -66,7 +66,10 @@ export default function Index({ cart }) {
   console.log('Cart Data:', cart);
   return (
     <SiteLayout title={t('my_cart')}>
-      <Head title={t('my_cart')} />
+      <Head>
+        <title>{t('seo_cart_title')}</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
 
       {/* Header Section */}
       <section className="relative min-h-[400px] bg-gradient-to-r from-orange-400 to-orange-600 flex items-center justify-center overflow-hidden">

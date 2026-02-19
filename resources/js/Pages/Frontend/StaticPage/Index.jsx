@@ -8,7 +8,16 @@ export default function Index({ page }) {
 
   return (
     <SiteLayout>
-      <Head title={page.title_value} />
+      <Head>
+        <title>{`${page.title_value} | ${t('seo_site_name')}`}</title>
+        <meta name="description" content={page.title_value} />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={page.title_value} />
+        <meta property="og:site_name" content={t('seo_site_name')} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={page.title_value} />
+      </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-white py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

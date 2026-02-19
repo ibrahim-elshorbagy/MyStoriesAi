@@ -45,7 +45,10 @@ export default function Show({ cartItem }) {
   console.log('Cart Item Data:', cartItem);
   return (
     <SiteLayout title={`${cartItem.child_name} - ${t('cart_details')}`}>
-      <Head title={`${cartItem.child_name} - ${t('cart_details')}`} />
+      <Head>
+        <title>{t('seo_cart_details_title')}</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
 
 
       {/* Header Section */}

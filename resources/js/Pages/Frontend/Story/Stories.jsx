@@ -54,7 +54,19 @@ export default function Stories({ stories, categories, queryParams }) {
 
   return (
     <SiteLayout>
-      <Head title={t('stories_title')} />
+      <Head>
+        <title>{t('seo_stories_title')}</title>
+        <meta name="description" content={t('seo_stories_description')} />
+        <meta name="keywords" content={t('seo_stories_keywords')} />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={t('seo_stories_title')} />
+        <meta property="og:description" content={t('seo_stories_description')} />
+        <meta property="og:site_name" content={t('seo_site_name')} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={t('seo_stories_title')} />
+        <meta name="twitter:description" content={t('seo_stories_description')} />
+      </Head>
 
       <div className="min-h-screen bg-neutral-50 py-12">
         <div className="container mx-auto px-4">

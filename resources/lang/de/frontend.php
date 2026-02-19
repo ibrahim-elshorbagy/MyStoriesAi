@@ -634,4 +634,17 @@ return [
   'order_items' => 'Bestellartikel',
   'child_story' => ':name\'s Geschichte',
 
+  // SEO Meta Tags
+  'seo_site_name' => 'MyStoriesAi',
+  'seo_home_title' => 'MyStoriesAi | Kinderbücher',
+  'seo_home_description' => 'Erstellen Sie personalisierte Kinderbücher mit KI. Ihr Kind wird zum Helden — mit seinem Namen, Foto und Werten. Jetzt starten!',
+  'seo_home_keywords' => 'personalisierte Kinderbücher, individuelle Kinderbücher, KI-Bilderbuch, Kindergeschichten, Kinderbuch Geschenk',
+  'seo_stories_title' => 'Ausgewählte Kindergeschichten | MyStoriesAi',
+  'seo_stories_description' => 'Entdecken Sie unsere personalisierten Kinderbücher. Nach Alter, Geschlecht und Kategorie filtern — die perfekte Geschichte für Ihr Kind.',
+  'seo_stories_keywords' => 'Kindergeschichten, Kinderbücher, personalisierte Geschichten, individuelle Kinderbücher, Gute-Nacht-Geschichten',
+  'seo_story_description' => 'Entdecken Sie dieses personalisierte Kinderbuch — und machen Sie Ihr Kind zum Helden. Mit Name, Foto und Werten anpassen.',
+  'seo_story_keywords' => 'personalisiertes Kinderbuch, individuelle Geschichte, Kinderbuch mit Namen',
+  'seo_cart_title' => 'Warenkorb | MyStoriesAi',
+  'seo_cart_details_title' => 'Warenkorbdetails | MyStoriesAi',
+
 ];

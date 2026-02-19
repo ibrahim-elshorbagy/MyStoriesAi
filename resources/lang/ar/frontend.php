@@ -681,4 +681,17 @@ return [
   'order_items' => 'عناصر الطلب',
   'child_story' => 'قصة :name',
 
+  // SEO Meta Tags
+  'seo_site_name' => 'MyStoriesAi',
+  'seo_home_title' => 'MyStoriesAi | قصص أطفال ',
+  'seo_home_description' => 'أنشئ قصصًا مخصصة لطفلك بالذكاء الاصطناعي. يصبح طفلك بطل القصة — باسمه وصورته وقيمه. ابدأ الإنشاء اليوم!',
+  'seo_home_keywords' => 'قصص أطفال مخصصة، كتب للأطفال، قصة مخصصة، قصص تعليمية، هدايا الأطفال',
+  'seo_stories_title' => 'القصص المميزة للأطفال | MyStoriesAi',
+  'seo_stories_description' => 'تصفح مجموعتنا من قصص الأطفال المخصصة. فلتر حسب العمر والجنس والفئة لإيجاد القصة المثالية لطفلك.',
+  'seo_stories_keywords' => 'قصص أطفال، كتب مخصصة، قصص قبل النوم، قصص تعليمية للأطفال',
+  'seo_story_description' => 'اكتشف هذه القصة المخصصة للأطفال — واجعل طفلك البطل. خصصها باسمه وصورته وقيمه.',
+  'seo_story_keywords' => 'قصة مخصصة، كتاب أطفال، قصة للأطفال، كتاب مميز',
+  'seo_cart_title' => 'سلة التسوق | MyStoriesAi',
+  'seo_cart_details_title' => 'تفاصيل السلة | MyStoriesAi',
+
 ];

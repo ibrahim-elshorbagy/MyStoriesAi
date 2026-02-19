@@ -18,7 +18,19 @@ export default function Home({ stories, faqs, categories, settings, textFeedback
 
   return (
     <SiteLayout>
-      <Head title={t('home')} />
+      <Head>
+        <title>{t('seo_home_title')}</title>
+        <meta name="description" content={t('seo_home_description')} />
+        <meta name="keywords" content={t('seo_home_keywords')} />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={t('seo_home_title')} />
+        <meta property="og:description" content={t('seo_home_description')} />
+        <meta property="og:site_name" content={t('seo_site_name')} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={t('seo_home_title')} />
+        <meta name="twitter:description" content={t('seo_home_description')} />
+      </Head>
 
       <HeroSection />
       <HowItWorks />

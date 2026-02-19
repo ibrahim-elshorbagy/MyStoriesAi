@@ -9,7 +9,21 @@ export default function SingleStory({ story }) {
 
   return (
     <SiteLayout>
-      <Head title={story.title_value} />
+      <Head>
+        <title>{`${story.title_value} | ${t('seo_site_name')}`}</title>
+        <meta name="description" content={story.excerpt_value || t('seo_story_description')} />
+        <meta name="keywords" content={t('seo_story_keywords')} />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={story.title_value} />
+        <meta property="og:description" content={story.excerpt_value || t('seo_story_description')} />
+        <meta property="og:site_name" content={t('seo_site_name')} />
+        {story.cover_image_value && <meta property="og:image" content={story.cover_image_value} />}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={story.title_value} />
+        <meta name="twitter:description" content={story.excerpt_value || t('seo_story_description')} />
+        {story.cover_image_value && <meta name="twitter:image" content={story.cover_image_value} />}
+      </Head>
 
       <div
         className="min-h-screen py-8 md:py-12 relative overflow-hidden"
