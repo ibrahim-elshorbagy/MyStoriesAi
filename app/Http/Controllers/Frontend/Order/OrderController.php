@@ -231,6 +231,7 @@ class OrderController extends Controller
           'language' => $cartItem->language,
           'child_gender' => $cartItem->child_gender,
           'format' => $cartItem->format,
+          'story_theme' => $cartItem->story_theme,
           'value' => $cartItem->value,
           'custom_value' => $cartItem->custom_value,
           'child_image_path' => $childImagePath,

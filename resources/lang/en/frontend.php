@@ -42,6 +42,19 @@ return [
   'current_language' => 'Current Language',
   'book_type' => 'Book Format',
 
+  // Story Theme
+  'story_theme' => 'Story Theme',
+  'story_theme_1' => 'Adventure',
+  'story_theme_2' => 'Football Player',
+  'story_theme_3' => 'Princess',
+  'story_theme_4' => 'Superhero',
+  'story_theme_5' => 'Space / Astronaut',
+  'story_theme_6' => 'Animals',
+  'story_theme_7' => 'Cars & Racing',
+  'story_theme_8' => 'Magic & Fairy Tale',
+  'story_theme_9' => 'Professions (Doctor / Firefighter / Police Officer)',
+  'story_theme_10' => 'Surprise me',
+
   // Delivery options - German
   'city_name_de' => 'City Name (German)',
   'enter_german_city' => 'Enter the city name in German',

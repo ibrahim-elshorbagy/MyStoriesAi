@@ -23,6 +23,7 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
     language: story ? 'arabic' : '',
     child_gender: '',
     format: '',
+    story_theme: '',
     value: [],
     custom_value: '',
     hair_color: '',
@@ -38,7 +39,7 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       const step0Fields = ['story_id', 'face_swap_result', 'child_image'];
-      const step1Fields = ['child_name', 'child_age', 'language', 'child_gender', 'format', 'value', 'custom_value', 'hair_color', 'hair_style', 'eye_color', 'skin_tone', 'clothing_description', 'customer_note', 'story_price'];
+      const step1Fields = ['child_name', 'child_age', 'language', 'child_gender', 'format', 'story_theme', 'value', 'custom_value', 'hair_color', 'hair_style', 'eye_color', 'skin_tone', 'clothing_description', 'customer_note', 'story_price'];
 
       const hasStep0Errors = Object.keys(errors).some(key => step0Fields.includes(key));
       const hasStep1Errors = Object.keys(errors).some(key => step1Fields.includes(key));

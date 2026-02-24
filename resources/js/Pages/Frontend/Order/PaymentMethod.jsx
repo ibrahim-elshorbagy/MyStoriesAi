@@ -88,6 +88,19 @@ export default function PaymentMethod({ cart, order, deliveryOptions = [] }) {
     creativity: t('learning_value_creativity'),
   };
 
+  const storyThemeLabels = {
+    1: t('story_theme_1'),
+    2: t('story_theme_2'),
+    3: t('story_theme_3'),
+    4: t('story_theme_4'),
+    5: t('story_theme_5'),
+    6: t('story_theme_6'),
+    7: t('story_theme_7'),
+    8: t('story_theme_8'),
+    9: t('story_theme_9'),
+    10: t('story_theme_10'),
+  };
+
   const handleApplyDiscount = async (e) => {
     e.preventDefault();
 
@@ -254,6 +267,14 @@ export default function PaymentMethod({ cart, order, deliveryOptions = [] }) {
                                 <i className="fa-solid fa-bookmark text-purple-600"></i>
                                 <span className="text-sm font-semibold text-neutral-800 truncate">
                                   {item.story.title_value}
+                                </span>
+                              </div>
+                            )}
+                            {item.story_theme && storyThemeLabels[item.story_theme] && (
+                              <div className="flex items-center gap-2 bg-indigo-100 px-3 py-2 rounded-lg">
+                                <i className="fa-solid fa-masks-theater text-indigo-600"></i>
+                                <span className="text-sm font-semibold text-neutral-800 truncate">
+                                  {storyThemeLabels[item.story_theme]}
                                 </span>
                               </div>
                             )}

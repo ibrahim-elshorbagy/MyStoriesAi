@@ -7,6 +7,19 @@ export default function OrderItemDetails({ item, t }) {
     third_plan: t('format_third_plan') || 'Hardcover Book',
   };
 
+  const storyThemeLabels = {
+    1: t('story_theme_1'),
+    2: t('story_theme_2'),
+    3: t('story_theme_3'),
+    4: t('story_theme_4'),
+    5: t('story_theme_5'),
+    6: t('story_theme_6'),
+    7: t('story_theme_7'),
+    8: t('story_theme_8'),
+    9: t('story_theme_9'),
+    10: t('story_theme_10'),
+  };
+
   const handleDownloadImage = async (imagePath, fileName) => {
     try {
       const response = await fetch(`/storage/${imagePath}`);
@@ -104,6 +117,12 @@ export default function OrderItemDetails({ item, t }) {
           <span className="text-neutral-600 dark:text-neutral-400">{t('format')}:</span>
           <span className="font-semibold text-neutral-900 dark:text-neutral-100">{formatLabels[item.format]}</span>
         </div>
+        {item.story_theme && storyThemeLabels[item.story_theme] && (
+          <div className="flex justify-between">
+            <span className="text-neutral-600 dark:text-neutral-400">{t('story_theme')}:</span>
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">{storyThemeLabels[item.story_theme]}</span>
+          </div>
+        )}
         <div className="flex justify-between">
           <span className="text-neutral-600 dark:text-neutral-400">{t('story_price')}:</span>
           <span className="font-semibold text-blue-600">${item.story_price}</span>

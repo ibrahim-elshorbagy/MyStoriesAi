@@ -35,6 +35,19 @@ export default function Show({ cartItem }) {
     turkish_german: t('language_turkish_german'),
   };
 
+  const storyThemeLabels = {
+    1: t('story_theme_1'),
+    2: t('story_theme_2'),
+    3: t('story_theme_3'),
+    4: t('story_theme_4'),
+    5: t('story_theme_5'),
+    6: t('story_theme_6'),
+    7: t('story_theme_7'),
+    8: t('story_theme_8'),
+    9: t('story_theme_9'),
+    10: t('story_theme_10'),
+  };
+
   const learningValues = {
     honesty: t('learning_value_honesty'),
     kindness: t('learning_value_kindness'),
@@ -216,6 +229,12 @@ export default function Show({ cartItem }) {
                 <p className="text-sm font-medium text-neutral-600">{t('format')}</p>
                 <p className="text-lg font-semibold text-orange-600">{formatOptions[cartItem.format]}</p>
               </div>
+              {cartItem.story_theme && storyThemeLabels[cartItem.story_theme] && (
+                <div className="mt-4">
+                  <p className="text-sm font-medium text-neutral-600">{t('story_theme')}</p>
+                  <p className="text-lg font-semibold text-purple-600">{storyThemeLabels[cartItem.story_theme]}</p>
+                </div>
+              )}
             </div>
 
             {/* Learning Values */}

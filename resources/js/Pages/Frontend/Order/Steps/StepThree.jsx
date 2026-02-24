@@ -32,6 +32,19 @@ export default function StepThree({
     turkish_german: t('language_turkish_german'),
   };
 
+  const storyThemeLabels = {
+    '1': t('story_theme_1'),
+    '2': t('story_theme_2'),
+    '3': t('story_theme_3'),
+    '4': t('story_theme_4'),
+    '5': t('story_theme_5'),
+    '6': t('story_theme_6'),
+    '7': t('story_theme_7'),
+    '8': t('story_theme_8'),
+    '9': t('story_theme_9'),
+    '10': t('story_theme_10'),
+  };
+
   return (
     <div className="space-y-8">
       {/* Order Details */}
@@ -80,6 +93,12 @@ export default function StepThree({
                 <span className="font-medium text-neutral-700 w-32">{t('format')}:</span>
                 <span className="text-neutral-900">{formatOptions[data.format]}</span>
               </div>
+              {data.story_theme && (
+                <div className="flex">
+                  <span className="font-medium text-neutral-700 w-32">{t('story_theme')}:</span>
+                  <span className="text-neutral-900">{storyThemeLabels[data.story_theme]}</span>
+                </div>
+              )}
               {((data.value && data.value.length > 0) || data.custom_value) && (
                 <div className="flex">
                   <span className="font-medium text-neutral-700 w-32">{t('learning_value')}:</span>

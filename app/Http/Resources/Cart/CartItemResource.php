@@ -23,6 +23,7 @@ class CartItemResource extends JsonResource
             'language' => $this->language,
             'child_gender' => $this->child_gender,
             'format' => $this->format,
+            'story_theme' => $this->story_theme,
             'value' => $this->value,
             'custom_value' => $this->custom_value,
             'child_image_path' => $this->child_image_path,

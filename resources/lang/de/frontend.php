@@ -42,6 +42,19 @@ return [
   'current_language' => 'Aktuelle Sprache',
   'book_type' => 'Buchformat',
 
+  // Thema der Geschichte
+  'story_theme' => 'Thema der Geschichte',
+  'story_theme_1' => 'Abenteuer',
+  'story_theme_2' => 'Fußballspieler/in',
+  'story_theme_3' => 'Prinz/Prinzessin',
+  'story_theme_4' => 'Superheld/in',
+  'story_theme_5' => 'Weltraum / Astronaut/in',
+  'story_theme_6' => 'Tiere',
+  'story_theme_7' => 'Autos & Rennen',
+  'story_theme_8' => 'Magie & Märchen',
+  'story_theme_9' => 'Berufe (Arzt/Ärztin / Feuerwehr / Polizei)',
+  'story_theme_10' => 'Überraschung (für mich auswählen)',
+
   // Delivery options - German
   'city_name_de' => 'Stadtname (Deutsch)',
   'enter_german_city' => 'Stadtname auf Deutsch eingeben',

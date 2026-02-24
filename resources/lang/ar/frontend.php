@@ -44,6 +44,19 @@ return [
   'current_language' => 'اللغة الحالية',
   'book_type' => 'نوع الكتاب',
 
+  // طابع القصة
+  'story_theme' => 'طابع القصة',
+  'story_theme_1' => 'مغامرة',
+  'story_theme_2' => 'لاعب كرة قدم',
+  'story_theme_3' => 'أميرة',
+  'story_theme_4' => 'بطل خارق',
+  'story_theme_5' => 'فضاء / رائد فضاء',
+  'story_theme_6' => 'الحيوانات',
+  'story_theme_7' => 'سيارات وسباق',
+  'story_theme_8' => 'سحر وحكاية خرافية',
+  'story_theme_9' => 'مهن (طبيب / رجل إطفاء / شرطي)',
+  'story_theme_10' => 'مفاجأة (اختَر لي)',
+
   // Delivery options - German
   'city_name_de' => 'اسم المدينة (بالألمانية)',
   'enter_german_city' => 'أدخل المدينة بالألمانية',

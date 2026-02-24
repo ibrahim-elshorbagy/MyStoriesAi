@@ -94,6 +94,20 @@ export default function StepOne({
     // { value: 'third_plan', label: `${t('format_third_plan')} - ${(pricing?.third_plan_price || 0)} ${t('currency')}` },
   ];
 
+  const storyThemeOptions = [
+    { value: '', label: t('select') },
+    { value: '1', label: t('story_theme_1') },
+    { value: '2', label: t('story_theme_2') },
+    { value: '3', label: t('story_theme_3') },
+    { value: '4', label: t('story_theme_4') },
+    { value: '5', label: t('story_theme_5') },
+    { value: '6', label: t('story_theme_6') },
+    { value: '7', label: t('story_theme_7') },
+    { value: '8', label: t('story_theme_8') },
+    { value: '9', label: t('story_theme_9') },
+    { value: '10', label: t('story_theme_10') },
+  ];
+
   const learningValues = [
     { key: 'honesty', label: t('learning_value_honesty') },
     { key: 'kindness', label: t('learning_value_kindness') },
@@ -169,7 +183,7 @@ export default function StepOne({
             <InputError message={errors.child_gender} className="mt-2" />
           </div>
 
-          <div className='md:col-span-2'>
+          <div >
             <SelectInput
               id="format"
               name="format"
@@ -180,6 +194,18 @@ export default function StepOne({
               required
             />
             <InputError message={errors.format} className="mt-2" />
+          </div>
+
+          <div >
+            <SelectInput
+              id="story_theme"
+              name="story_theme"
+              value={data.story_theme}
+              onChange={(e) => setData('story_theme', e.target.value)}
+              options={storyThemeOptions}
+              label={t('story_theme')}
+            />
+            <InputError message={errors.story_theme} className="mt-2" />
           </div>
 
           {/* Hide learning values section when coming from step zero (customizing story) */}
