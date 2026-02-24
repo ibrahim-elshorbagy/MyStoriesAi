@@ -45,6 +45,10 @@ export default function Index({ cart }) {
     arabic: t('language_arabic'),
     english: t('language_english'),
     german: t('language_german'),
+    english_german: t('language_english_german'),
+    arabic_german: t('language_arabic_german'),
+    turkish: t('language_turkish'),
+    turkish_german: t('language_turkish_german'),
   };
 
   const learningValues = {
@@ -75,7 +79,7 @@ export default function Index({ cart }) {
       <section className="relative min-h-[400px] bg-gradient-to-r from-orange-400 to-orange-600 flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          
+
         />
 
         {/* Floating Decorative Icons */}

@@ -75,6 +75,10 @@ export default function StepOne({
     { value: 'arabic', label: t('language_arabic') },
     { value: 'english', label: t('language_english') },
     { value: 'german', label: t('language_german') },
+    { value: 'english_german', label: t('language_english_german') },
+    { value: 'arabic_german', label: t('language_arabic_german') },
+    { value: 'turkish', label: t('language_turkish') },
+    { value: 'turkish_german', label: t('language_turkish_german') },
   ];
 
   const genderOptions = [
