@@ -36,7 +36,7 @@ class CartController extends Controller
             'value' => ['nullable', 'array', 'min:1'],
             'value.*' => ['string', 'in:honesty,kindness,courage,respect,responsibility,friendship,perseverance,creativity'],
             'custom_value' => ['nullable', 'string', 'max:500'],
-            'child_image' => ['required', 'file', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
+            'child_image' => ['nullable', 'file', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
             'hair_color' => ['nullable', 'string', 'max:255'],
             'hair_style' => ['nullable', 'string', 'max:255'],
             'eye_color' => ['nullable', 'string', 'max:255'],

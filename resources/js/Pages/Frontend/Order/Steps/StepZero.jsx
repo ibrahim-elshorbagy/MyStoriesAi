@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Client } from '@gradio/client';
 import InputError from '@/Components/InputError';
 
 export default function StepZero({
@@ -14,11 +13,7 @@ export default function StepZero({
   onNext,
   t
 }) {
-  const [processing, setProcessing] = useState(false);
-  const [swappedImageUrl, setSwappedImageUrl] = useState(null);
-  const [swapError, setSwapError] = useState(null);
   const [imageError, setImageError] = useState(null);
-  const [progress, setProgress] = useState(0);
 
   const getCoverImage = () => {
     if (!story) return null;
@@ -31,148 +26,25 @@ export default function StepZero({
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (!['image/jpeg', 'image/png'].includes(file.type)) {
-        setImageError(t('invalid_image_format') || 'Invalid format. Only JPG and PNG allowed.');
+      if (!['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/webp'].includes(file.type)) {
+        setImageError(t('invalid_image_format') || 'Invalid format. Only JPG, PNG, GIF and WEBP allowed.');
         return;
       }
 
-      const img = new Image();
-      img.onload = () => {
-        if (img.naturalWidth < 400 || img.naturalHeight < 400) {
-          setImageError(t('image_too_small') || 'Image too small. Minimum 400x400 pixels.');
-          return;
-        }
-        if (img.naturalWidth > 6000 || img.naturalHeight > 6000) {
-          setImageError(t('image_too_large') || 'Image too large. Maximum 6000x6000 pixels.');
-          return;
-        }
-
-        setImageFile(file);
-        setData('child_image', file);
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setImagePreview(reader.result);
-        };
-        reader.readAsDataURL(file);
-        setSwappedImageUrl(null);
-        setImageError(null);
-      };
-      img.src = URL.createObjectURL(file);
-    }
-  };
-
-  const handleFaceSwap = async () => {
-    if (!imageFile) {
-      setSwapError(t('please_upload_child_image') || 'Please upload child image first');
-      return;
-    }
-
-    if (!coverImageUrl) {
-      setSwapError(t('no_cover_image'));
-      return;
-    }
-
-    setProcessing(true);
-    setSwapError(null);
-    setProgress(0);
-
-    try {
-      // Realistic progress simulation for ~6 minute (360 second) task
-      const progressStages = [
-        { progress: 3, duration: 5000 },    // Preparing: 0-3% in 5s
-        { progress: 8, duration: 5000 },    // Uploading: 3-8% in 5s
-        { progress: 15, duration: 15000 },  // Detecting faces: 8-15% in 15s
-        { progress: 25, duration: 20000 },  // Face swapping: 15-25% in 20s
-        { progress: 40, duration: 40000 },  // Processing: 25-40% in 40s
-        { progress: 55, duration: 40000 },  // Enhancing (GFPGAN): 40-55% in 40s
-        { progress: 70, duration: 40000 },  // Upscaling (RealESRGAN): 55-70% in 40s
-        { progress: 85, duration: 40000 },  // Fine-tuning: 70-85% in 40s
-        { progress: 95, duration: 30000 },  // Finalizing: 85-95% in 30s
-      ];
-
-      let currentStageIndex = 0;
-      let progressInterval;
-
-      const advanceProgress = () => {
-        if (currentStageIndex >= progressStages.length) {
-          clearInterval(progressInterval);
-          return;
-        }
-
-        const stage = progressStages[currentStageIndex];
-        const startProgress = currentStageIndex === 0 ? 0 : progressStages[currentStageIndex - 1].progress;
-        const endProgress = stage.progress;
-        const steps = Math.ceil(stage.duration / 200);
-        const increment = (endProgress - startProgress) / steps;
-        let stepCount = 0;
-
-        progressInterval = setInterval(() => {
-          stepCount++;
-          setProgress(prev => {
-            const newProgress = Math.min(startProgress + (increment * stepCount), endProgress);
-            if (newProgress >= endProgress) {
-              clearInterval(progressInterval);
-              currentStageIndex++;
-              if (currentStageIndex < progressStages.length) {
-                setTimeout(advanceProgress, 100);
-              }
-            }
-            return Math.round(newProgress);
-          });
-        }, 200);
-      };
-
-      advanceProgress();
-
-      const coverResponse = await fetch(coverImageUrl);
-      const coverBlob = await coverResponse.blob();
-      const childImageBlob = imageFile instanceof Blob ? imageFile : await fetch(imagePreview).then(r => r.blob());
-
-      const client = await Client.connect("yusiff/face-swap");
-      const result = await client.predict("/predict", {
-        source_img: childImageBlob,
-        target_img: coverBlob,
-      });
-
-      // Complete progress
-      if (progressInterval) clearInterval(progressInterval);
-      setProgress(100);
-
-      console.log('Full result:', result);
-
-      if (result && result.data) {
-        let imageUrl;
-        if (Array.isArray(result.data)) {
-          imageUrl = result.data[0]?.url || result.data[0];
-        } else if (typeof result.data === 'object') {
-          imageUrl = result.data.url || result.data;
-        } else {
-          imageUrl = result.data;
-        }
-
-        console.log('Extracted image URL:', imageUrl);
-        setSwappedImageUrl(imageUrl);
-        setData('face_swap_result', imageUrl);
-      } else {
-        throw new Error('No result from face swap API');
+      if (file.size > 5120 * 1024) {
+        setImageError(t('validation_max_file') || 'Image too large. Maximum 5MB.');
+        return;
       }
-    } catch (error) {
-      console.error('Face swap error:', error);
-      setSwapError(t('face_swap_failed'));
-    } finally {
-      setProcessing(false);
-      setTimeout(() => setProgress(0), 1000);
+
+      setImageFile(file);
+      setData('child_image', file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setImageError(null);
     }
-  };
-
-
-
-  const handleConfirmAndNext = () => {
-    if (!swappedImageUrl) {
-      setSwapError(t('please_generate_preview'));
-      return;
-    }
-    onNext();
   };
 
   return (
@@ -196,12 +68,12 @@ export default function StepZero({
           </p>
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        {/* Upload Child Image */}
+        {/* Upload Child Image (optional) */}
         <div>
           <label className="block text-sm font-medium text-neutral-700 mb-2">
-            {t('child_image')} *
+            {t('child_image')}
           </label>
           <div className="border-2 border-dashed border-neutral-300 rounded-lg p-6 text-center">
             {imagePreview ? (
@@ -216,7 +88,7 @@ export default function StepZero({
                   onClick={() => {
                     setImagePreview(null);
                     setImageFile(null);
-                    setSwappedImageUrl(null);
+                    setData('child_image', null);
                     setImageError(null);
                   }}
                   className="text-red-600 hover:text-red-800 text-sm"
@@ -232,7 +104,7 @@ export default function StepZero({
                 <p className="text-neutral-600 mb-2">{t('upload_child_image')}</p>
                 <input
                   type="file"
-                  accept="image/jpeg,image/png"
+                  accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
                   onChange={handleImageChange}
                   className="hidden"
                   id="child_image_step_zero"
@@ -275,99 +147,12 @@ export default function StepZero({
         </div>
       </div>
 
-      {/* Generate Preview Button */}
-      <div className="mb-8 text-center">
-        <button
-          type="button"
-          onClick={handleFaceSwap}
-          disabled={processing || !imageFile}
-          className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-2xl hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-        >
-          {processing ? (
-            <span className="flex items-center gap-3">
-              <i className="fa-solid fa-spinner fa-spin"></i>
-              {t('processing')}
-            </span>
-          ) : (
-            <span className="flex items-center gap-3">
-              <i className="fa-solid fa-wand-magic-sparkles"></i>
-              {t('generate_preview')}
-            </span>
-          )}
-        </button>
-
-        {/* Progress Bar */}
-        {processing && (
-          <div className="mt-6">
-            <div className="w-full bg-neutral-200 rounded-full h-4 overflow-hidden">
-              <div
-                className="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 ease-out flex items-center justify-center text-white text-xs font-bold"
-                style={{ width: `${progress}%` }}
-              >
-                {progress}%
-              </div>
-            </div>
-            <p className="text-sm text-neutral-600 mt-2">
-              {progress < 15 && (t('uploading_images'))}
-              {progress >= 15 && progress < 25 && (t('analyzing_images'))}
-              {progress >= 25 && progress < 48 && (t('detecting_faces'))}
-              {progress >= 48 && progress < 68 && (t('processing_swap'))}
-              {progress >= 68 && progress < 85 && (t('blending_result'))}
-              {progress >= 85 && progress < 95 && (t('finalizing'))}
-              {progress >= 95 && (t('almost_done'))}
-            </p>
-          </div>
-        )}
-
-        {swapError && (
-          <div className="mt-4 text-red-600 font-medium">
-            {swapError}
-          </div>
-        )}
-      </div>
-
-      {/* Result Preview */}
-      {swappedImageUrl && (
-        <div className="mb-8">
-          <h3 className="text-xl font-semibold text-neutral-900 mb-4 flex items-center">
-            <i className="fa-solid fa-sparkles text-yellow-500 mx-2"></i>
-            {t('preview_result')}
-          </h3>
-          <div className="border-4 border-green-200 rounded-2xl p-6 bg-gradient-to-br from-green-50 to-blue-50">
-            <img
-              src={swappedImageUrl}
-              alt="Face swap result"
-              className="max-w-full h-auto rounded-lg mx-auto shadow-xl"
-            />
-          </div>
-          <div className="mt-4 text-center">
-            <p className="text-neutral-600 mb-4">
-              {t('satisfied_with_result')}
-            </p>
-            <div className="flex justify-center gap-4">
-              <button
-                type="button"
-                onClick={() => {
-                  setSwappedImageUrl(null);
-                  setSwapError(null);
-                }}
-                className="px-6 py-2 border-2 border-orange-500 text-orange-600 font-semibold rounded-lg hover:bg-orange-50 transition-colors"
-              >
-                <i className="fa-solid fa-rotate-right mx-2"></i>
-                {t('try_again')}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Navigation Buttons */}
       <div className="flex justify-end">
         <button
           type="button"
-          onClick={handleConfirmAndNext}
-          disabled={!swappedImageUrl}
-          className="px-10 py-4 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white font-bold rounded-2xl hover:from-orange-600 hover:via-pink-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+          onClick={onNext}
+          className="px-10 py-4 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white font-bold rounded-2xl hover:from-orange-600 hover:via-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
         >
           <span className="flex items-center gap-3 rtl:flex-row-reverse">
             {t('confirm_and_continue')}
@@ -378,3 +163,4 @@ export default function StepZero({
     </div>
   );
 }
+

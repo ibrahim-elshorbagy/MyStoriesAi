@@ -38,8 +38,8 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
-      const step0Fields = ['story_id', 'face_swap_result', 'child_image'];
-      const step1Fields = ['child_name', 'child_age', 'language', 'child_gender', 'format', 'story_theme', 'value', 'custom_value', 'hair_color', 'hair_style', 'eye_color', 'skin_tone', 'clothing_description', 'customer_note', 'story_price'];
+      const step0Fields = ['story_id'];
+      const step1Fields = ['child_name', 'child_age', 'language', 'child_gender', 'format', 'story_theme', 'value', 'custom_value', 'hair_color', 'hair_style', 'eye_color', 'skin_tone', 'clothing_description', 'customer_note', 'story_price', 'child_image'];
 
       const hasStep0Errors = Object.keys(errors).some(key => step0Fields.includes(key));
       const hasStep1Errors = Object.keys(errors).some(key => step1Fields.includes(key));
@@ -86,10 +86,8 @@ export default function CreateOrder({ pricing, deliveryOptions, story = null }) 
       newErrors.format = t('required');
     }
 
-    // Only validate image if NOT coming from step 0
-    if (!imageFile && !cameFromStepZero) {
-      newErrors.child_image = t('required');
-    } else if (imageFile) {
+    // Image is optional (nullable) - only validate format/size if one was provided
+    if (imageFile) {
       const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/webp'];
       if (!validTypes.includes(imageFile.type)) {
         newErrors.child_image = t('validation_mimes');
