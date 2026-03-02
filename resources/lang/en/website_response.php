@@ -39,6 +39,7 @@ return [
   'email_unique' => 'This email is already registered.',
   'password_confirmation' => 'The password confirmation does not match.',
   'phone_invalid' => 'Please enter a valid phone number (e.g., +1234567890).',
+  'username_regex' => 'The username must not contain spaces.',
   /* End Auth Validation Messages */
 
   /* End Auth Controller Responses */

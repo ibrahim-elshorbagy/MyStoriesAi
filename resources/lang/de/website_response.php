@@ -43,6 +43,7 @@ return [
   'email_unique' => 'Diese E-Mail-Adresse ist bereits registriert.',
   'password_confirmation' => 'Die Passwortbestätigung stimmt nicht überein.',
   'phone_invalid' => 'Bitte geben Sie eine gültige Telefonnummer ein (z.B. +1234567890).',
+  'username_regex' => 'Der Benutzername darf keine Leerzeichen enthalten.',
   /* End Auth Validation Messages */
 
 

@@ -39,6 +39,7 @@ return [
   'email_unique' => 'هذا البريد الإلكتروني مُسجل بالفعل.',
   'password_confirmation' => 'تأكيد كلمة المرور غير متطابق.',
   'phone_invalid' => 'يرجى إدخال رقم هاتف صحيح (مثال: +1234567890).',
+  'username_regex' => 'يجب ألا يحتوي اسم المستخدم على مسافات.',
   /* End Auth Validation Messages */
 
   /* End Auth Controller Responses */
