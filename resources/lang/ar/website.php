@@ -143,8 +143,10 @@ $main = [
   /* Pricing Settings */
   'pricing_settings' => 'إعدادات التسعير',
   'first_plan_price' => 'غلاف ورقي + نسخة PDF مجانية',
+  'first_plan_old_price' => 'السعر القديم للخطة الأولى (للعرض فقط)',
   'price' => 'سعر',
   'second_plan_price' =>'نسخة هدايا فاخرة + PDF مجاني',
+  'second_plan_old_price' => 'السعر القديم للخطة الثانية (للعرض فقط)',
   'third_plan_price' =>  'النسخة التذكارية الخاصة (إصدار محدود)',
 
   /* Delivery Options */
@@ -346,8 +348,9 @@ $main = [
 
   // Order Status
   'order_status_pending' => 'في الانتظار',
-  'order_status_processing' => 'قيد المعالجة',
-  'order_status_completed' => 'مكتمل',
+  'order_status_processing' => 'قيد إنشاء القصة',
+  'order_status_printing' => 'في المطبعة',
+  'order_status_completed' => 'تم التسليم للعميل',
   'order_status_cancelled' => 'ملغي',
 
   // Payment Status
@@ -448,8 +451,9 @@ $main = [
   // Order Status
   'select' => 'اختر',
   'order_status_pending' => 'في الانتظار',
-  'order_status_processing' => 'قيد المعالجة',
-  'order_status_completed' => 'مكتمل',
+  'order_status_processing' => 'قيد إنشاء القصة',
+  'order_status_printing' => 'في المطبعة',
+  'order_status_completed' => 'تم التسليم للعميل',
   'order_status_cancelled' => 'ملغي',
 
   // Payment Status

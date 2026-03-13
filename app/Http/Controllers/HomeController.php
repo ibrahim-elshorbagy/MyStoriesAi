@@ -25,7 +25,9 @@ class HomeController extends Controller
     // Only expose non-sensitive settings to frontend
     $settings = SiteSetting::whereIn('key', [
       'first_plan_price',
+      'first_plan_old_price',
       'second_plan_price',
+      'second_plan_old_price',
       'how_it_works_video',
     ])->pluck('value', 'key')->toArray();
 

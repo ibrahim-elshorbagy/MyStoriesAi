@@ -10,10 +10,12 @@ class NotifyAdmin extends Notification
 {
 
   protected $order;
+  public $locale;
 
-  public function __construct(Order $order)
+  public function __construct(Order $order, $locale = null)
   {
     $this->order = $order;
+    $this->locale = $locale ?: app()->getLocale();
   }
 
   public function via($notifiable)
@@ -23,14 +25,12 @@ class NotifyAdmin extends Notification
 
   public function toMail($notifiable)
   {
-    $locale = app()->getLocale();
-
     return (new MailMessage)
-      ->subject(__('emails.new_order_admin_subject', ['id' => $this->order->id], $locale))
+      ->subject(__('emails.new_order_admin_subject', ['id' => $this->order->id], $this->locale))
       ->view('emails.orders.creating.notify-admin', [
         'order' => $this->order,
         'notifiable' => $notifiable,
-        'locale' => $locale
+        'locale' => $this->locale
       ]);
   }
 

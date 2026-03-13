@@ -36,9 +36,11 @@ class VerifyEmailNotification extends Notification
    */
   public function toMail(object $notifiable): MailMessage
   {
+    $locale = app()->getLocale();
+
     return (new MailMessage)
-      ->subject('Verify Your Email Address')
-      ->view('emails.verify', ['notifiable' => $notifiable, 'verificationUrl' => $this->verificationUrl]);
+      ->subject(__('emails.email_verification_subject', [], $locale))
+      ->view('emails.verify', ['notifiable' => $notifiable, 'verificationUrl' => $this->verificationUrl, 'locale' => $locale]);
   }
 
   /**

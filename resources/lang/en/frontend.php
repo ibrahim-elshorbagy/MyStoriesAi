@@ -175,7 +175,7 @@ return [
 
   'pricing_section_title' => 'Choose Your Child’s Storybook — Make Your Child the Hero!',
 
-  'pricing_first_plan_title' => '📕 Hardcover Storybook',
+  'pricing_first_plan_title' => '📕 A4 Size Hardcover Storybook',
   'pricing_first_plan_price' => '44.99',
   'pricing_first_plan_desc' => 'A premium hardcover book made to last for years',
   'pricing_first_plan_btn' => 'Create Your Hardcover Storybook',
@@ -184,7 +184,7 @@ return [
   'plan_1_feature_3' => '✔ Fully personalized story for your child',
   'plan_1_feature_5' => '✔ A memorable gift for special occasions',
 
-  'pricing_second_plan_title' => '📘 Paperback Storybook',
+  'pricing_second_plan_title' => '📘 A5 Size Hardcover Storybook',
   'pricing_second_plan_price' => '29.99',
   'pricing_second_plan_desc' => 'Lightweight and perfect for everyday reading',
   'pricing_second_plan_btn' => 'Create Your Paperback Storybook',

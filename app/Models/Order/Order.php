@@ -18,6 +18,7 @@ class Order extends Model
     'subtotal' => 'decimal:2',
     'delivery_total' => 'decimal:2',
     'total_price' => 'decimal:2',
+    'payment_reminder_sent_at' => 'datetime',
   ];
 
   public function user(): BelongsTo

@@ -9,7 +9,9 @@ export default function PricingSettings({ settings }) {
   const { data, setData, post, processing, errors, recentlySuccessful } = useForm({
     settings: {
       first_plan_price: settings.first_plan_price || '',
+      first_plan_old_price: settings.first_plan_old_price || '',
       second_plan_price: settings.second_plan_price || '',
+      second_plan_old_price: settings.second_plan_old_price || '',
       third_plan_price: settings.third_plan_price || '',
     }
   });
@@ -45,6 +47,18 @@ export default function PricingSettings({ settings }) {
               placeholder="339"
             />
             {errors['settings.first_plan_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.first_plan_price']}</p>}
+
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2 mt-4">
+              {t('first_plan_old_price')}
+            </label>
+            <TextInput
+              type="number"
+              value={data.settings.first_plan_old_price}
+              onChange={(e) => setData('settings', { ...data.settings, first_plan_old_price: e.target.value })}
+              className="px-3 py-2"
+              placeholder="499"
+            />
+            {errors['settings.first_plan_old_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.first_plan_old_price']}</p>}
           </div>
 
           <div>
@@ -59,6 +73,18 @@ export default function PricingSettings({ settings }) {
               placeholder="439"
             />
             {errors['settings.second_plan_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.second_plan_price']}</p>}
+
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2 mt-4">
+              {t('second_plan_old_price')}
+            </label>
+            <TextInput
+              type="number"
+              value={data.settings.second_plan_old_price}
+              onChange={(e) => setData('settings', { ...data.settings, second_plan_old_price: e.target.value })}
+              className="px-3 py-2"
+              placeholder="399"
+            />
+            {errors['settings.second_plan_old_price'] && <p className="text-red-500 text-sm mt-1">{errors['settings.second_plan_old_price']}</p>}
           </div>
 
           {/* <div>

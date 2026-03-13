@@ -214,8 +214,10 @@ $main = [
   /* Pricing Settings */
   'pricing_settings' => 'Pricing Settings',
   'first_plan_price' => 'Paperback Book + Free PDF Copy',
+  'first_plan_old_price' => 'First Plan Old Price (Showcase Only)',
   'price' => 'Price',
   'second_plan_price' => 'Premium Gift Edition + Free PDF',
+  'second_plan_old_price' => 'Second Plan Old Price (Showcase Only)',
   'third_plan_price' => 'Collector\'s Limited Edition (Exclusive)',
 
   /* Delivery Options */
@@ -350,8 +352,9 @@ $main = [
 
   // Order Status
   'order_status_pending' => 'Pending',
-  'order_status_processing' => 'In Progress',
-  'order_status_completed' => 'Completed',
+  'order_status_processing' => 'Under Story Creation',
+  'order_status_printing' => 'At Printing Press',
+  'order_status_completed' => 'Delivered to Client',
   'order_status_cancelled' => 'Cancelled',
 
   // Payment Status
@@ -475,8 +478,9 @@ $main = [
   // Order Status
   'select' => 'Select',
   'order_status_pending' => 'Pending',
-  'order_status_processing' => 'Processing',
-  'order_status_completed' => 'Completed',
+  'order_status_processing' => 'Under Story Creation',
+  'order_status_printing' => 'At Printing Press',
+  'order_status_completed' => 'Delivered to Client',
   'order_status_cancelled' => 'Cancelled',
 
   // Payment Status

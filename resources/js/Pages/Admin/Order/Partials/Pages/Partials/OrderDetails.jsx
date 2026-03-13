@@ -23,15 +23,8 @@ export default function OrderDetails({ order, t, statusOptions, paymentMethodOpt
           <span className="font-medium text-neutral-700 dark:text-neutral-300">{t('payment_method')}:</span>
           <span className="text-neutral-900 dark:text-neutral-100">{paymentMethodOptions[order.payment_method]}</span>
         </div>
-        <div className="flex justify-between">
-          <span className="font-medium text-neutral-700 dark:text-neutral-300">{t('story_price')}:</span>
-          <span className="text-neutral-900 dark:text-neutral-100">{order.story_price} {t('currency')}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="font-medium text-neutral-700 dark:text-neutral-300">{t('delivery_price')}:</span>
-          <span className="text-neutral-900 dark:text-neutral-100">{order.delivery_price} {t('currency')}</span>
-        </div>
-        <div className="flex justify-between font-semibold text-lg">
+
+        {/* <div className="flex justify-between font-semibold text-lg">
           <span className="text-neutral-700 dark:text-neutral-300">{t('total_price')}:</span>
           <span className="text-neutral-900 dark:text-neutral-100">{order.total_price} {t('currency')}</span>
         </div>
@@ -46,7 +39,7 @@ export default function OrderDetails({ order, t, statusOptions, paymentMethodOpt
               <span className="text-neutral-900 dark:text-neutral-100">{order.discount_value} {t('currency')}</span>
             </div>
           </>
-        )}
+        )} */}
       </div>
     </div>
   )

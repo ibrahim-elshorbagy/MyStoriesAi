@@ -182,7 +182,7 @@ return [
 
   'pricing_section_title' => 'اختر كتاب طفلك – اجعل طفلك البطل!',
 
-  'pricing_first_plan_title' => '📕 كتاب بغلاف مقوّى (Hardcover)',
+  'pricing_first_plan_title' => '📕 كتاب بغلاف مقوّى مقاس A4',
   'pricing_first_plan_price' => '44.99',
   'pricing_first_plan_desc' => 'كتاب بغلاف مقوّى متين ويدوم لسنوات',
   'pricing_first_plan_btn' => 'ابدأ قصة طفلك',
@@ -191,7 +191,7 @@ return [
   'plan_1_feature_3' => '✔ قصة مخصصة بالكامل لطفلك',
   'plan_1_feature_5' => '✔ هدية مثالية للمناسبات',
 
-  'pricing_second_plan_title' => '📘 كتاب بغلاف ورقي (Paperback)',
+  'pricing_second_plan_title' => '📘 كتاب بغلاف مقوّى مقاس A5',
   'pricing_second_plan_price' => '29.99',
   'pricing_second_plan_desc' => 'كتاب بغلاف ورقي خفيف وسهل الاستخدام',
   'pricing_second_plan_btn' => 'اطلب نسختك الورقية الآن',

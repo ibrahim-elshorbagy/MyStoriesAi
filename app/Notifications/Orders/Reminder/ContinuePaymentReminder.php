@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Notifications\Orders\Creating;
+namespace App\Notifications\Orders\Reminder;
 
+use App\Models\Order\Order;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\Order\Order;
 
-class OrderConfirmation extends Notification
+class ContinuePaymentReminder extends Notification
 {
-
   protected $order;
   public $locale;
 
@@ -26,11 +25,11 @@ class OrderConfirmation extends Notification
   public function toMail($notifiable)
   {
     return (new MailMessage)
-      ->subject(__('emails.order_confirmation_subject', ['id' => $this->order->id], $this->locale))
-      ->view('emails.orders.creating.user-confirmation', [
+      ->subject(__('emails.continue_payment_reminder_subject', ['id' => $this->order->id], $this->locale))
+      ->view('emails.orders.reminder.continue-payment', [
         'order' => $this->order,
         'notifiable' => $notifiable,
-        'locale' => $this->locale
+        'locale' => $this->locale,
       ]);
   }
 
@@ -39,6 +38,7 @@ class OrderConfirmation extends Notification
     return [
       'order_id' => $this->order->id,
       'total_price' => $this->order->total_price,
+      'reminder_type' => 'continue_payment_24h',
     ];
   }
 }

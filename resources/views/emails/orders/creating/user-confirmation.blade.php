@@ -1,196 +1,79 @@
+@php
+  $locale = $locale ?? app()->getLocale();
+  $isRtl = $locale === 'ar';
+@endphp
+
 <div style="font-family: Arial, sans-serif; background-color:#f9f9f9; padding:10px; text-align:center;">
-  <!-- Logo -->
   <img src="{{ asset('assets/auth/logo.png') }}" alt="MyStoriesAi Logo" width="150"
     style="margin:0 auto 20px auto; width:100%; max-width:400px;" />
 
-  <!-- Card -->
   <div
-    style="max-width:600px; margin:0 auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:{{ $locale === 'ar' ? 'right' : 'left' }};"
-    dir="{{ $locale === 'ar' ? 'rtl' : 'ltr' }}">
-    @if ($locale === 'ar')
-      <h2 style="color:#333; direction: rtl;">شكراً لك {{ $notifiable->name }} 🎉</h2>
-      <p style="color:#555; font-size:16px; direction: rtl;">
-        تم إنشاء طلبك بنجاح! نحن متحمسون لإنشاء قصص مخصصة لأطفالك.
+    style="max-width:600px; margin:0 auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:{{ $isRtl ? 'right' : 'left' }};"
+    dir="{{ $isRtl ? 'rtl' : 'ltr' }}">
+    <h2 style="color:#333;">{{ __('emails.order_confirmation_title', ['name' => $notifiable->name], $locale) }}</h2>
+    <p style="color:#555; font-size:16px;">{{ __('emails.order_confirmation_intro', [], $locale) }}</p>
+
+    <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
+      <h3 style="color:#fa7508; margin-top:0;">{{ __('emails.order_confirmation_details_title', [], $locale) }}</h3>
+      <strong style="color:#333;">{{ __('emails.order_confirmation_order_id_label', [], $locale) }}:</strong> #{{ $order->id }}<br />
+      <strong style="color:#333;">{{ __('emails.order_confirmation_stories_count_label', [], $locale) }}:</strong>
+      {{ $order->orderItems->count() }}<br />
+      <strong style="color:#333;">{{ __('emails.order_confirmation_price_before_label', [], $locale) }}:</strong>
+      {{ number_format((float) $order->subtotal + (float) $order->delivery_total, 2) }} EUR<br />
+      <strong style="color:#333;">{{ __('emails.order_confirmation_discount_label', [], $locale) }}:</strong>
+      -{{ number_format((float) $order->discount_value, 2) }} EUR<br />
+      <strong style="color:#333;">{{ __('emails.order_confirmation_total_label', [], $locale) }}:</strong>
+      {{ number_format((float) $order->total_price, 2) }} EUR<br />
+      <strong style="color:#333;">{{ __('emails.order_confirmation_payment_method_label', [], $locale) }}:</strong>
+      {{ __('emails.payment_method_' . $order->payment_method, [], $locale) }}
+      <br /><br />
+
+      <strong style="color:#333;">{{ __('emails.order_confirmation_story_details_label', [], $locale) }}:</strong><br />
+      @foreach ($order->orderItems as $item)
+        @php
+          $normalizedLanguage = match ($item->language) {
+              'ar', 'arabic' => 'arabic',
+              'de', 'german', 'deutsch' => 'german',
+              default => 'english',
+          };
+        @endphp
+        <div style="background:#fff; padding:10px; margin:5px 0; border-radius:5px; border-left:3px solid #fa7508;">
+          <strong>{{ __('emails.order_confirmation_story_child_label', [], $locale) }}:</strong>
+          {{ $item->child_name }} ({{ $item->child_age }} {{ __('emails.years_old', [], $locale) }})<br />
+          <strong>{{ __('emails.order_confirmation_story_language_label', [], $locale) }}:</strong>
+          {{ __('emails.language_' . $normalizedLanguage, [], $locale) }}<br />
+          <strong>{{ __('emails.order_confirmation_story_format_label', [], $locale) }}:</strong>
+          {{ __('emails.plan_' . $item->format, [], $locale) }}<br />
+          <strong>{{ __('emails.order_confirmation_story_price_label', [], $locale) }}:</strong>
+          {{ number_format((float) $item->story_price, 2) }} EUR
+        </div>
+      @endforeach
+    </div>
+
+    <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
+      <h4 style="color:#2d5a2d; margin-top:0;">{{ __('emails.order_confirmation_next_steps_title', [], $locale) }}</h4>
+      <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
+        {{ __('emails.order_confirmation_next_step_1', [], $locale) }}<br />
+        {{ __('emails.order_confirmation_next_step_2', [], $locale) }}<br />
+        {{ __('emails.order_confirmation_next_step_3', [], $locale) }}
       </p>
+    </div>
 
-      <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0; direction: rtl;">
-        <h3 style="color:#fa7508; margin-top:0;">تفاصيل طلبك:</h3>
-        <strong style="color:#333;">رقم الطلب:</strong> #{{ $order->id }}<br />
-        <strong style="color:#333;">عدد القصص:</strong> {{ $order->orderItems->count() }} قصة<br />
-        <strong style="color:#333;">المبلغ الإجمالي:</strong> {{ $order->total_price }} EUR<br />
-        <strong style="color:#333;">طريقة الدفع:</strong>
-        {{ $order->payment_method === 'cod' ? 'الدفع عند الاستلام' : 'دفع إلكتروني' }}
-        <br /><br />
-        <strong style="color:#333;">تفاصيل القصص:</strong><br />
-        @foreach ($order->orderItems as $item)
-          <div
-            style="background:#fff; padding:10px; margin:5px 0; border-radius:5px; border-right:3px solid #fa7508; direction: rtl;">
-            <strong>الطفل:</strong> {{ $item->child_name }} ({{ $item->child_age }} سنوات)<br />
-            <strong>اللغة:</strong>
-            {{ $item->language === 'arabic' ? 'العربية' : ($item->language === 'english' ? 'الإنجليزية' : 'الألمانية') }}<br />
-            <strong>التنسيق:</strong>
-            @if ($item->format === 'first_plan')
-              الخطة الأولى
-            @elseif($item->format === 'second_plan')
-              الخطة الثانية
-            @else
-              الخطة الثالثة
-            @endif
-            <br />
-            <strong>السعر:</strong> {{ $item->story_price }} EUR
-          </div>
-        @endforeach
-      </div>
+    <div style="text-align:center; margin:20px 0;">
+      <a href="{{ route('user.orders.show', $order->id) }}"
+        style="background:#fa7508; color:#fff; padding:15px 30px; text-decoration:none; border-radius:8px; display:inline-block;">
+        {{ __('emails.order_confirmation_view_order_button', [], $locale) }}
+      </a>
+    </div>
 
-      <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0; direction: rtl;">
-        <h4 style="color:#2d5a2d; margin-top:0;">ماذا سيحدث الآن؟</h4>
-        <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
-          ✅ سيقوم فريقنا بمراجعة طلبك<br />
-          ✅ سنبدأ في إنشاء القصص المخصصة لأطفالك<br />
-          ✅ ستتلقى تحديثات عبر البريد الإلكتروني<br />
-        </p>
-      </div>
-
-      <div style="text-align:center; margin:20px 0;">
-        <a href="{{ route('user.orders.show', $order->id) }}"
-          style="background:#fa7508; color:#fff; padding:15px 30px; text-decoration:none; border-radius:8px; display:inline-block;">
-          عرض طلبي
-        </a>
-      </div>
-
-      <p style="color:#777; font-size:14px; direction: rtl;">
-        إذا كان لديك أي أسئلة، لا تتردد في التواصل معنا.
-      </p>
-
-      <p style="margin-top:30px; font-size:14px; color:#999; direction: rtl;">
-        شكراً لاختيارك MyStoriesAi ❤️
-      </p>
-    @elseif($locale === 'de')
-      <h2 style="color:#333;">Vielen Dank, {{ $notifiable->name }} 🎉</h2>
-      <p style="color:#555; font-size:16px;">
-        Ihre Bestellung wurde erfolgreich erstellt! Wir freuen uns darauf, personalisierte Geschichten für Ihre Kinder zu erstellen.
-      </p>
-
-      <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
-        <h3 style="color:#fa7508; margin-top:0;">Ihre Bestelldetails:</h3>
-        <strong style="color:#333;">Bestellnummer:</strong> #{{ $order->id }}<br />
-        <strong style="color:#333;">Anzahl der Geschichten:</strong> {{ $order->orderItems->count() }} Geschichte(n)<br />
-        <strong style="color:#333;">Gesamtbetrag:</strong> {{ $order->total_price }} EUR<br />
-        <strong style="color:#333;">Zahlungsmethode:</strong>
-        {{ $order->payment_method === 'cod' ? 'Zahlung bei Lieferung' : 'Online-Zahlung' }}
-        <br /><br />
-        <strong style="color:#333;">Details zu den Geschichten:</strong><br />
-        @foreach ($order->orderItems as $item)
-          <div style="background:#fff; padding:10px; margin:5px 0; border-radius:5px; border-left:3px solid #fa7508;">
-            <strong>Kind:</strong> {{ $item->child_name }} ({{ $item->child_age }} Jahre)<br />
-            <strong>Sprache:</strong>
-            {{ $item->language === 'arabic' ? 'Arabisch' : ($item->language === 'english' ? 'Englisch' : 'Deutsch') }}<br />
-            <strong>Format:</strong>
-            @if ($item->format === 'first_plan')
-              Plan 1
-            @elseif($item->format === 'second_plan')
-              Plan 2
-            @else
-              Plan 3
-            @endif
-            <br />
-            <strong>Preis:</strong> {{ $item->story_price }} EUR
-          </div>
-        @endforeach
-      </div>
-
-      <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
-        <h4 style="color:#2d5a2d; margin-top:0;">Wie geht es jetzt weiter?</h4>
-        <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
-          ✅ Unser Team prüft Ihre Bestellung<br />
-          ✅ Wir beginnen mit der Erstellung der personalisierten Geschichten für Ihre Kinder<br />
-          ✅ Sie erhalten Updates per E-Mail zum Fortschritt<br />
-        </p>
-      </div>
-
-      <div style="text-align:center; margin:20px 0;">
-        <a href="{{ route('user.orders.show', $order->id) }}"
-          style="background:#fa7508; color:#fff; padding:15px 30px; text-decoration:none; border-radius:8px; display:inline-block;">
-          Meine Bestellung ansehen
-        </a>
-      </div>
-
-      <p style="color:#777; font-size:14px;">
-        Wenn Sie Fragen haben, kontaktieren Sie uns gerne.
-      </p>
-
-      <p style="margin-top:30px; font-size:14px; color:#999;">
-        Vielen Dank, dass Sie MyStoriesAi gewählt haben ❤️
-      </p>
-    @else
-      <h2 style="color:#333;">Thank you, {{ $notifiable->name }} 🎉</h2>
-      <p style="color:#555; font-size:16px;">
-        Your order has been created successfully! We’re excited to create personalized stories for your children.
-      </p>
-
-      <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin:20px 0;">
-        <h3 style="color:#fa7508; margin-top:0;">Your Order Details:</h3>
-        <strong style="color:#333;">Order Number:</strong> #{{ $order->id }}<br />
-        <strong style="color:#333;">Number of Stories:</strong> {{ $order->orderItems->count() }} story/stories<br />
-        <strong style="color:#333;">Total Amount:</strong> {{ $order->total_price }} EUR<br />
-        <strong style="color:#333;">Payment Method:</strong>
-        {{ $order->payment_method === 'cod' ? 'Cash on Delivery' : 'Online Payment' }}
-        <br /><br />
-        <strong style="color:#333;">Story Details:</strong><br />
-        @foreach ($order->orderItems as $item)
-          <div style="background:#fff; padding:10px; margin:5px 0; border-radius:5px; border-left:3px solid #fa7508;">
-            <strong>Child:</strong> {{ $item->child_name }} ({{ $item->child_age }} years)<br />
-            <strong>Language:</strong>
-            {{ $item->language === 'arabic' ? 'Arabic' : ($item->language === 'english' ? 'English' : 'German') }}<br />
-            <strong>Format:</strong>
-            @if ($item->format === 'first_plan')
-              Plan 1
-            @elseif($item->format === 'second_plan')
-              Plan 2
-            @else
-              Plan 3
-            @endif
-            <br />
-            <strong>Price:</strong> {{ $item->story_price }} EUR
-          </div>
-        @endforeach
-      </div>
-
-      <div style="background:#e8f5e8; padding:15px; border-radius:8px; margin:20px 0;">
-        <h4 style="color:#2d5a2d; margin-top:0;">What happens next?</h4>
-        <p style="color:#2d5a2d; font-size:14px; margin:5px 0;">
-          ✅ Our team will review your order<br />
-          ✅ We’ll start creating your children’s personalized stories<br />
-          ✅ You’ll receive progress updates via email<br />
-        </p>
-      </div>
-
-      <div style="text-align:center; margin:20px 0;">
-        <a href="{{ route('user.orders.show', $order->id) }}"
-          style="background:#fa7508; color:#fff; padding:15px 30px; text-decoration:none; border-radius:8px; display:inline-block;">
-          View My Order
-        </a>
-      </div>
-
-      <p style="color:#777; font-size:14px;">
-        If you have any questions, please feel free to contact us.
-      </p>
-
-      <p style="margin-top:30px; font-size:14px; color:#999;">
-        Thank you for choosing MyStoriesAi ❤️
-      </p>
-    @endif
+    <p style="color:#777; font-size:14px;">{{ __('emails.order_confirmation_help_text', [], $locale) }}</p>
+    <p style="margin-top:30px; font-size:14px; color:#999;">{{ __('emails.order_confirmation_regards', [], $locale) }}</p>
   </div>
 
-  <!-- Footer -->
   <p style="margin-top:20px; font-size:12px; color:#aaa;">
-    © {{ date('Y') }} MyStoriesAi. All rights reserved.
+    © {{ date('Y') }} MyStoriesAi. {{ __('emails.all_rights_reserved', [], $locale) }}
     <br />
-    <a href="{{ config('app.url') }}" style="color:#555; text-decoration:none;">
-      {{ $locale === 'ar' ? 'الموقع الرسمي' : ($locale === 'de' ? 'Offizielle Website' : 'Official Website') }}
-    </a> |
-    <a href="mailto:support@mystoriesai.com" style="color:#555; text-decoration:none;">
-      {{ $locale === 'ar' ? 'اتصل بنا' : ($locale === 'de' ? 'Kontakt' : 'Contact Us') }}
-    </a>
+    <a href="{{ config('app.url') }}" style="color:#555; text-decoration:none;">{{ __('emails.official_website', [], $locale) }}</a> |
+    <a href="mailto:support@mystoriesai.com" style="color:#555; text-decoration:none;">{{ __('emails.contact_us', [], $locale) }}</a>
   </p>
 </div>

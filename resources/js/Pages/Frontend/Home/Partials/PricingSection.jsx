@@ -5,11 +5,14 @@ import { Link } from "@inertiajs/react";
 
 export default function PricingSection({ settings = {} }) {
   const { t } = useTrans();
+  const getDisplayedPrice = (value, fallbackKey) => String(value ?? t(fallbackKey));
+
   const PRICING = [
     {
       key: "first_plan",
       title: "pricing_first_plan_title",
-      price: settings.first_plan_price || t("pricing_first_plan_price"),
+      oldPrice: settings.first_plan_old_price,
+      price: getDisplayedPrice(settings.first_plan_price, "pricing_first_plan_price"),
       desc: "pricing_first_plan_desc",
       btn: "pricing_first_plan_btn",
       features: [
@@ -25,7 +28,8 @@ export default function PricingSection({ settings = {} }) {
     {
       key: "second_plan",
       title: "pricing_second_plan_title",
-      price: settings.second_plan_price || t("pricing_second_plan_price"),
+      oldPrice: settings.second_plan_old_price,
+      price: getDisplayedPrice(settings.second_plan_price, "pricing_second_plan_price"),
       desc: "pricing_second_plan_desc",
       btn: "pricing_second_plan_btn",
       features: [
@@ -145,7 +149,12 @@ export default function PricingSection({ settings = {} }) {
               <div className="flex flex-col flex-1 items-center p-8 text-center space-y-4">
                 <div className="flex-1 flex flex-col justify-start w-full min-h-[280px] pt-8">
                   <h4 className="text-lg sm:text-xl font-bold text-emerald-600">{t(pkg.title)}</h4>
-                  <p className="text-2xl sm:text-2xl font-extrabold text-gray-900">{t(pkg.price)} {t('currency')}</p>
+                  {pkg.oldPrice && (
+                    <p className="text-sm text-gray-500 line-through">
+                      {pkg.oldPrice} {t('currency')}
+                    </p>
+                  )}
+                  <p className="text-2xl sm:text-2xl font-extrabold text-gray-900">{pkg.price} {t('currency')}</p>
                   <p className="text-xs sm:text-sm text-gray-500">{t('pricing_vat_shipping')}</p>
                   <p className="text-sm sm:text-base text-gray-600">{t(pkg.desc)}</p>
                   <ul className="mt-4 text-gray-700 list-disc list-inside space-y-1 ltr:text-left rtl:text-right text-xs sm:text-sm">

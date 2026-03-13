@@ -175,7 +175,7 @@ return [
 
   'pricing_section_title' => 'Wählen Sie Ihr Kinderbuch – Machen Sie Ihr Kind zum Helden!',
 
-  'pricing_first_plan_title' => '📕 Hardcover-Buch',
+  'pricing_first_plan_title' => '📕 Hardcover-Buch im A4-Format',
   'pricing_first_plan_price' => '44.99',
   'pricing_first_plan_desc' => 'Robustes Hardcover, das jahrelang hält',
   'pricing_first_plan_btn' => 'Hardcover-Geschichte erstellen',
@@ -184,7 +184,7 @@ return [
   'plan_1_feature_3' => '✔ Vollständig personalisierte Geschichte für Ihr Kind',
   'plan_1_feature_5' => '✔ Ein besonderes Geschenk für jeden Anlass',
 
-  'pricing_second_plan_title' => '📘 Taschenbuch',
+  'pricing_second_plan_title' => '📘 Hardcover-Buch im A5-Format',
   'pricing_second_plan_price' => '29.99',
   'pricing_second_plan_desc' => 'Leicht, handlich und ideal für den Alltag',
   'pricing_second_plan_btn' => 'Taschenbuch jetzt erstellen',

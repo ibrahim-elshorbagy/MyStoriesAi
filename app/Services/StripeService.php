@@ -102,7 +102,7 @@ class StripeService
           'order_id' => $order->id,
           'user_id' => $order->user->id,
         ],
-        'automatic_tax' => ['enabled' => true],
+        // 'automatic_tax' => ['enabled' => true],
       ]);
 
       Log::info('Stripe checkout session created successfully, URL: ' . $session->url);

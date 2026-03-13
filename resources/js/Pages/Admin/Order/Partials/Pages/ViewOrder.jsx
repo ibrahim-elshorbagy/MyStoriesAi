@@ -4,6 +4,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import { useTrans } from '@/Hooks/useTrans';
 import OrderDetails from './Partials/OrderDetails';
 import OrderItemsList from '../OrderItemsList';
+import OrderSummary from '../OrderSummary';
 import CustomerInformation from './Partials/CustomerInformation';
 import PaymentHistory from './Partials/PaymentHistory';
 import UpdatePaymentStatus from './Partials/UpdatePaymentStatus';
@@ -16,6 +17,7 @@ export default function ViewOrder({ auth, order }) {
   const statusOptions = {
     pending: t('order_status_pending'),
     processing: t('order_status_processing'),
+    printing: t('order_status_printing'),
     completed: t('order_status_completed'),
     cancelled: t('order_status_cancelled'),
   };
@@ -46,7 +48,8 @@ export default function ViewOrder({ auth, order }) {
               </h1>
             </div>
             <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${order.status === 'completed' ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' :
-                order.status === 'processing' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
+                order.status === 'processing' ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/20 dark:text-indigo-400' :
+                  order.status === 'printing' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
                   order.status === 'pending' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400' :
                     'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
               }`}>
@@ -56,8 +59,9 @@ export default function ViewOrder({ auth, order }) {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <OrderDetails order={order} t={t} statusOptions={statusOptions} paymentMethodOptions={paymentMethodOptions} />
-            <CustomerInformation order={order} t={t} />
+            <OrderSummary order={order} t={t} />
             <ShippingAddress order={order} t={t} />
+            <CustomerInformation order={order} t={t} />
             <PaymentHistory order={order} t={t} paymentMethodOptions={paymentMethodOptions} />
           </div>
 

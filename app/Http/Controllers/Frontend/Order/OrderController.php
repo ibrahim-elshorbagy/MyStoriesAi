@@ -29,6 +29,17 @@ class OrderController extends Controller
 {
   protected $stripeService;
 
+  private function resolveOrderLocale(Order $order): string
+  {
+    $itemLanguage = $order->orderItems()->value('language');
+
+    return match ($itemLanguage) {
+      'arabic', 'ar' => 'ar',
+      'german', 'de', 'deutsch' => 'de',
+      default => 'en',
+    };
+  }
+
   public function __construct(StripeService $stripeService)
   {
     $this->stripeService = $stripeService;
@@ -291,18 +302,19 @@ class OrderController extends Controller
 
       $order->load(['orderItems.story', 'shippingAddress']);
       $user = Auth::user();
+      $emailLocale = $this->resolveOrderLocale($order);
 
 
       // Send emails to admin and user
       try {
         if ($order->user) {
-          $order->user->notify(new OrderConfirmation($order));
+          $order->user->notify(new OrderConfirmation($order, $emailLocale));
         }
 
         $adminEmailSetting = SiteSetting::where('key', 'admin_notification_email')->first();
         if ($adminEmailSetting && $adminEmailSetting->value) {
           Notification::route('mail', $adminEmailSetting->value)
-            ->notify(new NotifyAdmin($order));
+            ->notify(new NotifyAdmin($order, $emailLocale));
         }
 
       } catch (\Exception $e) {
@@ -345,7 +357,9 @@ class OrderController extends Controller
         }
 
         // Send payment success notification
-        $order->user->notify(new PaymentStatusUpdate($order, $payment, app()->getLocale()));
+        if ($order->user) {
+          $order->user->notify(new PaymentStatusUpdate($order, $payment, $emailLocale));
+        }
 
         // Redirect to success page
         return Inertia::render('Frontend/Order/PaymentSuccess', [
@@ -525,6 +539,7 @@ class OrderController extends Controller
 
       // ✅ Refresh order to ensure all fields are loaded fresh
       $order->refresh();
+      $emailLocale = $this->resolveOrderLocale($order);
 
       // Pass discount ID for later usage tracking if new discount applied
       if ($discountId) {
@@ -563,7 +578,9 @@ class OrderController extends Controller
         }
 
         // Send payment success notification
-        $order->user->notify(new PaymentStatusUpdate($order, $payment, app()->getLocale()));
+        if ($order->user) {
+          $order->user->notify(new PaymentStatusUpdate($order, $payment, $emailLocale));
+        }
 
         // Redirect to success page
         return Inertia::render('Frontend/Order/PaymentSuccess', [

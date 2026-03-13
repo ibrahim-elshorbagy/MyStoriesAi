@@ -232,8 +232,10 @@ $main= [
   /* Pricing Settings */
   'pricing_settings' => 'Preiseinstellungen',
   'first_plan_price' => 'Taschenbuch + kostenlose PDF-Kopie',
+  'first_plan_old_price' => 'Alter Preis Plan 1 (nur Anzeige)',
   'price' => 'Preis',
   'second_plan_price' => 'Premium-Geschenkausgabe + kostenlose PDF',
+  'second_plan_old_price' => 'Alter Preis Plan 2 (nur Anzeige)',
   'third_plan_price' => 'Sammleredition – limitiert (exklusiv)',
 
 
@@ -382,8 +384,9 @@ $main= [
 
   // Order Status
   'order_status_pending' => 'Ausstehend',
-  'order_status_processing' => 'In Bearbeitung',
-  'order_status_completed' => 'Abgeschlossen',
+  'order_status_processing' => 'Story wird erstellt',
+  'order_status_printing' => 'In der Druckerei',
+  'order_status_completed' => 'An den Kunden zugestellt',
   'order_status_cancelled' => 'Storniert',
 
 
@@ -505,8 +508,9 @@ $main= [
   // Order Status
   'select' => 'Auswählen',
   'order_status_pending' => 'Ausstehend',
-  'order_status_processing' => 'In Bearbeitung',
-  'order_status_completed' => 'Abgeschlossen',
+  'order_status_processing' => 'Story wird erstellt',
+  'order_status_printing' => 'In der Druckerei',
+  'order_status_completed' => 'An den Kunden zugestellt',
   'order_status_cancelled' => 'Storniert',
 
   // Payment Status

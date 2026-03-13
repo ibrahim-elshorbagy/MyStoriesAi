@@ -25,8 +25,14 @@ class OrderStatusUpdate extends Notification
 
   public function toMail($notifiable)
   {
+    $subjectKey = match ($this->order->status) {
+      'printing' => 'emails.order_status_printing_subject',
+      'completed' => 'emails.order_status_delivered_subject',
+      default => 'emails.order_status_update_subject',
+    };
+
     return (new MailMessage)
-      ->subject(__('emails.order_status_update_subject', ['id' => $this->order->id], $this->locale))
+      ->subject(__($subjectKey, ['id' => $this->order->id], $this->locale))
       ->view('emails.orders.status.order-status-update', [
         'order' => $this->order,
         'notifiable' => $notifiable,

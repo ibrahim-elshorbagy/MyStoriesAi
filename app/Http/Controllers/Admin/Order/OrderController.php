@@ -12,6 +12,7 @@ use App\Notifications\Orders\Status\PaymentStatusUpdate;
 use App\Notifications\Orders\Status\OrderStatusUpdate;
 use App\Notifications\Orders\Status\PDFUploaded;
 use App\Http\Resources\Order\OrderResource;
+use Illuminate\Support\Facades\Notification;
 
 class OrderController extends Controller
 {
@@ -99,7 +100,16 @@ class OrderController extends Controller
         ->with('status', 'error');
     }
 
-    $order->user->notify(new PaymentStatusUpdate($order, $payment, $request->locale));
+    $user = $order->user()->first();
+
+    if (!$user) {
+      return back()
+        ->with('title', __('website_response.no_payment_found_title'))
+        ->with('message', __('website_response.unauthorized_access'))
+        ->with('status', 'error');
+    }
+
+    Notification::send($user, new PaymentStatusUpdate($order, $payment, $request->input('locale')));
 
     return back()
       ->with('title', __('website_response.notification_sent_title'))
@@ -110,7 +120,7 @@ class OrderController extends Controller
   public function updateStatus(Request $request, Order $order)
   {
     $request->validate([
-      'status' => 'required|in:pending,processing,completed,cancelled',
+      'status' => 'required|in:pending,processing,printing,completed,cancelled',
     ]);
 
     $order->update(['status' => $request->status]);
@@ -127,7 +137,16 @@ class OrderController extends Controller
       'locale' => 'nullable|in:ar,en,de',
     ]);
 
-    $order->user->notify(new OrderStatusUpdate($order, $request->locale));
+    $user = $order->user()->first();
+
+    if (!$user) {
+      return back()
+        ->with('title', __('website_response.no_payment_found_title'))
+        ->with('message', __('website_response.unauthorized_access'))
+        ->with('status', 'error');
+    }
+
+    Notification::send($user, new OrderStatusUpdate($order, $request->input('locale')));
 
     return back()
       ->with('title', __('website_response.notification_sent_title'))
@@ -175,7 +194,16 @@ class OrderController extends Controller
         ->with('status', 'error');
     }
 
-    $orderItem->order->user->notify(new PDFUploaded($orderItem, $request->locale));
+    $user = $orderItem->order->user()->first();
+
+    if (!$user) {
+      return back()
+        ->with('title', __('website_response.no_payment_found_title'))
+        ->with('message', __('website_response.unauthorized_access'))
+        ->with('status', 'error');
+    }
+
+    Notification::send($user, new PDFUploaded($orderItem, $request->input('locale')));
 
     return back()
       ->with('title', __('website_response.notification_sent_title'))
