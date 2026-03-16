@@ -175,32 +175,38 @@ return [
 
   'pricing_section_title' => 'Choose Your Child’s Storybook — Make Your Child the Hero!',
 
-  'pricing_first_plan_title' => '📕 A4 Size Hardcover Storybook',
-  'pricing_first_plan_price' => '44.99',
-  'pricing_first_plan_desc' => 'A premium hardcover book made to last for years',
-  'pricing_first_plan_btn' => 'Create Your Hardcover Storybook',
-  'plan_1_feature_1' => '✔ Durable hardcover for long-term keeps',
-  'plan_1_feature_2' => '✔ Perfect for bedtime reading',
-  'plan_1_feature_3' => '✔ Fully personalized story for your child',
-  'plan_1_feature_5' => '✔ A memorable gift for special occasions',
+  'pricing_first_plan_title' => '📘 A5 Storybook - Hardcover',
+  'pricing_first_plan_price' => '34.49',
+  'pricing_first_plan_desc' => 'Lightweight and perfect for daily reading.',
+  'pricing_first_plan_btn' => 'Create Your Story',
+  'plan_1_feature_1' => '✔ Easy for kids to hold and read',
+  'plan_1_feature_2' => '✔ Same fully personalized story content',
+  'plan_1_feature_3' => '✔ Durable hardcover finish',
+  'plan_1_feature_5' => '✔ Perfect for younger kids and daily bedtime reading',
 
-  'pricing_second_plan_title' => '📘 A5 Size Hardcover Storybook',
-  'pricing_second_plan_price' => '29.99',
-  'pricing_second_plan_desc' => 'Lightweight and perfect for everyday reading',
-  'pricing_second_plan_btn' => 'Create Your Paperback Storybook',
+  'pricing_second_plan_title' => '📕 A4 Storybook - Hardcover',
+  'pricing_second_plan_price' => '44.49',
+  'pricing_second_plan_desc' => 'Larger size for a more immersive reading experience.',
+  'pricing_second_plan_note' => 'Only 10€ extra to get the bigger size',
+  'pricing_second_plan_btn' => 'Create Your Story',
   'pricing_most_popular' => 'Most Popular',
-  'plan_2_feature_1' => '✔ Easy for kids to hold and read',
-  'plan_2_feature_2' => '✔ Same personalized story content',
-  'plan_2_feature_3' => '✔ Great for daily storytime',
-  'plan_2_feature_5' => '✔ Ideal for younger children and first-time readers',
+  'plan_2_feature_1' => '✔ Premium hardcover that lasts for years',
+  'plan_2_feature_2' => '✔ Bigger pages for clearer and more beautiful illustrations',
+  'plan_2_feature_3' => '✔ Ideal for bedtime story reading',
+  'plan_2_feature_5' => '✔ A special gift for birthdays and occasions',
+
+  'pricing_third_plan_title' => '🎁 Premium Gift Edition',
+  'pricing_third_plan_price' => '54.49',
+  'pricing_third_plan_desc' => 'The best personalized storybook gift experience.\nPerfect for birthdays and special occasions.',
+  'pricing_third_plan_btn' => 'Create a Gift Story',
+  'plan_3_feature_1' => '✔ A4 hardcover storybook',
+  'plan_3_feature_2' => '✔ Elegant gift-ready preparation',
+  'plan_3_feature_3' => '✔ Digital PDF copy of the story',
+  'plan_3_feature_4' => '✔ Priority processing',
 
   'pricing_vat_shipping' => 'Including VAT | Free shipping',
 
-  'pricing_additional_text' => '📘 One book that combines
-        A personalized story for your child
-        And interactive educational activities
-        Without screens
-        Available for a limited time with launch orders',
+  'pricing_additional_text' => '🎁 Special Offer\n\nBuy 2 books and get 20% off with code BUY2\n\nPerfect for siblings or as a gift for grandparents.',
   // End Pricing
 
   // FAQs Section
@@ -231,6 +237,7 @@ return [
   'format' => 'Format',
   'format_first_plan' => '📕 Hardcover Storybook',
   'format_second_plan' => '📘 Paperback Storybook',
+  'format_third_plan' => '🎁 Premium Gift Edition (A4 + PDF)',
   'learning_value' => 'Learning Value',
   'select_learning_value' => 'Select a Learning Value',
   'custom_learning_value' => 'Write any details you\'d like us to include in the story, or a simple situation/challenge you want the story to address — we\'ll try to include as much as possible in a way that fits the story (optional)…',
@@ -376,8 +383,8 @@ return [
   'view_all_orders' => 'View All Orders',
 
   /* Footer */
-  'MyStoriesAi_description' => 'We turn your ideas into personalized children’s storybooks — quickly, beautifully, and with a human touch.',
-  'footer_logo_alt' => 'MyStoriesAi Logo',
+  'MyStoryana_description' => 'We turn your ideas into personalized children’s storybooks — quickly, beautifully, and with a human touch.',
+  'footer_logo_alt' => 'MyStoryana Logo',
   'footer_tagline_line1' => 'Turning your ideas into',
   'footer_tagline_line2' => 'personalized storybooks kids love.',
   'footer_sections_title' => 'Sections',
@@ -388,7 +395,7 @@ return [
   'footer_contact_email_title' => 'Email Support',
   'footer_contact_phone_title' => 'Phone Support',
   'footer_rights_reserved' => 'All rights reserved',
-  'footer_copyright_text' => 'MyStoriesAi :year',
+  'footer_copyright_text' => 'MyStoryana :year',
 
   /* Error Pages */
   'error' => 'Error',
@@ -652,7 +659,7 @@ return [
   'child_story' => ':name\'s story',
 
   // SEO Meta Tags
-  'seo_site_name' => 'MyStoriesAi',
+  'seo_site_name' => 'MyStoryana',
   'seo_home_title' => ' Children\'s Storybooks',
   'seo_home_description' => 'Create personalized children\'s storybooks with AI. Your child becomes the hero — with their name, photo, and values. Start creating today!',
   'seo_home_keywords' => 'personalized children\'s storybooks, custom kids books, AI storybook, children\'s stories, personalized stories, kids book gifts',
