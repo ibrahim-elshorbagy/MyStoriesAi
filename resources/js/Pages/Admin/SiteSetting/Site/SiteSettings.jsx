@@ -51,12 +51,12 @@ export default function SiteSettings({ settings = {}, timezones = [], paymobUrls
                   <button
                     key={item.id}
                     onClick={() => handleMenuClick(item.id)}
-                    className={`flex w-full items-center gap-2 p-2 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all ${activeSection === item.id
+                    className={`flex w-full items-center gap-2 p-2 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all ${activeSection == item.id
                       ? 'bg-blue-500/10 text-black dark:text-white font-medium'
                       : ''
                       }`}
                   >
-                    <i className={`${item.icon} ${activeSection === item.id ? 'text-blue-500' : ''
+                    <i className={`${item.icon} ${activeSection == item.id ? 'text-blue-500' : ''
                       }`}></i>
                     <span>{item.label}</span>
                   </button>
@@ -67,25 +67,25 @@ export default function SiteSettings({ settings = {}, timezones = [], paymobUrls
 
           {/* Main content area */}
           <div className="lg:col-span-2 min-h-[60vh]">
-            {activeSection === 'contact' && (
+            {activeSection == 'contact' && (
               <ContactSettings settings={settings} />
             )}
-            {activeSection === 'pricing' && (
+            {activeSection == 'pricing' && (
               <PricingSettings settings={settings} />
             )}
-            {activeSection === 'email' && (
+            {activeSection == 'email' && (
               <EmailSettings settings={settings} />
             )}
-            {activeSection === 'cookies' && (
+            {activeSection == 'cookies' && (
               <CookieSettings settings={settings} />
             )}
-            {activeSection === 'stripe' && (
+            {activeSection == 'stripe' && (
               <StripeSettings settings={settings} />
             )}
-            {activeSection === 'how_it_works_video' && (
+            {activeSection == 'how_it_works_video' && (
               <HowItWorksVideoSettings settings={settings} />
             )}
-            {/* {activeSection === 'paymob' && (
+            {/* {activeSection == 'paymob' && (
               <PaymobSettings settings={settings} paymobUrls={paymobUrls} />
             )} */}
           </div>

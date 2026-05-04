@@ -141,7 +141,7 @@ class PaymobService
 
         // Check payment_status field
         $isPaid = isset($orderData['payment_status'])
-          && $orderData['payment_status'] === 'PAID';
+          && $orderData['payment_status'] == 'PAID';
 
         return [
           'status' => true,

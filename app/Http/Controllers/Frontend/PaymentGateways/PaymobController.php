@@ -26,7 +26,7 @@ class PaymobController extends Controller
 
     Log::info($request->all());
 
-    if ($order->user_id !== Auth::id())
+    if ($order->user_id != Auth::id())
       abort(403);
 
     try {
@@ -60,7 +60,7 @@ class PaymobController extends Controller
       }
 
       // Update payment and order status
-      if ($payment->status !== 'paid') {
+      if ($payment->status != 'paid') {
         $payment->update(['status' => 'paid']);
         $order->update(['status' => 'completed']);
         Log::info('Payment marked as completed for order: ' . $order->id);
@@ -80,7 +80,7 @@ class PaymobController extends Controller
 
   public function failure(Order $order)
   {
-    if ($order->user_id !== Auth::id())
+    if ($order->user_id != Auth::id())
       abort(403);
 
     return Inertia::render('Frontend/Order/PaymentFailed', [
